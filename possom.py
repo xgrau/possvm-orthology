@@ -14,15 +14,15 @@ from matplotlib.backends.backend_pdf import PdfPages
 arp = argparse.ArgumentParser()
 
 # Add the arguments to the parser
-arp.add_argument("-phy", "--phy",  required=True,  help="String. Folder with phylogenies")
-arp.add_argument("-suf", "--suf",  required=True,  help="String. Suffix of phylogenies in folder")
-arp.add_argument("-out", "--out",  required=True,  help="String. Prefix for output")
-arp.add_argument("-ort", "--ort",  required=True,  help="String. Path to orthology file. Must be a two-column table (with tabs), with one gene per line: OG <tab> gene1")
-arp.add_argument("-ani", "--ani",  required=True,  help="String. Which analysis to perform: \"main\" to analyse all genes, \"opti\" to find optimal inflation value")
-arp.add_argument("-inf", "--inf",  required=False, default=1.1,      help="OPTIONAL: Floating. if analysis is \"main\", which inflation value to use? Default is 1.1")
-arp.add_argument("-nopt", "--nopt", required=False, default=500,     help="OPTIONAL: Integer. if analysis is \"opti\", how many phylogenies should we examine for optimisation? Default is 500")
-arp.add_argument("-print", "--print", required=False, default=False, help="OPTIONAL: Boolean (False/True). Print new tree with defined clusters?")
-arp.add_argument("-split", "--split", required=False, default="_",   help="OPTIONAL: character to split species and sequence names. Default is \"_\", e.g. Human_genename. WARNING: use quotation marks, e.g. -split \"_\" or -split \"|\"")
+arp.add_argument("-p", "--phy",  required=True,  help="String. Folder with phylogenies")
+arp.add_argument("-s", "--suf",  required=True,  help="String. Suffix of phylogenies in folder")
+arp.add_argument("-o", "--out",  required=True,  help="String. Prefix for output")
+arp.add_argument("-O", "--ort",  required=True,  help="String. Path to orthology file. Must be a two-column table (with tabs), with one gene per line: OG <tab> gene1")
+arp.add_argument("-a", "--ani",  required=True,  help="String. Which analysis to perform: \"main\" to analyse all genes, \"opti\" to find optimal inflation value")
+arp.add_argument("-i", "--inf",  required=False, default=1.1,      help="OPTIONAL: Floating. if analysis is \"main\", which inflation value to use? Default is 1.1")
+arp.add_argument("-n", "--nopt", required=False, default=500,     help="OPTIONAL: Integer. if analysis is \"opti\", how many phylogenies should we examine for optimisation? Default is 500")
+arp.add_argument("-P", "--print", required=False, default=False, help="OPTIONAL: Boolean (False/True). Print new tree with defined clusters?")
+arp.add_argument("-S", "--split", required=False, default="_",   help="OPTIONAL: character to split species and sequence names. Default is \"_\", e.g. Human_genename. WARNING: use quotation marks, e.g. -split \"_\" or -split \"|\"")
 arl = vars(arp.parse_args())
 
 # input variables

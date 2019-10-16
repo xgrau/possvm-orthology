@@ -1,0 +1,6 @@
+pandas
+numpy
+ete3
+markov_clustering
+networkx
+matplotlib
