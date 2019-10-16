@@ -62,11 +62,24 @@ optional arguments:
                         use quotation marks, e.g. -split "_" or -split "|"
 ```
 
-#### Inputs
+#### Input files
 
-* Phylogenies in the tree folder (`-phy`) must be in newick format and can contain bootstrap supports, that will be used for MCL clustering
-* Each phylogeny in the tree folder should be named as follows: `orthogroup_name.suffix`. The suffix is indicated with the `-suf` flag. For example: `OG00001.newick` (`-suf newick`) or `OG00001.iqtree.treefile` (`-suf iqtree.treefile`).
-* The **table of orthologs** (`-ort`) must be formatted as follows:
+Examples of compliant input fles are provided in the `test_anopheles` folder.
+
+##### Phylogenies
+
+Phylogenies must be in **newick format** and can contain bootstrap supports, that will be used for MCL clustering.
+
+If you are using the **single tree mode**, use `-phy` to point to the gene tree.
+
+If you are using the **tree collection mode**, use `-phy` to point to the tree folder. Each phylogeny in the tree folder must be named as follows: `orthogroup_name.suffix`. The suffix is indicated with the `-suf` flag. Examples:
+
+* `OG00001.newick`: `-suf newick`
+* `OG00001.iqtree.treefile`: `-suf iqtree.treefile`
+
+##### Table of orthlogs
+
+The **table of orthologs** (`-ort`) must be formatted as follows (columns separated by tabs):
 ```
 gene1	OG1
 gene2	OG1
@@ -75,18 +88,23 @@ gene4	OG2
 ...
 ```
 
-If you obtained orthologs using Orthofinder, you can use this awk one-liner to obtain a table formatted as above from the `Orthofinder.txt` file:
+If you obtained your orthologs using Orthofinder, you can use this awk one-liner to obtain a table formatted as above from the `Orthofinder.txt` file:
 
 ```bash
 awk '{ for (i=2; i <= NF; i++) { print $i"\t"$1 }}' Orthogroups.txt | sed "s/://" > Orthogroups_longformat.csv
 ```
-* 
-
-Examples of compliant input fles are provided in the `test_anopheles` folder.
 
 ### Gene ages: `possom_geneage.py`
 
-**`possom_geneage.py`**: a simple way to obtain the ages of each cluster of orthologs identified in the phylogeny. It can also be used to analyse outputs from Orthofinder/OrthoMCL. 
+**`possom_geneage.py`**: a simple way to obtain the **ages of genes and clusters of orthologs**. It takes as input the output table from `possom.py` (or any similarly formatted table) and a species tree, and outputs a new table with the age of each orthogroup and each gene.
+
+All gene ages are relative to a pre-defined species of reference, and are defined as follows:
+
+* relative numeric
+* relative outgroup pairs
+* named ancestors, if available
+
+It can also be used to analyse outputs from Orthofinder/OrthoMCL. 
 
 This script **requires a species tree** in newick format.
 
