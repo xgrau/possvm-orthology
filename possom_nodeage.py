@@ -7,14 +7,14 @@ import argparse
 arp = argparse.ArgumentParser()
 
 # Add the arguments to the parser
-arp.add_argument("-tree",  "--tree",  required=True,                        help="newick file with species tree")
-arp.add_argument("-ort",   "--ort",   required=True,                        help="table of orthologs (long format, with headers; min info: OG <tab> gene1)")
-arp.add_argument("-out",   "--out",   required=True,                        help="output prefix")
-arp.add_argument("-ref",   "--ref",   required=False, default="ALLSPS",     help="OPTIONAL: reference species (ages are relative to this species). If \"ALLSPS\" (default), relative ages to all sps are calculated (can be slow)")
-arp.add_argument("-dict",  "--dict",  required=False, default="NO",         help="OPTIONAL: dictionary file with named nodes, one per line (can be incomplete). Format: spsA,spsB <tab> nodename. If \"NO\" (default), do nothing")
-arp.add_argument("-gcol",  "--gcol",  required=False, default="node",       help="OPTIONAL: name of gene column in --ort/-t table. Default is \"node\"")
-arp.add_argument("-ccol",  "--ccol",  required=False, default="og_cluster", help="OPTIONAL: name of orthogroup column in --ort/-t table. Default is \"og_cluster\"")
-arp.add_argument("-split", "--split", required=False, default="_",          help="OPTIONAL: character to split species and sequence names. Default is \"_\", e.g. Human_genename. WARNING: use quotation marks, e.g. -split \"_\" or -split \"|\"")
+arp.add_argument("-t",  "--tree",  required=True,                        help="newick file with species tree")
+arp.add_argument("-o",   "--ort",   required=True,                        help="table of orthologs (long format, with headers; min info: OG <tab> gene1)")
+arp.add_argument("-O",   "--out",   required=True,                        help="output prefix")
+arp.add_argument("-r",   "--ref",   required=False, default="ALLSPS",     help="OPTIONAL: reference species (ages are relative to this species). If \"ALLSPS\" (default), relative ages to all sps are calculated (can be slow)")
+arp.add_argument("-d",  "--dict",  required=False, default="NO",         help="OPTIONAL: dictionary file with named nodes, one per line (can be incomplete). Format: spsA,spsB <tab> nodename. If \"NO\" (default), do nothing")
+arp.add_argument("-g",  "--gcol",  required=False, default="node",       help="OPTIONAL: name of gene column in --ort/-t table. Default is \"node\"")
+arp.add_argument("-c",  "--ccol",  required=False, default="og_cluster", help="OPTIONAL: name of orthogroup column in --ort/-t table. Default is \"og_cluster\"")
+arp.add_argument("-s", "--split", required=False, default="_",          help="OPTIONAL: character to split species and sequence names. Default is \"_\", e.g. Human_genename. WARNING: use quotation marks, e.g. -split \"_\" or -split \"|\"")
 arl = vars(arp.parse_args())
 
 # input variables
