@@ -1,14 +1,4 @@
-# libraries
-import os
-import numpy as np
-import pandas as pd
-import ete3
-import markov_clustering
-import logging
-import networkx
 import argparse
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
 
 # argument parser
 arp = argparse.ArgumentParser()
@@ -20,11 +10,13 @@ arp.add_argument("-mode", "--mode",   required=True,                    help="St
 arp.add_argument("-pid", "--pid",     required=False, default="tree",   help="OPTIONAL: String. Name of gene family to analyse. REQUIRED if -mode single")
 arp.add_argument("-suf", "--suf",     required=False, default="newick", help="OPTIONAL: String. Suffix of phylogenies in folder. REQUIRED if -mode multi")
 arp.add_argument("-ort", "--ort",     required=False,                   help="OPTIONAL: String. Path to orthology file. REQUIRED if -mode multi. Must be a two-column table (with tabs), with one gene per line: OG <tab> gene1")
+arp.add_argument("-root", "--root",   required=False, default=False,    help="OPTIONAL: Boolean (False/True). Are your trees rooted? If False, midpoint root is applied (default).")
 arp.add_argument("-inf", "--inf",     required=False, default=1.1,      help="OPTIONAL: Floating. Which inflation value to use in MCL clustering? Default is 1.1")
 arp.add_argument("-sos", "--sos",     required=False, default=0.0,      help="OPTIONAL: Floating. Which species overlap threshold used in ETE-SO? Default is 0.0")
 arp.add_argument("-nopt", "--nopt",   required=False, default=500,      help="OPTIONAL: Integer. if analysis is \"opti\", how many phylogenies should we examine for optimisation? Default is 500")
 arp.add_argument("-print", "--print", required=False, default=False,    help="OPTIONAL: Boolean (False/True). Print new tree with defined clusters?")
 arp.add_argument("-split", "--split", required=False, default="_",      help="OPTIONAL: character to split species and sequence names. Default is \"_\", e.g. Human_genename. WARNING: use quotation marks, e.g. -split \"_\" or -split \"|\"")
+arp.add_argument("-minbs", "--minbs", required=False, default=0,        help="OPTIONAL: Float. Minimum support for ortholog pairs. Orthologs linked by a tree branch with less support are dropped. Default is 0")
 arl = vars(arp.parse_args())
 
 # input variables
@@ -39,10 +31,26 @@ inf      = float(arl["inf"])
 sos      = float(arl["sos"])
 prb      = bool(arl["print"])
 split_ch = arl["split"].replace("\"","")
+is_root     = bool(arl["root"])
+min_support = arl["minbs"]
+
+# libraries
+import os
+import numpy as np
+import pandas as pd
+import ete3
+import markov_clustering
+import logging
+import networkx as nx
+from networkx.algorithms import community
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 
 
 # os.chdir("/home/xavi/Documents/possom-orthology/")
-# phy_fo = "/home/xavi/Documents/possom-orthology/test_single_tree/adar_holozoa_rooted.newick"
+# phy_fo = "/home/xavi/Documents/possom-orthology/test_single_tree/adar_holozoa.newick"
+# phy_fo = "/home/xavi/Documents/possom-orthology/test_single_tree/cyp_mosquitoes.newick"
+# phy_fo = "/home/xavi/Documents/possom-orthology/test_anopheles/trees/OG0000003.newick"
 # out_fn = "ara"
 # mod    = "single"
 # phy_id = "adar"
@@ -53,14 +61,15 @@ split_ch = arl["split"].replace("\"","")
 # nopt= 500
 # phy_su="newick"
 # ort_fn="res"
-
+# is_root=False
+# min_support=0
 
 # logging
 logging.basicConfig(
 	level=logging.DEBUG, 
 	format="%(asctime)s [%(levelname)-5.5s]\t%(message)s",
-	#handlers=[ logging.FileHandler("%s.log" % out_fn, mode="w"), logging.StreamHandler() ]
-	handlers=[ logging.FileHandler("%s.log" % out_fn, mode="w") ]
+	handlers=[ logging.FileHandler("%s.log" % out_fn, mode="w"), logging.StreamHandler() ]
+	#handlers=[ logging.FileHandler("%s.log" % out_fn, mode="w") ]
 	)
 
 
@@ -84,8 +93,8 @@ def optimisation_loop(nopt=nopt):
 
 		# cluster phylogeny if you can, retrieve original clusters if you can't
 		if os.path.exists(phy_fn):
-			evd,_ = parse_phylo(phy_fn=phy_fn, phy_id=phy_id)
-			inf_lis[n], mod_lis[n] = clusters_opt(phy_fn=phy_fn, phy_id=phy_id, evd=evd)
+			evs,_,_,_ = parse_phylo(phy_fn=phy_fn, phy_id=phy_id)
+			inf_lis[n], mod_lis[n] = clusters_opt(phy_fn=phy_fn, phy_id=phy_id, evs=evs)
 		else:
 			inf_lis[n] = np.nan 
 			mod_lis[n] = np.nan
@@ -120,7 +129,7 @@ def print_tree(phy, out, evc):
 		else:           c=c[0]
 		i.name = str(i.name) + "|cluster" + str(c) + "|"
 
-
+	phy.ladderize()
 	phy.write(outfile=out)
 
 	# ts = ete3.TreeStyle()
@@ -131,7 +140,7 @@ def print_tree(phy, out, evc):
 
 # parse phylogenies with ETE to obtain a network-like table defining 
 # orthologous relationships, using the species overlap algorithm
-def parse_phylo(phy_fn, phy_id):
+def parse_phylo(phy_fn, phy_id, is_root=is_root):
 
 	# load input
 	phy = ete3.PhyloTree("%s" % (phy_fn))
@@ -141,6 +150,7 @@ def parse_phylo(phy_fn, phy_id):
 	# resolve polytomies in a random fashion
 	phy.resolve_polytomy(recursive=True)
 	# check if tree is rooted, apply midpoint root if unrooted
+	# NOT APPLIED: GLOBAL VARIBLE USED INSTEAD
 	phy_root = phy.get_tree_root()
 	phy_outg = phy_root.get_children()
 	is_root  = len(phy_outg) == 2
@@ -152,60 +162,79 @@ def parse_phylo(phy_fn, phy_id):
 		phy_outgroup = phy.get_midpoint_outgroup()
 		phy.set_outgroup(phy_outgroup)
 
+	# list of genes in phylogeny
+	phy_lis = phy.get_leaf_names()
+
 	# find evolutionary events (duplications and speciations)
 	evev = phy.get_descendant_evol_events(sos_thr=sos)
 
-	# create empty array for network edges
-	evo    = np.empty((len(evev)*1000, 5), dtype="object")
-	evo[:] = np.nan
-	# loop through in and out seqs, create edge table with orthologous events
+	# speciation events
+	evs    = np.empty((len(evev)*1000, 5), dtype="object")
+	evs[:] = np.nan
 	n = 0
 	for ev in evev:
 		if ev.etype == "S":
 			for ii in ev.in_seqs:
 				for oi in ev.out_seqs:
-					evo[n,0] = ii
-					evo[n,1] = oi
-					evo[n,2] = ev.branch_supports[0]
-					evo[n,3] = ev.etype
-					evo[n,4] = ev.sos
+					evs[n,0] = ii
+					evs[n,1] = oi
+					evs[n,2] = ev.branch_supports[0]
+					evs[n,3] = ev.etype
+					evs[n,4] = ev.sos
 					n = n + 1
+	evs = pd.DataFrame(evs).dropna()
+	evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
 
-	evd = pd.DataFrame(evo).dropna()
-	evd.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+	# duplications
+	evd    = np.empty((len(evev)*1000, 5), dtype="object")
+	# evd[:] = np.nan
+	# n = 0
+	# for ev in evev:
+	# 	if ev.etype == "D":
+	# 		for ii in ev.in_seqs:
+	# 			for oi in ev.out_seqs:
+	# 				evd[n,0] = ii
+	# 				evd[n,1] = oi
+	# 				evd[n,2] = ev.branch_supports[0]
+	# 				evd[n,3] = ev.etype
+	# 				evd[n,4] = ev.sos
+	# 				n = n + 1
+	# evd = pd.DataFrame(evd).dropna()
+	# evd.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
 
-	return evd, phy
+	return evs, evd, phy, phy_lis
 
 
 # function to calculate optimal inflation for MCL for each phylogeny;
 # i.e., that with the highest network modularity (Q)
-def clusters_opt(phy_fn, phy_id, evd):
+def clusters_opt(phy_fn, phy_id, evs):
 	
 	# MCL clustering: create network
 	logging.info("%s Create network" % phy_id)
-	evd_e = evd[["in_gene","out_gene","branch_support"]] # define edges
-	evd_n = networkx.convert_matrix.from_pandas_edgelist(evd_e, source="in_gene", target="out_gene", edge_attr="branch_support") # convert edges table into network
-	evd_n_nodelist = [ node for i, node in enumerate(evd_n.node()) ] # list of nodes
-	evd_m = networkx.to_scipy_sparse_matrix(evd_n, nodelist=evd_n_nodelist)
+	evs_e = evs[["in_gene","out_gene","branch_support"]] # define edges
+	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support") # convert edges table into network
+	evs_n_nodelist = [ node for i, node in enumerate(evs_n.node()) ] # list of nodes
+	evs_m = nx.to_scipy_sparse_matrix(evs_n, nodelist=evs_n_nodelist)
 	# MCL clustering: find optimal inflation value
-	inf,mod = optimise_inflation(matrix=evd_m) # find optimal inflation
+	inf,mod = optimise_inflation(matrix=evs_m) # find optimal inflation
 	
 	return inf, mod
 
 
 # function to cluster a network-like table of orthologs (from ETE) using MCL
-def clusters_mcl(oid, evd, inf=inf):
+def clusters_mcl(oid, evs, inf=inf):
 
 	# MCL clustering: create network
 	logging.info("%s Create network" % oid)
-	evou_e = evd[["in_gene","out_gene","branch_support"]]
-	evou_n = networkx.convert_matrix.from_pandas_edgelist(evou_e, source="in_gene", target="out_gene", edge_attr="branch_support")
-	evou_n_nodelist = [ node for i, node in enumerate(evou_n.node()) ]
-	evou_m = networkx.to_scipy_sparse_matrix(evou_n, nodelist=evou_n_nodelist)
+	evs_e = evs[["in_gene","out_gene","branch_support"]]
+	evs_e = evs_e[evs_e["branch_support"] > min_support]
+	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
+	evs_n_nodelist = [ node for i, node in enumerate(evs_n.node()) ]
+	evs_m = nx.to_scipy_sparse_matrix(evs_n, nodelist=evs_n_nodelist)
 	# MCL clustering: run clustering
-	# inf,_ = optimise_inflation(matrix=evou_m)
+	# inf,_ = optimise_inflation(matrix=evs_m)
 	logging.info("%s MCL clustering, inflation = %f" % (oid, inf))
-	mcl_m  = markov_clustering.run_mcl(evou_m, inflation=inf)
+	mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf)
 	mcl_c  = markov_clustering.get_clusters(mcl_m)
 	logging.info("%s MCL clustering, num clusters = %i" % (oid, len(mcl_c)))
 	plt.figure(figsize=(10,10))
@@ -215,7 +244,7 @@ def clusters_mcl(oid, evd, inf=inf):
 	mcl_c_clu = [ i for i, cluster in enumerate(mcl_c) for node in cluster]
 	mcl_c_noi = [ node for i, cluster in enumerate(mcl_c) for node in cluster]
 	clu = pd.DataFrame( { 
-		"node"    : [evou_n_nodelist[i] for i in mcl_c_noi],
+		"node"    : [evs_n_nodelist[i] for i in mcl_c_noi],
 		"cluster" : mcl_c_clu,
 	}, columns=["node","cluster"])
 	clu["cluster"] = clu["cluster"].astype(str)
@@ -223,7 +252,35 @@ def clusters_mcl(oid, evd, inf=inf):
 
 	return clu
 
+# function to cluster a network-like table of orthologs (from ETE) using MCL
+def clusters_nx_mod(oid, evs, gene_list):
 
+	# create network
+	logging.info("%s Create network" % oid)
+	evs_e = evs[["in_gene","out_gene","branch_support"]]
+	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
+	# find communities using modularity
+	logging.info("%s Find communities in network" % oid)
+	evs_n_communities = list(community.greedy_modularity_communities(evs_n))
+	#evs_n_communities = list(community.girvan_newman(evs_n))
+	#evs_n_communities = list(community.asyn_lpa_communities(evs_n))
+	#evs_n_communities = list(community.k_clique_communities(evs_n, 5))
+	#evs_n_communities = list(community.asyn_fluidc(evs_n,2))
+	clus_list    = np.zeros(len(gene_list))
+	for n,noi in enumerate(gene_list):
+		for com in range(len(evs_n_communities)):
+			if noi in evs_n_communities[com]:
+				clus_list[n] = int(com)+1
+	# store clusters
+	clu = pd.DataFrame( { 
+		"node"    : gene_list,
+		"cluster" : clus_list
+	}, columns=["node","cluster"])
+	clu["cluster"] = clu["cluster"].astype(int).astype(str)
+	logging.info("%s Num clustered genes = %i" % (oid, len(clu)))
+	logging.info("%s Num clusters = %i" % (oid, len(np.unique(clus_list))))
+
+	return clu
 
 # if the phylogeny can't be analysed with ETE (no phylogeny, not enough speciation events...), use
 # the original orthogroups from orthofinder instead
@@ -249,21 +306,30 @@ def clusters_nomcl(oid, ort):
 logging.info("Input args: %r", arl)
 
 # main analysis
+
 if mod == "single":
 
 	print("MODE: find orthogroups in one phylogeny with ETE(SO)+MCL: %s" % phy_fo)
 	logging.info("MODE: find orthogroups in one phylogeny with ETE(SO)+MCL: %s" % phy_fo)
 	
 	# read phylogeny, find speciation events, create network
-	evd,phy = parse_phylo(phy_fn=phy_fo, phy_id=phy_id)
+	evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fo, phy_id=phy_id)
 
 	# find clusters
-	if len(evd) > 1:
-		clu = clusters_mcl(oid=phy_id, evd=evd, inf=inf)
-		if prb: print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu)
-	
+	if len(evs) > 1:
+		#clu = clusters_mcl(oid=phy_id, evs=evs, inf=inf)
+		clu = clusters_nx_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
+		if prb: 
+			print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu)
+			os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -b opacity:0 -w 1000 -v 10 > %s.orthologs.newick.svg" % (out_fn,out_fn))
+			os.system("inkscape %s.orthologs.newick.svg --export-pdf=%s.orthologs.newick.pdf 2> /dev/null" % (out_fn,out_fn))
 	# save clusters
 	clu.to_csv("%s.orthologs.csv" % out_fn, sep="\t", index=None, mode="w")
+
+	# evolutionary events
+	evs.to_csv("%s.orthologs_ete_speciation.csv" % out_fn, sep="\t", index=None, mode="w")
+	# evd.to_csv("%s.orthologs_ete_duplication.csv" % out_fn, sep="\t", index=None, mode="w")
+
 
 
 elif mod == "multi":
@@ -293,9 +359,9 @@ elif mod == "multi":
 
 		# cluster phylogeny if you can, retrieve original clusters if you can't
 		if os.path.exists(phy_fn):
-			evd,phy = parse_phylo(phy_fn=phy_fn, phy_id=phy_id)
-			if len(evd) > 1:
-				clu = clusters_mcl(oid=phy_id, evd=evd, inf=inf)
+			evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fn, phy_id=phy_id)
+			if len(evs) > 1:
+				clu = clusters_mcl(oid=phy_id, evs=evs, inf=inf)
 				if prb: print_tree(phy=phy, out="%s/%s.orthologs.newick" % (phy_fo, phi), evc=clu)
 			else:
 				clu = clusters_nomcl(oid=phy_id, ort=ort)
