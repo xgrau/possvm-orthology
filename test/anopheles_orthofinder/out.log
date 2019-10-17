@@ -1,0 +1,69 @@
+2019-10-17 18:24:46,994 [INFO ]	Input args: {'pid': 'tree', 'mode': 'multi', 'out': 'test_anopheles/out', 'inf': 1.1, 'print': 'True', 'root': 'True', 'nopt': 500, 'ort': 'test_anopheles/Orthogroups_longformat.csv', 'suf': 'newick', 'sos': 0.0, 'phy': 'test_anopheles/trees/', 'minbs': 0, 'split': '_'}
+2019-10-17 18:24:46,998 [INFO ]	MODE: find orthogroups in tree collection with ETE(SO)+MCL: test_anopheles/trees/
+2019-10-17 18:24:47,005 [INFO ]	OG0000000 num nodes = 238
+2019-10-17 18:24:47,006 [INFO ]	OG0000000 Tree is rooted, pass
+2019-10-17 18:24:47,185 [INFO ]	OG0000000 Create network
+2019-10-17 18:24:47,193 [INFO ]	OG0000000 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:47,443 [INFO ]	OG0000000 MCL clustering, num clusters = 24
+2019-10-17 18:24:47,510 [INFO ]	OG0000000 MCL clustering, num clustered genes = 232
+2019-10-17 18:24:47,620 [INFO ]	OG0000001 num nodes = 227
+2019-10-17 18:24:47,621 [INFO ]	OG0000001 Tree is rooted, pass
+2019-10-17 18:24:47,789 [INFO ]	OG0000001 Create network
+2019-10-17 18:24:47,797 [INFO ]	OG0000001 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:48,088 [INFO ]	OG0000001 MCL clustering, num clusters = 22
+2019-10-17 18:24:48,096 [INFO ]	OG0000001 MCL clustering, num clustered genes = 225
+2019-10-17 18:24:48,183 [INFO ]	OG0000002 num nodes = 185
+2019-10-17 18:24:48,184 [INFO ]	OG0000002 Tree is rooted, pass
+2019-10-17 18:24:48,317 [INFO ]	OG0000002 Create network
+2019-10-17 18:24:48,320 [INFO ]	OG0000002 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:48,594 [INFO ]	OG0000002 MCL clustering, num clusters = 29
+2019-10-17 18:24:48,601 [INFO ]	OG0000002 MCL clustering, num clustered genes = 163
+2019-10-17 18:24:48,673 [INFO ]	OG0000003 num nodes = 182
+2019-10-17 18:24:48,674 [INFO ]	OG0000003 Tree is rooted, pass
+2019-10-17 18:24:48,807 [INFO ]	OG0000003 Create network
+2019-10-17 18:24:48,816 [INFO ]	OG0000003 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:49,211 [INFO ]	OG0000003 MCL clustering, num clusters = 3
+2019-10-17 18:24:49,218 [INFO ]	OG0000003 MCL clustering, num clustered genes = 177
+2019-10-17 18:24:49,286 [INFO ]	OG0005827 num nodes = 14
+2019-10-17 18:24:49,286 [INFO ]	OG0005827 Tree is rooted, pass
+2019-10-17 18:24:49,296 [INFO ]	OG0005827 Create network
+2019-10-17 18:24:49,297 [INFO ]	OG0005827 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:49,400 [INFO ]	OG0005827 MCL clustering, num clusters = 1
+2019-10-17 18:24:49,407 [INFO ]	OG0005827 MCL clustering, num clustered genes = 14
+2019-10-17 18:24:49,416 [INFO ]	OG0005828 num nodes = 14
+2019-10-17 18:24:49,416 [INFO ]	OG0005828 Tree is rooted, pass
+2019-10-17 18:24:49,424 [INFO ]	OG0005828 Create network
+2019-10-17 18:24:49,426 [INFO ]	OG0005828 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:49,528 [INFO ]	OG0005828 MCL clustering, num clusters = 1
+2019-10-17 18:24:49,534 [INFO ]	OG0005828 MCL clustering, num clustered genes = 14
+2019-10-17 18:24:49,544 [INFO ]	OG0005829 num nodes = 14
+2019-10-17 18:24:49,544 [INFO ]	OG0005829 Tree is rooted, pass
+2019-10-17 18:24:49,552 [INFO ]	OG0005829 Create network
+2019-10-17 18:24:49,554 [INFO ]	OG0005829 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:49,656 [INFO ]	OG0005829 MCL clustering, num clusters = 1
+2019-10-17 18:24:49,662 [INFO ]	OG0005829 MCL clustering, num clustered genes = 14
+2019-10-17 18:24:49,671 [INFO ]	OG0005830 num nodes = 14
+2019-10-17 18:24:49,672 [INFO ]	OG0005830 Tree is rooted, pass
+2019-10-17 18:24:49,680 [INFO ]	OG0005830 Create network
+2019-10-17 18:24:49,681 [INFO ]	OG0005830 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:49,784 [INFO ]	OG0005830 MCL clustering, num clusters = 1
+2019-10-17 18:24:49,791 [INFO ]	OG0005830 MCL clustering, num clustered genes = 14
+2019-10-17 18:24:49,799 [INFO ]	OG0005831 num nodes = 14
+2019-10-17 18:24:49,799 [INFO ]	OG0005831 Tree is rooted, pass
+2019-10-17 18:24:49,808 [INFO ]	OG0005831 Create network
+2019-10-17 18:24:49,809 [INFO ]	OG0005831 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:49,912 [INFO ]	OG0005831 MCL clustering, num clusters = 1
+2019-10-17 18:24:49,918 [INFO ]	OG0005831 MCL clustering, num clustered genes = 14
+2019-10-17 18:24:49,927 [INFO ]	OG0005840 num nodes = 14
+2019-10-17 18:24:49,927 [INFO ]	OG0005840 Tree is rooted, pass
+2019-10-17 18:24:49,936 [INFO ]	OG0005840 Create network
+2019-10-17 18:24:49,938 [INFO ]	OG0005840 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:50,040 [INFO ]	OG0005840 MCL clustering, num clusters = 1
+2019-10-17 18:24:50,046 [INFO ]	OG0005840 MCL clustering, num clustered genes = 14
+2019-10-17 18:24:50,055 [INFO ]	OG0005841 num nodes = 14
+2019-10-17 18:24:50,055 [INFO ]	OG0005841 Tree is rooted, pass
+2019-10-17 18:24:50,064 [INFO ]	OG0005841 Create network
+2019-10-17 18:24:50,065 [INFO ]	OG0005841 MCL clustering, inflation = 1.100000
+2019-10-17 18:24:50,168 [INFO ]	OG0005841 MCL clustering, num clusters = 1
+2019-10-17 18:24:50,175 [INFO ]	OG0005841 MCL clustering, num clustered genes = 14
+2019-10-17 18:24:50,183 [INFO ]	All done in test_anopheles/trees/

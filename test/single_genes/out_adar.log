@@ -1,0 +1,9 @@
+2019-10-17 12:19:45,307 [INFO ]	Input args: {'print': 'True', 'suf': 'newick', 'inf': '2', 'sos': 0.0, 'out': 'test_single_tree/out_adar', 'ort': None, 'mode': 'single', 'split': '_', 'phy': 'test_single_tree/adar_holozoa_rooted.newick', 'pid': 'adar', 'nopt': 500}
+2019-10-17 12:19:45,307 [INFO ]	MODE: find orthogroups in one phylogeny with ETE(SO)+MCL: test_single_tree/adar_holozoa_rooted.newick
+2019-10-17 12:19:45,315 [INFO ]	adar num nodes = 284
+2019-10-17 12:19:45,316 [INFO ]	adar Tree is rooted, pass
+2019-10-17 12:19:45,649 [INFO ]	adar Create network
+2019-10-17 12:19:45,752 [INFO ]	adar MCL clustering, inflation = 2.000000
+2019-10-17 12:19:45,915 [INFO ]	adar MCL clustering, num clusters = 4
+2019-10-17 12:19:45,961 [INFO ]	adar MCL clustering, num clustered genes = 283
+2019-10-17 12:19:47,275 [INFO ]	All done in test_single_tree/adar_holozoa_rooted.newick
