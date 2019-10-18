@@ -17,6 +17,7 @@ arp.add_argument("-nopt", "--nopt",   required=False, default=500,      help="OP
 arp.add_argument("-print", "--print", required=False, default="F",      help="OPTIONAL: Boolean (T/F). Print new tree with defined clusters?")
 arp.add_argument("-split", "--split", required=False, default="_",      help="OPTIONAL: character to split species and sequence names. Default is \"_\", e.g. Human_genename. WARNING: use quotation marks, e.g. -split \"_\" or -split \"|\"")
 arp.add_argument("-minbs", "--minbs", required=False, default=0,        help="OPTIONAL: Float. Minimum support for ortholog pairs. Orthologs linked by a tree branch with less support are dropped. Default is 0")
+arp.add_argument("-refsp", "--refsp", required=False, default=None,     help="OPTIONAL: String. Indicate a reference species to use to annotate clusters of orthologs (adds an alphabetic label corresponding to a gene's cluster if that gene is orthologous to another from the ref sps)")
 arl = vars(arp.parse_args())
 
 # input variables
@@ -29,11 +30,11 @@ ort_fn   = arl["ort"]
 nopt     = int(arl["nopt"])
 inf      = float(arl["inf"])
 sos      = float(arl["sos"])
-do_print      = bool(arl["print"] == "T")
-split_ch = arl["split"].replace("\"","")
+do_print    = bool(arl["print"] == "T")
+split_ch    = arl["split"].replace("\"","")
 is_root     = bool(arl["root"] == "T")
 min_support = arl["minbs"]
-
+ref_sps     = arl["refsp"]
 
 # libraries
 import os
@@ -46,12 +47,15 @@ import networkx as nx
 from networkx.algorithms import community
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
+import string
 
 
 # os.chdir("/home/xavi/Documents/possom-orthology/")
-# phy_fo = "/home/xavi/Documents/possom-orthology/test_single_tree/adar_holozoa.newick"
-# phy_fo = "/home/xavi/Documents/possom-orthology/test_single_tree/cyp_mosquitoes.newick"
-# phy_fo = "/home/xavi/Documents/possom-orthology/test_anopheles/trees/OG0000003.newick"
+# phy_fo = "/home/xavi/Documents/possom-orthology/test/single_genes/cyp_mosquitoes.newick"
+# phy_fo = "/home/xavi/Documents/possom-orthology/test/anopheles_orthofinder/trees/OG0000000.newick"
+# ref_sps="Anogam"
+# phy_fo = "/home/xavi/Documents/possom-orthology/test/single_genes/adar_holozoa.newick"
+# ref_sps="Hsap"
 # out_fn = "ara"
 # mod    = "single"
 # phy_id = "adar"
@@ -64,6 +68,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 # ort_fn="res"
 # is_root=False
 # min_support=0
+
 
 # logging
 logging.basicConfig(
@@ -94,7 +99,7 @@ def optimisation_loop(nopt=nopt):
 
 		# cluster phylogeny if you can, retrieve original clusters if you can't
 		if os.path.exists(phy_fn):
-			evs,_,_,_ = parse_phylo(phy_fn=phy_fn, phy_id=phy_id)
+			evs,_,_,_ = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, is_root=is_root)
 			inf_lis[n], mod_lis[n] = clusters_opt(phy_fn=phy_fn, phy_id=phy_id, evs=evs)
 		else:
 			inf_lis[n] = np.nan 
@@ -122,15 +127,17 @@ def optimise_inflation(matrix, start=1.1, end=2.5, step=0.1):
 	return I_lis[max_Q_index], Q_lis[max_Q_index]
 
 
-def print_tree(phy, out, evc):
-
+def print_tree(phy, out, evc, attributes, sep="|"):
+	
 	for i in phy.get_leaves():
-		c=evc[evc["node"] == i.name]["cluster"].values
-		if c.size == 0: c="NA"
-		else:           c=c[0]
-		i.name = str(i.name) + "|cluster" + str(c) + "|"
+		i_name = i.name
+		for a in attributes:
+			c=evc[evc["node"] == i_name][a].values
+			if c.size == 0: c="NA"
+			else:           c=c[0]
+			i.name = str(i.name) + sep + a + str(c)
+		i.name = str(i.name) + sep
 
-	phy.ladderize()
 	phy.write(outfile=out)
 
 	# ts = ete3.TreeStyle()
@@ -141,7 +148,7 @@ def print_tree(phy, out, evc):
 
 # parse phylogenies with ETE to obtain a network-like table defining 
 # orthologous relationships, using the species overlap algorithm
-def parse_phylo(phy_fn, phy_id, is_root=is_root):
+def parse_phylo(phy_fn, phy_id, is_root):
 
 	# load input
 	phy = ete3.PhyloTree("%s" % (phy_fn))
@@ -163,6 +170,9 @@ def parse_phylo(phy_fn, phy_id, is_root=is_root):
 		phy_outgroup = phy.get_midpoint_outgroup()
 		phy.set_outgroup(phy_outgroup)
 
+	# ladderise phylogeny
+	phy.ladderize()
+
 	# list of genes in phylogeny
 	phy_lis = phy.get_leaf_names()
 
@@ -170,7 +180,7 @@ def parse_phylo(phy_fn, phy_id, is_root=is_root):
 	evev = phy.get_descendant_evol_events(sos_thr=sos)
 
 	# speciation events
-	evs    = np.empty((len(evev)*1000, 5), dtype="object")
+	evs    = np.empty((len(evev)*len(evev), 5), dtype="object")
 	evs[:] = np.nan
 	n = 0
 	for ev in evev:
@@ -187,7 +197,7 @@ def parse_phylo(phy_fn, phy_id, is_root=is_root):
 	evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
 
 	# duplications
-	evd    = np.empty((len(evev)*1000, 5), dtype="object")
+	evd    = np.empty((len(evev)*len(evev), 5), dtype="object")
 	# evd[:] = np.nan
 	# n = 0
 	# for ev in evev:
@@ -253,8 +263,84 @@ def clusters_mcl(oid, evs, inf=inf):
 
 	return clu
 
+
+def ref_annot(clu, evs, ref_sps, syn_ref_nod):
+
+	clu["sps"]     = clu["node"].apply(lambda c: c.split(split_ch)[0])
+	evs["in_sps"]  = evs["in_gene"].apply(lambda c: c.split(split_ch)[0])
+	evs["out_sps"] = evs["out_gene"].apply(lambda c: c.split(split_ch)[0])
+
+	cluster_ref = []
+	for n,noi in enumerate(clu["node"]):
+
+		# which cluster?
+		c = clu[clu["node"] == noi]["cluster"].values[0]
+
+		# find reference sequences WITHIN THIS cluster 
+		# and create a dictionary to alphabetic short codes
+		ref_nodes = clu[(clu["sps"] == ref_sps) & (clu["cluster"] == c)]["node"].values
+		ref_codes = list(string.ascii_letters[0:len(ref_nodes)])
+		ref_dicti = dict()
+		for m,r in enumerate(ref_nodes):
+			ref_dicti[r] = ref_codes[m]
+
+		# find if gene is orthologous to any ref sequences
+		r1 = evs[(evs["in_gene"] == noi) & (evs["out_sps"] == ref_sps)]["out_gene"].values
+		r2 = evs[(evs["out_gene"] == noi) & (evs["in_sps"] == ref_sps)]["in_gene"].values
+		ra = np.unique(np.concatenate((r1,r2)))
+
+		# if gene herself comes from a reference sequence, 
+		# add it to the array of ref sequences
+		if clu["sps"][n] == ref_sps:
+			for syn in syn_ref_nod:
+				if noi in syn:
+					ra = np.unique(np.append(ra, list(syn)))
+
+		# use cluster-specific alphabetic codes for ref sequences
+		rc = np.sort([ ref_dicti[r] for r in ra ])
+		rc = ''.join(rc)
+
+		cluster_ref.append(c+rc)
+
+	ix_ref_sps = np.where((clu["sps"] == ref_sps).values)
+	cluster_ref_table = pd.DataFrame( { 
+		"node" :        clu["node"].values[ix_ref_sps],
+		"cluster" :     clu["cluster"].values[ix_ref_sps],
+		"cluster_ref" : np.array(cluster_ref)[ix_ref_sps]
+	} , columns=["node","cluster","cluster_ref"])
+	
+	return cluster_ref, cluster_ref_table
+
+
+def find_monophyletic_refsps_expansion(phy, ref_sps):
+
+	# list of species and gene names of descending leaves of each node in the tree
+	node_species = phy.get_cached_content(store_attr="species")
+	node_geneids = phy.get_cached_content(store_attr="name")
+
+	# find sets of monophyletic sequences from the ref sps
+	syn_seqs_refsps = list()
+	for n,i in enumerate(node_species):
+		if (len(node_species[i]) == 1) & (ref_sps in node_species[i]):
+			syn_seqs_refsps.append(node_geneids[i])
+
+	# remove redundancy in these sets (check for overlapping sets and merge into larger sets)
+	syn_seqs_refsps_nr = syn_seqs_refsps
+	for n,_ in enumerate(syn_seqs_refsps_nr):
+		for m,_ in enumerate(syn_seqs_refsps_nr):
+			if n != m:
+				if len(syn_seqs_refsps_nr[n].intersection(syn_seqs_refsps_nr[m])) > 1:
+					syn_seqs_refsps_nr[n] = syn_seqs_refsps_nr[n].union(syn_seqs_refsps_nr[m])
+	syn_seqs_refsps_nr = np.unique(syn_seqs_refsps_nr)
+
+	return syn_seqs_refsps_nr
+
+
+
+
+
 # function to cluster a network-like table of orthologs (from ETE) using MCL
-def clusters_nx_mod(oid, evs, gene_list):
+def clusters_mod(oid, evs, gene_list):
 
 	# create network
 	logging.info("%s Create network" % oid)
@@ -314,19 +400,29 @@ if mod == "single":
 	logging.info("MODE: find orthogroups in one phylogeny with ETE(SO)+MCL: %s" % phy_fo)
 	
 	# read phylogeny, find speciation events, create network
-	evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fo, phy_id=phy_id)
+	evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fo, phy_id=phy_id, is_root=is_root)
+	syn_ref_nod = find_monophyletic_refsps_expansion(phy=phy, ref_sps=ref_sps)
 
 	# find clusters
 	if len(evs) > 1:
 		clu = clusters_mcl(oid=phy_id, evs=evs, inf=inf)
-		#clu = clusters_nx_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
+		#clu = clusters_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
+		if ref_sps is None:
+			print_attributes = ["cluster"]
+		else:
+			clu["cluster_ref"], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_sps=ref_sps, syn_ref_nod=syn_ref_nod)
+			cluster_ref_table.to_csv("%s.orthologs_refsps.csv" % out_fn, sep="\t", index=None, mode="w")	
+			print_attributes = ["cluster","cluster_ref"]
 		if do_print: 
-			print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu)
-			os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -b opacity:0 -w 1000 -v 10 > %s.orthologs.newick.svg" % (out_fn,out_fn))
+			print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep="|")
+			os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -d stroke:gray -b opacity:0 -w 1000 -v 12 > %s.orthologs.newick.svg" % (out_fn,out_fn))
 			os.system("inkscape %s.orthologs.newick.svg --export-pdf=%s.orthologs.newick.pdf 2> /dev/null" % (out_fn,out_fn))
+	else:
+		print("No speciations in tree %s %s" % (phy_id, phy_fo))
+
 	# save clusters
 	clu.to_csv("%s.orthologs.csv" % out_fn, sep="\t", index=None, mode="w")
-
+	
 	# evolutionary events
 	evs.to_csv("%s.orthologs_ete_speciation.csv" % out_fn, sep="\t", index=None, mode="w")
 	# evd.to_csv("%s.orthologs_ete_duplication.csv" % out_fn, sep="\t", index=None, mode="w")
@@ -360,11 +456,14 @@ elif mod == "multi":
 
 		# cluster phylogeny if you can, retrieve original clusters if you can't
 		if os.path.exists(phy_fn):
-			evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fn, phy_id=phy_id)
+			evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, is_root=is_root)
 			if len(evs) > 1:
 				clu = clusters_mcl(oid=phy_id, evs=evs, inf=inf)
-				#clu = clusters_nx_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
-				if do_print: print_tree(phy=phy, out="%s/%s.orthologs.newick" % (phy_fo, phi), evc=clu)
+				#clu = clusters_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
+				if do_print: 
+					print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=["cluster","cluster_ref"], sep="|")
+					os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -d stroke:gray -b opacity:0 -w 1000 -v 12 > %s.orthologs.newick.svg" % (out_fn,out_fn))
+					os.system("inkscape %s.orthologs.newick.svg --export-pdf=%s.orthologs.newick.pdf 2> /dev/null" % (out_fn,out_fn))
 			else:
 				clu = clusters_nomcl(oid=phy_id, ort=ort)
 		else:
