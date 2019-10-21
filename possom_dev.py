@@ -456,12 +456,22 @@ elif mod == "multi":
 
 		# cluster phylogeny if you can, retrieve original clusters if you can't
 		if os.path.exists(phy_fn):
+
+			# read phylogeny, find speciation events, create network
 			evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, is_root=is_root)
+			syn_ref_nod = find_monophyletic_refsps_expansion(phy=phy, ref_sps=ref_sps)
+
+			# find clusters
 			if len(evs) > 1:
 				clu = clusters_mcl(oid=phy_id, evs=evs, inf=inf)
-				#clu = clusters_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
+				if ref_sps is None:
+					print_attributes = ["cluster"]
+				else:
+					clu["cluster_ref"], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_sps=ref_sps, syn_ref_nod=syn_ref_nod)
+					cluster_ref_table.to_csv("%s.orthologs_refsps.csv" % out_fn, sep="\t", index=None, mode="w")	
+					print_attributes = ["cluster","cluster_ref"]
 				if do_print: 
-					print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=["cluster","cluster_ref"], sep="|")
+					print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep="|")
 					os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -d stroke:gray -b opacity:0 -w 1000 -v 12 > %s.orthologs.newick.svg" % (out_fn,out_fn))
 					os.system("inkscape %s.orthologs.newick.svg --export-pdf=%s.orthologs.newick.pdf 2> /dev/null" % (out_fn,out_fn))
 			else:
