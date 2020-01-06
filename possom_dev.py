@@ -4,20 +4,20 @@ import argparse
 arp = argparse.ArgumentParser()
 
 # Add the arguments to the parser
-arp.add_argument("-phy", "--phy",     required=True,                    help="String. Folder with phylogenies")
+arp.add_argument("-phy", "--phy",     required=True,                    help="String. Either a phylogenetic tree (\"single\" mode), or a folder with phylogenetic trees (\"multi\" mode). Trees have to be in newick format & each sequence must have a prefix indicating the species name (split character selected with \"--split\")")
 arp.add_argument("-out", "--out",     required=True,                    help="String. Prefix for output")
-arp.add_argument("-mode", "--mode",   required=True,                    help="String. Which analysis to perform: \"single\" to analyse one gene tree (-phy); \"multi\" to analyse multiple trees in a folder (-phy and -suf required); \"opti\" to find optimal inflation value")
+arp.add_argument("-mode", "--mode",   required=True,                    help="String. Which analysis to perform: \"single\" to analyse one gene tree (-phy required); \"multi\" to analyse multiple trees in a folder (-phy and -suf required); \"opti\" to find optimal inflation value")
 arp.add_argument("-pid", "--pid",     required=False, default="tree",   help="OPTIONAL: String. Name of gene family to analyse. REQUIRED if -mode single")
 arp.add_argument("-suf", "--suf",     required=False, default="newick", help="OPTIONAL: String. Suffix of phylogenies in folder. REQUIRED if -mode multi")
-arp.add_argument("-ort", "--ort",     required=False,                   help="OPTIONAL: String. Path to orthology file. REQUIRED if -mode multi. Must be a two-column table (with tabs), with one gene per line: OG <tab> gene1")
-arp.add_argument("-root", "--root",   required=False, default="F",      help="OPTIONAL: Boolean (T/F). Are your trees rooted? If False, midpoint root is applied (default).")
+arp.add_argument("-ort", "--ort",     required=False, default=None,     help="OPTIONAL: String. Path to orthology file. REQUIRED if -mode multi. Must be a two-column table (with tabs), with one gene per line: OG <tab> gene1")
+arp.add_argument("-root", "--root",   required=False, default="F",      help="OPTIONAL: Boolean (T/F). Are your trees rooted? If yes (T), we use this rooting. If no (F), trees are midpoint rooted (default).")
 arp.add_argument("-inf", "--inf",     required=False, default=1.1,      help="OPTIONAL: Floating. Which inflation value to use in MCL clustering? Default is 1.1")
 arp.add_argument("-sos", "--sos",     required=False, default=0.0,      help="OPTIONAL: Floating. Which species overlap threshold used in ETE-SO? Default is 0.0")
 arp.add_argument("-nopt", "--nopt",   required=False, default=500,      help="OPTIONAL: Integer. if analysis is \"opti\", how many phylogenies should we examine for optimisation? Default is 500")
 arp.add_argument("-print", "--print", required=False, default="F",      help="OPTIONAL: Boolean (T/F). Print new tree with defined clusters?")
 arp.add_argument("-split", "--split", required=False, default="_",      help="OPTIONAL: character to split species and sequence names. Default is \"_\", e.g. Human_genename. WARNING: use quotation marks, e.g. -split \"_\" or -split \"|\"")
 arp.add_argument("-minbs", "--minbs", required=False, default=0,        help="OPTIONAL: Float. Minimum support for ortholog pairs. Orthologs linked by a tree branch with less support are dropped. Default is 0")
-arp.add_argument("-refsp", "--refsp", required=False, default=None,     help="OPTIONAL: String. Indicate a reference species to use to annotate clusters of orthologs (adds an alphabetic label corresponding to a gene's cluster if that gene is orthologous to another from the ref sps)")
+arp.add_argument("-refsp", "--refsp", required=False, default=None,     help="OPTIONAL: String. Indicate one (e.g. human) or more (e.g. human,fly) reference species to use to annotate clusters of orthologs (adds an alphabetic label corresponding to a gene's cluster if that gene is orthologous to another from the ref sps)")
 arl = vars(arp.parse_args())
 
 # input variables
@@ -34,7 +34,11 @@ do_print    = bool(arl["print"] == "T")
 split_ch    = arl["split"].replace("\"","")
 is_root     = bool(arl["root"] == "T")
 min_support = arl["minbs"]
-ref_sps     = arl["refsp"]
+if arl["refsp"] is None:
+	ref_sps = arl["refsp"]
+else:
+	ref_sps = arl["refsp"].split(",")
+
 
 # libraries
 import os
@@ -50,12 +54,13 @@ from matplotlib.backends.backend_pdf import PdfPages
 import string
 
 
-# os.chdir("/home/xavi/Documents/possom-orthology/")
-# phy_fo = "/home/xavi/Documents/possom-orthology/test/single_genes/cyp_mosquitoes.newick"
-# phy_fo = "/home/xavi/Documents/possom-orthology/test/anopheles_orthofinder/trees/OG0000000.newick"
-# ref_sps="Anogam"
-# phy_fo = "/home/xavi/Documents/possom-orthology/test/single_genes/adar_holozoa.newick"
-# ref_sps="Hsap"
+# os.chdir("/home/xavi/Documents/Lab/possom-orthology/")
+# # phy_fo = "/home/xavi/Documents/possom-orthology/test/single_genes/cyp_mosquitoes.newick"
+# # phy_fo = "/home/xavi/Documents/possom-orthology/test/anopheles_orthofinder/trees/OG0000000.newick"
+# # ref_sps="Anogam"
+# phy_fo = "/home/xavi/Documents/Lab/possom-orthology/test/single_genes/adar_holozoa.newick"
+# ref_sps="Hsap,Dromel"
+# ref_sps=ref_sps.split(",")
 # out_fn = "ara"
 # mod    = "single"
 # phy_id = "adar"
@@ -63,10 +68,10 @@ import string
 # inf = 1.1
 # split_ch = "_"
 # do_print = True
-# nopt= 500
-# phy_su="newick"
-# ort_fn="res"
-# is_root=False
+# # nopt= 500
+# # phy_su="newick"
+# # ort_fn="res"
+# # is_root=False
 # min_support=0
 
 
@@ -133,17 +138,20 @@ def print_tree(phy, out, evc, attributes, sep="|"):
 		i_name = i.name
 		for a in attributes:
 			c=evc[evc["node"] == i_name][a].values
-			if c.size == 0: c="NA"
-			else:           c=c[0]
+			if c.size == 0: 
+				c="NA"
+			else:  
+				c=c[0]
 			i.name = str(i.name) + sep + a + str(c)
 		i.name = str(i.name) + sep
 
 	phy.write(outfile=out)
 
-	# ts = ete3.TreeStyle()
-	# ts.show_branch_support = True
-	# ts.show_leaf_name = False
-	# phy.render("%s.pdf" % out, tree_style=ts)
+	# print tree in pdf
+	ts = ete3.TreeStyle()
+	ts.show_branch_support = True
+	ts.show_leaf_name = False
+	phy.render("%s.pdf" % out, tree_style=ts)
 
 
 # parse phylogenies with ETE to obtain a network-like table defining 
@@ -224,7 +232,7 @@ def clusters_opt(phy_fn, phy_id, evs):
 	logging.info("%s Create network" % phy_id)
 	evs_e = evs[["in_gene","out_gene","branch_support"]] # define edges
 	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support") # convert edges table into network
-	evs_n_nodelist = [ node for i, node in enumerate(evs_n.node()) ] # list of nodes
+	evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ] # list of nodes
 	evs_m = nx.to_scipy_sparse_matrix(evs_n, nodelist=evs_n_nodelist)
 	# MCL clustering: find optimal inflation value
 	inf,mod = optimise_inflation(matrix=evs_m) # find optimal inflation
@@ -232,7 +240,8 @@ def clusters_opt(phy_fn, phy_id, evs):
 	return inf, mod
 
 
-# function to cluster a network-like table of orthologs (from ETE) using MCL
+# function to cluster a network-like table of orthologs (from ETE) 
+# using MCL
 def clusters_mcl(oid, evs, inf=inf):
 
 	# MCL clustering: create network
@@ -240,12 +249,12 @@ def clusters_mcl(oid, evs, inf=inf):
 	evs_e = evs[["in_gene","out_gene","branch_support"]]
 	evs_e = evs_e[evs_e["branch_support"] > min_support]
 	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
-	evs_n_nodelist = [ node for i, node in enumerate(evs_n.node()) ]
+	evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ]
 	evs_m = nx.to_scipy_sparse_matrix(evs_n, nodelist=evs_n_nodelist)
 	# MCL clustering: run clustering
 	# inf,_ = optimise_inflation(matrix=evs_m)
 	logging.info("%s MCL clustering, inflation = %f" % (oid, inf))
-	mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf)
+	mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold=0) ### TODO: why pruning threshold HAS to be zero?
 	mcl_c  = markov_clustering.get_clusters(mcl_m)
 	logging.info("%s MCL clustering, num clusters = %i" % (oid, len(mcl_c)))
 	# plt.figure(figsize=(10,10))
@@ -264,7 +273,8 @@ def clusters_mcl(oid, evs, inf=inf):
 	return clu
 
 
-def ref_annot(clu, evs, ref_sps, syn_ref_nod):
+# annotate orthology relationships to genes from one reference species
+def ref_annot(clu, evs, ref_spi, syn_ref_nod):
 
 	clu["sps"]     = clu["node"].apply(lambda c: c.split(split_ch)[0])
 	evs["in_sps"]  = evs["in_gene"].apply(lambda c: c.split(split_ch)[0])
@@ -278,20 +288,20 @@ def ref_annot(clu, evs, ref_sps, syn_ref_nod):
 
 		# find reference sequences WITHIN THIS cluster 
 		# and create a dictionary to alphabetic short codes
-		ref_nodes = clu[(clu["sps"] == ref_sps) & (clu["cluster"] == c)]["node"].values
+		ref_nodes = clu[(clu["sps"] == ref_spi) & (clu["cluster"] == c)]["node"].values
 		ref_codes = list(string.ascii_letters[0:len(ref_nodes)])
 		ref_dicti = dict()
 		for m,r in enumerate(ref_nodes):
 			ref_dicti[r] = ref_codes[m]
 
 		# find if gene is orthologous to any ref sequences
-		r1 = evs[(evs["in_gene"] == noi) & (evs["out_sps"] == ref_sps)]["out_gene"].values
-		r2 = evs[(evs["out_gene"] == noi) & (evs["in_sps"] == ref_sps)]["in_gene"].values
+		r1 = evs[(evs["in_gene"] == noi) & (evs["out_sps"] == ref_spi)]["out_gene"].values
+		r2 = evs[(evs["out_gene"] == noi) & (evs["in_sps"] == ref_spi)]["in_gene"].values
 		ra = np.unique(np.concatenate((r1,r2)))
 
 		# if gene herself comes from a reference sequence, 
 		# add it to the array of ref sequences
-		if clu["sps"][n] == ref_sps:
+		if clu["sps"][n] == ref_spi:
 			for syn in syn_ref_nod:
 				if noi in syn:
 					ra = np.unique(np.append(ra, list(syn)))
@@ -302,17 +312,17 @@ def ref_annot(clu, evs, ref_sps, syn_ref_nod):
 
 		cluster_ref.append(c+rc)
 
-	ix_ref_sps = np.where((clu["sps"] == ref_sps).values)
+	ix_ref_spi      = np.where((clu["sps"] == ref_spi).values)
 	cluster_ref_table = pd.DataFrame( { 
-		"node" :        clu["node"].values[ix_ref_sps],
-		"cluster" :     clu["cluster"].values[ix_ref_sps],
-		"cluster_ref" : np.array(cluster_ref)[ix_ref_sps]
+		"node" :        clu["node"].values[ix_ref_spi],
+		"cluster" :     clu["cluster"].values[ix_ref_spi],
+		"cluster_ref" : np.array(cluster_ref)[ix_ref_spi]
 	} , columns=["node","cluster","cluster_ref"])
 	
 	return cluster_ref, cluster_ref_table
 
 
-def find_monophyletic_refsps_expansion(phy, ref_sps):
+def find_monophyletic_refsps_expansion(phy, ref_spi):
 
 	# list of species and gene names of descending leaves of each node in the tree
 	node_species = phy.get_cached_content(store_attr="species")
@@ -321,7 +331,7 @@ def find_monophyletic_refsps_expansion(phy, ref_sps):
 	# find sets of monophyletic sequences from the ref sps
 	syn_seqs_refsps = list()
 	for n,i in enumerate(node_species):
-		if (len(node_species[i]) == 1) & (ref_sps in node_species[i]):
+		if (len(node_species[i]) == 1) & (ref_spi in node_species[i]):
 			syn_seqs_refsps.append(node_geneids[i])
 
 	# remove redundancy in these sets (check for overlapping sets and merge into larger sets)
@@ -339,7 +349,8 @@ def find_monophyletic_refsps_expansion(phy, ref_sps):
 
 
 
-# function to cluster a network-like table of orthologs (from ETE) using MCL
+# function to cluster a network-like table of orthologs (from ETE) 
+# by identifying communities in network
 def clusters_mod(oid, evs, gene_list):
 
 	# create network
@@ -401,22 +412,26 @@ if mod == "single":
 	
 	# read phylogeny, find speciation events, create network
 	evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fo, phy_id=phy_id, is_root=is_root)
-	syn_ref_nod = find_monophyletic_refsps_expansion(phy=phy, ref_sps=ref_sps)
 
 	# find clusters
 	if len(evs) > 1:
+		
 		clu = clusters_mcl(oid=phy_id, evs=evs, inf=inf)
-		#clu = clusters_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
-		if ref_sps is None:
-			print_attributes = ["cluster"]
-		else:
-			clu["cluster_ref"], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_sps=ref_sps, syn_ref_nod=syn_ref_nod)
-			cluster_ref_table.to_csv("%s.orthologs_refsps.csv" % out_fn, sep="\t", index=None, mode="w")	
-			print_attributes = ["cluster","cluster_ref"]
+		print_attributes = ["cluster"]
+		# clu = clusters_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
+		
+		if ref_sps is not None:
+			for ref_spi in ref_sps:
+				syn_ref_nod = find_monophyletic_refsps_expansion(phy=phy, ref_spi=ref_spi)
+				clu[ref_spi], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_spi=ref_spi, syn_ref_nod=syn_ref_nod)
+				cluster_ref_table.to_csv("%s.orthologs_ref_%s.csv" % (out_fn,ref_spi), sep="\t", index=None, mode="w")	
+				print_attributes.append(ref_spi)
+		
 		if do_print: 
 			print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep="|")
-			os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -d stroke:gray -b opacity:0 -w 1000 -v 12 > %s.orthologs.newick.svg" % (out_fn,out_fn))
-			os.system("inkscape %s.orthologs.newick.svg --export-pdf=%s.orthologs.newick.pdf 2> /dev/null" % (out_fn,out_fn))
+			# os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -d stroke:gray -b opacity:0 -w 1000 -v 12 > %s.orthologs.newick.svg" % (out_fn,out_fn))
+			# os.system("inkscape %s.orthologs.newick.svg --export-pdf=%s.orthologs.newick.pdf 2> /dev/null" % (out_fn,out_fn))
+	
 	else:
 		print("No speciations in tree %s %s" % (phy_id, phy_fo))
 
@@ -459,21 +474,37 @@ elif mod == "multi":
 
 			# read phylogeny, find speciation events, create network
 			evs,evd,phy,phy_lis = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, is_root=is_root)
-			syn_ref_nod = find_monophyletic_refsps_expansion(phy=phy, ref_sps=ref_sps)
 
 			# find clusters
 			if len(evs) > 1:
+
 				clu = clusters_mcl(oid=phy_id, evs=evs, inf=inf)
-				if ref_sps is None:
-					print_attributes = ["cluster"]
-				else:
-					clu["cluster_ref"], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_sps=ref_sps, syn_ref_nod=syn_ref_nod)
-					cluster_ref_table.to_csv("%s.orthologs_refsps.csv" % out_fn, sep="\t", index=None, mode="w")	
-					print_attributes = ["cluster","cluster_ref"]
+				print_attributes = ["cluster"]
+				# clu = clusters_mod(oid=phy_id, evs=evs, gene_list=phy_lis)
+
+
+				### TODO: FIX PRINTING AND REF SPS WHEN PARSING MULTIPLE PHYLOGENIES!
+				### TODO: OR REMOVE THIS FUNCTION ALTOGETHER AND TRUST IN USER-MADE LOOPS?
+				if ref_sps is not None:
+					for ref_spi in ref_sps:
+						syn_ref_nod = find_monophyletic_refsps_expansion(phy=phy, ref_spi=ref_spi)
+						clu[ref_spi], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_spi=ref_spi, syn_ref_nod=syn_ref_nod)
+						cluster_ref_table.to_csv("%s.orthologs_ref_%s.csv" % (out_fn,ref_spi), sep="\t", index=None, mode="w")	
+						print_attributes.append(ref_spi)
+				
 				if do_print: 
 					print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep="|")
-					os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -d stroke:gray -b opacity:0 -w 1000 -v 12 > %s.orthologs.newick.svg" % (out_fn,out_fn))
-					os.system("inkscape %s.orthologs.newick.svg --export-pdf=%s.orthologs.newick.pdf 2> /dev/null" % (out_fn,out_fn))
+			
+
+				# if ref_sps is None:
+				# 	print_attributes = ["cluster"]
+				# else:
+				# 	clu["cluster_ref"], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_spi=ref_spi, syn_ref_nod=syn_ref_nod)
+				# 	cluster_ref_table.to_csv("%s.orthologs_refsps.csv" % out_fn, sep="\t", index=None, mode="w")	
+				# 	print_attributes = ["cluster","cluster_ref"]
+				# if do_print: 
+				# 	print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep="|")
+			
 			else:
 				clu = clusters_nomcl(oid=phy_id, ort=ort)
 		else:
