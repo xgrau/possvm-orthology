@@ -1,0 +1,5 @@
+2019-11-24 13:06:48,711 [INFO ]	Input args: {'phy': 'test/single_genes/adar_holozoa.newick', 'out': 'test/adar_oumr', 'mode': 'single', 'pid': 'adar_oumr', 'suf': 'newick', 'ort': None, 'root': 'F', 'inf': 1.1, 'sos': 0.0, 'nopt': 500, 'print': 'F', 'split': '_', 'minbs': 0, 'refsp': 'Hsap,Dromel'}
+2019-11-24 13:06:48,711 [INFO ]	MODE: find orthogroups in one phylogeny with ETE(SO)+MCL: test/single_genes/adar_holozoa.newick
+2019-11-24 13:06:48,727 [INFO ]	adar_oumr num nodes = 284
+2019-11-24 13:06:48,729 [INFO ]	adar_oumr Tree is unrooted, apply midpoint root
+2019-11-24 13:06:48,952 [INFO ]	adar_oumr Create network

@@ -1,0 +1,69 @@
+2019-12-16 17:21:48,749 [INFO ]	Input args: {'phy': 'test/anopheles_orthofinder/trees/', 'out': 'test/prova', 'mode': 'multi', 'pid': 'tree', 'suf': 'newick', 'ort': 'test/anopheles_orthofinder/Orthogroups_longformat.csv', 'root': 'F', 'inf': 1.1, 'sos': 0.0, 'nopt': 500, 'print': 'T', 'split': '_', 'minbs': 0, 'refsp': 'Anogam'}
+2019-12-16 17:21:48,754 [INFO ]	MODE: find orthogroups in tree collection with ETE(SO)+MCL: test/anopheles_orthofinder/trees/
+2019-12-16 17:21:48,764 [INFO ]	OG0000000 num nodes = 238
+2019-12-16 17:21:48,765 [INFO ]	OG0000000 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:48,882 [INFO ]	OG0000000 Create network
+2019-12-16 17:21:48,890 [INFO ]	OG0000000 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:48,996 [INFO ]	OG0000000 MCL clustering, num clusters = 23
+2019-12-16 17:21:48,999 [INFO ]	OG0000000 MCL clustering, num clustered genes = 234
+2019-12-16 17:21:50,328 [INFO ]	OG0000001 num nodes = 227
+2019-12-16 17:21:50,329 [INFO ]	OG0000001 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:50,433 [INFO ]	OG0000001 Create network
+2019-12-16 17:21:50,440 [INFO ]	OG0000001 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:50,551 [INFO ]	OG0000001 MCL clustering, num clusters = 20
+2019-12-16 17:21:50,553 [INFO ]	OG0000001 MCL clustering, num clustered genes = 227
+2019-12-16 17:21:51,754 [INFO ]	OG0000002 num nodes = 185
+2019-12-16 17:21:51,755 [INFO ]	OG0000002 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:51,814 [INFO ]	OG0000002 Create network
+2019-12-16 17:21:51,818 [INFO ]	OG0000002 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:51,931 [INFO ]	OG0000002 MCL clustering, num clusters = 29
+2019-12-16 17:21:51,933 [INFO ]	OG0000002 MCL clustering, num clustered genes = 169
+2019-12-16 17:21:52,811 [INFO ]	OG0000003 num nodes = 182
+2019-12-16 17:21:52,812 [INFO ]	OG0000003 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:52,867 [INFO ]	OG0000003 Create network
+2019-12-16 17:21:52,875 [INFO ]	OG0000003 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:53,014 [INFO ]	OG0000003 MCL clustering, num clusters = 16
+2019-12-16 17:21:53,017 [INFO ]	OG0000003 MCL clustering, num clustered genes = 173
+2019-12-16 17:21:53,971 [INFO ]	OG0005827 num nodes = 14
+2019-12-16 17:21:53,972 [INFO ]	OG0005827 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:53,975 [INFO ]	OG0005827 Create network
+2019-12-16 17:21:53,977 [INFO ]	OG0005827 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:53,981 [INFO ]	OG0005827 MCL clustering, num clusters = 1
+2019-12-16 17:21:53,983 [INFO ]	OG0005827 MCL clustering, num clustered genes = 14
+2019-12-16 17:21:54,099 [INFO ]	OG0005828 num nodes = 14
+2019-12-16 17:21:54,099 [INFO ]	OG0005828 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:54,102 [INFO ]	OG0005828 Create network
+2019-12-16 17:21:54,104 [INFO ]	OG0005828 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:54,109 [INFO ]	OG0005828 MCL clustering, num clusters = 1
+2019-12-16 17:21:54,112 [INFO ]	OG0005828 MCL clustering, num clustered genes = 14
+2019-12-16 17:21:54,232 [INFO ]	OG0005829 num nodes = 14
+2019-12-16 17:21:54,232 [INFO ]	OG0005829 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:54,235 [INFO ]	OG0005829 Create network
+2019-12-16 17:21:54,237 [INFO ]	OG0005829 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:54,242 [INFO ]	OG0005829 MCL clustering, num clusters = 1
+2019-12-16 17:21:54,245 [INFO ]	OG0005829 MCL clustering, num clustered genes = 14
+2019-12-16 17:21:54,366 [INFO ]	OG0005830 num nodes = 14
+2019-12-16 17:21:54,366 [INFO ]	OG0005830 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:54,369 [INFO ]	OG0005830 Create network
+2019-12-16 17:21:54,371 [INFO ]	OG0005830 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:54,378 [INFO ]	OG0005830 MCL clustering, num clusters = 1
+2019-12-16 17:21:54,380 [INFO ]	OG0005830 MCL clustering, num clustered genes = 14
+2019-12-16 17:21:54,503 [INFO ]	OG0005831 num nodes = 14
+2019-12-16 17:21:54,503 [INFO ]	OG0005831 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:54,506 [INFO ]	OG0005831 Create network
+2019-12-16 17:21:54,508 [INFO ]	OG0005831 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:54,514 [INFO ]	OG0005831 MCL clustering, num clusters = 1
+2019-12-16 17:21:54,516 [INFO ]	OG0005831 MCL clustering, num clustered genes = 14
+2019-12-16 17:21:54,634 [INFO ]	OG0005840 num nodes = 14
+2019-12-16 17:21:54,634 [INFO ]	OG0005840 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:54,637 [INFO ]	OG0005840 Create network
+2019-12-16 17:21:54,639 [INFO ]	OG0005840 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:54,645 [INFO ]	OG0005840 MCL clustering, num clusters = 1
+2019-12-16 17:21:54,647 [INFO ]	OG0005840 MCL clustering, num clustered genes = 14
+2019-12-16 17:21:54,767 [INFO ]	OG0005841 num nodes = 14
+2019-12-16 17:21:54,767 [INFO ]	OG0005841 Tree is unrooted, apply midpoint root
+2019-12-16 17:21:54,770 [INFO ]	OG0005841 Create network
+2019-12-16 17:21:54,772 [INFO ]	OG0005841 MCL clustering, inflation = 1.100000
+2019-12-16 17:21:54,778 [INFO ]	OG0005841 MCL clustering, num clusters = 1
+2019-12-16 17:21:54,780 [INFO ]	OG0005841 MCL clustering, num clustered genes = 14
+2019-12-16 17:21:54,901 [INFO ]	All done in test/anopheles_orthofinder/trees/
