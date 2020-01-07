@@ -33,7 +33,7 @@ sos      = float(arl["sos"])
 do_print    = bool(arl["print"] == "T")
 split_ch    = arl["split"].replace("\"","")
 is_root     = bool(arl["root"] == "T")
-min_support = arl["minbs"]
+min_support = float(arl["minbs"])
 if arl["refsp"] is None:
 	ref_sps = arl["refsp"]
 else:
@@ -136,13 +136,13 @@ def print_tree(phy, out, evc, attributes, sep="|"):
 	
 	for i in phy.get_leaves():
 		i_name = i.name
-		for a in attributes:
-			c=evc[evc["node"] == i_name][a].values
+		for attribute in attributes:
+			c=evc[evc["node"] == i_name][attribute].values
 			if c.size == 0: 
 				c="NA"
 			else:  
 				c=c[0]
-			i.name = str(i.name) + sep + a + str(c)
+			i.name = str(i.name) + sep + str(c)
 		i.name = str(i.name) + sep
 
 	phy.write(outfile=out)
@@ -267,7 +267,7 @@ def clusters_mcl(oid, evs, inf=inf):
 		"node"    : [evs_n_nodelist[i] for i in mcl_c_noi],
 		"cluster" : mcl_c_clu,
 	}, columns=["node","cluster"])
-	clu["cluster"] = clu["cluster"].astype(str)
+	clu["cluster"] = "OG" + clu["cluster"].astype(str)
 	logging.info("%s MCL clustering, num clustered genes = %i" % (oid, len(clu)))
 
 	return clu
@@ -298,6 +298,8 @@ def ref_annot(clu, evs, ref_spi, syn_ref_nod):
 		r1 = evs[(evs["in_gene"] == noi) & (evs["out_sps"] == ref_spi)]["out_gene"].values
 		r2 = evs[(evs["out_gene"] == noi) & (evs["in_sps"] == ref_spi)]["in_gene"].values
 		ra = np.unique(np.concatenate((r1,r2)))
+		ra_is_clustered = np.isin(element=ra, test_elements=ref_nodes)
+		ra = ra[ra_is_clustered]
 
 		# if gene herself comes from a reference sequence, 
 		# add it to the array of ref sequences
@@ -310,7 +312,8 @@ def ref_annot(clu, evs, ref_spi, syn_ref_nod):
 		rc = np.sort([ ref_dicti[r] for r in ra ])
 		rc = ''.join(rc)
 
-		cluster_ref.append(c+rc)
+		# name of sps-specific cluster: cluster_0ab_sps
+		cluster_ref.append(c+rc+"_"+ref_spi)
 
 	ix_ref_spi      = np.where((clu["sps"] == ref_spi).values)
 	cluster_ref_table = pd.DataFrame( { 
@@ -423,12 +426,12 @@ if mod == "single":
 		if ref_sps is not None:
 			for ref_spi in ref_sps:
 				syn_ref_nod = find_monophyletic_refsps_expansion(phy=phy, ref_spi=ref_spi)
-				clu[ref_spi], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_spi=ref_spi, syn_ref_nod=syn_ref_nod)
+				clu["cluster_" + ref_spi], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_spi=ref_spi, syn_ref_nod=syn_ref_nod)
 				cluster_ref_table.to_csv("%s.orthologs_ref_%s.csv" % (out_fn,ref_spi), sep="\t", index=None, mode="w")	
-				print_attributes.append(ref_spi)
+				print_attributes.append("cluster_" + ref_spi)
 		
 		if do_print: 
-			print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep="|")
+			print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep=" | ")
 			# os.system("nw_display %s.orthologs.newick -s -i visibility:hidden -d stroke:gray -b opacity:0 -w 1000 -v 12 > %s.orthologs.newick.svg" % (out_fn,out_fn))
 			# os.system("inkscape %s.orthologs.newick.svg --export-pdf=%s.orthologs.newick.pdf 2> /dev/null" % (out_fn,out_fn))
 	
@@ -488,12 +491,12 @@ elif mod == "multi":
 				if ref_sps is not None:
 					for ref_spi in ref_sps:
 						syn_ref_nod = find_monophyletic_refsps_expansion(phy=phy, ref_spi=ref_spi)
-						clu[ref_spi], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_spi=ref_spi, syn_ref_nod=syn_ref_nod)
+						clu["cluster_" + ref_spi], cluster_ref_table = ref_annot(clu=clu, evs=evs, ref_spi=ref_spi, syn_ref_nod=syn_ref_nod)
 						cluster_ref_table.to_csv("%s.orthologs_ref_%s.csv" % (out_fn,ref_spi), sep="\t", index=None, mode="w")	
-						print_attributes.append(ref_spi)
+						print_attributes.append("cluster_" + ref_spi)
 				
 				if do_print: 
-					print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep="|")
+					print_tree(phy=phy, out="%s.orthologs.newick" % out_fn, evc=clu, attributes=print_attributes, sep=" | ")
 			
 
 				# if ref_sps is None:
