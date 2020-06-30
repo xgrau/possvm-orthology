@@ -1,3 +1,15 @@
+# libraries
+import os
+import numpy as np
+import pandas as pd
+import ete3
+import markov_clustering
+import logging
+import networkx as nx
+from networkx.algorithms import community
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+import string
 import argparse
 
 # argument parser
@@ -39,19 +51,6 @@ if arl["refsp"] is None:
 else:
 	ref_sps = arl["refsp"].split(",")
 
-
-# libraries
-import os
-import numpy as np
-import pandas as pd
-import ete3
-import markov_clustering
-import logging
-import networkx as nx
-from networkx.algorithms import community
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
-import string
 
 
 # os.chdir("/home/xavi/Documents/Lab/possom-orthology/")
