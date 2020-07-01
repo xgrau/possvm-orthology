@@ -25,7 +25,7 @@ arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Spe
 arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONAL: String to use as species prefix delimiter in gene ids, e.g. \"_\" for sequences formatted as speciesA_geneX. Defaults to \"_\".", type=str)
 arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false", help="OPTIONAL: Turns off tree rooting using midpoint root, in case your trees are already rooted.")
 arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Turns off printing of annotated tree in PDF (annotated newick is still produced).")
-arp.add_argument("-extratio","--extratio", required=False, default=1.5, help="OPTIONAL: In order to perform extended label propagation, you can assign . Ratio Defaults to 1.5, ie closest group is 50pp loser to unlabelled group than the second closest group.", type=float)
+arp.add_argument("-extratio","--extratio", required=False, default=None, help="OPTIONAL: In order to perform extended label propagation, you can assign . Ratio Defaults to 1.5, ie closest group is 50pp loser to unlabelled group than the second closest group.", type=float)
 arl = vars(arp.parse_args())
 
 # input variables
@@ -419,7 +419,7 @@ def find_support_cluster(clu, phy, cluster_label="cluster"):
 
 
 
-def find_close_clusters(clu, phy, extension_ratio_threshold=1.5, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster"):
+def find_close_clusters(clu, phy, extension_ratio_threshold, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster"):
 	
 	logging.info("Extending annotations to close groups | extension ratio threshold = %.3f" % extension_ratio_threshold)
 
@@ -626,9 +626,16 @@ if len(evs) > 0:
 
 		# report which reference sequences can be found within cluster
 		clu["cluster_ref"] = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi="Hsap", label_if_no_annot="NA")
-		clu["cluster_nameref"] = "OG" + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
+
+		# find named orthologs anywhere in the phylogeny
 		clu["node_ref"] = ref_known_any(clu=clu, evs=evs, ref=ref, syn_nod=[])
-		clu["extended_clusters"], clu["extended_labels"] = find_close_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", extension_ratio_threshold=extension_ratio_threshold)
+
+		# extend cluster-wise annotations
+		if extension_ratio_threshold is not None:
+			clu["extended_clusters"], clu["extended_labels"] = find_close_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", extension_ratio_threshold=extension_ratio_threshold)
+
+		# obtain human-readable cluster names
+		clu["cluster_nameref"]     = "OG" +    clu["cluster"].astype(str) +           ":" + clu["cluster_ref"].astype(str)
 		clu["extended_namelabels"] = "extOG" + clu["extended_clusters"].astype(str) + ":" + clu["extended_labels"].astype(str)
 		
 		k_value = np.sum(np.unique(clu["cluster_ref"].values) != "NA")
