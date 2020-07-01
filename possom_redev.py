@@ -82,6 +82,7 @@ def print_tree(phy, out, evc, attributes, sep="|", do_print=True):
 		ts = ete3.TreeStyle()
 		ts.show_branch_support = True
 		ts.show_leaf_name = False
+		ts.complete_branch_lines_when_necessary = False
 		ts.scale=120
 		phy.render("%s.pdf" % out, tree_style=ts)
 
@@ -421,6 +422,123 @@ def find_support_cluster(clu, phy, cluster_label="cluster"):
 
 
 
+def find_close_clusters_topo(clu, phy, extension_ratio_threshold, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster"):
+	
+	logging.info("Add annotations: extend annotations to close groups | extension ratio threshold = %.3f" % extension_ratio_threshold)
+
+	# input and output lists
+	has_label_ix = np.where(clu[ref_label] != ref_NA_label)[0]
+	has_no_label_ix = np.where(clu[ref_label] == ref_NA_label)[0]
+	clusters_labeled = np.unique(clu[cluster_label][has_label_ix].values)
+	clusters_nonlabeled = np.unique(clu[cluster_label][has_no_label_ix].values)
+	
+	# extended annotations: init arrays with previous information
+	extended_annots = clu[ref_label].values
+	extended_clusters = clu[cluster_label].values
+	# extended_annots = np.repeat("NA", clu[ref_label].shape[0])
+	# extended_clusters = np.repeat(0, clu[ref_label].shape[0])
+	num_extended = 0
+
+	if len(clusters_labeled) > 1:
+
+		# loop for each non-labeled cluster
+		for ci in clusters_nonlabeled:
+
+			# list of nodes in non-labeled cluster ci
+			nodes_i = clu[clu[cluster_label] == ci]["node"].values.tolist()
+
+			# index vector
+			nodes_in_cluster_ci_ix = np.where(clu[cluster_label] == ci)[0]
+			
+			# if there is only one node, root is the same node (otherwise defaults to tree root!)
+			if len(nodes_i) > 1:
+				root_i  = phy.get_common_ancestor(nodes_i)
+			else:
+				root_i = nodes_i[0]
+
+			# init values for cloest node search
+			first_closest_d_phyl = 1e6
+			first_closest_d_topo = 1e6
+			first_closest_c = ci
+			second_closest_d_phyl = 1e6
+			second_closest_d_topo = 1e6
+			second_closest_c = ci
+
+			# loop labeled clusters to find closest
+			for cj in clusters_labeled:
+
+				nodes_j = clu[clu[cluster_label] == cj]["node"].values.tolist()
+				if len(nodes_j) > 1:
+					root_j = phy.get_common_ancestor(nodes_j)
+				else:
+					root_j = nodes_j[0]
+
+				# calculate topological and phylogenetic distances between roots of clusters ci and cj
+				dist_ij_phyl = phy.get_distance(root_i, root_j)
+				dist_ij_topo = phy.get_distance(root_i, root_j, topology_only=True)
+
+				# check if current labeled root (cj) is closest to unlabeled root (ci)
+				# if dist_ij_phyl < first_closest_d_phyl:
+				if dist_ij_topo < first_closest_d_topo:
+					first_closest_d_phyl = dist_ij_phyl
+					first_closest_d_topo = dist_ij_topo
+					first_closest_c = cj
+
+			# same for second closest
+			for cj in clusters_labeled:
+
+				nodes_j = clu[clu[cluster_label] == cj]["node"].values.tolist()
+				if len(nodes_j) > 1:
+					root_j = phy.get_common_ancestor(nodes_j)
+				else:
+					root_j = nodes_j[0]
+
+				# calculate topological and phylogenetic distances between roots of clusters ci and cj
+				dist_ij_phyl = phy.get_distance(root_i, root_j)
+				dist_ij_topo = phy.get_distance(root_i, root_j, topology_only=True)
+
+				# check if current labeled root (cj) is second closest to unlabeled root (ci)
+				# if dist_ij_phyl < second_closest_d_phyl and dist_ij_phyl > first_closest_d_phyl:
+				if dist_ij_topo < second_closest_d_topo and dist_ij_topo > first_closest_d_topo:
+					second_closest_d_phyl = dist_ij_phyl
+					second_closest_d_topo = dist_ij_topo
+					second_closest_c = cj
+
+			# add min value to avoid zero divisions
+			first_closest_d_phyl = np.max((first_closest_d_phyl, 1e-6))
+
+			# distance ratio (second to first)
+			d2d1 = second_closest_d_phyl / first_closest_d_phyl
+
+			if d2d1 > extension_ratio_threshold:
+
+				# which is the annotation in the closest group?
+				first_closest_annot = np.unique(
+					clu[ref_label] [ (clu[cluster_label] == first_closest_c) & (clu[ref_label] != ref_NA_label) ].values
+				)
+
+				# assign new label
+				extended_annots[nodes_in_cluster_ci_ix] = first_closest_annot
+				extended_clusters[nodes_in_cluster_ci_ix] = first_closest_c
+
+				# counter
+				num_extended = num_extended + 1
+
+				print("# OG%i will now be extOG%i || d2/d1=%.3f || d1 OG%i = %.3f || d2 OG%i = %.3f" % (ci, first_closest_c, d2d1, first_closest_c, first_closest_d_phyl, second_closest_c, second_closest_d_phyl))
+
+			else:
+				
+				# pass
+				print("# OG%i will remain as is || d2/d1=%.3f || d1 OG%i = %.3f || d2 OG%i = %.3f" % (ci, d2d1, first_closest_c, first_closest_d_phyl, second_closest_c, second_closest_d_phyl))
+
+
+
+	logging.info("Add annotations: extend annotations to close groups | %i labels transferred" % num_extended)
+	
+	return extended_clusters, extended_annots
+
+
+
 def find_close_clusters(clu, phy, extension_ratio_threshold, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster"):
 	
 	logging.info("Add annotations: extend annotations to close groups | extension ratio threshold = %.3f" % extension_ratio_threshold)
@@ -606,8 +724,8 @@ evs, phy, phy_lis = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_root=do_root)
 if len(evs) > 0:
 
 	# find clusters
-	clu = clusters_louvain(evs=evs, node_list=phy_lis)
-	# clu = clusters_mcl(evs=evs)
+	# clu = clusters_louvain(evs=evs, node_list=phy_lis)
+	clu = clusters_mcl(evs=evs)
 	clu["cluster_name"] = "OG" + clu["cluster"].astype(str)
 
 	# find cluster supports (support in oldest node in cluster)
