@@ -62,6 +62,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)-5.5s]\
 
 def print_tree(phy, out, evc, attributes, sep="|", do_print=True):
 	
+	logging.info("Print tree")
+
 	for i in phy.get_leaves():
 		i_name = i.name
 		for attribute in attributes:
@@ -421,7 +423,7 @@ def find_support_cluster(clu, phy, cluster_label="cluster"):
 
 def find_close_clusters(clu, phy, extension_ratio_threshold, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster"):
 	
-	logging.info("Extending annotations to close groups | extension ratio threshold = %.3f" % extension_ratio_threshold)
+	logging.info("Add annotations: extend annotations to close groups | extension ratio threshold = %.3f" % extension_ratio_threshold)
 
 	# input and output lists
 	has_label_ix = np.where(clu[ref_label] != ref_NA_label)[0]
@@ -519,7 +521,7 @@ def find_close_clusters(clu, phy, extension_ratio_threshold, ref_label="cluster_
 
 
 
-	logging.info("Extending annotations to close groups | %i labels transferred" % num_extended)
+	logging.info("Add annotations: extend annotations to close groups | %i labels transferred" % num_extended)
 	
 	return extended_clusters, extended_annots
 
@@ -625,22 +627,19 @@ if len(evs) > 0:
 		# syn_nod   = np.unique(np.sort(np.concatenate((syn_nod_m, syn_nod_s))))
 
 		# report which reference sequences can be found within cluster
-		clu["cluster_ref"] = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi="Hsap", label_if_no_annot="NA")
-
-		# find named orthologs anywhere in the phylogeny
-		clu["node_ref"] = ref_known_any(clu=clu, evs=evs, ref=ref, syn_nod=[])
+		clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi="Hsap", label_if_no_annot="NA")
+		clu["cluster_nameref"] = "OG" + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
+		print_attributes = ["cluster_nameref"]
 
 		# extend cluster-wise annotations
 		if extension_ratio_threshold is not None:
 			clu["extended_clusters"], clu["extended_labels"] = find_close_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", extension_ratio_threshold=extension_ratio_threshold)
+			clu["extended_namelabels"] = "extOG" + clu["extended_clusters"].astype(str) + ":" + clu["extended_labels"].astype(str)
+			print_attributes.append("extended_namelabels")
 
-		# obtain human-readable cluster names
-		clu["cluster_nameref"]     = "OG" +    clu["cluster"].astype(str) +           ":" + clu["cluster_ref"].astype(str)
-		clu["extended_namelabels"] = "extOG" + clu["extended_clusters"].astype(str) + ":" + clu["extended_labels"].astype(str)
-		
-		k_value = np.sum(np.unique(clu["cluster_ref"].values) != "NA")
-		# clu["cluster_extended"] = clusters_dist(phy=phy, k=int(k_value))
-		print_attributes = ["cluster_nameref","extended_namelabels", "node_ref"]
+		# find named orthologs anywhere in the phylogeny
+		clu["node_ref"] = ref_known_any(clu=clu, evs=evs, ref=ref, syn_nod=[])
+		print_attributes.append("node_ref")
 
 	else:
 
@@ -656,4 +655,6 @@ if len(evs) > 0:
 # clu = clu.drop(columns=["cluster"])
 clu.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
 evs.to_csv("%s/%s.ortholog_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
+
+logging.info("%s Done" % phy_id)
 
