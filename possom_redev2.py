@@ -583,7 +583,6 @@ def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_l
 				# if we have reached the root node, assume max support
 				if parent_i.is_root():
 					parent_i_support = 100
-				
 
 				# check if sister has refs
 				has_refs = np.any( np.isin(element=parent_i_descendants, test_elements=has_label) )
