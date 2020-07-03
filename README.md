@@ -1,6 +1,6 @@
 # Possom
 
-**Possom** (***P**hylogenetic **O**rtholog **C**lustering with **S**pecies **O**verlap and **M**CL*) is a python utility that analyses gene phylogenies and defines clusters of orthologs within each tree, taking advantage of the **[ETE toolkit](http://etetoolkit.org/)** for phylogeny analysis and **[MCL clustering](https://micans.org/mcl/)**.
+**Possom** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies **O**verlap and **M**CL*) is a python utility that analyses gene phylogenies and defines clusters of orthologs within each tree, taking advantage of the **[ETE toolkit](http://etetoolkit.org/)** for phylogeny analysis and **[MCL clustering](https://micans.org/mcl/)**.
 
 It can be used to analyse a single gene tree or a collection of gene trees (for example, gene trees obtained from orthogroups defined using [Orthofinder](https://github.com/davidemms/OrthoFinder)).
 
@@ -33,33 +33,52 @@ Please cite the following papers:
 Usage:
 
 ```bash
-$ python possom.py -h
-usage: possom.py [-h] -phy PHY -suf SUF -out OUT -ort ORT -ani ANI [-inf INF]
-                 [-nopt NOPT] [-print PRINT] [-split SPLIT]
+usage: s02_parse_phylogeny_2020-06-30b.py [-h] -p PHY -o OUT [-i ID] [-r REF]
+                                          [-refsps REFSPS] [-s SOS]
+                                          [-split SPLIT] [-skiproot]
+                                          [-skipprint]
+                                          [-min_transfer_support MIN_TRANSFER_SUPPORT]
+                                          [-extratio EXTRATIO]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -phy PHY, --phy PHY   String. Folder with phylogenies
-  -suf SUF, --suf SUF   String. Suffix of phylogenies in folder
-  -out OUT, --out OUT   String. Prefix for output
-  -ort ORT, --ort ORT   String. Path to orthology file. Must be a two-column
-                        table (with tabs), with one gene per line: OG <tab>
-                        gene1
-  -ani ANI, --ani ANI   String. Which analysis to perform: "main" to analyse
-                        all genes, "opti" to find optimal inflation value
-  -inf INF, --inf INF   OPTIONAL: Floating. if analysis is "main", which
-                        inflation value to use? Default is 1.1
-  -nopt NOPT, --nopt NOPT
-                        OPTIONAL: Integer. if analysis is "opti", how many
-                        phylogenies should we examine for optimisation?
-                        Default is 500
-  -print PRINT, --print PRINT
-                        OPTIONAL: Boolean (False/True). Print new tree with
-                        defined clusters?
+  -p PHY, --phy PHY     Path to a phylogenetic tree in newick format. Each
+                        sequence in the tree must have a prefix indicating the
+                        species, separated from gene name with a split
+                        character. Default split character is "_", see --split
+                        for options.
+  -o OUT, --out OUT     Path to output folder. Defaults to present working
+                        directory.
+  -i ID, --id ID        OPTIONAL: String. Gene family name, used when naming
+                        ortholog clusters. Defaults to "genefam".
+  -r REF, --ref REF     OPTIONAL: Path to a table indicating reference gene
+                        names that can be used for orthogroup labeling.
+                        Format: geneid <tab> name.
+  -refsps REFSPS, --refsps REFSPS
+                        OPTIONAL: Comma-separated list of reference species
+                        that will be used for orthogroup labeling.
+  -s SOS, --sos SOS     OPTIONAL: Species overlap threshold used for orthology
+                        inference in ETE. Default is 0.
   -split SPLIT, --split SPLIT
-                        OPTIONAL: character to split species and sequence
-                        names. Default is "_", e.g. Human_genename. WARNING:
-                        use quotation marks, e.g. -split "_" or -split "|"
+                        OPTIONAL: String to use as species prefix delimiter in
+                        gene ids, e.g. "_" for sequences formatted as
+                        speciesA_geneX. Defaults to "_".
+  -skiproot, --skiproot
+                        OPTIONAL: Turns off tree rooting using midpoint root,
+                        in case your trees are already rooted.
+  -skipprint, --skipprint
+                        OPTIONAL: Turns off printing of annotated tree in PDF
+                        (annotated newick is still produced).
+  -min_transfer_support MIN_TRANSFER_SUPPORT, --min_transfer_support MIN_TRANSFER_SUPPORT
+                        OPTIONAL: Min node support to allow transfer of labels
+                        from labelled to non-labelled groups in the same
+                        clade. If not set, this step is skipped.
+  -extratio EXTRATIO, --extratio EXTRATIO
+                        NOT IN USE!! OPTIONAL: In order to perform extended
+                        label propagation, you can assign XX. Ratio Defaults
+                        to 1.5, ie closest group is 50pp loser to unlabelled
+                        group than the second closest group.
+
 ```
 
 #### Input files
