@@ -778,7 +778,7 @@ if len(evs) > 0:
 	
 
 # save clusters
-# clu = clu.drop(columns=["cluster"])
+clu_print = clu.drop(columns=["cluster","cluster_name","cluster_ref","extended_clusters","extended_labels"])
 clu.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
 evs.to_csv("%s/%s.ortholog_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
 
