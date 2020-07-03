@@ -2,14 +2,7 @@
 
 **Possom** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies **O**verlap and **M**CL*) is a python utility that analyses gene phylogenies and defines clusters of orthologs within each tree, taking advantage of the **[ETE toolkit](http://etetoolkit.org/)** for phylogeny analysis and **[MCL clustering](https://micans.org/mcl/)**.
 
-It can be used to analyse a single gene tree or a collection of gene trees (for example, gene trees obtained from orthogroups defined using [Orthofinder](https://github.com/davidemms/OrthoFinder)).
-
-It requires two very basic inputs (see details below):
-
-* One or more gene trees
-* If more than one gene tree is used, the user should specify a list of 
-
-Its basic functionality does *not* require a species tree. This is because it relies on the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in ETE (see [here](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)).
+Its basic functionality only requires a gene tree in newick format, with sequence name containing a prefix that indicates their species of origin, e.g. `human_gene1`. It does *not* require a species tree to infer orthologs, because it relies on the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in ETE (see [here](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)).
 
 ## How it works
 
@@ -19,7 +12,6 @@ Dibuix.
 
 Please cite the following papers:
 
-* Mine.
 * ETE toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
 * MCL clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
@@ -33,12 +25,12 @@ Please cite the following papers:
 Usage:
 
 ```bash
-usage: s02_parse_phylogeny_2020-06-30b.py [-h] -p PHY -o OUT [-i ID] [-r REF]
-                                          [-refsps REFSPS] [-s SOS]
-                                          [-split SPLIT] [-skiproot]
-                                          [-skipprint]
-                                          [-min_transfer_support MIN_TRANSFER_SUPPORT]
-                                          [-extratio EXTRATIO]
+usage: possom.py [-h] -p PHY -o OUT [-i ID] [-r REF]
+                 [-refsps REFSPS] [-s SOS]
+                 [-split SPLIT] [-skiproot]
+                 [-skipprint]
+                 [-min_transfer_support MIN_TRANSFER_SUPPORT]
+                 [-extratio EXTRATIO]
 
 optional arguments:
   -h, --help            show this help message and exit
