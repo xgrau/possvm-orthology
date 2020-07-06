@@ -61,6 +61,8 @@ else:
 # reference species?
 if  arl["refsps"] is not None:
 	refsps = arl["refsps"].split(",")
+else:
+	refsps = arl["refsps"]
 
 
 # logging
@@ -287,7 +289,7 @@ def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_r
 	logging.info("Add annotations: reference genes in each cluster")
 
 	if ref_spi is None:
-		ref = ref
+		ref_s = ref
 	else:
 		ref_sps = ref["gene"].apply(lambda c: c.split(split_ch)[0]).values
 		ref_s = ref[np.isin(ref_sps, ref_spi)]
