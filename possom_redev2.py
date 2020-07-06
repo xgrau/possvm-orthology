@@ -854,7 +854,7 @@ if len(evs) > 0:
 		# syn_nod   = np.unique(np.sort(np.concatenate((syn_nod_m, syn_nod_s))))
 
 		# report which reference sequences can be found within cluster
-		clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi="Hsap", label_if_no_annot="NA")
+		clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA")
 		clu["cluster_nameref"] = "OG" + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
 		print_attributes       = ["cluster_nameref"]
 
@@ -885,7 +885,7 @@ if len(evs) > 0:
 	
 
 # save clusters
-clu_print = clu.drop(columns=["cluster","cluster_name","cluster_ref","extended_clusters","extended_labels","extended_direct","extended_directlabels"])
+clu_print = clu.drop(columns=["cluster"])
 clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
 evs.to_csv("%s/%s.ortholog_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
 
