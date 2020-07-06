@@ -1,0 +1,1085 @@
+IQ-TREE multicore version 2.0.3 for Linux 64-bit built Apr 26 2020
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    lapis (AVX2, FMA3, 15 GB RAM)
+Command: iqtree -s homodb_chordata.ANTP.e.fasta -m TEST -mset LG,WAG,JTT -nt AUTO -bb 1000 -pre homodb_chordata.ANTP.e.iqtree -nm 10000 -cptime 1800
+Seed:    107571 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Mon Jul  6 13:43:33 2020
+Kernel:  AVX+FMA - auto-detect threads (8 CPU cores detected)
+
+Reading alignment file homodb_chordata.ANTP.e.fasta ... Fasta format detected
+Alignment most likely contains protein sequences
+Alignment has 583 sequences with 62 columns, 62 distinct patterns
+54 parsimony-informative, 1 singleton sites, 7 constant sites
+WARNING: Some sequence names are changed as follows:
+Zebrafish_zgc:193933_Ventx_ANTP -> Zebrafish_zgc_193933_Ventx_ANTP
+
+                                     Gap/Ambiguity  Composition  p-value
+   1  Amphioxus_Abox_Abox_ANTP               3.23%    passed     82.94%
+   2  Amphioxus_Barh_Barhl_ANTP              3.23%    passed     77.94%
+   3  Human_BARHL1_Barhl_ANTP                3.23%    passed     70.33%
+   4  Frog_barhl1_Barhl_ANTP                 3.23%    passed     70.33%
+   5  Zebrafish_barhl1.1_Barhl_ANTP          3.23%    passed     70.33%
+   6  Zebrafish_barhl1.2_Barhl_ANTP          3.23%    passed     70.33%
+   7  Mouse_Barhl1_Barhl_ANTP                3.23%    passed     66.18%
+   8  Human_BARHL2_Barhl_ANTP                3.23%    passed     29.19%
+   9  Zebrafish_barhl2_Barhl_ANTP            3.23%    passed     29.19%
+  10  Frog_barhl2_Barhl_ANTP                 3.23%    passed     29.19%
+  11  Mouse_Barhl2_Barhl_ANTP                3.23%    passed     26.10%
+  12  Human_BSX_Bsx_ANTP                     3.23%    passed     99.39%
+  13  Mouse_Bsx_Bsx_ANTP                     3.23%    passed     99.39%
+  14  Chicken_BSX_Bsx_ANTP                   3.23%    passed     99.39%
+  15  Zebrafish_bsx_Bsx_ANTP                 3.23%    passed     99.39%
+  16  Frog_bsx_Bsx_ANTP                      3.23%    passed     97.21%
+  17  Amphioxus_Bsx_Bsx_ANTP                 3.23%    passed     99.10%
+  18  Amphioxus_Barx_Barx_ANTP               3.23%    passed     79.44%
+  19  Human_BARX1_Barx_ANTP                  3.23%    passed     62.83%
+  20  Mouse_Barx1_Barx_ANTP                  3.23%    passed     62.83%
+  21  Zebrafish_barx1_Barx_ANTP              3.23%    passed     62.83%
+  22  Frog_barx1_Barx_ANTP                   3.23%    passed     62.83%
+  23  Human_BARX2_Barx_ANTP                  3.23%    passed     47.68%
+  24  Mouse_Barx2_Barx_ANTP                  3.23%    passed     47.68%
+  25  Chicken_BARX2_Barx_ANTP                3.23%    passed     47.68%
+  26  Zebrafish_barx2_Barx_ANTP              3.23%    passed     56.70%
+  27  Frog_barx2_Barx_ANTP                   3.23%    passed     68.48%
+  28  Amphioxus_Hmx_Nk5-Hmx_ANTP             3.23%    passed     98.24%
+  29  Chicken_HMX1_Nk5-Hmx_ANTP              3.23%    passed     84.60%
+  30  Zebrafish_hmx1_Nk5-Hmx_ANTP            3.23%    passed     93.53%
+  31  Frog_hmx1_Nk5-Hmx_ANTP                 3.23%    passed     93.53%
+  32  Human_HMX3_Nk5-Hmx_ANTP                3.23%    passed     93.53%
+  33  Mouse_Hmx3_Nk5-Hmx_ANTP                3.23%    passed     93.53%
+  34  Chicken_HMX3_Nk5-Hmx_ANTP              3.23%    passed     93.53%
+  35  Zebrafish_hmx3_Nk5-Hmx_ANTP            3.23%    passed     93.53%
+  36  Frog_hmx3_Nk5-Hmx_ANTP                 3.23%    passed     93.53%
+  37  Zebrafish_LOC100333298_Nk5-Hmx_ANTP    3.23%    passed     97.65%
+  38  Mouse_Hmx1_Nk5-Hmx_ANTP                3.23%    passed     93.63%
+  39  Human_HMX1_Nk5-Hmx_ANTP                3.23%    passed     96.56%
+  40  Chicken_SOHO-1_Nk5-Hmx_ANTP            3.23%    passed     98.02%
+  41  Human_HMX2_Nk5-Hmx_ANTP                3.23%    passed     53.76%
+  42  Mouse_Hmx2_Nk5-Hmx_ANTP                3.23%    passed     53.76%
+  43  Chicken_HMX2_Nk5-Hmx_ANTP              3.23%    passed     53.76%
+  44  Zebrafish_hmx2_Nk5-Hmx_ANTP            3.23%    passed     53.76%
+  45  Frog_hmx2_Nk5-Hmx_ANTP                 3.23%    passed     53.76%
+  46  Chicken_HMX2-like_Nk5-Hmx_ANTP         3.23%    passed     53.76%
+  47  Zebrafish_hmx4_Nk5-Hmx_ANTP            3.23%    passed     97.63%
+  48  Frog_hmx4_Nk5-Hmx_ANTP                 3.23%    passed     89.85%
+  49  Frog_hmx4b_Nk5-Hmx_ANTP                3.23%    passed     89.85%
+  50  Amphioxus_Nkx7_Nk7_ANTP                3.23%    passed     60.22%
+  51  Amphioxus_Hx_Hx_ANTP                   3.23%    passed     37.09%
+  52  Amphioxus_Lcx_Lcx_ANTP                 3.23%    passed     33.81%
+  53  Amphioxus_Vent1_Ventx_ANTP             3.23%    passed     43.24%
+  54  Amphioxus_Vent2_Ventx_ANTP             3.23%    passed     43.24%
+  55  Zebrafish_LOC100008066_Tlx_ANTP       25.81%    passed     94.34%
+  56  Human_TLX3_Tlx_ANTP                    3.23%    passed     98.23%
+  57  Mouse_Tlx3_Tlx_ANTP                    3.23%    passed     98.23%
+  58  Chicken_TLX3_Tlx_ANTP                  3.23%    passed     98.23%
+  59  Frog_tlx3_Tlx_ANTP                     3.23%    passed     98.23%
+  60  Zebrafish_tlx3b_Tlx_ANTP               3.23%    passed     97.84%
+  61  Human_TLX1_Tlx_ANTP                    3.23%    passed     90.79%
+  62  Mouse_Tlx1_Tlx_ANTP                    3.23%    passed     90.79%
+  63  Chicken_TLX1_Tlx_ANTP                  3.23%    passed     90.79%
+  64  Zebrafish_tlx1_Tlx_ANTP                3.23%    passed     90.79%
+  65  Frog_tlx1_Tlx_ANTP                     3.23%    passed     90.79%
+  66  Zebrafish_tlx2_Tlx_ANTP                3.23%    passed     97.84%
+  67  Frog_tlx2_Tlx_ANTP                     3.23%    passed     95.17%
+  68  Amphioxus_Tlx_Tlx_ANTP                 3.23%    passed     96.16%
+  69  Human_TLX2_Tlx_ANTP                    3.23%    passed     84.32%
+  70  Mouse_Tlx2_Tlx_ANTP                    3.23%    passed     84.32%
+  71  Amphioxus_Csx_Nk4_ANTP                 3.23%    passed     90.78%
+  72  Human_NKX2-3_Nk4_ANTP                  3.23%    passed     93.70%
+  73  Mouse_Nkx2-3_Nk4_ANTP                  3.23%    passed     93.70%
+  74  Zebrafish_nkx2.3_Nk4_ANTP              3.23%    passed     97.80%
+  75  Frog_nkx2-3_Nk4_ANTP                   3.23%    passed     97.87%
+  76  Human_NKX2-5_Nk4_ANTP                  3.23%    passed     86.26%
+  77  Mouse_Nkx2-5_Nk4_ANTP                  3.23%    passed     86.26%
+  78  Chicken_NKX2-5_Nk4_ANTP                3.23%    passed     97.75%
+  79  Frog_nkx2-5_Nk4_ANTP                   3.23%    passed     97.75%
+  80  Zebrafish_nkx2.5_Nk4_ANTP              3.23%    passed     97.75%
+  81  Human_NKX2-6_Nk4_ANTP                  3.23%    passed     87.63%
+  82  Frog_nkx2-6_Nk4_ANTP                   3.23%    passed     96.04%
+  83  Zebrafish_nkx2.7_Nk4_ANTP              3.23%    passed     98.47%
+  84  Mouse_Nkx2-6_Nk4_ANTP                  3.23%    passed     78.06%
+  85  Chicken_NKX2-6_Nk4_ANTP                3.23%    passed     97.05%
+  86  Human_NKX2-1_Nk2.1_ANTP                3.23%    passed     89.87%
+  87  Mouse_Nkx2-1_Nk2.1_ANTP                3.23%    passed     89.87%
+  88  Chicken_NKX2-1_Nk2.1_ANTP              3.23%    passed     89.87%
+  89  Frog_nkx2-1_Nk2.1_ANTP                 3.23%    passed     89.87%
+  90  Frog_nkx2-1a_Nk2.1_ANTP                3.23%    passed     89.87%
+  91  Human_NKX2-4_Nk2.1_ANTP                3.23%    passed     89.87%
+  92  Mouse_Nkx2-4_Nk2.1_ANTP                3.23%    passed     89.87%
+  93  Zebrafish_nkx2.1a_Nk2.1_ANTP           3.23%    passed     89.87%
+  94  Zebrafish_nkx2.1b_Nk2.1_ANTP           3.23%    passed     89.87%
+  95  Zebrafish_nkx2.1c_Nk2.1_ANTP           3.23%    passed     90.39%
+  96  Amphioxus_Nkx2-1_Nk2.1_ANTP            3.23%    passed     97.67%
+  97  Frog_nkx2-4_Nk2.1_ANTP                43.55%    passed     80.56%
+  98  Human_NKX2-2_Nk2.2_ANTP                3.23%    passed     99.34%
+  99  Mouse_Nkx2-2_Nk2.2_ANTP                3.23%    passed     99.34%
+ 100  Frog_nkx2-2_Nk2.2_ANTP                 3.23%    passed     99.34%
+ 101  Zebrafish_nkx2.2a_Nk2.2_ANTP           3.23%    passed     99.34%
+ 102  Amphioxus_Nkx2-2_Nk2.2_ANTP            3.23%    passed     97.34%
+ 103  Human_NKX2-8_Nk2.2_ANTP                3.23%    passed     97.06%
+ 104  Mouse_Nkx2-9_Nk2.2_ANTP                3.23%    passed     92.33%
+ 105  Chicken_Nkx2-9_Nk2.2_ANTP              4.84%    passed     95.05%
+ 106  Zebrafish_nkx2.9_Nk2.2_ANTP            3.23%    passed     98.21%
+ 107  Zebrafish_nkx2.2b_Nk2.2_ANTP           3.23%    passed     94.37%
+ 108  Frog_nkx2-8_Nk2.2_ANTP                 3.23%    passed     97.16%
+ 109  Frog_nkx2-1lb_Nk2.1_ANTP               3.23%    passed     60.52%
+ 110  Amphioxus_Nkx3_Nk3_ANTP                3.23%    passed     94.74%
+ 111  Human_NKX3-2_Nk3_ANTP                  3.23%    passed     99.18%
+ 112  Mouse_Nkx3-2_Nk3_ANTP                  3.23%    passed     99.18%
+ 113  Frog_nkx3-2_Nk3_ANTP                   3.23%    passed     99.18%
+ 114  Zebrafish_nkx3.2_Nk3_ANTP              3.23%    passed     99.18%
+ 115  Frog_nkx3-2l_Nk3_ANTP                  3.23%    passed     96.85%
+ 116  Zebrafish_nkx3.3_Nk3_ANTP              3.23%    passed     93.33%
+ 117  Human_NKX3-1_Nk3_ANTP                  3.23%    passed     94.90%
+ 118  Mouse_Nkx3-1_Nk3_ANTP                  3.23%    passed     94.90%
+ 119  Frog_nkx3-1_Nk3_ANTP                   3.23%    passed     82.13%
+ 120  Zebrafish_nkx3-1_Nk3_ANTP              3.23%    passed     93.92%
+ 121  Human_NKX1-1_Nk1_ANTP                  3.23%    passed     96.43%
+ 122  Mouse_Nkx1-1_Nk1_ANTP                  3.23%    passed     96.43%
+ 123  Human_NKX1-2_Nk1_ANTP                  3.23%    passed     96.23%
+ 124  Mouse_Nkx1-2_Nk1_ANTP                  3.23%    passed     96.23%
+ 125  Chicken_NKX1-1_Nk1_ANTP                3.23%    passed     97.11%
+ 126  Frog_nkx1-2_Nk1_ANTP                   3.23%    passed     97.11%
+ 127  Zebrafish_nkx1.2lb_Nk1_ANTP            3.23%    passed     97.11%
+ 128  Zebrafish_nkx1.2la_Nk1_ANTP            3.23%    passed     93.01%
+ 129  Amphioxus_Nkx1a_Nk1_ANTP               3.23%    passed     98.03%
+ 130  Amphioxus_Nkx1b_Nk1_ANTP               3.23%    passed     96.42%
+ 131  Chicken_NKX1-2_Nk1_ANTP                3.23%    passed     98.83%
+ 132  Frog_nkx1-2la_Nk1_ANTP                 3.23%    passed     95.61%
+ 133  Frog_nkx1-2lb_Nk1_ANTP                 3.23%    passed     95.61%
+ 134  Amphioxus_Bari_Bari_ANTP               3.23%    passed     93.02%
+ 135  Amphioxus_Gbx_Gbx_ANTP                 3.23%    passed     95.75%
+ 136  Human_GBX1_Gbx_ANTP                    3.23%    passed     94.06%
+ 137  Mouse_Gbx1_Gbx_ANTP                    3.23%    passed     94.06%
+ 138  Chicken_GBX1_Gbx_ANTP                  3.23%    passed     94.06%
+ 139  Zebrafish_gbx1_Gbx_ANTP                3.23%    passed     94.06%
+ 140  Frog_gbx1_Gbx_ANTP                     3.23%    passed     95.23%
+ 141  Human_GBX2_Gbx_ANTP                    3.23%    passed     98.19%
+ 142  Mouse_Gbx2_Gbx_ANTP                    3.23%    passed     98.19%
+ 143  Chicken_GBX2_Gbx_ANTP                  3.23%    passed     98.19%
+ 144  Zebrafish_gbx2_Gbx_ANTP                3.23%    passed     98.19%
+ 145  Frog_gbx2.1_Gbx_ANTP                   3.23%    passed     98.19%
+ 146  Frog_gbx2.2_Gbx_ANTP                   3.23%    passed     96.66%
+ 147  Zebrafish_hlxb9la_Mnx_ANTP             3.23%    passed     98.59%
+ 148  Zebrafish_hlxb9lb_Mnx_ANTP             3.23%    passed     98.59%
+ 149  Chicken_MNR2_Mnx_ANTP                  4.84%    passed     98.74%
+ 150  Frog_mnx1-l_Mnx_ANTP                   3.23%    passed     99.14%
+ 151  Human_MNX1_Mnx_ANTP                    3.23%    passed     98.86%
+ 152  Mouse_Mnx1_Mnx_ANTP                    3.23%    passed     99.39%
+ 153  Chicken_MNX1_Mnx_ANTP                  6.45%    passed     99.47%
+ 154  Zebrafish_mnx1_Mnx_ANTP                3.23%    passed     99.39%
+ 155  Frog_mnx1_Mnx_ANTP                     3.23%    passed     99.39%
+ 156  Amphioxus_Mnxa_Mnx_ANTP                3.23%    passed     99.27%
+ 157  Amphioxus_Mnxb_Mnx_ANTP                3.23%    passed     98.96%
+ 158  Zebrafish_LOC556898_Meox_ANTP          3.23%    passed     96.49%
+ 159  Human_MEOX2_Meox_ANTP                  3.23%    passed     96.49%
+ 160  Mouse_Meox2_Meox_ANTP                  3.23%    passed     96.49%
+ 161  Chicken_MEOX2_Meox_ANTP                3.23%    passed     96.49%
+ 162  Frog_meox2_Meox_ANTP                   3.23%    passed     96.49%
+ 163  Chicken_MEOX1_Meox_ANTP                4.84%    passed     92.10%
+ 164  Zebrafish_LOC566969_Meox_ANTP          3.23%    passed     98.98%
+ 165  Human_MEOX1_Meox_ANTP                  3.23%    passed     94.48%
+ 166  Mouse_Meox1_Meox_ANTP                  3.23%    passed     94.48%
+ 167  Zebrafish_meox1_Meox_ANTP              3.23%    passed     91.94%
+ 168  Amphioxus_Mox_Meox_ANTP                3.23%    passed     98.62%
+ 169  Amphioxus_Nedxa_Nedx_ANTP              3.23%    passed     91.72%
+ 170  Amphioxus_Nedxb_Nedx_ANTP              3.23%    passed     94.30%
+ 171  Chicken_gga_chr02.1_Hox5_ANTP          6.45%    passed     90.71%
+ 172  Human_HOXA5_Hox5_ANTP                  3.23%    passed     93.82%
+ 173  Mouse_Hoxa5_Hox5_ANTP                  3.23%    passed     93.82%
+ 174  Frog_hoxa5_Hox5_ANTP                   3.23%    passed     93.82%
+ 175  Human_HOXB5_Hox5_ANTP                  3.23%    passed     93.82%
+ 176  Mouse_Hoxb5_Hox5_ANTP                  3.23%    passed     93.82%
+ 177  Chicken_HOXB5_Hox5_ANTP                3.23%    passed     93.82%
+ 178  Frog_hoxb5_Hox5_ANTP                   3.23%    passed     93.82%
+ 179  Zebrafish_hoxb5a_Hox5_ANTP             3.23%    passed     93.82%
+ 180  Zebrafish_hoxb5b_Hox5_ANTP             3.23%    passed     93.82%
+ 181  Zebrafish_hoxa5a_Hox5_ANTP             3.23%    passed     95.21%
+ 182  Amphioxus_Hox5_Hox5_ANTP               3.23%    passed     69.46%
+ 183  Chicken_Hox-6_Hox6-8_ANTP             27.42%    passed     60.80%
+ 184  Frog_hoxb6_Hox6-8_ANTP                 3.23%    passed     72.02%
+ 185  Zebrafish_hoxb6a_Hox6-8_ANTP           3.23%    passed     62.03%
+ 186  Chicken_Hox-7_Hox6-8_ANTP              4.84%    passed     66.32%
+ 187  Amphioxus_Hox7_Hox6-8_ANTP             3.23%    passed     82.96%
+ 188  Human_HOXA7_Hox6-8_ANTP                3.23%    passed     59.76%
+ 189  Mouse_Hoxa7_Hox6-8_ANTP                3.23%    passed     59.76%
+ 190  Chicken_HOXA7_Hox6-8_ANTP              9.68%    passed     70.04%
+ 191  Frog_hoxa7_Hox6-8_ANTP                 3.23%    passed     59.76%
+ 192  Frog_hoxb7_Hox6-8_ANTP                 3.23%    passed     79.02%
+ 193  Human_HOXB7_Hox6-8_ANTP                3.23%    passed     56.20%
+ 194  Mouse_Hoxb7_Hox6-8_ANTP                3.23%    passed     56.20%
+ 195  Human_HOXA6_Hox6-8_ANTP                3.23%    passed     63.54%
+ 196  Mouse_Hoxa6_Hox6-8_ANTP                3.23%    passed     63.54%
+ 197  Chicken_HOXA6_Hox6-8_ANTP             24.19%    passed     59.12%
+ 198  Zebrafish_hoxb7a_Hox6-8_ANTP           3.23%    passed     91.21%
+ 199  Human_HOXB6_Hox6-8_ANTP                3.23%    passed     61.23%
+ 200  Mouse_Hoxb6_Hox6-8_ANTP                3.23%    passed     61.23%
+ 201  Zebrafish_hoxb6b_Hox6-8_ANTP           3.23%    passed     66.87%
+ 202  Frog_hoxa6_Hox6-8_ANTP                 3.23%    passed     79.68%
+ 203  Human_HOXC6_Hox6-8_ANTP                3.23%    passed     79.53%
+ 204  Mouse_Hoxc6_Hox6-8_ANTP                3.23%    passed     79.53%
+ 205  Frog_hoxc6                             3.23%    passed     79.53%
+ 206  Zebrafish_hoxc6a_Hox6-8_ANTP           3.23%    passed     75.47%
+ 207  Zebrafish_hoxc6b_Hox6-8_ANTP           3.23%    passed     63.43%
+ 208  Human_HOXC5_Hox5_ANTP                  3.23%    passed     88.55%
+ 209  Mouse_Hoxc5_Hox5_ANTP                  3.23%    passed     88.55%
+ 210  Zebrafish_hoxc5a_Hox5_ANTP             3.23%    passed     88.55%
+ 211  Frog_hoxc5_Hox5_ANTP                   3.23%    passed     86.36%
+ 212  Amphioxus_Hox4_Hox4_ANTP               3.23%    passed     99.24%
+ 213  Human_HOXA4_Hox4_ANTP                  3.23%    passed     98.71%
+ 214  Mouse_Hoxa4_Hox4_ANTP                  3.23%    passed     98.71%
+ 215  Chicken_HOXA4_Hox4_ANTP                3.23%    passed     98.71%
+ 216  Frog_Hoxa4_Hox4_ANTP                   3.23%    passed     98.71%
+ 217  Human_HOXD4_Hox4_ANTP                  3.23%    passed     95.53%
+ 218  Mouse_Hoxd4_Hox4_ANTP                  3.23%    passed     95.53%
+ 219  Chicken_HOXD4_Hox4_ANTP                3.23%    passed     95.53%
+ 220  Zebrafish_hoxd4a_Hox4_ANTP             3.23%    passed     95.53%
+ 221  Frog_hoxd4_Hox4_ANTP                   3.23%    passed     95.52%
+ 222  Human_HOXB4_Hox4_ANTP                  3.23%    passed     98.00%
+ 223  Mouse_Hoxb4_Hox4_ANTP                  3.23%    passed     98.00%
+ 224  Zebrafish_hoxb4a_Hox4_ANTP             3.23%    passed     97.75%
+ 225  Human_HOXC4_Hox4_ANTP                  3.23%    passed     93.38%
+ 226  Mouse_Hoxc4_Hox4_ANTP                  3.23%    passed     93.38%
+ 227  Frog_hoxc4_Hox4_ANTP                   3.23%    passed     93.38%
+ 228  Chicken_Hoxc4_Hox4_ANTP                6.45%    passed     99.43%
+ 229  Zebrafish_hoxc4a_Hox4_ANTP             3.23%    passed     95.85%
+ 230  Zebrafish_hoxa4a_Hox4_ANTP             3.23%    passed     98.25%
+ 231  Frog_hoxb4_Hox4_ANTP                   3.23%    passed     96.07%
+ 232  Amphioxus_Hox6_Hox6-8_ANTP             3.23%    passed     64.32%
+ 233  Amphioxus_Hox8_Hox6-8_ANTP             3.23%    passed     82.21%
+ 234  Human_HOXB8_Hox6-8_ANTP                3.23%    passed     99.09%
+ 235  Mouse_Hoxb8_Hox6-8_ANTP                3.23%    passed     99.09%
+ 236  Chicken_HOXB8_Hox6-8_ANTP              3.23%    passed     99.09%
+ 237  Frog_hoxb8_Hox6-8_ANTP                 3.23%    passed     99.09%
+ 238  Zebrafish_hoxb8a_Hox6-8_ANTP           3.23%    passed     99.09%
+ 239  Chicken_HOXD8_Hox6-8_ANTP             12.90%    passed     99.90%
+ 240  Frog_hoxd8_Hox6-8_ANTP                 3.23%    passed     99.20%
+ 241  Human_HOXC8_Hox6-8_ANTP                3.23%    passed     99.50%
+ 242  Mouse_Hoxc8_Hox6-8_ANTP                3.23%    passed     99.50%
+ 243  Frog_hoxc8_Hox6-8_ANTP                 3.23%    passed     99.50%
+ 244  Human_HOXD8_Hox6-8_ANTP                3.23%    passed     99.99%
+ 245  Mouse_Hoxd8_Hox6-8_ANTP                3.23%    passed     99.91%
+ 246  Zebrafish_hoxb8b_Hox6-8_ANTP           3.23%    passed     99.93%
+ 247  Zebrafish_hoxc8a_Hox6-8_ANTP           3.23%    passed     99.91%
+ 248  Amphioxus_Hox2_Hox2_ANTP               3.23%    passed     98.77%
+ 249  Human_HOXA2_Hox2_ANTP                  3.23%    passed     99.63%
+ 250  Mouse_Hoxa2_Hox2_ANTP                  3.23%    passed     99.63%
+ 251  Frog_hoxa2_Hox2_ANTP                   3.23%    passed     99.63%
+ 252  Mouse_Hoxb2_Hox2_ANTP                  3.23%    passed     99.63%
+ 253  Chicken_HOXB2_Hox2_ANTP                3.23%    passed     99.63%
+ 254  Frog_hoxb2_Hox2_ANTP                   3.23%    passed     99.63%
+ 255  Zebrafish_hoxb2a_Hox2_ANTP             3.23%    passed     99.63%
+ 256  Zebrafish_hoxa2b_Hox2_ANTP             3.23%    passed     97.51%
+ 257  Human_HOXB2_Hox2_ANTP                  3.23%    passed     98.28%
+ 258  Amphioxus_Hox3_Hox3_ANTP               3.23%    passed     97.55%
+ 259  Human_HOXA3_Hox3_ANTP                  3.23%    passed     99.97%
+ 260  Mouse_Hoxa3_Hox3_ANTP                  3.23%    passed     99.97%
+ 261  Chicken_HOXA3_Hox3_ANTP                3.23%    passed     99.97%
+ 262  Frog_hoxa3_Hox3_ANTP                   3.23%    passed     99.97%
+ 263  Zebrafish_hoxa3a_Hox3_ANTP             3.23%    passed     99.97%
+ 264  Human_HOXB3_Hox3_ANTP                  3.23%    passed     99.93%
+ 265  Mouse_Hoxb3_Hox3_ANTP                  3.23%    passed     99.93%
+ 266  Chicken_HOXB3_Hox3_ANTP                3.23%    passed     99.93%
+ 267  Frog_hoxb3_Hox3_ANTP                   3.23%    passed     99.93%
+ 268  Zebrafish_hoxb3a_Hox3_ANTP             3.23%    passed     99.93%
+ 269  Human_HOXD3_Hox3_ANTP                  3.23%    passed     99.96%
+ 270  Mouse_Hoxd3_Hox3_ANTP                  3.23%    passed     99.96%
+ 271  Chicken_HOXD3_Hox3_ANTP                3.23%    passed     99.96%
+ 272  Frog_hoxd3_Hox3_ANTP                   3.23%    passed     99.96%
+ 273  Zebrafish_hoxd3a_Hox3_ANTP             3.23%    passed     99.96%
+ 274  Frog_hoxc3_Hox3_ANTP                   4.84%    passed     99.73%
+ 275  Zebrafish_hoxc3a_Hox3_ANTP             4.84%    passed     96.37%
+ 276  Human_PDX1_Pdx_ANTP                    3.23%    passed     97.97%
+ 277  Mouse_Pdx1_Pdx_ANTP                    3.23%    passed     97.97%
+ 278  Chicken_PDX1_Pdx_ANTP                  3.23%    passed     97.97%
+ 279  Frog_pdx1_Pdx_ANTP                     3.23%    passed     97.97%
+ 280  Zebrafish_pdx1_Pdx_ANTP                3.23%    passed     99.08%
+ 281  Amphioxus_Xlox_Pdx_ANTP                3.23%    passed     93.98%
+ 282  Amphioxus_Gsx_Gsx_ANTP                 3.23%    passed     93.25%
+ 283  Human_GSX1_Gsx_ANTP                    3.23%    passed     99.53%
+ 284  Mouse_Gsx1_Gsx_ANTP                    3.23%    passed     99.53%
+ 285  Frog_gsx1_Gsx_ANTP                     3.23%    passed     99.53%
+ 286  Zebrafish_gsx1_Gsx_ANTP                3.23%    passed     99.13%
+ 287  Human_GSX2_Gsx_ANTP                    3.23%    passed     96.40%
+ 288  Mouse_Gsx2_Gsx_ANTP                    3.23%    passed     96.40%
+ 289  Zebrafish_gsx2_Gsx_ANTP                3.23%    passed     96.40%
+ 290  Chicken_LOC429994_Gsx_ANTP             3.23%    passed     96.40%
+ 291  Frog_gsx2_Gsx_ANTP                     3.23%    passed     89.37%
+ 292  Amphioxus_Hox1_Hox1_ANTP               3.23%    passed     75.18%
+ 293  Human_HOXA1_Hox1_ANTP                  3.23%    passed     97.56%
+ 294  Chicken_HOXA1_Hox1_ANTP                8.06%    passed     98.14%
+ 295  Zebrafish_hoxa1a_Hox1_ANTP             3.23%    passed     98.91%
+ 296  Mouse_Hoxa1_Hox1_ANTP                  3.23%    passed     93.97%
+ 297  Frog_hoxa1_Hox1_ANTP                   3.23%    passed     87.39%
+ 298  Chicken_HOXB1_Hox1_ANTP                3.23%    passed     76.05%
+ 299  Zebrafish_hoxb1a_Hox1_ANTP             4.84%    passed     86.75%
+ 300  Frog_hoxb1_Hox1_ANTP                   3.23%    passed     70.74%
+ 301  Zebrafish_hoxb1b_Hox1_ANTP             4.84%    passed     77.37%
+ 302  Frog_hoxd1_Hox1_ANTP                   3.23%    passed     96.21%
+ 303  Human_HOXB1_Hox1_ANTP                  3.23%    passed     99.78%
+ 304  Mouse_Hoxb1_Hox1_ANTP                  3.23%    passed     96.83%
+ 305  Human_HOXD1_Hox1_ANTP                  3.23%    passed     94.98%
+ 306  Mouse_Hoxd1_Hox1_ANTP                  3.23%    passed     98.44%
+ 307  Zebrafish_hoxc1a_Hox1_ANTP             6.45%    passed     96.98%
+ 308  Chicken_HOXD1_Hox1_ANTP                6.45%    passed     86.21%
+ 309  Chicken_Hox-10_Hox9-13_15_ANTP         6.45%    passed     90.58%
+ 310  Frog_hoxc10_Hox9-13_15_ANTP            3.23%    passed     91.10%
+ 311  Zebrafish_hoxc10a_Hox9-13_15_ANTP      8.06%    passed     97.39%
+ 312  Human_HOXD10_Hox9-13_15_ANTP           3.23%    passed     96.76%
+ 313  Mouse_Hoxd10_Hox9-13_15_ANTP           3.23%    passed     96.76%
+ 314  Frog_hoxd10_Hox9-13_15_ANTP            3.23%    passed     96.76%
+ 315  Zebrafish_hoxd10a_Hox9-13_15_ANTP      3.23%    passed     96.76%
+ 316  Human_HOXC10_Hox9-13_15_ANTP           3.23%    passed     86.11%
+ 317  Mouse_Hoxc10_Hox9-13_15_ANTP           3.23%    passed     86.11%
+ 318  Human_HOXA10_Hox9-13_15_ANTP           3.23%    passed     95.21%
+ 319  Mouse_Hoxa10_Hox9-13_15_ANTP           3.23%    passed     95.21%
+ 320  Chicken_HOXA10_Hox9-13_15_ANTP         3.23%    passed     91.65%
+ 321  Frog_hoxa10_Hox9-13_15_ANTP            3.23%    passed     95.20%
+ 322  Zebrafish_hoxa10b_Hox9-13_15_ANTP      3.23%    passed     95.79%
+ 323  Zebrafish_hoxb10a_Hox9-13_15_ANTP      3.23%    passed     91.20%
+ 324  Human_HOXA9_Hox9-13_15_ANTP            3.23%    passed     88.90%
+ 325  Mouse_Hoxa9_Hox9-13_15_ANTP            3.23%    passed     88.90%
+ 326  Chicken_HOXA9_Hox9-13_15_ANTP          3.23%    passed     88.90%
+ 327  Frog_hoxa9_Hox9-13_15_ANTP             3.23%    passed     88.90%
+ 328  Zebrafish_hoxa9b_Hox9-13_15_ANTP       3.23%    passed     69.45%
+ 329  Frog_hoxb10_Hox9-13_15_ANTP            3.23%    passed     94.08%
+ 330  Frog_hoxb9_Hox9-13_15_ANTP             3.23%    passed     94.08%
+ 331  Human_HOXB9_Hox9-13_15_ANTP            3.23%    passed     76.73%
+ 332  Mouse_Hoxb9_Hox9-13_15_ANTP            3.23%    passed     76.73%
+ 333  Chicken_HOXB9_Hox9-13_15_ANTP          3.23%    passed     76.73%
+ 334  Zebrafish_hoxb9a_Hox9-13_15_ANTP       3.23%    passed     72.49%
+ 335  Human_HOXC9_Hox9-13_15_ANTP            3.23%    passed     44.07%
+ 336  Mouse_Hoxc9_Hox9-13_15_ANTP            3.23%    passed     44.07%
+ 337  Frog_hoxc9_Hox9-13_15_ANTP             3.23%    passed     44.07%
+ 338  Zebrafish_hoxc9a_Hox9-13_15_ANTP       3.23%    passed     44.07%
+ 339  Frog_hoxd9_Hox9-13_15_ANTP             3.23%    passed     49.37%
+ 340  Zebrafish_hoxd9a_Hox9-13_15_ANTP       3.23%    passed     32.95%
+ 341  Human_HOXD9_Hox9-13_15_ANTP            3.23%    passed     65.58%
+ 342  Mouse_Hoxd9_Hox9-13_15_ANTP            3.23%    passed     65.58%
+ 343  Chicken_Hoxc9_Hox9-13_15_ANTP          4.84%    passed     50.41%
+ 344  Zebrafish_hoxa9a_Hox9-13_15_ANTP       3.23%    passed     96.08%
+ 345  Amphioxus_Hox9_Hox9-13_15_ANTP         3.23%    passed     67.09%
+ 346  Amphioxus_Hox10_Hox9-13_15_ANTP        3.23%    passed     58.85%
+ 347  Amphioxus_Hox11_Hox9-13_15_ANTP        3.23%    passed     67.36%
+ 348  Amphioxus_Hox12_Hox9-13_15_ANTP        3.23%    passed     72.30%
+ 349  Human_HOXA11_Hox9-13_15_ANTP           3.23%    passed     91.22%
+ 350  Mouse_Hoxa11_Hox9-13_15_ANTP           3.23%    passed     91.22%
+ 351  Chicken_HOXA11_Hox9-13_15_ANTP         3.23%    passed     91.22%
+ 352  Frog_hoxa11_Hox9-13_15_ANTP            3.23%    passed     91.22%
+ 353  Zebrafish_hoxa11b_Hox9-13_15_ANTP      3.23%    passed     95.57%
+ 354  Human_HOXD11_Hox9-13_15_ANTP           3.23%    passed     87.70%
+ 355  Mouse_Hoxd11_Hox9-13_15_ANTP           3.23%    passed     87.70%
+ 356  Chicken_HOXD11_Hox9-13_15_ANTP         3.23%    passed     87.70%
+ 357  Zebrafish_hoxd11a_Hox9-13_15_ANTP      3.23%    passed     88.31%
+ 358  Frog_hoxd11_Hox9-13_15_ANTP            3.23%    passed     80.53%
+ 359  Zebrafish_hoxa11a_Hox9-13_15_ANTP      4.84%    passed     81.00%
+ 360  Human_HOXC11_Hox9-13_15_ANTP           3.23%    passed     92.77%
+ 361  Mouse_Hoxc11_Hox9-13_15_ANTP           3.23%    passed     92.77%
+ 362  Chicken_Hoxc11_Hox9-13_15_ANTP         6.45%    passed     90.00%
+ 363  Frog_hoxc11_Hox9-13_15_ANTP            3.23%    passed     92.77%
+ 364  Zebrafish_hoxc11a_Hox9-13_15_ANTP      3.23%    passed     92.77%
+ 365  Zebrafish_Hoxc11b_Hox9-13_15_ANTP      4.84%    passed     88.96%
+ 366  Amphioxus_Hox13_Hox9-13_15_ANTP        3.23%    passed     94.21%
+ 367  Amphioxus_Hox14_Hox9-13_15_ANTP        3.23%    passed     37.77%
+ 368  Human_HOXC12_Hox9-13_15_ANTP           3.23%    passed     94.17%
+ 369  Mouse_Hoxc12_Hox9-13_15_ANTP           3.23%    passed     94.17%
+ 370  Zebrafish_hoxc12a_Hox9-13_15_ANTP      3.23%    passed     95.00%
+ 371  Frog_hoxc12_Hox9-13_15_ANTP            3.23%    passed     91.37%
+ 372  Zebrafish_hoxc12b_Hox9-13_15_ANTP      3.23%    passed     89.80%
+ 373  Human_HOXD12_Hox9-13_15_ANTP           3.23%    passed     76.13%
+ 374  Mouse_Hoxd12_Hox9-13_15_ANTP           3.23%    passed     76.13%
+ 375  Chicken_HOXD12_Hox9-13_15_ANTP         3.23%    passed     78.99%
+ 376  Zebrafish_hoxd12a_Hox9-13_15_ANTP      3.23%    passed     33.73%
+ 377  Amphioxus_Dll_Dlx_ANTP                 3.23%    passed     88.49%
+ 378  Human_DLX1_Dlx_ANTP                    3.23%    passed     89.54%
+ 379  Mouse_Dlx1_Dlx_ANTP                    3.23%    passed     89.54%
+ 380  Chicken_DLX1_Dlx_ANTP                  3.23%    passed     89.54%
+ 381  Frog_dlx1_Dlx_ANTP                     3.23%    passed     89.54%
+ 382  Zebrafish_dlx1a_Dlx_ANTP               3.23%    passed     89.54%
+ 383  Human_DLX6_Dlx_ANTP                    3.23%    passed     79.74%
+ 384  Mouse_Dlx6_Dlx_ANTP                    3.23%    passed     79.74%
+ 385  Chicken_DLX6_Dlx_ANTP                  3.23%    passed     79.74%
+ 386  Zebrafish_dlx6a_Dlx_ANTP               3.23%    passed     79.74%
+ 387  Frog_dlx6_Dlx_ANTP                     3.23%    passed     75.09%
+ 388  Frog_dlx4_Dlx_ANTP                     3.23%    passed     74.26%
+ 389  Zebrafish_dlx4a_Dlx_ANTP               3.23%    passed     70.43%
+ 390  Zebrafish_dlx4b_Dlx_ANTP               3.23%    passed     78.72%
+ 391  Human_DLX4_Dlx_ANTP                    3.23%    passed     38.74%
+ 392  Mouse_Dlx4_Dlx_ANTP                    3.23%    passed     38.74%
+ 393  Human_DLX2_Dlx_ANTP                    3.23%    passed     94.08%
+ 394  Mouse_Dlx2_Dlx_ANTP                    3.23%    passed     94.08%
+ 395  Frog_dlx2_Dlx_ANTP                     3.23%    passed     94.08%
+ 396  Zebrafish_dlx2b_Dlx_ANTP               3.23%    passed     88.37%
+ 397  Zebrafish_dlx2a_Dlx_ANTP               3.23%    passed     89.23%
+ 398  Human_DLX5_Dlx_ANTP                    3.23%    passed     88.01%
+ 399  Mouse_Dlx5_Dlx_ANTP                    3.23%    passed     88.01%
+ 400  Chicken_DLX5_Dlx_ANTP                  3.23%    passed     88.01%
+ 401  Frog_dlx5_Dlx_ANTP                     3.23%    passed     72.24%
+ 402  Zebrafish_dlx5a_Dlx_ANTP               3.23%    passed     93.57%
+ 403  Human_DLX3_Dlx_ANTP                    3.23%    passed     63.52%
+ 404  Mouse_Dlx3_Dlx_ANTP                    3.23%    passed     63.52%
+ 405  Chicken_Dlx3-l_Dlx_ANTP               29.03%    passed     10.96%
+ 406  Frog_dlx3_Dlx_ANTP                     3.23%    passed     56.72%
+ 407  Zebrafish_dlx3b_Dlx_ANTP               3.23%    passed     56.72%
+ 408  Amphioxus_Msx_Msx_ANTP                 3.23%    passed     93.87%
+ 409  Human_MSX1_Msx_ANTP                    3.23%    passed     90.78%
+ 410  Mouse_Msx1_Msx_ANTP                    3.23%    passed     90.78%
+ 411  Chicken_MSX1_Msx_ANTP                  3.23%    passed     90.78%
+ 412  Zebrafish_msxa_Msx_ANTP                3.23%    passed     90.78%
+ 413  Zebrafish_msxe_Msx_ANTP                3.23%    passed     83.69%
+ 414  Frog_msx1_Msx_ANTP                     3.23%    passed     95.22%
+ 415  Human_MSX2_Msx_ANTP                    3.23%    passed     95.22%
+ 416  Mouse_Msx2_Msx_ANTP                    3.23%    passed     95.22%
+ 417  Chicken_MSX2_Msx_ANTP                  3.23%    passed     95.22%
+ 418  Frog_msx2_Msx_ANTP                     3.23%    passed     95.22%
+ 419  Zebrafish_msxd_Msx_ANTP                3.23%    passed     93.14%
+ 420  Mouse_Msx3_Msx_ANTP                    3.23%    passed     93.23%
+ 421  Zebrafish_msxb_Msx_ANTP                3.23%    passed     90.21%
+ 422  Zebrafish_msxc_Msx_ANTP               14.52%    passed     95.05%
+ 423  Amphioxus_Nkx6_Nk6_ANTP                3.23%    passed     72.67%
+ 424  Human_NKX6-1_Nk6_ANTP                  3.23%    passed     72.67%
+ 425  Mouse_Nkx6-1_Nk6_ANTP                  3.23%    passed     72.67%
+ 426  Frog_nkx6-1_Nk6_ANTP                   3.23%    passed     72.67%
+ 427  Zebrafish_nkx6.1_Nk6_ANTP              3.23%    passed     73.89%
+ 428  Human_NKX6-2_Nk6_ANTP                  3.23%    passed     74.48%
+ 429  Mouse_Nkx6-2_Nk6_ANTP                  3.23%    passed     74.48%
+ 430  Chicken_NKX6-2_Nk6_ANTP                3.23%    passed     74.48%
+ 431  Frog_nkx6-2_Nk6_ANTP                   3.23%    passed     74.48%
+ 432  Zebrafish_nkx6.2_Nk6_ANTP              3.23%    passed     74.48%
+ 433  Human_NKX6-3_Nk6_ANTP                  3.23%    passed     58.82%
+ 434  Mouse_Nkx6-3_Nk6_ANTP                  3.23%    passed     58.82%
+ 435  Chicken_NKX6-3_Nk6_ANTP                3.23%    passed     58.82%
+ 436  Zebrafish_nkx6.3_Nk6_ANTP              3.23%    passed     64.10%
+ 437  Frog_nkx6-3_Nk6_ANTP                   3.23%    passed     54.25%
+ 438  Human_HHEX_Hhex_ANTP                   3.23%    passed     98.56%
+ 439  Zebrafish_hhex_Hhex_ANTP               3.23%    passed     98.56%
+ 440  Frog_hhex_Hhex_ANTP                    3.23%    passed     98.56%
+ 441  Mouse_Hhex_Hhex_ANTP                   3.23%    passed     95.63%
+ 442  Chicken_HHEX_Hhex_ANTP                 3.23%    passed     93.94%
+ 443  Frog_hhex-l_Hhex_ANTP                 25.81%    passed     70.53%
+ 444  Amphioxus_Hhex_Hhex_ANTP               3.23%    passed     91.30%
+ 445  Amphioxus_Lbx_Lbx_ANTP                 3.23%    passed     84.50%
+ 446  Human_LBX1_Lbx_ANTP                    3.23%    passed     98.04%
+ 447  Mouse_Lbx1_Lbx_ANTP                    3.23%    passed     79.64%
+ 448  Frog_lbx1_Lbx_ANTP                     3.23%    passed     79.64%
+ 449  Zebrafish_lbx1b_Lbx_ANTP               3.23%    passed     79.64%
+ 450  Zebrafish_lbx2_Lbx_ANTP                3.23%    passed     79.64%
+ 451  Zebrafish_lbx1a_Lbx_ANTP               3.23%    passed     59.97%
+ 452  Chicken_Lbx-l_Lbx_ANTP                 6.45%    passed     63.03%
+ 453  Human_LBX2_Lbx_ANTP                    3.23%    passed     39.19%
+ 454  Mouse_Lbx2_Lbx_ANTP                    3.23%    passed     23.98%
+ 455  Chicken_CNOT2_Noto_ANTP                8.06%    passed     99.72%
+ 456  Zebrafish_flh_Noto_ANTP                6.45%    passed     95.70%
+ 457  Chicken_GNOT1_Noto_ANTP                4.84%    passed     79.03%
+ 458  Frog_not_Noto_ANTP                     3.23%    passed     93.81%
+ 459  Amphioxus_Not_Noto_ANTP                3.23%    passed     98.63%
+ 460  Human_EMX1_Emx_ANTP                    3.23%    passed     95.28%
+ 461  Mouse_Emx1_Emx_ANTP                    3.23%    passed     95.28%
+ 462  Chicken_EMX1_Emx_ANTP                  3.23%    passed     96.35%
+ 463  Frog_emx1.2_Emx_ANTP                   3.23%    passed     96.35%
+ 464  Zebrafish_emx1_Emx_ANTP                3.23%    passed     98.94%
+ 465  Frog_emx1-l_Emx_ANTP                   3.23%    passed     95.44%
+ 466  Human_EMX2_Emx_ANTP                    3.23%    passed     90.93%
+ 467  Mouse_Emx2_Emx_ANTP                    3.23%    passed     90.93%
+ 468  Chicken_EMX2_Emx_ANTP                  3.23%    passed     90.93%
+ 469  Zebrafish_emx2_Emx_ANTP                3.23%    passed     90.93%
+ 470  Frog_emx2_Emx_ANTP                     3.23%    passed     90.93%
+ 471  Frog_emx1_Emx_ANTP                     3.23%    passed     94.58%
+ 472  Zebrafish_emx3_Emx_ANTP                3.23%    passed     94.64%
+ 473  Amphioxus_Emxa_Emx_ANTP                3.23%    passed     78.31%
+ 474  Amphioxus_Emxb_Emx_ANTP                3.23%    passed     65.39%
+ 475  Amphioxus_Emxc_Emx_ANTP                3.23%    passed     95.70%
+ 476  Amphioxus_Vax_Vax_ANTP                 3.23%    passed     39.24%
+ 477  Human_VAX1_Vax_ANTP                    3.23%    passed     94.38%
+ 478  Mouse_Vax1_Vax_ANTP                    3.23%    passed     94.38%
+ 479  Chicken_VAX1_Vax_ANTP                  3.23%    passed     94.38%
+ 480  Zebrafish_vax1_Vax_ANTP                3.23%    passed     94.38%
+ 481  Frog_vax1_Vax_ANTP                     3.23%    passed     94.38%
+ 482  Human_VAX2_Vax_ANTP                    3.23%    passed     94.38%
+ 483  Mouse_Vax2_Vax_ANTP                    3.23%    passed     94.38%
+ 484  Zebrafish_vax2_Vax_ANTP                3.23%    passed     91.42%
+ 485  Frog_vax2_Vax_ANTP                     3.23%    passed     91.42%
+ 486  Human_NOTO_Noto_ANTP                   3.23%    passed     36.22%
+ 487  Mouse_Noto_Noto_ANTP                   3.23%    passed     46.07%
+ 488  Human_VENTX_Ventx_ANTP                 3.23%    passed     39.87%
+ 489  Chicken_VENTX_Ventx_ANTP               6.45%    passed     84.97%
+ 490  Frog_ventx2.1_Ventx_ANTP               3.23%    passed     99.54%
+ 491  Frog_ventx2.2_Ventx_ANTP               3.23%    passed     99.54%
+ 492  Frog_ventx1.1_Ventx_ANTP               4.84%    passed     99.83%
+ 493  Frog_ventx1.2_Ventx_ANTP               3.23%    passed     98.57%
+ 494  Frog_ventx3.1_Ventx_ANTP               3.23%    passed     94.01%
+ 495  Frog_ventx3.2_Ventx_ANTP               3.23%    passed     97.92%
+ 496  Amphioxus_En_En_ANTP                   3.23%    passed     92.03%
+ 497  Human_EN1_En_ANTP                      3.23%    passed     70.46%
+ 498  Mouse_En1_En_ANTP                      3.23%    passed     70.46%
+ 499  Frog_en1_En_ANTP                      38.71%    passed     61.16%
+ 500  Chicken_EN1_En_ANTP                    3.23%    passed     73.57%
+ 501  Human_EN2_En_ANTP                      3.23%    passed     90.38%
+ 502  Mouse_En2_En_ANTP                      3.23%    passed     90.38%
+ 503  Frog_en2_En_ANTP                       3.23%    passed     81.83%
+ 504  Zebrafish_eng2a_En_ANTP                3.23%    passed     93.15%
+ 505  Zebrafish_eng1b_En_ANTP                6.45%    passed     57.86%
+ 506  Zebrafish_eng2b_En_ANTP                3.23%    passed     76.58%
+ 507  Zebrafish_eng1a_En_ANTP                3.23%    passed     91.23%
+ 508  Amphioxus_Hox15_Hox9-13_15_ANTP        3.23%    passed     64.50%
+ 509  Human_HOXA13_Hox9-13_15_ANTP           3.23%    passed     79.58%
+ 510  Mouse_Hoxa13_Hox9-13_15_ANTP           3.23%    passed     79.58%
+ 511  Frog_hoxa13_Hox9-13_15_ANTP            3.23%    passed     79.58%
+ 512  Zebrafish_hoxa13a_Hox9-13_15_ANTP      3.23%    passed     77.67%
+ 513  Zebrafish_hoxa13b_Hox9-13_15_ANTP      8.06%    passed     90.70%
+ 514  Human_HOXC13_Hox9-13_15_ANTP           3.23%    passed     63.88%
+ 515  Mouse_Hoxc13_Hox9-13_15_ANTP           3.23%    passed     63.88%
+ 516  Chicken_Hoxc13_Hox9-13_15_ANTP         8.06%    passed     85.85%
+ 517  Zebrafish_hoxc13a_Hox9-13_15_ANTP      3.23%    passed     91.97%
+ 518  Zebrafish_hoxc13b_Hox9-13_15_ANTP      3.23%    passed     91.62%
+ 519  Frog_hoxc13_Hox9-13_15_ANTP            3.23%    passed     66.44%
+ 520  Zebrafish_hoxb13a_Hox9-13_15_ANTP      3.23%    passed     58.66%
+ 521  Human_HOXD13_Hox9-13_15_ANTP           3.23%    passed     64.00%
+ 522  Mouse_Hoxd13_Hox9-13_15_ANTP           3.23%    passed     64.00%
+ 523  Chicken_HOXD13_Hox9-13_15_ANTP         3.23%    passed     64.00%
+ 524  Frog_hoxd13_Hox9-13_15_ANTP            3.23%    passed     65.39%
+ 525  Human_HOXB13_Hox9-13_15_ANTP           3.23%    passed     82.18%
+ 526  Mouse_Hoxb13_Hox9-13_15_ANTP           3.23%    passed     82.18%
+ 527  Chicken_HOXB13_Hox9-13_15_ANTP         3.23%    passed     78.46%
+ 528  Chicken_LOC771682_Hox9-13_15_ANTP      3.23%    passed     78.46%
+ 529  Zebrafish_hoxd13a_Hox9-13_15_ANTP      6.45%    passed     95.15%
+ 530  Amphioxus_Cdx_Cdx_ANTP                 3.23%    passed     91.97%
+ 531  Human_CDX1_Cdx_ANTP                    3.23%    passed     90.30%
+ 532  Mouse_Cdx1_Cdx_ANTP                    3.23%    passed     90.30%
+ 533  Chicken_CDX1_Cdx_ANTP                  3.23%    passed     81.21%
+ 534  Frog_cdx1                              3.23%    passed     83.29%
+ 535  Human_CDX2_Cdx_ANTP                    3.23%    passed     88.89%
+ 536  Chicken_CDX2_Cdx_ANTP                  3.23%    passed     85.46%
+ 537  Zebrafish_cdx1b_Cdx_ANTP               3.23%    passed     87.58%
+ 538  Mouse_Cdx2_Cdx_ANTP                    3.23%    passed     93.17%
+ 539  Frog_cdx2_Cdx_ANTP                     3.23%    passed     94.35%
+ 540  Human_CDX4_Cdx_ANTP                    3.23%    passed     94.18%
+ 541  Mouse_Cdx4_Cdx_ANTP                    3.23%    passed     92.59%
+ 542  Chicken_CDX4-2_Cdx_ANTP               17.74%    passed     94.27%
+ 543  Zebrafish_cdx4_Cdx_ANTP                3.23%    passed     91.67%
+ 544  Chicken_CDX4_Cdx_ANTP                  4.84%    passed     90.58%
+ 545  Frog_cdx4_Cdx_ANTP                     3.23%    passed     94.64%
+ 546  Zebrafish_cdx1a_Cdx_ANTP               3.23%    passed     98.40%
+ 547  Zebrafish_eve1_Evx_ANTP                4.84%    passed     86.47%
+ 548  Human_EVX1_Evx_ANTP                    3.23%    passed     88.44%
+ 549  Mouse_Evx1_Evx_ANTP                    3.23%    passed     88.44%
+ 550  Chicken_EVX1_Evx_ANTP                  3.23%    passed     88.44%
+ 551  Zebrafish_evx1_Evx_ANTP                3.23%    passed     88.44%
+ 552  Frog_evx1_Evx_ANTP                     3.23%    passed     88.44%
+ 553  Human_EVX2_Evx_ANTP                    3.23%    passed     90.41%
+ 554  Mouse_Evx2_Evx_ANTP                    3.23%    passed     90.41%
+ 555  Chicken_EVX2_Evx_ANTP                 24.19%    passed     45.50%
+ 556  Zebrafish_evx2_Evx_ANTP                3.23%    passed     94.79%
+ 557  Frog_evx2_Evx_ANTP                     3.23%    passed     94.79%
+ 558  Amphioxus_Evxa_Evx_ANTP                3.23%    passed     94.56%
+ 559  Amphioxus_Evxb_Evx_ANTP                3.23%    passed     97.26%
+ 560  Amphioxus_Ro_Ro_ANTP                   3.23%    passed     61.43%
+ 561  Amphioxus_Dbx_Dbx_ANTP                 3.23%    passed     13.00%
+ 562  Human_DBX1_Dbx_ANTP                    3.23%    passed     12.16%
+ 563  Chicken_DBX1_Dbx_ANTP                  3.23%    passed     12.16%
+ 564  Zebrafish_dbx1a_Dbx_ANTP               3.23%    passed     12.16%
+ 565  Frog_dbx1_Dbx_ANTP                     3.23%    failed      3.77%
+ 566  Zebrafish_dbx1b_Dbx_ANTP               3.23%    passed     18.11%
+ 567  Mouse_Dbx1_Dbx_ANTP                    3.23%    passed     23.73%
+ 568  Human_DBX2_Dbx_ANTP                    3.23%    passed     63.49%
+ 569  Chicken_DBX2_Dbx_ANTP                  3.23%    passed     63.49%
+ 570  Mouse_Dbx2_Dbx_ANTP                    3.23%    passed     84.92%
+ 571  Frog_dbx2_Dbx_ANTP                     3.23%    passed     59.07%
+ 572  Zebrafish_dbx2_Dbx_ANTP                3.23%    passed     93.77%
+ 573  Chicken_gga_chr03.1_Hlx_ANTP          32.26%    passed     68.57%
+ 574  Human_HLX_Hlx_ANTP                     3.23%    passed     82.01%
+ 575  Mouse_Hlx_Hlx_ANTP                     3.23%    passed     82.01%
+ 576  Zebrafish_hlx1_Hlx_ANTP                3.23%    passed     82.01%
+ 577  Frog_hlx1_Hlx_ANTP                     3.23%    passed     59.75%
+ 578  Amphioxus_Hlx_Hlx_ANTP                 3.23%    passed     32.91%
+ 579  Human_NANOG_Nanog_ANTP                 3.23%    passed     16.91%
+ 580  Mouse_Nanog_Nanog_ANTP                 3.23%    failed      3.22%
+ 581  Zebrafish_zgc_193933_Ventx_ANTP        4.84%    passed     64.74%
+ 582  Amphioxus_Ankx_Ankx_ANTP               3.23%    passed     98.71%
+ 583  Amphioxus_Msxlx_Msxlx_ANTP             3.23%    passed     15.99%
+****  TOTAL                                  3.86%  2 sequences failed composition chi2 test (p-value<5%; df=19)
+NOTE: Frog_barhl1_Barhl_ANTP is identical to Human_BARHL1_Barhl_ANTP but kept for subsequent analysis
+NOTE: Zebrafish_barhl2_Barhl_ANTP is identical to Human_BARHL2_Barhl_ANTP but kept for subsequent analysis
+NOTE: Mouse_Bsx_Bsx_ANTP is identical to Human_BSX_Bsx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Barx1_Barx_ANTP is identical to Human_BARX1_Barx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Barx2_Barx_ANTP is identical to Human_BARX2_Barx_ANTP but kept for subsequent analysis
+NOTE: Frog_hmx1_Nk5-Hmx_ANTP is identical to Zebrafish_hmx1_Nk5-Hmx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hmx2_Nk5-Hmx_ANTP is identical to Human_HMX2_Nk5-Hmx_ANTP but kept for subsequent analysis
+NOTE: Frog_hmx4b_Nk5-Hmx_ANTP is identical to Frog_hmx4_Nk5-Hmx_ANTP but kept for subsequent analysis
+NOTE: Amphioxus_Vent2_Ventx_ANTP is identical to Amphioxus_Vent1_Ventx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Tlx3_Tlx_ANTP is identical to Human_TLX3_Tlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Tlx1_Tlx_ANTP is identical to Human_TLX1_Tlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Tlx2_Tlx_ANTP is identical to Human_TLX2_Tlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx2-3_Nk4_ANTP is identical to Human_NKX2-3_Nk4_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx2-5_Nk4_ANTP is identical to Human_NKX2-5_Nk4_ANTP but kept for subsequent analysis
+NOTE: Frog_nkx2-5_Nk4_ANTP is identical to Chicken_NKX2-5_Nk4_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx2-1_Nk2.1_ANTP is identical to Human_NKX2-1_Nk2.1_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx2-2_Nk2.2_ANTP is identical to Human_NKX2-2_Nk2.2_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx3-2_Nk3_ANTP is identical to Human_NKX3-2_Nk3_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx3-1_Nk3_ANTP is identical to Human_NKX3-1_Nk3_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx1-1_Nk1_ANTP is identical to Human_NKX1-1_Nk1_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx1-2_Nk1_ANTP is identical to Human_NKX1-2_Nk1_ANTP but kept for subsequent analysis
+NOTE: Frog_nkx1-2_Nk1_ANTP is identical to Chicken_NKX1-1_Nk1_ANTP but kept for subsequent analysis
+NOTE: Frog_nkx1-2lb_Nk1_ANTP is identical to Frog_nkx1-2la_Nk1_ANTP but kept for subsequent analysis
+NOTE: Mouse_Gbx1_Gbx_ANTP is identical to Human_GBX1_Gbx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Gbx2_Gbx_ANTP is identical to Human_GBX2_Gbx_ANTP but kept for subsequent analysis
+NOTE: Zebrafish_hlxb9lb_Mnx_ANTP is identical to Zebrafish_hlxb9la_Mnx_ANTP but kept for subsequent analysis
+NOTE: Zebrafish_mnx1_Mnx_ANTP is identical to Mouse_Mnx1_Mnx_ANTP but kept for subsequent analysis
+NOTE: Human_MEOX2_Meox_ANTP is identical to Zebrafish_LOC556898_Meox_ANTP but kept for subsequent analysis
+NOTE: Mouse_Meox1_Meox_ANTP is identical to Human_MEOX1_Meox_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa5_Hox5_ANTP is identical to Human_HOXA5_Hox5_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa7_Hox6-8_ANTP is identical to Human_HOXA7_Hox6-8_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxb7_Hox6-8_ANTP is identical to Human_HOXB7_Hox6-8_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa6_Hox6-8_ANTP is identical to Human_HOXA6_Hox6-8_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxb6_Hox6-8_ANTP is identical to Human_HOXB6_Hox6-8_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc6_Hox6-8_ANTP is identical to Human_HOXC6_Hox6-8_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc5_Hox5_ANTP is identical to Human_HOXC5_Hox5_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa4_Hox4_ANTP is identical to Human_HOXA4_Hox4_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxd4_Hox4_ANTP is identical to Human_HOXD4_Hox4_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxb4_Hox4_ANTP is identical to Human_HOXB4_Hox4_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc4_Hox4_ANTP is identical to Human_HOXC4_Hox4_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxb8_Hox6-8_ANTP is identical to Human_HOXB8_Hox6-8_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc8_Hox6-8_ANTP is identical to Human_HOXC8_Hox6-8_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa2_Hox2_ANTP is identical to Human_HOXA2_Hox2_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa3_Hox3_ANTP is identical to Human_HOXA3_Hox3_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxb3_Hox3_ANTP is identical to Human_HOXB3_Hox3_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxd3_Hox3_ANTP is identical to Human_HOXD3_Hox3_ANTP but kept for subsequent analysis
+NOTE: Mouse_Pdx1_Pdx_ANTP is identical to Human_PDX1_Pdx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Gsx1_Gsx_ANTP is identical to Human_GSX1_Gsx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Gsx2_Gsx_ANTP is identical to Human_GSX2_Gsx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxd10_Hox9-13_15_ANTP is identical to Human_HOXD10_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc10_Hox9-13_15_ANTP is identical to Human_HOXC10_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa10_Hox9-13_15_ANTP is identical to Human_HOXA10_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa9_Hox9-13_15_ANTP is identical to Human_HOXA9_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Frog_hoxb9_Hox9-13_15_ANTP is identical to Frog_hoxb10_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxb9_Hox9-13_15_ANTP is identical to Human_HOXB9_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc9_Hox9-13_15_ANTP is identical to Human_HOXC9_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxd9_Hox9-13_15_ANTP is identical to Human_HOXD9_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa11_Hox9-13_15_ANTP is identical to Human_HOXA11_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxd11_Hox9-13_15_ANTP is identical to Human_HOXD11_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc11_Hox9-13_15_ANTP is identical to Human_HOXC11_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc12_Hox9-13_15_ANTP is identical to Human_HOXC12_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxd12_Hox9-13_15_ANTP is identical to Human_HOXD12_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Dlx1_Dlx_ANTP is identical to Human_DLX1_Dlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Dlx6_Dlx_ANTP is identical to Human_DLX6_Dlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Dlx4_Dlx_ANTP is identical to Human_DLX4_Dlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Dlx2_Dlx_ANTP is identical to Human_DLX2_Dlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Dlx5_Dlx_ANTP is identical to Human_DLX5_Dlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Dlx3_Dlx_ANTP is identical to Human_DLX3_Dlx_ANTP but kept for subsequent analysis
+NOTE: Zebrafish_dlx3b_Dlx_ANTP is identical to Frog_dlx3_Dlx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Msx1_Msx_ANTP is identical to Human_MSX1_Msx_ANTP but kept for subsequent analysis
+NOTE: Human_MSX2_Msx_ANTP is identical to Frog_msx1_Msx_ANTP but kept for subsequent analysis
+NOTE: Human_NKX6-1_Nk6_ANTP is identical to Amphioxus_Nkx6_Nk6_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx6-2_Nk6_ANTP is identical to Human_NKX6-2_Nk6_ANTP but kept for subsequent analysis
+NOTE: Mouse_Nkx6-3_Nk6_ANTP is identical to Human_NKX6-3_Nk6_ANTP but kept for subsequent analysis
+NOTE: Zebrafish_hhex_Hhex_ANTP is identical to Human_HHEX_Hhex_ANTP but kept for subsequent analysis
+NOTE: Frog_lbx1_Lbx_ANTP is identical to Mouse_Lbx1_Lbx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Emx1_Emx_ANTP is identical to Human_EMX1_Emx_ANTP but kept for subsequent analysis
+NOTE: Frog_emx1.2_Emx_ANTP is identical to Chicken_EMX1_Emx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Emx2_Emx_ANTP is identical to Human_EMX2_Emx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Vax1_Vax_ANTP is identical to Human_VAX1_Vax_ANTP but kept for subsequent analysis
+NOTE: Frog_vax2_Vax_ANTP is identical to Zebrafish_vax2_Vax_ANTP but kept for subsequent analysis
+NOTE: Frog_ventx2.2_Ventx_ANTP is identical to Frog_ventx2.1_Ventx_ANTP but kept for subsequent analysis
+NOTE: Mouse_En1_En_ANTP is identical to Human_EN1_En_ANTP but kept for subsequent analysis
+NOTE: Mouse_En2_En_ANTP is identical to Human_EN2_En_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxa13_Hox9-13_15_ANTP is identical to Human_HOXA13_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxc13_Hox9-13_15_ANTP is identical to Human_HOXC13_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxd13_Hox9-13_15_ANTP is identical to Human_HOXD13_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hoxb13_Hox9-13_15_ANTP is identical to Human_HOXB13_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Chicken_LOC771682_Hox9-13_15_ANTP is identical to Chicken_HOXB13_Hox9-13_15_ANTP but kept for subsequent analysis
+NOTE: Mouse_Cdx1_Cdx_ANTP is identical to Human_CDX1_Cdx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Evx1_Evx_ANTP is identical to Human_EVX1_Evx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Evx2_Evx_ANTP is identical to Human_EVX2_Evx_ANTP but kept for subsequent analysis
+NOTE: Frog_evx2_Evx_ANTP is identical to Zebrafish_evx2_Evx_ANTP but kept for subsequent analysis
+NOTE: Chicken_DBX1_Dbx_ANTP is identical to Human_DBX1_Dbx_ANTP but kept for subsequent analysis
+NOTE: Chicken_DBX2_Dbx_ANTP is identical to Human_DBX2_Dbx_ANTP but kept for subsequent analysis
+NOTE: Mouse_Hlx_Hlx_ANTP is identical to Human_HLX_Hlx_ANTP but kept for subsequent analysis
+NOTE: 130 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: Zebrafish_barhl1.1_Barhl_ANTP (identical to Human_BARHL1_Barhl_ANTP) is ignored but added at the end
+NOTE: Zebrafish_barhl1.2_Barhl_ANTP (identical to Human_BARHL1_Barhl_ANTP) is ignored but added at the end
+NOTE: Frog_barhl2_Barhl_ANTP (identical to Human_BARHL2_Barhl_ANTP) is ignored but added at the end
+NOTE: Chicken_BSX_Bsx_ANTP (identical to Human_BSX_Bsx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_bsx_Bsx_ANTP (identical to Human_BSX_Bsx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_barx1_Barx_ANTP (identical to Human_BARX1_Barx_ANTP) is ignored but added at the end
+NOTE: Frog_barx1_Barx_ANTP (identical to Human_BARX1_Barx_ANTP) is ignored but added at the end
+NOTE: Chicken_BARX2_Barx_ANTP (identical to Human_BARX2_Barx_ANTP) is ignored but added at the end
+NOTE: Human_HMX3_Nk5-Hmx_ANTP (identical to Zebrafish_hmx1_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Mouse_Hmx3_Nk5-Hmx_ANTP (identical to Zebrafish_hmx1_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Chicken_HMX3_Nk5-Hmx_ANTP (identical to Zebrafish_hmx1_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hmx3_Nk5-Hmx_ANTP (identical to Zebrafish_hmx1_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Frog_hmx3_Nk5-Hmx_ANTP (identical to Zebrafish_hmx1_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Chicken_HMX2_Nk5-Hmx_ANTP (identical to Human_HMX2_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hmx2_Nk5-Hmx_ANTP (identical to Human_HMX2_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Frog_hmx2_Nk5-Hmx_ANTP (identical to Human_HMX2_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Chicken_HMX2-like_Nk5-Hmx_ANTP (identical to Human_HMX2_Nk5-Hmx_ANTP) is ignored but added at the end
+NOTE: Chicken_TLX3_Tlx_ANTP (identical to Human_TLX3_Tlx_ANTP) is ignored but added at the end
+NOTE: Frog_tlx3_Tlx_ANTP (identical to Human_TLX3_Tlx_ANTP) is ignored but added at the end
+NOTE: Chicken_TLX1_Tlx_ANTP (identical to Human_TLX1_Tlx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_tlx1_Tlx_ANTP (identical to Human_TLX1_Tlx_ANTP) is ignored but added at the end
+NOTE: Frog_tlx1_Tlx_ANTP (identical to Human_TLX1_Tlx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_nkx2.5_Nk4_ANTP (identical to Chicken_NKX2-5_Nk4_ANTP) is ignored but added at the end
+NOTE: Chicken_NKX2-1_Nk2.1_ANTP (identical to Human_NKX2-1_Nk2.1_ANTP) is ignored but added at the end
+NOTE: Frog_nkx2-1_Nk2.1_ANTP (identical to Human_NKX2-1_Nk2.1_ANTP) is ignored but added at the end
+NOTE: Frog_nkx2-1a_Nk2.1_ANTP (identical to Human_NKX2-1_Nk2.1_ANTP) is ignored but added at the end
+NOTE: Human_NKX2-4_Nk2.1_ANTP (identical to Human_NKX2-1_Nk2.1_ANTP) is ignored but added at the end
+NOTE: Mouse_Nkx2-4_Nk2.1_ANTP (identical to Human_NKX2-1_Nk2.1_ANTP) is ignored but added at the end
+NOTE: Zebrafish_nkx2.1a_Nk2.1_ANTP (identical to Human_NKX2-1_Nk2.1_ANTP) is ignored but added at the end
+NOTE: Zebrafish_nkx2.1b_Nk2.1_ANTP (identical to Human_NKX2-1_Nk2.1_ANTP) is ignored but added at the end
+NOTE: Frog_nkx2-2_Nk2.2_ANTP (identical to Human_NKX2-2_Nk2.2_ANTP) is ignored but added at the end
+NOTE: Zebrafish_nkx2.2a_Nk2.2_ANTP (identical to Human_NKX2-2_Nk2.2_ANTP) is ignored but added at the end
+NOTE: Frog_nkx3-2_Nk3_ANTP (identical to Human_NKX3-2_Nk3_ANTP) is ignored but added at the end
+NOTE: Zebrafish_nkx3.2_Nk3_ANTP (identical to Human_NKX3-2_Nk3_ANTP) is ignored but added at the end
+NOTE: Zebrafish_nkx1.2lb_Nk1_ANTP (identical to Chicken_NKX1-1_Nk1_ANTP) is ignored but added at the end
+NOTE: Chicken_GBX1_Gbx_ANTP (identical to Human_GBX1_Gbx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_gbx1_Gbx_ANTP (identical to Human_GBX1_Gbx_ANTP) is ignored but added at the end
+NOTE: Chicken_GBX2_Gbx_ANTP (identical to Human_GBX2_Gbx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_gbx2_Gbx_ANTP (identical to Human_GBX2_Gbx_ANTP) is ignored but added at the end
+NOTE: Frog_gbx2.1_Gbx_ANTP (identical to Human_GBX2_Gbx_ANTP) is ignored but added at the end
+NOTE: Frog_mnx1_Mnx_ANTP (identical to Mouse_Mnx1_Mnx_ANTP) is ignored but added at the end
+NOTE: Mouse_Meox2_Meox_ANTP (identical to Zebrafish_LOC556898_Meox_ANTP) is ignored but added at the end
+NOTE: Chicken_MEOX2_Meox_ANTP (identical to Zebrafish_LOC556898_Meox_ANTP) is ignored but added at the end
+NOTE: Frog_meox2_Meox_ANTP (identical to Zebrafish_LOC556898_Meox_ANTP) is ignored but added at the end
+NOTE: Frog_hoxa5_Hox5_ANTP (identical to Human_HOXA5_Hox5_ANTP) is ignored but added at the end
+NOTE: Human_HOXB5_Hox5_ANTP (identical to Human_HOXA5_Hox5_ANTP) is ignored but added at the end
+NOTE: Mouse_Hoxb5_Hox5_ANTP (identical to Human_HOXA5_Hox5_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXB5_Hox5_ANTP (identical to Human_HOXA5_Hox5_ANTP) is ignored but added at the end
+NOTE: Frog_hoxb5_Hox5_ANTP (identical to Human_HOXA5_Hox5_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxb5a_Hox5_ANTP (identical to Human_HOXA5_Hox5_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxb5b_Hox5_ANTP (identical to Human_HOXA5_Hox5_ANTP) is ignored but added at the end
+NOTE: Frog_hoxa7_Hox6-8_ANTP (identical to Human_HOXA7_Hox6-8_ANTP) is ignored but added at the end
+NOTE: Frog_hoxc6 (identical to Human_HOXC6_Hox6-8_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxc5a_Hox5_ANTP (identical to Human_HOXC5_Hox5_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXA4_Hox4_ANTP (identical to Human_HOXA4_Hox4_ANTP) is ignored but added at the end
+NOTE: Frog_Hoxa4_Hox4_ANTP (identical to Human_HOXA4_Hox4_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXD4_Hox4_ANTP (identical to Human_HOXD4_Hox4_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxd4a_Hox4_ANTP (identical to Human_HOXD4_Hox4_ANTP) is ignored but added at the end
+NOTE: Frog_hoxc4_Hox4_ANTP (identical to Human_HOXC4_Hox4_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXB8_Hox6-8_ANTP (identical to Human_HOXB8_Hox6-8_ANTP) is ignored but added at the end
+NOTE: Frog_hoxb8_Hox6-8_ANTP (identical to Human_HOXB8_Hox6-8_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxb8a_Hox6-8_ANTP (identical to Human_HOXB8_Hox6-8_ANTP) is ignored but added at the end
+NOTE: Frog_hoxc8_Hox6-8_ANTP (identical to Human_HOXC8_Hox6-8_ANTP) is ignored but added at the end
+NOTE: Frog_hoxa2_Hox2_ANTP (identical to Human_HOXA2_Hox2_ANTP) is ignored but added at the end
+NOTE: Mouse_Hoxb2_Hox2_ANTP (identical to Human_HOXA2_Hox2_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXB2_Hox2_ANTP (identical to Human_HOXA2_Hox2_ANTP) is ignored but added at the end
+NOTE: Frog_hoxb2_Hox2_ANTP (identical to Human_HOXA2_Hox2_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxb2a_Hox2_ANTP (identical to Human_HOXA2_Hox2_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXA3_Hox3_ANTP (identical to Human_HOXA3_Hox3_ANTP) is ignored but added at the end
+NOTE: Frog_hoxa3_Hox3_ANTP (identical to Human_HOXA3_Hox3_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxa3a_Hox3_ANTP (identical to Human_HOXA3_Hox3_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXB3_Hox3_ANTP (identical to Human_HOXB3_Hox3_ANTP) is ignored but added at the end
+NOTE: Frog_hoxb3_Hox3_ANTP (identical to Human_HOXB3_Hox3_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxb3a_Hox3_ANTP (identical to Human_HOXB3_Hox3_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXD3_Hox3_ANTP (identical to Human_HOXD3_Hox3_ANTP) is ignored but added at the end
+NOTE: Frog_hoxd3_Hox3_ANTP (identical to Human_HOXD3_Hox3_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxd3a_Hox3_ANTP (identical to Human_HOXD3_Hox3_ANTP) is ignored but added at the end
+NOTE: Chicken_PDX1_Pdx_ANTP (identical to Human_PDX1_Pdx_ANTP) is ignored but added at the end
+NOTE: Frog_pdx1_Pdx_ANTP (identical to Human_PDX1_Pdx_ANTP) is ignored but added at the end
+NOTE: Frog_gsx1_Gsx_ANTP (identical to Human_GSX1_Gsx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_gsx2_Gsx_ANTP (identical to Human_GSX2_Gsx_ANTP) is ignored but added at the end
+NOTE: Chicken_LOC429994_Gsx_ANTP (identical to Human_GSX2_Gsx_ANTP) is ignored but added at the end
+NOTE: Frog_hoxd10_Hox9-13_15_ANTP (identical to Human_HOXD10_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxd10a_Hox9-13_15_ANTP (identical to Human_HOXD10_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXA9_Hox9-13_15_ANTP (identical to Human_HOXA9_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Frog_hoxa9_Hox9-13_15_ANTP (identical to Human_HOXA9_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXB9_Hox9-13_15_ANTP (identical to Human_HOXB9_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Frog_hoxc9_Hox9-13_15_ANTP (identical to Human_HOXC9_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxc9a_Hox9-13_15_ANTP (identical to Human_HOXC9_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXA11_Hox9-13_15_ANTP (identical to Human_HOXA11_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Frog_hoxa11_Hox9-13_15_ANTP (identical to Human_HOXA11_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXD11_Hox9-13_15_ANTP (identical to Human_HOXD11_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Frog_hoxc11_Hox9-13_15_ANTP (identical to Human_HOXC11_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hoxc11a_Hox9-13_15_ANTP (identical to Human_HOXC11_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Chicken_DLX1_Dlx_ANTP (identical to Human_DLX1_Dlx_ANTP) is ignored but added at the end
+NOTE: Frog_dlx1_Dlx_ANTP (identical to Human_DLX1_Dlx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_dlx1a_Dlx_ANTP (identical to Human_DLX1_Dlx_ANTP) is ignored but added at the end
+NOTE: Chicken_DLX6_Dlx_ANTP (identical to Human_DLX6_Dlx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_dlx6a_Dlx_ANTP (identical to Human_DLX6_Dlx_ANTP) is ignored but added at the end
+NOTE: Frog_dlx2_Dlx_ANTP (identical to Human_DLX2_Dlx_ANTP) is ignored but added at the end
+NOTE: Chicken_DLX5_Dlx_ANTP (identical to Human_DLX5_Dlx_ANTP) is ignored but added at the end
+NOTE: Chicken_MSX1_Msx_ANTP (identical to Human_MSX1_Msx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_msxa_Msx_ANTP (identical to Human_MSX1_Msx_ANTP) is ignored but added at the end
+NOTE: Mouse_Msx2_Msx_ANTP (identical to Frog_msx1_Msx_ANTP) is ignored but added at the end
+NOTE: Chicken_MSX2_Msx_ANTP (identical to Frog_msx1_Msx_ANTP) is ignored but added at the end
+NOTE: Frog_msx2_Msx_ANTP (identical to Frog_msx1_Msx_ANTP) is ignored but added at the end
+NOTE: Mouse_Nkx6-1_Nk6_ANTP (identical to Amphioxus_Nkx6_Nk6_ANTP) is ignored but added at the end
+NOTE: Frog_nkx6-1_Nk6_ANTP (identical to Amphioxus_Nkx6_Nk6_ANTP) is ignored but added at the end
+NOTE: Chicken_NKX6-2_Nk6_ANTP (identical to Human_NKX6-2_Nk6_ANTP) is ignored but added at the end
+NOTE: Frog_nkx6-2_Nk6_ANTP (identical to Human_NKX6-2_Nk6_ANTP) is ignored but added at the end
+NOTE: Zebrafish_nkx6.2_Nk6_ANTP (identical to Human_NKX6-2_Nk6_ANTP) is ignored but added at the end
+NOTE: Chicken_NKX6-3_Nk6_ANTP (identical to Human_NKX6-3_Nk6_ANTP) is ignored but added at the end
+NOTE: Frog_hhex_Hhex_ANTP (identical to Human_HHEX_Hhex_ANTP) is ignored but added at the end
+NOTE: Zebrafish_lbx1b_Lbx_ANTP (identical to Mouse_Lbx1_Lbx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_lbx2_Lbx_ANTP (identical to Mouse_Lbx1_Lbx_ANTP) is ignored but added at the end
+NOTE: Chicken_EMX2_Emx_ANTP (identical to Human_EMX2_Emx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_emx2_Emx_ANTP (identical to Human_EMX2_Emx_ANTP) is ignored but added at the end
+NOTE: Frog_emx2_Emx_ANTP (identical to Human_EMX2_Emx_ANTP) is ignored but added at the end
+NOTE: Chicken_VAX1_Vax_ANTP (identical to Human_VAX1_Vax_ANTP) is ignored but added at the end
+NOTE: Zebrafish_vax1_Vax_ANTP (identical to Human_VAX1_Vax_ANTP) is ignored but added at the end
+NOTE: Frog_vax1_Vax_ANTP (identical to Human_VAX1_Vax_ANTP) is ignored but added at the end
+NOTE: Human_VAX2_Vax_ANTP (identical to Human_VAX1_Vax_ANTP) is ignored but added at the end
+NOTE: Mouse_Vax2_Vax_ANTP (identical to Human_VAX1_Vax_ANTP) is ignored but added at the end
+NOTE: Frog_hoxa13_Hox9-13_15_ANTP (identical to Human_HOXA13_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Chicken_HOXD13_Hox9-13_15_ANTP (identical to Human_HOXD13_Hox9-13_15_ANTP) is ignored but added at the end
+NOTE: Chicken_EVX1_Evx_ANTP (identical to Human_EVX1_Evx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_evx1_Evx_ANTP (identical to Human_EVX1_Evx_ANTP) is ignored but added at the end
+NOTE: Frog_evx1_Evx_ANTP (identical to Human_EVX1_Evx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_dbx1a_Dbx_ANTP (identical to Human_DBX1_Dbx_ANTP) is ignored but added at the end
+NOTE: Zebrafish_hlx1_Hlx_ANTP (identical to Human_HLX_Hlx_ANTP) is ignored but added at the end
+Alignment was printed to homodb_chordata.ANTP.e.iqtree.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to homodb_chordata.ANTP.e.iqtree.uniqueseq.phy
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.114 seconds
+Measuring multi-threading efficiency up to 8 CPU cores
+Increase to 10 rounds for branch lengths
+9 trees examined
+Threads: 1 / Time: 8.973 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -37270
+Threads: 2 / Time: 6.043 sec / Speedup: 1.485 / Efficiency: 74% / LogL: -37270
+Threads: 3 / Time: 5.181 sec / Speedup: 1.732 / Efficiency: 58% / LogL: -37270
+Threads: 4 / Time: 4.497 sec / Speedup: 1.995 / Efficiency: 50% / LogL: -37270
+BEST NUMBER OF THREADS: 3
+
+Perform fast likelihood tree search using LG+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -8942.075
+Optimal log-likelihood: -8942.037
+Proportion of invariable sites: 0.073
+Gamma shape alpha: 0.726
+Parameters optimization took 1 rounds (0.144 sec)
+Time for fast ML tree search: 2.087 seconds
+
+NOTE: ModelFinder requires 23 MB RAM!
+ModelFinder will test up to 24 protein models (sample size: 62) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  LG            9831.766     903 21469.533    1654093.533  23390.335
+  2  LG+I          9667.496     904 21142.992    1657382.992  23065.922
+  3  LG+G4         8944.828     904 19697.656    1655937.656  21620.585
+  4  LG+I+G4       8941.891     905 19693.782    1659553.782  21618.838
+  7  LG+F+G4       9146.078     923 20138.157    1725842.157  22101.502
+  8  LG+F+I+G4     9136.538     924 20121.076    1729521.076  22086.548
+ 11  WAG+G4        9107.032     904 20022.063    1656262.063  21944.993
+ 12  WAG+I+G4      9089.512     905 19989.024    1659849.024  21914.080
+ 15  WAG+F+G4      9315.252     923 20476.504    1726180.504  22439.850
+ 16  WAG+F+I+G4    9297.955     924 20443.909    1729843.909  22409.381
+ 19  JTT+G4        8994.978     904 19797.957    1656037.957  21720.886
+ 20  JTT+I+G4      8970.315     905 19750.630    1659610.630  21675.687
+ 23  JTT+F+G4      9137.019     923 20120.037    1725824.037  22083.382
+ 24  JTT+F+I+G4    9122.742     924 20093.484    1729493.484  22058.956
+Akaike Information Criterion:           LG+I+G4
+Corrected Akaike Information Criterion: LG
+Bayesian Information Criterion:         LG+I+G4
+Best-fit model: LG+I+G4 chosen according to BIC
+
+All model information printed to homodb_chordata.ANTP.e.iqtree.model.gz
+CPU time for ModelFinder: 90.106 seconds (0h:1m:30s)
+Wall-clock time for ModelFinder: 36.771 seconds (0h:0m:36s)
+Generating 1000 samples for ultrafast bootstrap (seed: 107571)...
+
+NOTE: 23 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+Thoroughly optimizing +I+G parameters from 10 start values...
+Init pinv, alpha: 0.000, 0.724 / Estimate: 0.000, 0.547 / LogL: -8944.827
+Init pinv, alpha: 0.013, 0.724 / Estimate: 0.071, 0.720 / LogL: -8941.894
+Init pinv, alpha: 0.025, 0.724 / Estimate: 0.072, 0.723 / LogL: -8941.889
+Init pinv, alpha: 0.038, 0.724 / Estimate: 0.071, 0.721 / LogL: -8941.892
+Init pinv, alpha: 0.050, 0.724 / Estimate: 0.072, 0.723 / LogL: -8941.889
+Init pinv, alpha: 0.063, 0.724 / Estimate: 0.071, 0.722 / LogL: -8941.892
+Init pinv, alpha: 0.075, 0.724 / Estimate: 0.073, 0.725 / LogL: -8941.889
+Init pinv, alpha: 0.088, 0.724 / Estimate: 0.073, 0.725 / LogL: -8941.889
+Init pinv, alpha: 0.100, 0.724 / Estimate: 0.074, 0.726 / LogL: -8941.890
+Init pinv, alpha: 0.113, 0.724 / Estimate: 0.074, 0.726 / LogL: -8941.892
+Optimal pinv,alpha: 0.072, 0.723 / LogL: -8941.889
+
+Parameters optimization took 3.796 sec
+Computing ML distances based on estimated model parameters... 17.214 sec
+Computing BIONJ tree...
+0.114 seconds
+Log-likelihood of BIONJ tree: -9178.504
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 9.504 second
+Computing log-likelihood of 98 initial trees ... 5.282 seconds
+Current best score: -8941.889
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -8940.949
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -8907.429
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 3: -8865.874
+Iteration 10 / LogL: -8869.131 / Time: 0h:1m:4s
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 11: -8864.832
+Iteration 20 / LogL: -8916.845 / Time: 0h:2m:2s
+Finish initializing candidate tree set (20)
+Current best tree score: -8864.832 / CPU time: 112.347
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 27: -8860.555
+Iteration 30 / LogL: -8892.331 / Time: 0h:2m:43s (0h:9m:7s left)
+Iteration 40 / LogL: -8868.902 / Time: 0h:3m:22s (0h:7m:31s left)
+Iteration 50 / LogL: -8887.425 / Time: 0h:3m:57s (0h:6m:12s left)
+Log-likelihood cutoff on original alignment: -8948.770
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 59: -8849.761
+Iteration 60 / LogL: -8948.306 / Time: 0h:4m:35s (0h:7m:42s left)
+Iteration 70 / LogL: -8871.913 / Time: 0h:5m:14s (0h:6m:45s left)
+Iteration 80 / LogL: -8867.532 / Time: 0h:5m:50s (0h:5m:50s left)
+Iteration 90 / LogL: -8879.575 / Time: 0h:6m:22s (0h:4m:56s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 91: -8845.127
+Iteration 100 / LogL: -8860.723 / Time: 0h:6m:53s (0h:6m:20s left)
+Log-likelihood cutoff on original alignment: -8937.469
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.978
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 110 / LogL: -8896.693 / Time: 0h:7m:21s (0h:6m:4s left)
+Iteration 120 / LogL: -8859.360 / Time: 0h:7m:49s (0h:5m:15s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 129: -8843.894
+Iteration 130 / LogL: -8860.377 / Time: 0h:8m:20s (0h:6m:23s left)
+Iteration 140 / LogL: -8904.178 / Time: 0h:8m:51s (0h:5m:40s left)
+Iteration 150 / LogL: -8867.329 / Time: 0h:9m:23s (0h:4m:58s left)
+Log-likelihood cutoff on original alignment: -8937.469
+Iteration 160 / LogL: -8846.047 / Time: 0h:9m:58s (0h:4m:19s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 165: -8842.707
+Iteration 170 / LogL: -8847.531 / Time: 0h:10m:30s (0h:5m:54s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 171: -8841.855
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 173: -8839.902
+Iteration 180 / LogL: -8903.524 / Time: 0h:11m:4s (0h:5m:45s left)
+Iteration 190 / LogL: -8890.419 / Time: 0h:11m:34s (0h:5m:5s left)
+Iteration 200 / LogL: -8849.827 / Time: 0h:12m:9s (0h:4m:27s left)
+Log-likelihood cutoff on original alignment: -8937.469
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.986
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 210 / LogL: -8909.299 / Time: 0h:12m:45s (0h:5m:29s left)
+Iteration 220 / LogL: -8847.584 / Time: 0h:13m:18s (0h:4m:51s left)
+Iteration 230 / LogL: -8851.890 / Time: 0h:13m:51s (0h:4m:14s left)
+Iteration 240 / LogL: -8841.304 / Time: 0h:14m:24s (0h:3m:37s left)
+Iteration 250 / LogL: -8955.230 / Time: 0h:14m:53s (0h:2m:59s left)
+Log-likelihood cutoff on original alignment: -8937.469
+Iteration 260 / LogL: -8861.646 / Time: 0h:15m:26s (0h:2m:23s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 266: -8837.298
+Iteration 270 / LogL: -8848.936 / Time: 0h:15m:57s (0h:5m:41s left)
+Iteration 280 / LogL: -8870.132 / Time: 0h:16m:29s (0h:5m:5s left)
+Iteration 290 / LogL: -8844.869 / Time: 0h:17m:4s (0h:4m:29s left)
+Iteration 300 / LogL: -8860.893 / Time: 0h:17m:36s (0h:3m:53s left)
+Log-likelihood cutoff on original alignment: -8937.469
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.988
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 306: -8836.362
+Iteration 310 / LogL: -8887.590 / Time: 0h:18m:9s (0h:5m:38s left)
+Iteration 320 / LogL: -8865.012 / Time: 0h:18m:43s (0h:5m:2s left)
+Iteration 330 / LogL: -8880.330 / Time: 0h:19m:17s (0h:4m:27s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 334: -8834.339
+Iteration 340 / LogL: -8882.182 / Time: 0h:19m:48s (0h:5m:29s left)
+Iteration 350 / LogL: -8846.405 / Time: 0h:20m:20s (0h:4m:53s left)
+Log-likelihood cutoff on original alignment: -8937.469
+Iteration 360 / LogL: -8876.845 / Time: 0h:20m:53s (0h:4m:18s left)
+Iteration 370 / LogL: -8842.980 / Time: 0h:21m:23s (0h:3m:42s left)
+Iteration 380 / LogL: -8941.512 / Time: 0h:21m:53s (0h:3m:7s left)
+Iteration 390 / LogL: -8867.872 / Time: 0h:22m:25s (0h:2m:32s left)
+Iteration 400 / LogL: -8898.486 / Time: 0h:22m:55s (0h:1m:57s left)
+Log-likelihood cutoff on original alignment: -8937.469
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.994
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 402: -8833.630
+Iteration 410 / LogL: -8850.863 / Time: 0h:23m:29s (0h:5m:17s left)
+Iteration 420 / LogL: -8848.938 / Time: 0h:24m:2s (0h:4m:42s left)
+Iteration 430 / LogL: -8870.947 / Time: 0h:24m:35s (0h:4m:7s left)
+Iteration 440 / LogL: -8844.713 / Time: 0h:25m:9s (0h:3m:33s left)
+Iteration 450 / LogL: -8842.526 / Time: 0h:25m:42s (0h:2m:58s left)
+Log-likelihood cutoff on original alignment: -8937.469
+Iteration 460 / LogL: -8863.158 / Time: 0h:26m:19s (0h:2m:24s left)
+Iteration 470 / LogL: -8865.400 / Time: 0h:26m:53s (0h:1m:50s left)
+Iteration 480 / LogL: -8873.628 / Time: 0h:27m:23s (0h:1m:15s left)
+Iteration 490 / LogL: -8862.848 / Time: 0h:27m:53s (0h:0m:41s left)
+Iteration 500 / LogL: -8837.493 / Time: 0h:28m:28s (0h:0m:6s left)
+Log-likelihood cutoff on original alignment: -8937.469
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.989
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 510 / LogL: -8839.905 / Time: 0h:29m:3s (0h:5m:8s left)
+Iteration 520 / LogL: -8862.909 / Time: 0h:29m:37s (0h:4m:33s left)
+Iteration 530 / LogL: -8835.843 / Time: 0h:30m:10s (0h:3m:59s left)
+Iteration 540 / LogL: -8859.141 / Time: 0h:30m:44s (0h:3m:25s left)
+Iteration 550 / LogL: -8899.647 / Time: 0h:31m:16s (0h:2m:50s left)
+Log-likelihood cutoff on original alignment: -8937.469
+Iteration 560 / LogL: -8837.351 / Time: 0h:31m:50s (0h:2m:16s left)
+Iteration 570 / LogL: -8858.565 / Time: 0h:32m:21s (0h:1m:42s left)
+Iteration 580 / LogL: -8864.945 / Time: 0h:32m:56s (0h:1m:8s left)
+Iteration 590 / LogL: -8835.859 / Time: 0h:33m:32s (0h:0m:34s left)
+Iteration 600 / LogL: -8843.772 / Time: 0h:34m:8s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -8937.469
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.990
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 603: -8830.724
+Iteration 610 / LogL: -8902.356 / Time: 0h:34m:47s (0h:5m:18s left)
+Iteration 620 / LogL: -8896.187 / Time: 0h:35m:20s (0h:4m:44s left)
+Iteration 630 / LogL: -8895.924 / Time: 0h:35m:56s (0h:4m:10s left)
+Iteration 640 / LogL: -8844.604 / Time: 0h:36m:31s (0h:3m:36s left)
+Iteration 650 / LogL: -8853.658 / Time: 0h:37m:6s (0h:3m:1s left)
+Log-likelihood cutoff on original alignment: -8937.469
+Iteration 660 / LogL: -8835.573 / Time: 0h:37m:42s (0h:2m:27s left)
+Iteration 670 / LogL: -8915.050 / Time: 0h:38m:14s (0h:1m:53s left)
+Iteration 680 / LogL: -8839.393 / Time: 0h:38m:47s (0h:1m:18s left)
+Iteration 690 / LogL: -8856.222 / Time: 0h:39m:22s (0h:0m:44s left)
+Iteration 700 / LogL: -8865.583 / Time: 0h:39m:56s (0h:0m:10s left)
+Log-likelihood cutoff on original alignment: -8937.469
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.991
+TREE SEARCH COMPLETED AFTER 704 ITERATIONS / Time: 0h:40m:11s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -8830.724
+Optimal log-likelihood: -8830.723
+Proportion of invariable sites: 0.085
+Gamma shape alpha: 0.824
+Parameters optimization took 1 rounds (0.147 sec)
+BEST SCORE FOUND : -8830.723
+Creating bootstrap support values...
+Split supports printed to NEXUS file homodb_chordata.ANTP.e.iqtree.splits.nex
+Total tree length: 62.947
+
+Total number of iterations: 704
+CPU time used for tree search: 6974.219 sec (1h:56m:14s)
+Wall-clock time used for tree search: 2400.829 sec (0h:40m:0s)
+Total CPU time used: 7006.419 sec (1h:56m:46s)
+Total wall-clock time used: 2412.670 sec (0h:40m:12s)
+
+Computing bootstrap consensus tree...
+Reading input file homodb_chordata.ANTP.e.iqtree.splits.nex...
+453 taxa and 3537 splits.
+Consensus tree written to homodb_chordata.ANTP.e.iqtree.contree
+Reading input trees file homodb_chordata.ANTP.e.iqtree.contree
+Log-likelihood of consensus tree: -8831.115
+
+Analysis results written to: 
+  IQ-TREE report:                homodb_chordata.ANTP.e.iqtree.iqtree
+  Maximum-likelihood tree:       homodb_chordata.ANTP.e.iqtree.treefile
+  Likelihood distances:          homodb_chordata.ANTP.e.iqtree.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          homodb_chordata.ANTP.e.iqtree.splits.nex
+  Consensus tree:                homodb_chordata.ANTP.e.iqtree.contree
+  Screen log file:               homodb_chordata.ANTP.e.iqtree.log
+
+Date and Time: Mon Jul  6 14:24:23 2020
