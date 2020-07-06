@@ -26,6 +26,8 @@ arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONA
 arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false", help="OPTIONAL: Turns off tree rooting using midpoint root, in case your trees are already rooted.")
 arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Turns off printing of annotated tree in PDF (annotated newick is still produced).")
 arp.add_argument("-min_transfer_support","--min_transfer_support", required=False, default=None, help="OPTIONAL: Min node support to allow transfer of labels from labelled to non-labelled groups in the same clade. If not set, this step is skipped.", type=float)
+arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, action="store_true", help="OPTIONAL: Will attempt to \"clean\" gene names from the reference table (see -r) used to create cluster names, to avoid very long strings in groups with many paralogs. Currently, it collapses number suffixes in gene names, and converts strings such as Hox2/Hox4 to Hox2-4. More complex substitutions are not supported.")
+arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
 arp.add_argument("-extratio","--extratio", required=False, default=None, help="NOT IN USE!! OPTIONAL: In order to perform extended label propagation, you can assign XX. Ratio Defaults to 1.5, ie closest group is 50pp loser to unlabelled group than the second closest group.", type=float)
 arl = vars(arp.parse_args())
 
@@ -39,7 +41,8 @@ do_print = arl["skipprint"]
 do_root = arl["skiproot"]
 min_transfer_support = arl["min_transfer_support"]
 extension_ratio_threshold = arl["extratio"]
-
+clean_gene_names = arl["clean_gene_names"]
+cut_gene_names = arl["cut_gene_names"]
 
 # print(arl)
 
@@ -274,7 +277,7 @@ def clusters_dist(phy, k, cluster_label="cluster"):
 
 
 # add a tag to cluster name (known genes within cluster)
-def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_ref_node="node", label_if_no_annot=""):
+def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_ref_node="node", label_if_no_annot="", clean_gene_names=False, cut_gene_names=None):
 
 	logging.info("Add annotations: reference genes in each cluster")
 
@@ -298,7 +301,13 @@ def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_r
 
 	cluster_ref = [ cluster_tags[c] for c in clu[cluster_label].values ]
 	
-	cluster_ref = [ sanitise_genename_string(r) for r in cluster_ref ]
+	if clean_gene_names:
+		cluster_ref = [ sanitise_genename_string(r) for r in cluster_ref ]
+
+	# cut if string is too long
+	if cut_gene_names is not None:
+		cut_gene_names = int(cut_gene_names)
+		cluster_ref = [ (c[:cut_gene_names] + '...') if len(c) > cut_gene_names+3 else c for c in cluster_ref ]
 
 	return cluster_ref	
 
@@ -542,103 +551,7 @@ def find_close_clusters(clu, phy, extension_ratio_threshold, ref_label="cluster_
 	return extended_clusters, extended_annots
 
 
-def find_close_monophyletic_clusters_distfilter(clu, phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=0, splitstring="/"):
-	
-	logging.info("Add annotations: extend annotations to monophyletic groups")
-
-	# input and output lists
-	has_label_ix = np.where(clu[ref_label] != ref_NA_label)[0]
-	has_label = clu["node"] [ has_label_ix ].values
-	has_no_label_ix = np.where(clu[ref_label] == ref_NA_label)[0]
-	clusters_labeled = np.unique(clu[cluster_label][has_label_ix].values)
-	clusters_nonlabeled = np.unique(clu[cluster_label][has_no_label_ix].values)
-	
-	# extended annotations: init arrays with previous information
-	extended_annots =   np.empty(shape=clu[ref_label].values.shape[0], dtype=object)
-	extended_clusters = np.empty(shape=clu[ref_label].values.shape[0], dtype=object)
-
-	num_extended = 0
-
-	if len(clusters_labeled) > 0:
-
-		# loop for each non-labeled cluster
-		for ci in clusters_nonlabeled:
-
-			# list of nodes in non-labeled cluster ci
-			nodes_i = clu[clu[cluster_label] == ci]["node"].values.tolist()
-
-			# if there is only one node, root is the same node (otherwise defaults to tree root!)
-			if len(nodes_i) > 1:
-				parent_i = phy.get_common_ancestor(nodes_i).get_ancestors()[0]
-			elif len(nodes_i) == 1:
-				parent_i = phy.get_leaves_by_name(nodes_i[0])[0].get_ancestors()[0]
-
-			# store original node reference
-			origin_i = parent_i
-
-			# check if descendants from parent group have references
-			while True:
-
-				# find leaves descending from the parent node
-				parent_i_descendants = parent_i.get_leaf_names()
-				parent_i_support = parent_i.support
-
-				# if we have reached the root node, assume max support
-				if parent_i.is_root():
-					parent_i_support = 1e6
-
-				# check if sister has refs
-				has_refs = np.any( np.isin(element=parent_i_descendants, test_elements=has_label) )
-				if has_refs and parent_i_support > min_transfer_support :
-
-					descendants_with_ref_ix = np.where( np.isin(element=clu["node"].values, test_elements=parent_i_descendants) )[0]
-					nodes_in_descendants    = clu["node"] [ np.intersect1d ( descendants_with_ref_ix, has_label_ix ) ].values
-					clusters_in_descendants = clu[cluster_label] [ np.intersect1d ( descendants_with_ref_ix, has_label_ix ) ].values
-					annots_in_descendants   = clu[ref_label] [ np.intersect1d ( descendants_with_ref_ix, has_label_ix ) ].values
-					nodes_in_descendants    = [ node for node in nodes_in_descendants ] # "flatten" list because it's broken for some reason
-
-					dist_to_origin = parent_i.get_distance(origin_i)
-					dist_to_refs = parent_i.get_distance( phy.get_common_ancestor(nodes_in_descendants[0:1]) )
-					dist_ratio = dist_to_origin / dist_to_refs
-
-					if dist_ratio < 2.0:
-
-						clusters_in_descendants_list = np.unique(clusters_in_descendants)
-						annots_in_descendants_list = np.unique(annots_in_descendants)
-						num_extended = num_extended + 1
-
-						break
-
-					else:
-
-						annots_in_descendants_list = [""]
-						clusters_in_descendants_list = ["NA"]
-
-						break
-
-
-				# if not, visit upper node, and go back to checking out its descendants
-				else:
-
-					parent_i = parent_i.get_ancestors()[0]
-
-			# where to assign new labels?
-			needs_new_label_ix = np.where( np.isin(element=clu["node"].values, test_elements=nodes_i) )[0]
-
-			# reorder labels (alphabetically)
-			flatten = lambda l: [item for sublist in l for item in sublist]
-			annots_in_descendants_list = [t.split(splitstring) for t in annots_in_descendants_list]
-			annots_in_descendants_list = sorted(flatten(annots_in_descendants_list))
-
-			# assign new label
-			extended_clusters [ needs_new_label_ix ] = "/".join( [ str(i) for i in sorted(clusters_in_descendants_list) ] )
-			extended_annots [ needs_new_label_ix ]   = "/".join( [ str(i) for i in sorted(annots_in_descendants_list)   ] )
-
-	logging.info("Add annotations: extend annotations to monophyletic groups | %i labels transferred" % num_extended)
-	
-	return extended_clusters, extended_annots
-
-def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=0, splitstring="/", exclude_level=None, exclude_label="NA"):
+def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=0, splitstring="/", exclude_level=None, exclude_label="NA", cut_gene_names=None):
 	
 	logging.info("Add annotations: extend annotations to monophyletic groups")
 
@@ -713,9 +626,18 @@ def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_l
 			annots_in_descendants_list = [t.split(splitstring) for t in annots_in_descendants_list]
 			annots_in_descendants_list = np.unique(sorted(flatten(annots_in_descendants_list)))
 
-			# assign new label
-			extended_clusters [ needs_new_label_ix ] = "/".join( [ str(i) for i in sorted(clusters_in_descendants_list) ] )
-			extended_annots [ needs_new_label_ix ]   = "/".join( [ str(i) for i in sorted(annots_in_descendants_list)   ] )
+			# join into a single string:
+			clusters_in_descendants_string = "/".join( [ str(i) for i in sorted(clusters_in_descendants_list) ] )
+			annots_in_descendants_string = "/".join( [ str(i) for i in sorted(annots_in_descendants_list)   ] )
+
+			# cut if string is too long
+			if cut_gene_names is not None:
+				cut_gene_names = int(cut_gene_names)
+				annots_in_descendants_string = (annots_in_descendants_string[:cut_gene_names] + '...') if len(annots_in_descendants_string) > cut_gene_names+3 else annots_in_descendants_string
+
+			# store
+			extended_clusters [ needs_new_label_ix ] = clusters_in_descendants_string
+			extended_annots [ needs_new_label_ix ]   = annots_in_descendants_string
 
 	logging.info("Add annotations: extend annotations to monophyletic groups | %i labels transferred" % num_extended)
 	
@@ -854,7 +776,7 @@ if len(evs) > 0:
 		# syn_nod   = np.unique(np.sort(np.concatenate((syn_nod_m, syn_nod_s))))
 
 		# report which reference sequences can be found within cluster
-		clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA")
+		clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA", clean_gene_names=clean_gene_names, cut_gene_names=cut_gene_names)
 		clu["cluster_nameref"] = "OG" + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
 		print_attributes       = ["cluster_nameref"]
 
@@ -864,10 +786,9 @@ if len(evs) > 0:
 
 		# extend cluster-wise annotations
 		if min_transfer_support is not None:
-			clu["extended_clusters"], clu["extended_labels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=min_transfer_support)
+			clu["extended_clusters"], clu["extended_labels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=min_transfer_support, cut_gene_names=cut_gene_names)
 			ixs_to_rename = np.where(clu["extended_clusters"].values != None)[0]
 			clu.loc[ ixs_to_rename, "cluster_nameref" ] = "OG" + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":islike:OG" + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str) + ":" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
-			# clu.loc[ ixs_to_rename, "cluster_nameref" ] = "OG" + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":islike:" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
 
 			clu["extended_direct"], clu["extended_directlabels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="node_ref", ref_NA_label="NA", cluster_label="node", min_transfer_support=0, exclude_level="cluster_ref", exclude_label="NA")
 			ixs_to_rename = np.where(clu["extended_direct"].values != None)[0]
