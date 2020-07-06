@@ -16,9 +16,9 @@ import string
 arp = argparse.ArgumentParser()
 
 # Add the arguments to the parser
-arp.add_argument("-p", "--phy", required=True, help="Path to a phylogenetic tree in newick format. Each sequence in the tree must have a prefix indicating the species, separated from gene name with a split character. Default split character is \"_\", see --split for options.", type=str)
-arp.add_argument("-o", "--out", required=True, default="./", help="Path to output folder. Defaults to present working directory.", type=str)
-arp.add_argument("-i", "--id",  required=False, default="genefam", help="OPTIONAL: String. Gene family name, used when naming ortholog clusters. Defaults to \"genefam\".", type=str)
+arp.add_argument("-i", "--in", required=True, help="Path to a phylogenetic tree in newick format. Each sequence in the tree must have a prefix indicating the species, separated from gene name with a split character. Default split character is \"_\", see --split for options.", type=str)
+arp.add_argument("-o", "--out", required=False, default="./", help="OPTIONAL: Path to output folder. Defaults to present working directory.", type=str)
+arp.add_argument("-p", "--phy",  required=False, default=None, help="OPTIONAL: Prefix for output files. Defaults to `basename` of input phylogeny. Default behaviour will never overwrite original files, because it adds suffixes.", type=str)
 arp.add_argument("-r", "--ref",  required=False, default=None, help="OPTIONAL: Path to a table indicating reference gene names that can be used for orthogroup labeling. Format: geneid <tab> name.", type=str)
 arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: Comma-separated list of reference species that will be used for orthogroup labeling.", type=str)
 arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Species overlap threshold used for orthology inference in ETE. Default is 0.", type=float)
@@ -28,13 +28,18 @@ arp.add_argument("-skipprint","--skipprint", required=False, action="store_false
 arp.add_argument("-min_transfer_support","--min_transfer_support", required=False, default=None, help="OPTIONAL: Min node support to allow transfer of labels from labelled to non-labelled groups in the same clade. If not set, this step is skipped.", type=float)
 arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, action="store_true", help="OPTIONAL: Will attempt to \"clean\" gene names from the reference table (see -r) used to create cluster names, to avoid very long strings in groups with many paralogs. Currently, it collapses number suffixes in gene names, and converts strings such as Hox2/Hox4 to Hox2-4. More complex substitutions are not supported.")
 arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
-arp.add_argument("-extratio","--extratio", required=False, default=None, help="NOT IN USE!! OPTIONAL: In order to perform extended label propagation, you can assign XX. Ratio Defaults to 1.5, ie closest group is 50pp loser to unlabelled group than the second closest group.", type=float)
+arp.add_argument("-extratio","--extratio", required=False, default=None, help="NOT IN USE! OPTIONAL: In order to perform extended label propagation, you can assign XX. Ratio Defaults to 1.5, ie closest group is 50pp loser to unlabelled group than the second closest group.", type=float)
 arl = vars(arp.parse_args())
 
 # input variables
-phy_fn = arl["phy"]
+phy_fn = arl["in"]
 out_fn = arl["out"]
-phy_id = arl["id"]
+
+if arl["phy"] is not None:
+	phy_id = arl["phy"]
+else:
+	phy_id = os.path.basename(phy_fn)
+
 sos    = arl["sos"]
 split_ch = arl["split"].replace("\"","")
 do_print = arl["skipprint"]
