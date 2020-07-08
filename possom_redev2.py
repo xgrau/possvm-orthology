@@ -27,13 +27,18 @@ arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false
 arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Turns off printing of annotated tree in PDF (annotated newick is still produced).")
 arp.add_argument("-min_transfer_support","--min_transfer_support", required=False, default=None, help="OPTIONAL: Min node support to allow transfer of labels from labelled to non-labelled groups in the same clade. If not set, this step is skipped.", type=float)
 arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, action="store_true", help="OPTIONAL: Will attempt to \"clean\" gene names from the reference table (see -r) used to create cluster names, to avoid very long strings in groups with many paralogs. Currently, it collapses number suffixes in gene names, and converts strings such as Hox2/Hox4 to Hox2-4. More complex substitutions are not supported.")
-arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
+arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length in the PDF file, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
+arp.add_argument("-ogprefix","--ogprefix", required=False, default="OG", help="OPTIONAL: String. Prefix to use to name orthologs. Defaults to \"OG\".", type=str)
 arp.add_argument("-extratio","--extratio", required=False, default=None, help="NOT IN USE! OPTIONAL: In order to perform extended label propagation, you can assign XX. Ratio Defaults to 1.5, ie closest group is 50pp loser to unlabelled group than the second closest group.", type=float)
 arl = vars(arp.parse_args())
 
 # input variables
 phy_fn = arl["in"]
 out_fn = arl["out"]
+
+# check if out_fn exists, and create it if it doesn't
+if not os.path.exists(out_fn):
+    os.makedirs(out_fn)
 
 if arl["phy"] is not None:
 	phy_id = arl["phy"]
@@ -48,6 +53,7 @@ min_transfer_support = arl["min_transfer_support"]
 extension_ratio_threshold = arl["extratio"]
 clean_gene_names = arl["clean_gene_names"]
 cut_gene_names = arl["cut_gene_names"]
+ogprefix = arl["ogprefix"].replace("\"","")
 
 # print(arl)
 
@@ -73,7 +79,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)-5.5s]\
 ####### FUNCTIONS #######
 #########################
 
-def print_tree(phy, out, evc, attributes, sep="|", do_print=True):
+def print_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names=120):
 	
 	logging.info("Print tree")
 
@@ -87,6 +93,13 @@ def print_tree(phy, out, evc, attributes, sep="|", do_print=True):
 				c="NA"
 			else:  
 				c=c[0]
+
+			# cut if string is too long
+			if cut_gene_names is not None:
+				cut_gene_names = int(cut_gene_names)
+				if len(c) > cut_gene_names+3:
+					c=c[:cut_gene_names] + '...'
+					
 			i.name = str(i.name) + sep + str(c)
 		i.name = str(i.name) + sep
 
@@ -284,7 +297,7 @@ def clusters_dist(phy, k, cluster_label="cluster"):
 
 
 # add a tag to cluster name (known genes within cluster)
-def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_ref_node="node", label_if_no_annot="", clean_gene_names=False, cut_gene_names=None):
+def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_ref_node="node", label_if_no_annot="", clean_gene_names=False):
 
 	logging.info("Add annotations: reference genes in each cluster")
 
@@ -310,11 +323,6 @@ def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_r
 	
 	if clean_gene_names:
 		cluster_ref = [ sanitise_genename_string(r) for r in cluster_ref ]
-
-	# cut if string is too long
-	if cut_gene_names is not None:
-		cut_gene_names = int(cut_gene_names)
-		cluster_ref = [ (c[:cut_gene_names] + '...') if len(c) > cut_gene_names+3 else c for c in cluster_ref ]
 
 	return cluster_ref	
 
@@ -428,6 +436,13 @@ def ref_known_any(clu, evs, ref, syn_nod=None, label_if_no_annot="NA", label_ref
 	cluster_ref = [ label_if_no_annot if cluster_ref[n] == "" else cluster_ref[n] for n,c in enumerate(cluster_ref) ]
 
 	return cluster_ref
+
+def natural_sort(l): 
+	
+	convert = lambda text: int(text) if text.isdigit() else text.lower() 
+	alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
+	return sorted(l, key = alphanum_key)
+
 
 
 
@@ -544,7 +559,7 @@ def find_close_clusters(clu, phy, extension_ratio_threshold, ref_label="cluster_
 				# counter
 				num_extended = num_extended + 1
 
-				print("# OG%i will now be extOG%i || d2/d1=%.3f || d1 OG%i = %.3f || d2 OG%i = %.3f" % (ci, first_closest_c, d2d1, first_closest_c, first_closest_d_phyl, second_closest_c, second_closest_d_phyl))
+				# print("# OG%i will now be extOG%i || d2/d1=%.3f || d1 OG%i = %.3f || d2 OG%i = %.3f" % (ci, first_closest_c, d2d1, first_closest_c, first_closest_d_phyl, second_closest_c, second_closest_d_phyl))
 
 			else:
 				
@@ -558,7 +573,7 @@ def find_close_clusters(clu, phy, extension_ratio_threshold, ref_label="cluster_
 	return extended_clusters, extended_annots
 
 
-def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=0, splitstring="/", exclude_level=None, exclude_label="NA", cut_gene_names=None):
+def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=0, splitstring="/", exclude_level=None, exclude_label="NA"):
 	
 	logging.info("Add annotations: extend annotations to monophyletic groups")
 
@@ -631,16 +646,11 @@ def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_l
 			# reorder labels (alphabetically)
 			flatten = lambda l: [item for sublist in l for item in sublist]
 			annots_in_descendants_list = [t.split(splitstring) for t in annots_in_descendants_list]
-			annots_in_descendants_list = np.unique(sorted(flatten(annots_in_descendants_list)))
+			annots_in_descendants_list = np.unique(natural_sort(flatten(annots_in_descendants_list)))
 
 			# join into a single string:
-			clusters_in_descendants_string = "/".join( [ str(i) for i in sorted(clusters_in_descendants_list) ] )
-			annots_in_descendants_string = "/".join( [ str(i) for i in sorted(annots_in_descendants_list)   ] )
-
-			# cut if string is too long
-			if cut_gene_names is not None:
-				cut_gene_names = int(cut_gene_names)
-				annots_in_descendants_string = (annots_in_descendants_string[:cut_gene_names] + '...') if len(annots_in_descendants_string) > cut_gene_names+3 else annots_in_descendants_string
+			clusters_in_descendants_string = "/".join( natural_sort([ str(i) for i in clusters_in_descendants_list ]) )
+			annots_in_descendants_string = "/".join( natural_sort(  [ str(i) for i in annots_in_descendants_list   ]) )
 
 			# store
 			extended_clusters [ needs_new_label_ix ] = clusters_in_descendants_string
@@ -723,7 +733,7 @@ def sanitise_genename_string(string, splitstring="/"):
 	# find prefixes (non-numeric characters at the beginning of gene name)
 	prefixes = [ re.findall(r'^[^\d]+', name) or [""] for name in names ]
 	# find gene number suffixes (numeric characters at the end of gene name)
-	numbers =  [ re.findall(r'\d+$', name) or [""] for name in names ]
+	numbers =  [ re.findall(r'\d+[A-Za-z]*$', name) or [""] for name in names ]
 
 	# flatten lists
 	flatten = lambda l: [item for sublist in l for item in sublist]
@@ -736,7 +746,7 @@ def sanitise_genename_string(string, splitstring="/"):
 		# get numbers from identical prefixes
 		same_prefixes_ix = np.where(np.isin(element=prefixes, test_elements=prefix))[0]
 		same_prefixes_numbers = np.array(numbers)[same_prefixes_ix]
-		same_prefixes_numbers_clean = sorted([ n for n in same_prefixes_numbers if n ], key=int)
+		same_prefixes_numbers_clean = natural_sort([ n for n in same_prefixes_numbers if n ])
 		suffix_string = "-".join(same_prefixes_numbers_clean)
 		new_names[n] = "".join([prefix, suffix_string])
 
@@ -761,7 +771,7 @@ if len(evs) > 0:
 	# find clusters
 	# clu = clusters_louvain(evs=evs, node_list=phy_lis)
 	clu = clusters_mcl(evs=evs, node_list=phy_lis)
-	clu["cluster_name"] = "OG" + clu["cluster"].astype(str)
+	clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
 
 	# find cluster supports (support in oldest node in cluster)
 	# clu["supports"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
@@ -783,8 +793,8 @@ if len(evs) > 0:
 		# syn_nod   = np.unique(np.sort(np.concatenate((syn_nod_m, syn_nod_s))))
 
 		# report which reference sequences can be found within cluster
-		clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA", clean_gene_names=clean_gene_names, cut_gene_names=cut_gene_names)
-		clu["cluster_nameref"] = "OG" + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
+		clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA", clean_gene_names=clean_gene_names)
+		clu["cluster_nameref"] = ogprefix + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
 		print_attributes       = ["cluster_nameref"]
 
 		# find named orthologs anywhere in the phylogeny
@@ -793,9 +803,9 @@ if len(evs) > 0:
 
 		# extend cluster-wise annotations
 		if min_transfer_support is not None:
-			clu["extended_clusters"], clu["extended_labels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=min_transfer_support, cut_gene_names=cut_gene_names)
+			clu["extended_clusters"], clu["extended_labels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=min_transfer_support)
 			ixs_to_rename = np.where(clu["extended_clusters"].values != None)[0]
-			clu.loc[ ixs_to_rename, "cluster_nameref" ] = "OG" + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":islike:OG" + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str) + ":" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
+			clu.loc[ ixs_to_rename, "cluster_nameref" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":islike:" + ogprefix + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str) + ":" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
 
 			clu["extended_direct"], clu["extended_directlabels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="node_ref", ref_NA_label="NA", cluster_label="node", min_transfer_support=0, exclude_level="cluster_ref", exclude_label="NA")
 			ixs_to_rename = np.where(clu["extended_direct"].values != None)[0]
@@ -808,14 +818,17 @@ if len(evs) > 0:
 
 
 	# print phylogeny
-	print_tree(phy=phy, out="%s/%s.ortholog_groups.newick" % (out_fn,phy_id), evc=clu, attributes=print_attributes, sep=" | ", do_print=do_print)
+	print_tree(phy=phy, out="%s/%s.ortholog_groups.newick" % (out_fn,phy_id), evc=clu, attributes=print_attributes, sep=" | ", do_print=do_print, cut_gene_names=cut_gene_names)
 
-	
+	# save clusters
+	clu_print = clu[["node","cluster_nameref","node_ref"]]
+	clu_print.columns = ["gene","cluster_name","orthologous_to"]
+	clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
+	evs.to_csv("%s/%s.ortholog_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
 
-# save clusters
-clu_print = clu.drop(columns=["cluster"])
-clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
-evs.to_csv("%s/%s.ortholog_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
+	logging.info("%s Done" % phy_id)
 
-logging.info("%s Done" % phy_id)
+else:
+
+	logging.info("%s There are no orthology events in this tree, nothing to do..." % phy_id)
 
