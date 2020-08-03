@@ -126,7 +126,7 @@ def calculate_ages(r, ort):
 
 # load input tree
 print("# Load tree from %s" % phs_fn)
-phs    = ete3.PhyloTree("%s" % (phs_fn))
+phs    = ete3.PhyloTree("%s" % (phs_fn), format=1)
 # assign species names to tree
 phs.set_species_naming_function(lambda node: node.name)
 # resolve polytomies in a random fashion
@@ -139,7 +139,6 @@ sps_age_dict, sps_out_dict, sps_list, age_root = species_age_dict(phs=phs)
 # load orthoclusters
 print("# Load orthoclusters from %s" % ort_fn)
 ort = pd.read_csv(ort_fn, sep="\t")
-#ort = pd.DataFrame(ort).dropna()
 ort = ort[[gene_col,clus_col]]
 
 # calculate ages
