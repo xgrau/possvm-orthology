@@ -96,7 +96,7 @@ def calculate_origin(ort, sps_out_dict, sps_nod_dict, clus_col=clus_col, gene_co
 		for si in sps_clu:
 			for sj in sps_clu:
 				t  = sps_age_dict[si][sj] # divergence time of current species pair
-				if t > a:                 # if divergence time of current pair is older than age, reassign age (a) and named ages (o)
+				if t >= a:                 # if divergence time of current pair is older than age, reassign age (a) and named ages (o)
 					a = int(t)
 					oi = si
 					oj = sj
@@ -111,8 +111,8 @@ def calculate_origin(ort, sps_out_dict, sps_nod_dict, clus_col=clus_col, gene_co
 		"relative_age" : ages_lis,
 		"outgroup_sps" : outg_lis,
 		"node_age"     : node_lis
-	}, columns=[
-		"orthogroup", "node_age", "outgroup_sps", "relative_age" ])
+	}, 
+	columns=["orthogroup", "node_age", "outgroup_sps", "relative_age" ])
 
 	return dat
 
@@ -134,7 +134,7 @@ print("# Load orthoclusters from %s" % ort_fn)
 ort = pd.read_csv(ort_fn, sep="\t")
 ort = ort[[gene_col,clus_col]]
 
-print("# Calculate origins: %s" % ref_sps)
+print("# Calculate origins...")
 dat = calculate_origin(ort=ort, sps_out_dict=sps_out_dict, sps_nod_dict=sps_nod_dict)
 
 # save output: per orthogroup
