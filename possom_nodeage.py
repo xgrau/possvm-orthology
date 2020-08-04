@@ -10,8 +10,8 @@ arp = argparse.ArgumentParser()
 arp.add_argument("-tree",  "--tree",  required=True,                        help="newick file with species tree")
 arp.add_argument("-ort",   "--ort",   required=True,                        help="table of orthologs (long format, with headers; min info: OG <tab> gene1)")
 arp.add_argument("-out",   "--out",   required=True,                        help="output prefix")
-arp.add_argument("-ref",   "--ref",   required=False, default="ALLSPS",     help="OPTIONAL: reference species (ages are relative to this species). If \"ALLSPS\" (default), relative ages to all sps are calculated (can be slow)")
-arp.add_argument("-dict",  "--dict",  required=False, default="NO",         help="OPTIONAL: dictionary file with named nodes, one per line (can be incomplete). Format: spsA,spsB <tab> nodename. If \"NO\" (default), do nothing")
+arp.add_argument("-ref",   "--ref",   required=False, default=None,         help="OPTIONAL: reference species (ages are relative to this species). If none is set (default), relative ages to all sps are calculated (can be slow).")
+arp.add_argument("-dict",  "--dict",  required=False, default=None,         help="OPTIONAL: dictionary file with named nodes, one per line (can be incomplete). Format: spsA,spsB <tab> nodename. If None (default), do nothing.")
 arp.add_argument("-gcol",  "--gcol",  required=False, default="node",       help="OPTIONAL: name of gene column in --ort/-t table. Default is \"node\"")
 arp.add_argument("-ccol",  "--ccol",  required=False, default="og_cluster", help="OPTIONAL: name of orthogroup column in --ort/-t table. Default is \"og_cluster\"")
 arp.add_argument("-split", "--split", required=False, default="_",          help="OPTIONAL: character to split species and sequence names. Default is \"_\", e.g. Human_genename. WARNING: use quotation marks, e.g. -split \"_\" or -split \"|\"")
@@ -84,7 +84,7 @@ def species_age_dict(phs):
 
 
 # loop through list of orthogroups and calculate ages
-def calculate_ages(r, ort):
+def calculate_ages(r, ort, sps_out_dict, clus_col=clus_col, gene_col=gene_col, split_ch=split_ch):
 
 	# list of orthoclusters
 	clus_lis = np.unique(ort[clus_col])
@@ -99,16 +99,23 @@ def calculate_ages(r, ort):
 		nod_clu = ort[ort[clus_col] == c][gene_col].values         # genes present in cluster
 		sps_clu = np.unique([ m.split(split_ch)[0] for m in nod_clu ])  # species present in cluster
 
-		a = 0 # init age: 0 (most recent)
-		o = r # init named ages: same as species r (i.e. most recent)
-		for s in sps_clu:
-			t = sps_age_dict[r][s] # divergence time of current species pair
-			if t > a: # if divergence time of current pair is older than age, reassign age (a) and named ages (o)
-				a = t
-				o = s
+		if np.any(np.isin(sps_clu, r)):
+			a = 0 # init age: 0 (most recent)
+			o = r # init named ages: same as species r (i.e. most recent)
+			for s in sps_clu:
+				t = sps_age_dict[r][s] # divergence time of current species pair
+				if t > a: # if divergence time of current pair is older than age, reassign age (a) and named ages (o)
+					a = int(t)
+					o = s
 
-		ages_lis[n] = int(a)
-		outg_lis[n] = sps_out_dict[r][o]
+			ages_lis[n] = a
+			outg_lis[n] = sps_out_dict[r][o]
+
+		else:
+
+			ages_lis[n] = np.nan
+			outg_lis[n] = ""
+
 
 	# prepare output
 	dat = pd.DataFrame({
@@ -116,7 +123,8 @@ def calculate_ages(r, ort):
 		"ref_sps"      : r,
 		"relative_age" : ages_lis,
 		"outgroup_sps" : outg_lis
-	}, columns=["orthogroup", "ref_sps", "relative_age", "outgroup_sps"])
+	}, columns=[
+		"orthogroup","ref_sps", "relative_age", "outgroup_sps"])
 
 	return dat
 
@@ -142,22 +150,20 @@ ort = pd.read_csv(ort_fn, sep="\t")
 ort = ort[[gene_col,clus_col]]
 
 # calculate ages
-if ref_sps == "ALLSPS":
+if ref_sps is None :
 	print("# Calculate ages, relative to all sps: %s" % sps_list)
 	dat = pd.DataFrame()
 	for r in sps_list:
 		print("# ref species: %s" % r)
-		tmp = calculate_ages(r=r, ort=ort)
+		tmp = calculate_ages(r=r, ort=ort, sps_out_dict=sps_out_dict)
 		dat = pd.concat((dat,tmp))
 else:
 	print("# Calculate ages, relative to one sps: %s" % ref_sps)
-	dat = calculate_ages(r=ref_sps, ort=ort)
+	dat = calculate_ages(r=ref_sps, ort=ort, sps_out_dict=sps_out_dict)
 
 
 # do we have a dictionary of named ancestral nodes?
-if dic_fn == "NO":
-	pass
-else:
+if dic_fn is not None:
 	print("# Try to add node names using dict: %s" % dic_fn)
 	dic = pd.read_csv(dic_fn, header=None, sep="\t")
 	dic.columns = ["outgroup_sps","node_name"]
