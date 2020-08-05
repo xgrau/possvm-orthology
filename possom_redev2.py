@@ -164,7 +164,23 @@ def parse_phylo(phy_fn, phy_id, do_root):
 	evs = pd.DataFrame(evs).dropna()
 	evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
 
-	return evs, phy, phy_lis
+	# duplications and speciation events
+	eva    = np.empty((len(evev)*len(evev), 5), dtype="object")
+	eva[:] = np.nan
+	n = 0
+	for ev in evev:
+		for ii in ev.in_seqs:
+			for oi in ev.out_seqs:
+				eva[n,0] = ii
+				eva[n,1] = oi
+				eva[n,2] = ev.branch_supports[0]
+				eva[n,3] = ev.etype
+				eva[n,4] = ev.sos
+				n = n + 1
+	eva = pd.DataFrame(eva).dropna()
+	eva.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+
+	return evs, eva, phy, phy_lis
 
 # function to cluster a network-like table of orthologs (from ETE) 
 def clusters_lpa(evs, node_list, cluster_label="cluster", label_if_no_annot="NA"):
@@ -755,7 +771,28 @@ def sanitise_genename_string(string, splitstring="/"):
 
 	return new_names
 
+def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 
+
+	eva_d = pd.merge(left=eva, right=clu, left_on="in_gene", right_on="node", how="left")
+	eva_d = pd.merge(left=eva_d, right=clu, left_on="out_gene", right_on="node", how="left")
+	print(eva_d)
+	eva_d["in_sps"] = eva_d["in_gene"].apply(lambda c: c.split(split_ch)[0]).values
+	eva_d["out_sps"] = eva_d["out_gene"].apply(lambda c: c.split(split_ch)[0]).values
+
+	# empty
+	evtype = np.empty(len(eva), dtype=object)
+
+	# orthologs
+	evtype[ ( eva_d["ev_type"] == "S" ) & ( eva_d["in_sps"] != eva_d["out_sps"] ) ] = "ortholog"
+
+	# inparalogs
+	evtype[ ( eva_d["ev_type"] == "D" ) & ( eva_d["cluster_name_x"] != eva_d["cluster_name_y"] ) & ( eva_d["in_sps"] == eva_d["out_sps"] ) ] = "outparalog"
+
+	# outparalogs
+	evtype[ ( eva_d["ev_type"] == "D" ) & ( eva_d["cluster_name_x"] == eva_d["cluster_name_y"] ) & ( eva_d["in_sps"] == eva_d["out_sps"] ) ] = "inparalog"
+
+	return evtype
 
 
 #####################
@@ -763,8 +800,7 @@ def sanitise_genename_string(string, splitstring="/"):
 #####################
 
 # read phylogeny, find speciation events, create network
-evs, phy, phy_lis = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_root=do_root)
-
+evs, eva, phy, phy_lis = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_root=do_root)
 
 if len(evs) > 0:
 
@@ -776,6 +812,9 @@ if len(evs) > 0:
 	# find cluster supports (support in oldest node in cluster)
 	# clu["supports"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
 
+	# annotate event types (inparalog/outparalog/ortholog)
+	eva["event_type"] = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
+	eva = pd.DataFrame(eva).dropna()
 
 	if do_ref:
 
@@ -825,6 +864,7 @@ if len(evs) > 0:
 	clu_print.columns = ["gene","cluster_name","orthologous_to"]
 	clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
 	evs.to_csv("%s/%s.ortholog_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
+	eva.to_csv("%s/%s.all_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
 
 	logging.info("%s Done" % phy_id)
 
