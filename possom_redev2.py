@@ -773,26 +773,33 @@ def sanitise_genename_string(string, splitstring="/"):
 
 def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 
-
-	eva_d = pd.merge(left=eva, right=clu, left_on="in_gene", right_on="node", how="left")
-	eva_d = pd.merge(left=eva_d, right=clu, left_on="out_gene", right_on="node", how="left")
-	print(eva_d)
-	eva_d["in_sps"] = eva_d["in_gene"].apply(lambda c: c.split(split_ch)[0]).values
-	eva_d["out_sps"] = eva_d["out_gene"].apply(lambda c: c.split(split_ch)[0]).values
+	eva = pd.merge(left=eva, right=clu, left_on="in_gene", right_on="node", how="left")
+	eva = pd.merge(left=eva, right=clu, left_on="out_gene", right_on="node", how="left")
+	eva["in_sps"] = eva["in_gene"].apply(lambda c: c.split(split_ch)[0]).values
+	eva["out_sps"] = eva["out_gene"].apply(lambda c: c.split(split_ch)[0]).values
 
 	# empty
 	evtype = np.empty(len(eva), dtype=object)
 
 	# orthologs
-	evtype[ ( eva_d["ev_type"] == "S" ) & ( eva_d["in_sps"] != eva_d["out_sps"] ) ] = "ortholog"
+	evtype[ ( eva["ev_type"] == "S" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] )& ( eva["in_sps"] != eva["out_sps"] ) ] = "ortholog_int"
+	evtype[ ( eva["ev_type"] == "S" ) & ( eva["cluster_name_x"] != eva["cluster_name_y"] )& ( eva["in_sps"] != eva["out_sps"] ) ] = "ortholog_ext"
 
-	# inparalogs
-	evtype[ ( eva_d["ev_type"] == "D" ) & ( eva_d["cluster_name_x"] != eva_d["cluster_name_y"] ) & ( eva_d["in_sps"] == eva_d["out_sps"] ) ] = "outparalog"
+	# outparalog_ext (from different species and an external orthology group)
+	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] ) & ( eva["in_sps"] != eva["out_sps"] ) ] = "outparalog_int"
 
-	# outparalogs
-	evtype[ ( eva_d["ev_type"] == "D" ) & ( eva_d["cluster_name_x"] == eva_d["cluster_name_y"] ) & ( eva_d["in_sps"] == eva_d["out_sps"] ) ] = "inparalog"
+	# outparalog_int (from different species and the same orthology group)
+	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] != eva["cluster_name_y"] ) & ( eva["in_sps"] != eva["out_sps"] ) ] = "outparalog_ext"
 
-	return evtype
+	# inparalog_int (from the same species and the same orthology group)
+	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] ) & ( eva["in_sps"] == eva["out_sps"] ) ] = "inparalog_int"
+
+	# inparalog_ext (from the same species and a different orthology group)
+	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] != eva["cluster_name_y"] ) & ( eva["in_sps"] == eva["out_sps"] ) ] = "inparalog_ext"
+
+	eva["ev_type"] = evtype
+
+	return eva
 
 
 #####################
@@ -813,7 +820,8 @@ if len(evs) > 0:
 	# clu["supports"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
 
 	# annotate event types (inparalog/outparalog/ortholog)
-	eva["event_type"] = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
+	eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
+	eva = eva[["in_gene","out_gene","ev_type"]]
 	eva = pd.DataFrame(eva).dropna()
 
 	if do_ref:
