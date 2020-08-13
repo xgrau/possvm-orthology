@@ -177,14 +177,16 @@ def parse_phylo(phy_fn, phy_id, do_root):
 	
 		if itermidroot is not None:
 
-			# set outgroup
-			logging.info("%s Tree is unrooted, apply iterative midpoint root (i = %i)" % (phy_id,itermidroot))
+			niter = min(len(phy), itermidroot)
 
-			num_evs_per_iter = np.zeros(itermidroot)
-			out_nod_per_iter = np.empty(itermidroot,	dtype=object)
+			# set outgroup
+			logging.info("%s Tree is unrooted, apply iterative midpoint root (up to %i iterations)" % (phy_id,itermidroot))
+
+			num_evs_per_iter = np.zeros(niter)
+			out_nod_per_iter = np.empty(niter,	dtype=object)
 
 			phy_tmp = phy
-			for roi in range(itermidroot):
+			for roi in range(niter):
 
 				if roi == 0:
 					# first, get normal midpoint root
