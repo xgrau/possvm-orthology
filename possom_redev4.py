@@ -23,7 +23,8 @@ arp.add_argument("-r", "--ref",  required=False, default=None, help="OPTIONAL: P
 arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: Comma-separated list of reference species that will be used for orthogroup labeling.", type=str)
 arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Species overlap threshold used for orthology inference in ETE. Default is 0.", type=float)
 arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONAL: String to use as species prefix delimiter in gene ids, e.g. \"_\" for sequences formatted as speciesA_geneX. Defaults to \"_\".", type=str)
-arp.add_argument("-itermidroot", "--itermidroot",  required=False, action="store_true", help="OPTIONAL: Turns on iterative midpoint rooting with N iterations, which is used instead of simple midpoint rooting (which is the default).")
+# arp.add_argument("-itermidroot", "--itermidroot",  required=False, action="store_true", help="OPTIONAL: Turns on iterative midpoint rooting with N iterations, which is used instead of simple midpoint rooting (which is the default).")
+arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Turns on iterative midpoint rooting with N iterations, which is used instead of simple midpoint rooting (which is the default).", type=int)
 arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false", help="OPTIONAL: Turns off tree rooting using midpoint root, in case your trees are already rooted.")
 arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Turns off printing of annotated tree in PDF (annotated newick is still produced).")
 arp.add_argument("-min_transfer_support","--min_transfer_support", required=False, default=None, help="OPTIONAL: Min node support to allow transfer of labels from labelled to non-labelled groups in the same clade. If not set, this step is skipped.", type=float)
@@ -319,27 +320,26 @@ def clusters_mcl(evs, node_list, inf=1.5, verbose=True):
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL clustering, inflation = %.3f" % (inf))
-		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold=0) ### TODO: why pruning threshold HAS to be zero?
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold=0) #why pruning threshold HAS to be zero?
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
 		if verbose:
 			logging.info("MCL clustering, num clusters = %i" % (len(mcl_c)))
 		# MCL clustering: save output
 		mcl_c_clu = [ i for i, cluster in enumerate(mcl_c) for node in cluster]
 		mcl_c_noi = [ node for i, cluster in enumerate(mcl_c) for node in cluster]
-		mcl_c_nod = [evs_n_nodelist[i] for i in mcl_c_noi]
+		mcl_c_nod = [ evs_n_nodelist[i] for i in mcl_c_noi ]
 
 	else:
 
 		# MCL clustering: create network
 		if verbose:
-			logging.info("Cannot create network, there are no speciation events in this tree")
+			logging.info("There are no speciation events in this tree.")
 
-		mcl_c_nod = np.nan
-		mcl_c_clu = np.nan
+		mcl_c_clu = [ i for i in range(len(node_list)) ]
 
 	# output
 	clu = pd.DataFrame( { 
-		"node"    : mcl_c_nod,
+		"node"    : node_list,
 		"cluster" : mcl_c_clu,
 	}, columns=["node","cluster"])
 	if verbose:
@@ -881,74 +881,70 @@ def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 ####### MAIN ########
 #####################
 
-# read phylogeny, find speciation events, create network
+# read phylogeny, find speciation events, create network, do clustering
 evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_root=do_root)
 
-if len(evs) > 0:
+# make human readable cluster names (instead of integers)
+clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
 
-	clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
+# find cluster supports (support in oldest node in cluster)
+# clu["supports"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
 
-	# find cluster supports (support in oldest node in cluster)
-	# clu["supports"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
+# infer gene-to-gene orthology relationship classes (inparalog/outparalog/ortholog)
+eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
+eva = eva[["in_gene","out_gene","ev_type"]]
+eva = pd.DataFrame(eva).dropna()
 
-	# annotate event types (inparalog/outparalog/ortholog)
-	eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
-	eva = eva[["in_gene","out_gene","ev_type"]]
-	eva = pd.DataFrame(eva).dropna()
+# try to annotate reference sequences
+if do_ref:
 
-	if do_ref:
+	# load ref
+	ref = pd.read_csv(ref_fn, sep="\t", names=["gene","name"])
 
-		# load ref
-		ref = pd.read_csv(ref_fn, sep="\t", names=["gene","name"])
+	# remove ref nodes not in phylogeny
+	ref =  ref[ np.isin(element=ref["gene"].values, test_elements=phy_lis) ]
 
-		# remove ref nodes not in phylogeny
-		ref =  ref[ np.isin(element=ref["gene"].values, test_elements=phy_lis) ]
+	# find sets of synonymous genes in the reference species: 
+	# - very close paralogs that are monophyletic
+	# - very close paralogs that might not be monophyletic but are very similar
+	# syn_nod_m = find_monophyletic_expansion_refsps(phy=phy, ref_sps=refsps)
+	# syn_nod_s = find_close_gene_pairs_refsps(phy=phy, ref_sps=refsps, dist_thr=0.0)
+	# syn_nod   = np.unique(np.sort(np.concatenate((syn_nod_m, syn_nod_s))))
 
-		# find sets of synonymous genes in the reference species: 
-		# - very close paralogs that are monophyletic
-		# - very close paralogs that might not be monophyletic but are very similar
-		# syn_nod_m = find_monophyletic_expansion_refsps(phy=phy, ref_sps=refsps)
-		# syn_nod_s = find_close_gene_pairs_refsps(phy=phy, ref_sps=refsps, dist_thr=0.0)
-		# syn_nod   = np.unique(np.sort(np.concatenate((syn_nod_m, syn_nod_s))))
+	# report which reference sequences can be found within cluster
+	clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA", clean_gene_names=clean_gene_names)
+	clu["cluster_nameref"] = ogprefix + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
+	print_attributes       = ["cluster_nameref"]
 
-		# report which reference sequences can be found within cluster
-		clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA", clean_gene_names=clean_gene_names)
-		clu["cluster_nameref"] = ogprefix + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
-		print_attributes       = ["cluster_nameref"]
+	# find named orthologs anywhere in the phylogeny
+	clu["node_ref"] = ref_known_any(clu=clu, evs=evs, ref=ref, syn_nod=None)
+	print_attributes.append("node_ref")
 
-		# find named orthologs anywhere in the phylogeny
-		clu["node_ref"] = ref_known_any(clu=clu, evs=evs, ref=ref, syn_nod=None)
-		print_attributes.append("node_ref")
+	# extend cluster-wise annotations
+	if min_transfer_support is not None:
+		clu["extended_clusters"], clu["extended_labels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=min_transfer_support)
+		ixs_to_rename = np.where(clu["extended_clusters"].values != None)[0]
+		clu.loc[ ixs_to_rename, "cluster_nameref" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":islike:" + ogprefix + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str) + ":" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
 
-		# extend cluster-wise annotations
-		if min_transfer_support is not None:
-			clu["extended_clusters"], clu["extended_labels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=min_transfer_support)
-			ixs_to_rename = np.where(clu["extended_clusters"].values != None)[0]
-			clu.loc[ ixs_to_rename, "cluster_nameref" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":islike:" + ogprefix + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str) + ":" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
-
-			clu["extended_direct"], clu["extended_directlabels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="node_ref", ref_NA_label="NA", cluster_label="node", min_transfer_support=0, exclude_level="cluster_ref", exclude_label="NA")
-			ixs_to_rename = np.where(clu["extended_direct"].values != None)[0]
-			clu.loc[ ixs_to_rename, "node_ref" ] = "islike:" + clu.loc[ ixs_to_rename, "extended_directlabels" ].astype(str)
-
-
-	else:
-
-		print_attributes = ["cluster_name"]		
-
-
-	# print phylogeny
-	print_tree(phy=phy, out="%s/%s.ortholog_groups.newick" % (out_fn,phy_id), evc=clu, attributes=print_attributes, sep=" | ", do_print=do_print, cut_gene_names=cut_gene_names)
-
-	# save clusters
-	clu_print = clu[["node","cluster_nameref","node_ref"]]
-	clu_print.columns = ["gene","cluster_name","orthologous_to"]
-	clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
-	evs.to_csv("%s/%s.ortholog_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
-	eva.to_csv("%s/%s.all_pairs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
-
-	logging.info("%s Done" % phy_id)
+		clu["extended_direct"], clu["extended_directlabels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="node_ref", ref_NA_label="NA", cluster_label="node", min_transfer_support=0, exclude_level="cluster_ref", exclude_label="NA")
+		ixs_to_rename = np.where(clu["extended_direct"].values != None)[0]
+		clu.loc[ ixs_to_rename, "node_ref" ] = "islike:" + clu.loc[ ixs_to_rename, "extended_directlabels" ].astype(str)
 
 else:
 
-	logging.info("%s There are no orthology events in this tree, nothing to do..." % phy_id)
+	print_attributes = ["cluster_name"]		
+
+# print phylogeny
+print_tree(phy=phy, out="%s/%s.ortholog_groups.newick" % (out_fn,phy_id), evc=clu, attributes=print_attributes, sep=" | ", do_print=do_print, cut_gene_names=cut_gene_names)
+
+# save clusters
+clu_print = clu[["node","cluster_nameref","node_ref"]]
+clu_print.columns = ["gene","cluster_name","orthologous_to"]
+clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
+
+# save gene pair information (orthologs and all genes)
+evs.to_csv("%s/%s.pairs_orthologs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
+eva.to_csv("%s/%s.pairs_all.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
+
+logging.info("%s Done" % phy_id)
 
