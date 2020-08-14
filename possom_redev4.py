@@ -130,63 +130,60 @@ def parse_phylo(phy_fn, phy_id, do_root):
 	# resolve polytomies (randomly)
 	phy.resolve_polytomy(recursive=True)
 	
-	# apply midpoint root if unrooted
+	# try to find root if unrooted
 	if do_root:
 	
-		if itermidroot:
+		# shall we do it with iterative midpoint rooting?
+		if itermidroot is not None:
 
-			niter = int(len(phy)-1)
-
-			# set outgroup
-			logging.info("%s Tree is unrooted, apply iterative midpoint root (explore %i roots)" % (phy_id,niter))
-
+			# niter = max(int(len(phy)/10),10)
+			# niter = int(len(phy)*0.9)
+			niter = itermidroot
 			num_evs_per_iter = np.zeros(niter)
 			out_nod_per_iter = np.empty(niter,	dtype=object)
 
-			phy_tmp = phy
-			# phy_tmp = phy_tmp.collapse_lineage_specific_expansions()
+			# then, iterate to try to find better candidates
+			phy_it = phy
+			phy_outgroup_it = phy_it.get_midpoint_outgroup()
 			for roi in range(niter):
 
-				if roi == 0:
-					# first, get normal midpoint root
-					phy_outgroup = phy_tmp.get_midpoint_outgroup()
-				else:
-					# in subsequent iterations, assign zero distance to the previous outgroup edge, and try to find second-best candidate
-					phy_outgroup.dist = 0.0
-					phy_outgroup = phy_tmp.get_midpoint_outgroup()
+				# in subsequent iterations, assign zero distance to the previous outgroup edge, and try to find second-best candidate
+				phy_outgroup_it.dist = 0.0
+				phy_outgroup_it = phy_it.get_midpoint_outgroup()
+				phy_it.set_outgroup(phy_outgroup_it)
 
-				# ladderise phylogeny
-				phy_tmp.set_outgroup(phy_outgroup)
-
-				# parse events
-				evs, _, _, phy_lis = parse_events(phy=phy_tmp)
-				clu = clusters_mcl(evs=evs, node_list=phy_lis, verbose=False)
+				# parse events and re-do clustering
+				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it)
+				clu_it = clusters_mcl(evs=evs_it, node_list=phy_lis_it, verbose=False)
 
 				# store number of orthogroups in this particular iteration
-				num_evs_per_iter[roi] = len(np.unique(clu["cluster"].values))
-				out_nod_per_iter[roi] = phy_outgroup
+				num_evs_per_iter[roi] = len(np.unique(clu_it["cluster"].values))
+				out_nod_per_iter[roi] = phy_outgroup_it
 
-			# select outgroup that maximises number of speciation events (which will give more agglomerative orthogroups)
+				logging.info("%s Iterative midpoint root | %i/%i | n OGs = %i" % (phy_id,roi+1,niter,num_evs_per_iter[roi]))
+
+			# select outgroup that minimises number of OGs (more agglomerative)
 			phy_outgroup_ix = np.argmin(num_evs_per_iter)
 			phy_outgroup = out_nod_per_iter[phy_outgroup_ix]
 
 			# set outgroup
 			# print(phy_outgroup_ix, phy_outgroup)
-			logging.info("%s Best root found at attempt %i/%i" % (phy_id,phy_outgroup_ix,niter))
+			logging.info("%s Best root at iteration  | %i/%i | n OGs = %i" % (phy_id,phy_outgroup_ix+1,niter,num_evs_per_iter[phy_outgroup_ix]))
 
+		# ...or shall we do it with simple midpoint rooting?
 		else:
 
 			# set outgroup using normal midpoint rooting
-			logging.info("%s Tree is unrooted, apply midpoint root" % phy_id)
+			logging.info("%s Midpoint root" % phy_id)
 			phy_outgroup = phy.get_midpoint_outgroup()
 
+	# ignore rooting
 	else: 
 
-		# ignore rooting
 		pass
 		logging.info("%s Skip rooting (assume tree is already rooted)" % phy_id)
 
-	# ladderise phylogeny
+	# root and ladderise phylogeny
 	phy.set_outgroup(phy_outgroup)
 	phy.ladderize()
 
