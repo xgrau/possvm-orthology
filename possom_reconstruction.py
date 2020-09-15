@@ -87,9 +87,13 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 	# loop for each cluster in dataset
 	for n,c in enumerate(clus_lis):
 
-		nod_clu = ort[ort[clus_col] == c][gene_col].values              # genes present in cluster
-		sps_clu = np.unique([ m.split(split_ch)[0] for m in nod_clu ])  # species present in cluster
+		# genes present in cluster
+		nod_clu = ort[ort[clus_col] == c][gene_col].values            
+		# species present in cluster  
+		sps_clu = np.unique([ m.split(split_ch)[0] for m in nod_clu ])
 		sps_clu_string = ",".join(sorted(sps_clu))
+		# ... AND THEIR COUNTS
+		sps_clu_c = np.unique([ m.split(split_ch)[0] for m in nod_clu ], return_counts=True)[1]
 
 
 		### GAINS ###
@@ -165,8 +169,9 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 
 		### PRESENCE ###
 		# first, fill matrix with extant presences
-		for clu_pres in sps_clu:
-			mat_pres[clu_pres][c] = 1
+		# use extant counts instead of simply "1"
+		for clu_prei,clu_pres in enumerate(sps_clu):
+			mat_pres[clu_pres][c] = sps_clu_c[clu_prei]
 
 		# second-i, find ancestral presence nodes
 		# ancestral presence = descendant nodes from the original gain that are not losses themselves
