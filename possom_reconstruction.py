@@ -178,7 +178,7 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 		# ancestral presence = descendant nodes from the original gain that are not losses themselves
 		phs_gain_node = phs.search_nodes(name=clu_gain)[0]
 		descendants_from_gain_node = phs_gain_node.get_descendants()
-		descendants_from_gain_node = [ i.name for i in descendants_from_gain_node if not i.is_leaf() ]
+		descendants_from_gain_node = [ phs.name ] + [ i.name for i in descendants_from_gain_node if not i.is_leaf() ]
 		presents_from_gain_node = list({element for element in set(descendants_from_gain_node) if element not in set(sps_miss_loss)})
 
 		# second-ii, fill matrix with ancestral presences
