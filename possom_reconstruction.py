@@ -37,6 +37,7 @@ def do_species_orig_dict(phs):
 	sps_list = phs.get_leaf_names()
 	nod_list = [ i for i in phs.get_descendants() ]
 	anc_list = [ phs.name ] + [ i.name for i in nod_list if not i.is_leaf() ]
+	anc_list = anc_list[::-1]
 
 	species_orig_dict = dict()
 	species_ages_dict = dict()
