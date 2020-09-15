@@ -66,6 +66,11 @@ def do_species_orig_dict(phs):
 
 	return species_orig_dict, species_ages_dict, sps_list, anc_list
 
+def collapsed_leaf(node):
+    if len(node2labels[node]) == 1:
+       return True
+    else:
+       return False
 
 # loop through list of orthogroups and calculate ages
 def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, sps_list, anc_list, clus_col=clus_col, gene_col=gene_col, split_ch=split_ch):
@@ -93,19 +98,19 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 		# species present in cluster  
 		sps_clu = np.unique([ m.split(split_ch)[0] for m in nod_clu ])
 		sps_clu_string = ",".join(sorted(sps_clu))
-		# ... AND THEIR COUNTS
+		# ... and their counts
 		sps_clu_c = np.unique([ m.split(split_ch)[0] for m in nod_clu ], return_counts=True)[1]
 
 
 		### GAINS ###
 		# find origin of cluster
-		a = -1
+		age = -1 # start with negative age to accommodate species-specific (age=0)
 		for ni,si in enumerate(sps_clu):
 			for nj,sj in enumerate(sps_clu):
 				if ni<=nj:
-					t = species_ages_dict[si][sj] # divergence time of current species pair
-					if t > a: # if divergence time of current pair is older than age, reassign age (a) and named ages (o)
-						a = int(t)
+					age_ij = species_ages_dict[si][sj] # divergence time of current species pair
+					if age_ij > age: # if divergence time of current pair is older than age, reassign age
+						age = int(age_ij)
 						clu_gain = species_orig_dict[si][sj]
 
 		# store cluster gain matrix
@@ -114,76 +119,61 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 		gain_lis[n] = clu_gain
 		pres_lis[n] = sps_clu_string
 		
-		# log a bit
-		print("# %i / %i | %s | %s | %s" % (n+1,len(clus_lis),c, clu_gain,sps_clu_string))
-
-		### LOSSES ###
-		# find which species should have this cluster but don't
-		phs_o = phs.search_nodes(name=clu_gain)[0] # find origin node in species tree
-		phs_o_sps = phs_o.get_leaf_names()         # find all descendant species
-		sps_miss = list({element for element in set(phs_o_sps) if element not in set(sps_clu)}) # missing species (from origin node only)
-
-		# if cluster is missing from >=1 species, try to agglomerate losses to shared ancestral nodes
-		if len(sps_miss) > 1:
-
-			sps_miss_iter = set(sps_miss[:])
-			sps_miss_init = set(sps_miss[:])
-			
+		### PRESENCE ###
+		# a cluster is present in a node of the species tree if it is present in
+		# any of the intermediate nodes between extant nodes and the node of origin
+		phs_gain_node     = phs.search_nodes(name=clu_gain)[0]
+		phs_gain_node_sps = phs_gain_node.get_leaf_names()         # find all descendant species
+		set_pres = set()
+		for ni,si in enumerate(sps_clu):
+			phs_si = phs.search_nodes(name=si)[0]
 			while True:
-
-				sps_miss_loss = set()
-				for ni,si in enumerate(sps_miss_iter):
-
-					# find sister node
-					phs_si = phs.search_nodes(name=si)[0]
-					phs_si_sister = phs_si.get_sisters()[0]
-					loss_in_node = si # init loss to same species
-
-					# look at all other missing species and check if we can take loss back to a shared ancestor
-					for nj,sj in enumerate(sps_miss_iter):
-						if ni != nj:
-							phs_sj = phs.search_nodes(name=sj)[0]
-							# if sister node is equals another missing species, move loss to shared ancestor node:
-							if phs_si_sister == phs_sj:
-								loss_in_node = phs.get_common_ancestor(phs_si,phs_sj).name
-
-					# store loss nodes
-					sps_miss_loss.add(loss_in_node)
-
-				if sps_miss_loss == sps_miss_init:
+				set_pres.add(phs_si.name)
+				if phs_si == phs_gain_node:
 					break
 				else:
-					sps_miss_iter = sps_miss_loss
-					sps_miss_init = sps_miss_loss
-		
-		# if cluster is missing in less than one species, two options:
-		# 1. it either got lost in that species
-		# 2. it's never been lost
-		# ergo, we'll use an empty losses set
-		else:
-			sps_miss_loss = set(sps_miss)
+					phs_si = phs_si.up
 
-		# store losses in matrix
-		for clu_loss in sps_miss_loss:
-			mat_loss[clu_loss][c] = 1
-
-
-		### PRESENCE ###
-		# first, fill matrix with extant presences
-		# use extant counts instead of simply "1"
+		# fill matrix with presence data
+		for clu_pres in set_pres:
+			mat_pres[clu_pres][c] = 1
+		# modify extant species to contain counts rather than 1/0
 		for clu_prei,clu_pres in enumerate(sps_clu):
 			mat_pres[clu_pres][c] = sps_clu_c[clu_prei]
 
-		# second-i, find ancestral presence nodes
-		# ancestral presence = descendant nodes from the original gain that are not losses themselves
-		phs_gain_node = phs.search_nodes(name=clu_gain)[0]
-		descendants_from_gain_node = phs_gain_node.get_descendants()
-		descendants_from_gain_node = [ phs_gain_node.name ] + [ i.name for i in descendants_from_gain_node if not i.is_leaf() ]
-		presents_from_gain_node = list({element for element in set(descendants_from_gain_node) if element not in set(sps_miss_loss)})
 
-		# second-ii, fill matrix with ancestral presences
-		for clu_pres in presents_from_gain_node:
-			mat_pres[clu_pres][c] = 1
+		### LOSSES ###
+		# cluster is lost in a node of the species tree if it is absent in this node and in all its descendants 
+		# init a set of losses with all species where the cluster is missing (starting from the descendants of the origin node)
+		set_loss_init = {element for element in set(phs_gain_node_sps) if element not in set(sps_clu)}
+		set_loss = set()
+		for ni,si in enumerate(set_loss_init):
+			phs_si = phs.search_nodes(name=si)[0]
+			while True:
+
+				# get species hanging from this node
+				phs_si_sps = phs_si.get_leaf_names()
+
+				# if the descendant species are a subset of the species that lack this cluster,
+				# carry on (go further up in the tree), we have not reached the loss node yet.
+				# if any of the descendant species lacks the cluster, add the the node from the 
+				# previous iteration to the the set of loss nodes and break the loop
+				if set(phs_si_sps).issubset(set_loss_init):
+					phs_candidate = phs_si
+					phs_si = phs_si.up
+				else:
+					set_loss.add(phs_candidate.name)
+					break
+
+		# store losses in matrix
+		for clu_loss in set_loss:
+			mat_loss[clu_loss][c] = 1
+
+
+		### LOG  ###
+		print("# %i/%i | %s | %s | %s" % (n+1,len(clus_lis),c, clu_gain,sps_clu_string))
+		# print("present:", set_pres)
+		# print("losses: ", set_loss)
 
 
 	# prepare output
