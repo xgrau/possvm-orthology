@@ -104,14 +104,19 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 
 		### GAINS ###
 		# find origin of cluster
-		age = -1 # start with negative age to accommodate species-specific (age=0)
-		for ni,si in enumerate(sps_clu):
-			for nj,sj in enumerate(sps_clu):
-				if ni<=nj:
-					age_ij = species_ages_dict[si][sj] # divergence time of current species pair
-					if age_ij > age: # if divergence time of current pair is older than age, reassign age
-						age = int(age_ij)
-						clu_gain = species_orig_dict[si][sj]
+		# if present in only one species, it's a singleton
+		# if present in more than one species, go fetch their last common ancestor
+		if len(sps_clu) == 1:
+			clu_gain = sps_clu[0]
+		else:
+			age = -1 # start with negative age to accommodate species-specific (age=0)
+			for ni,si in enumerate(sps_clu):
+				for nj,sj in enumerate(sps_clu):
+					if ni < nj:
+						age_ij = species_ages_dict[si][sj] # divergence time of current species pair
+						if age_ij > age: # if divergence time of current pair is older than age, reassign age
+							age = int(age_ij)
+							clu_gain = species_orig_dict[si][sj]
 
 		# store cluster gain matrix
 		mat_gain[clu_gain][c] = 1
