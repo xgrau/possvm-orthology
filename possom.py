@@ -213,7 +213,6 @@ def parse_events(phy):
 		sps_ou = np.unique([ i.split(split_ch)[0] for i in ev.out_seqs ])
 		# check if node is a speciation node, or a duplication node where both descendant branches have exactly one species, and this is the same species
 		if ev.etype == "S" or (ev.etype == "D" and len(sps_in) == len(sps_ou) == 1 and sps_in == sps_ou) :
-			print(ev.in_seqs, ev.out_seqs)
 			for ii in ev.in_seqs:
 				for oi in ev.out_seqs:
 					evs[n,0] = ii
@@ -937,6 +936,7 @@ if do_ref:
 	if min_transfer_support is not None:
 		clu["extended_clusters"], clu["extended_labels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=min_transfer_support)
 		ixs_to_rename = np.where(clu["extended_clusters"].values != None)[0]
+		#clu.loc[ ixs_to_rename, "cluster_name" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":islike:" + ogprefix + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str) + ":" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
 		clu.loc[ ixs_to_rename, "cluster_name" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":like:" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str) + ":likeclu:" + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str)
 
 		clu["extended_direct"], clu["extended_directlabels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="node_ref", ref_NA_label="NA", cluster_label="node", min_transfer_support=0, exclude_level="cluster_ref", exclude_label="NA")

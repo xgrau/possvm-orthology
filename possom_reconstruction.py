@@ -66,12 +66,6 @@ def do_species_orig_dict(phs):
 
 	return species_orig_dict, species_ages_dict, sps_list, anc_list
 
-def collapsed_leaf(node):
-    if len(node2labels[node]) == 1:
-       return True
-    else:
-       return False
-
 # loop through list of orthogroups and calculate ages
 def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, sps_list, anc_list, clus_col=clus_col, gene_col=gene_col, split_ch=split_ch):
 
