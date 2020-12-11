@@ -66,6 +66,12 @@ def do_species_orig_dict(phs):
 
 	return species_orig_dict, species_ages_dict, sps_list, anc_list
 
+def collapsed_leaf(node):
+    if len(node2labels[node]) == 1:
+       return True
+    else:
+       return False
+
 # loop through list of orthogroups and calculate ages
 def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, sps_list, anc_list, clus_col=clus_col, gene_col=gene_col, split_ch=split_ch):
 
@@ -74,6 +80,7 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 	
 	# empty lists for outputs
 	gain_lis = np.zeros(len(clus_lis), dtype=object)
+	loss_lis = np.zeros(len(clus_lis), dtype=object)
 	pres_lis = np.zeros(len(clus_lis), dtype=object)
 	
 	# list of nodes (extant and ancestral)
@@ -167,7 +174,8 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 		# store losses in matrix
 		for clu_loss in set_loss:
 			mat_loss[clu_loss][c] = 1
-
+		# store per-og matrix
+		loss_lis[n] = ",".join(sorted(set_loss))
 
 		### LOG  ###
 		print("# %i/%i | %s | %s | %s" % (n+1,len(clus_lis),c, clu_gain,sps_clu_string))
@@ -180,10 +188,11 @@ def do_ancestral_reconstruction(ort, phs, species_orig_dict, species_ages_dict, 
 		"orthogroup" :  clus_lis,
 		"presence":     pres_lis,
 		"gain" :        gain_lis,
+		"loss" :        loss_lis,
 		"n_gains" :     mat_gain.sum(axis=1),
 		"n_losses" :    mat_loss.sum(axis=1),
 		"n_presences" : mat_pres.sum(axis=1) 
-	}, columns=[ "orthogroup","presence","gain","n_gains","n_losses","n_presences"] )
+	}, columns=[ "orthogroup","presence","gain","loss","n_gains","n_losses","n_presences"] )
 
 	# output
 	return dat, mat_gain, mat_loss, mat_pres
