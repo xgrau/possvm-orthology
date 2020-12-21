@@ -35,10 +35,12 @@ arl = vars(arp.parse_args())
 
 # input variables
 phy_fn = arl["in"]
+out_fn = arl["out"]
 
 # output folder
-if arl["out"] is None:
+if out_fn is None:
 	out_fn = os.path.dirname(phy_fn)
+	
 # check if out_fn exists, and create it if it doesn't
 if not os.path.exists(out_fn):
     os.makedirs(out_fn)
@@ -237,7 +239,6 @@ def parse_events(phy, outgroup):
 
 	# drop outgroup species, if any
 	if len(outgroup) > 0:
-		logging.info("Drop evolutionary events from %i outgroup species" % len(outgroup))
 		in_evs_sps =  [ i.split(split_ch)[0] in set(outgroup) for i in evs["in_gene"]  ]
 		out_evs_sps = [ i.split(split_ch)[0] in set(outgroup) for i in evs["out_gene"] ]
 		evs = evs.drop(np.where(np.logical_or(in_evs_sps, out_evs_sps))[0])
