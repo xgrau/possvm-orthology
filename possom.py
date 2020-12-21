@@ -17,26 +17,28 @@ arp = argparse.ArgumentParser()
 
 # Add the arguments to the parser
 arp.add_argument("-i", "--in", required=True, help="Path to a phylogenetic tree in newick format. Each sequence in the tree must have a prefix indicating the species, separated from gene name with a split character. Default split character is \"_\", see --split for options.", type=str)
-arp.add_argument("-o", "--out", required=False, default="./", help="OPTIONAL: Path to output folder. Defaults to present working directory.", type=str)
+arp.add_argument("-o", "--out", required=False, default=None, help="OPTIONAL: Path to output folder. Defaults to same directory as input file.", type=str)
 arp.add_argument("-p", "--phy",  required=False, default=None, help="OPTIONAL: Prefix for output files. Defaults to `basename` of input phylogeny. Default behaviour will never overwrite original files, because it adds suffixes.", type=str)
 arp.add_argument("-r", "--ref",  required=False, default=None, help="OPTIONAL: Path to a table indicating reference gene names that can be used for orthogroup labeling. Format: geneid <tab> name.", type=str)
-arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: Comma-separated list of reference species that will be used for orthogroup labeling.", type=str)
+arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: Comma-separated list of reference species that will be used for orthogroup labeling. If absent, all sequences present in the -r table will be considered.", type=str)
 arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Species overlap threshold used for orthology inference in ETE. Default is 0.", type=float)
+arp.add_argument("-outgroup","--outgroup", required=False, default=None, help="OPTIONAL: String. Define a set of species that are treated as outgroups in the phylogeny, and excluded from orthology clustering. Can be a comma-separated list of species, or a file with one species per line. This option DOES NOT affect tree rooting, just orthology clustering. Disabled by default.", type=str)
 arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONAL: String to use as species prefix delimiter in gene ids, e.g. \"_\" for sequences formatted as speciesA_geneX. Defaults to \"_\".", type=str)
-# arp.add_argument("-itermidroot", "--itermidroot",  required=False, action="store_true", help="OPTIONAL: Turns on iterative midpoint rooting with N iterations, which is used instead of simple midpoint rooting (which is the default).")
-arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Turns on iterative midpoint rooting with N iterations, which is used instead of simple midpoint rooting (which is the default).", type=int)
+arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Turns on iterative midpoint rooting with N iterations, which is used instead of the default midpoint rooting.", type=int)
 arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false", help="OPTIONAL: Turns off tree rooting using midpoint root, in case your trees are already rooted.")
 arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Turns off printing of annotated tree in PDF (annotated newick is still produced).")
 arp.add_argument("-min_transfer_support","--min_transfer_support", required=False, default=None, help="OPTIONAL: Min node support to allow transfer of labels from labelled to non-labelled groups in the same clade. If not set, this step is skipped.", type=float)
 arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, action="store_true", help="OPTIONAL: Will attempt to \"clean\" gene names from the reference table (see -r) used to create cluster names, to avoid very long strings in groups with many paralogs. Currently, it collapses number suffixes in gene names, and converts strings such as Hox2/Hox4 to Hox2-4. More complex substitutions are not supported.")
 arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length in the PDF file, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
-arp.add_argument("-ogprefix","--ogprefix", required=False, default="OG", help="OPTIONAL: String. Prefix to use to name orthologs. Defaults to \"OG\".", type=str)
+arp.add_argument("-ogprefix","--ogprefix", required=False, default="OG", help="OPTIONAL: String. Prefix for ortholog clusters. Defaults to \"OG\".", type=str)
 arl = vars(arp.parse_args())
 
 # input variables
 phy_fn = arl["in"]
-out_fn = arl["out"]
 
+# output folder
+if arl["out"] is None:
+	out_fn = os.path.dirname(phy_fn)
 # check if out_fn exists, and create it if it doesn't
 if not os.path.exists(out_fn):
     os.makedirs(out_fn)
@@ -68,6 +70,15 @@ if  arl["refsps"] is not None:
 	refsps = arl["refsps"].split(",")
 else:
 	refsps = arl["refsps"]
+
+
+if arl["outgroup"] is not None:
+	if os.path.exists(arl["outgroup"]):
+		outgroup = pd.read_csv(arl["outgroup"], names=["species"])["species"].values
+	else:
+		outgroup = arl["outgroup"].replace(","," ").split()
+else:
+	outgroup = []
 
 
 #########################
@@ -115,7 +126,7 @@ def print_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names
 
 # read in phylogeny and execute event parser to obtain table-like network of 
 # orthologous relationships, using the species overlap algorithm
-def parse_phylo(phy_fn, phy_id, do_root):
+def parse_phylo(phy_fn, phy_id, do_root, outgroup=outgroup):
 
 	# load input
 	phy = ete3.PhyloTree("%s" % (phy_fn))
@@ -150,7 +161,7 @@ def parse_phylo(phy_fn, phy_id, do_root):
 				phy_it.set_outgroup(phy_outgroup_it)
 
 				# parse events and re-do clustering
-				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it)
+				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it, outgroup=outgroup)
 				clu_it = clusters_mcl(evs=evs_it, node_list=phy_lis_it, verbose=False)
 
 				# store number of orthogroups in this particular iteration
@@ -185,7 +196,7 @@ def parse_phylo(phy_fn, phy_id, do_root):
 	phy.ladderize()
 
 	# parse events
-	evs, eva, phy, phy_lis = parse_events(phy=phy)
+	evs, eva, phy, phy_lis = parse_events(phy=phy, outgroup=outgroup)
 	clu = clusters_mcl(evs=evs, node_list=phy_lis)
 
 	# output from event parsing
@@ -194,7 +205,7 @@ def parse_phylo(phy_fn, phy_id, do_root):
 
 # parse phylogenies with ETE to obtain a network-like table defining 
 # orthologous relationships, using the species overlap algorithm
-def parse_events(phy):
+def parse_events(phy, outgroup):
 
 	# list of genes in phylogeny
 	phy_lis = phy.get_leaf_names()
@@ -223,6 +234,13 @@ def parse_events(phy):
 					n = n + 1
 	evs = pd.DataFrame(evs).dropna()
 	evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+
+	# drop outgroup species, if any
+	if len(outgroup) > 0:
+		logging.info("Drop evolutionary events from %i outgroup species" % len(outgroup))
+		in_evs_sps =  [ i.split(split_ch)[0] in set(outgroup) for i in evs["in_gene"]  ]
+		out_evs_sps = [ i.split(split_ch)[0] in set(outgroup) for i in evs["out_gene"] ]
+		evs = evs.drop(np.where(np.logical_or(in_evs_sps, out_evs_sps))[0])
 
 	# duplications and speciation events
 	eva    = np.empty((len(evev)*len(evev), 5), dtype="object")
