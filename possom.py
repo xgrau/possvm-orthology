@@ -8,6 +8,7 @@ import ete3
 import logging
 import networkx as nx
 from networkx.algorithms import community
+import markov_clustering
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import string
@@ -323,8 +324,6 @@ def clusters_louvain(evs, node_list, cluster_label="cluster", label_if_no_annot=
 # function to cluster a network-like table of orthologs (from ETE) 
 # using MCL
 def clusters_mcl(evs, node_list, inf=1.5, verbose=True):
-
-	import markov_clustering
 
 	if len(evs) > 0:
 
