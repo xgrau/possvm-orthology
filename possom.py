@@ -901,7 +901,7 @@ def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 #####################
 
 # # for testing:
-# phy_fn = "treefile"
+# phy_fn = "phy.zf-C2H2.HG73.seqs.iqtree.treefile"
 # phy_id = os.path.basename(phy_fn)
 # out_fn = "."
 # do_root = True
