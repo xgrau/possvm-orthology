@@ -1,6 +1,6 @@
 # Possom
 
-**Possom** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies **O**verlap and **M**CL*) is a python utility that analyses gene phylogenies and defines clusters of orthologs within each tree, taking advantage of the **[ETE toolkit](http://etetoolkit.org/)** to parse the phylogeny and identify orthologous gene pairs, and **[MCL clustering](https://micans.org/mcl/)** for orthogroup identification.
+**Possom** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies **O**verlap and **M**CL*) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[ETE toolkit](http://etetoolkit.org/)** to parse the phylogeny and identify orthologous gene pairs, and **[MCL clustering](https://micans.org/mcl/)** for orthogroup identification.
 
 Its basic functionality only requires a gene tree in newick format, with sequence name containing a prefix that indicates their species of origin, e.g. `human_gene1`. It does *not* require a species tree to infer orthologs, because it relies on the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in ETE (see [here](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)).
 
