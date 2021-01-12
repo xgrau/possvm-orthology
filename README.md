@@ -1,6 +1,6 @@
 # Possom
 
-**Possom** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies **O**verlap and **M**CL*) is a python utility that analyses gene phylogenies and defines clusters of orthologs within each tree, taking advantage of the **[ETE toolkit](http://etetoolkit.org/)** for phylogeny analysis and **[MCL clustering](https://micans.org/mcl/)**.
+**Possom** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies **O**verlap and **M**CL*) is a python utility that analyses gene phylogenies and defines clusters of orthologs within each tree, taking advantage of the **[ETE toolkit](http://etetoolkit.org/)** to parse the phylogeny and identify orthologous gene pairs, and **[MCL clustering](https://micans.org/mcl/)** for orthogroup identification.
 
 Its basic functionality only requires a gene tree in newick format, with sequence name containing a prefix that indicates their species of origin, e.g. `human_gene1`. It does *not* require a species tree to infer orthologs, because it relies on the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in ETE (see [here](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)).
 
@@ -12,9 +12,10 @@ Dibuix.
 
 Please cite the following papers:
 
-* ETE toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
+* *POSSOM* paper: **[here]**.
+* *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
-* MCL clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
+* *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
 
 ## Manual
 
@@ -73,13 +74,9 @@ optional arguments:
 
 ```
 
-#### Input files
+##### Input
 
-Examples of compliant input fles are provided in the `test_anopheles` folder.
-
-##### Phylogenies
-
-Phylogenies must be in **newick format** and can contain bootstrap supports, that will be used for MCL clustering.
+Phylogenies must be in **newick format** and can contain node supports.
 
 If you are using the **single tree mode**, use `-phy` to point to the gene tree.
 
@@ -88,24 +85,11 @@ If you are using the **tree collection mode**, use `-phy` to point to the tree f
 * `OG00001.newick`: `-suf newick`
 * `OG00001.iqtree.treefile`: `-suf iqtree.treefile`
 
-##### Table of orthlogs
+#### Output
 
-The **table of orthologs** (`-ort`) must be formatted as follows (columns separated by tabs):
-```
-gene1	OG1
-gene2	OG1
-gene3	OG2
-gene4	OG2
-...
-```
+* describe
 
-If you obtained your orthologs using Orthofinder, you can use this awk one-liner to obtain a table formatted as above from the `Orthofinder.txt` file:
-
-```bash
-awk '{ for (i=2; i <= NF; i++) { print $i"\t"$1 }}' Orthogroups.txt | sed "s/://" > Orthogroups_longformat.csv
-```
-
-### Gene ages: `possom_geneage.py`
+### Gene ages with `possom_geneage.py`
 
 **`possom_geneage.py`**: a simple way to obtain the **ages of genes and clusters of orthologs**. It takes as input the output table from `possom.py` (or any similarly formatted table) and a species tree, and outputs a new table with the age of each orthogroup and each gene.
 
@@ -123,8 +107,6 @@ Usage:
 
 ```bash
 python possom_nodeage.py -h
-/home/xavi/Programes/miniconda3/envs/pyco/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
-  return f(*args, **kwds)
 usage: possom_nodeage.py [-h] -tree TREE -ort ORT -out OUT [-ref REF]
                          [-dict DICT] [-gcol GCOL] [-ccol CCOL] [-split SPLIT]
 
@@ -205,7 +187,6 @@ Anoalb_AALB008240-RA	OG0000000	20	OG0000000_20
 Anoalb_AALB015485-RA	OG0000000	0	OG0000000_0
 ```
 
-## Requirements
+### Requirements
 
-
-Also
+Also:
