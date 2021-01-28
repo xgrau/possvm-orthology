@@ -424,7 +424,7 @@ def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_r
 	for c in cluster_list:
 		ref_is_node = np.isin(ref_s["gene"].values, clu[clu[cluster_label] == c][label_ref_node].values)
 		ref_names = ref_s["name"].values [ ref_is_node ]
-		cluster_tag = "/".join( np.unique(natural_sort([ str(i) for i in ref_names ])) )
+		cluster_tag = "/".join( natural_sort(np.unique([ str(i) for i in ref_names ])) )
 		cluster_tags[c] = cluster_tag
 
 	for c in cluster_list:
