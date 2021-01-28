@@ -188,14 +188,16 @@ def parse_phylo(phy_fn, phy_id, do_root, outgroup=outgroup):
 			logging.info("%s Midpoint root" % phy_id)
 			phy_outgroup = phy.get_midpoint_outgroup()
 
+		# set root
+		phy.set_outgroup(phy_outgroup)
+
 	# ignore rooting
 	else: 
 
 		pass
 		logging.info("%s Skip rooting (assume tree is already rooted)" % phy_id)
 
-	# root and ladderise phylogeny
-	phy.set_outgroup(phy_outgroup)
+	# ladderise phylogeny
 	phy.ladderize()
 
 	# parse events
@@ -422,7 +424,7 @@ def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_r
 	for c in cluster_list:
 		ref_is_node = np.isin(ref_s["gene"].values, clu[clu[cluster_label] == c][label_ref_node].values)
 		ref_names = ref_s["name"].values [ ref_is_node ]
-		cluster_tag = '/'.join(np.unique(np.sort(ref_names)))
+		cluster_tag = "/".join( np.unique(natural_sort([ str(i) for i in ref_names ])) )
 		cluster_tags[c] = cluster_tag
 
 	for c in cluster_list:
