@@ -1,6 +1,6 @@
-# Possom
+# Possvm
 
-**Possom** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies **O**verlap and **M**CL*) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[ETE toolkit](http://etetoolkit.org/)** to parse the phylogeny and identify orthologous gene pairs, and **[MCL clustering](https://micans.org/mcl/)** for orthogroup identification.
+**Possvm** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies O**v**erlap and **M**CL*) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[ETE toolkit](http://etetoolkit.org/)** to parse the phylogeny and identify orthologous gene pairs, and **[MCL clustering](https://micans.org/mcl/)** for orthogroup identification.
 
 Its basic functionality only requires a gene tree in newick format, with sequence name containing a prefix that indicates their species of origin, e.g. `human_gene1`. It does *not* require a species tree to infer orthologs, because it relies on the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in ETE (see [here](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)).
 
@@ -12,21 +12,21 @@ Dibuix.
 
 Please cite the following papers:
 
-* *POSSOM* paper: **[here]**.
+* *POSSVM* paper: **[here]**.
 * *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
 * *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
 
 ## Manual
 
-### Main script: `possom.py`
+### Main script: `possvm.py`
 
-**`possom.py`** is the main script, used to parse phylogenetic trees and obtain sub-groups of genes that constitute ortholog clusters.
+**`possvm.py`** is the main script, used to parse phylogenetic trees and obtain sub-groups of genes that constitute ortholog clusters.
 
 Usage:
 
 ```bash
-usage: possom.py [-h] -p PHY -o OUT [-i ID] [-r REF]
+usage: possvm.py [-h] -p PHY -o OUT [-i ID] [-r REF]
                  [-refsps REFSPS] [-s SOS]
                  [-split SPLIT] [-skiproot]
                  [-skipprint]
@@ -89,9 +89,9 @@ If you are using the **tree collection mode**, use `-phy` to point to the tree f
 
 * describe
 
-### Gene ages with `possom_geneage.py`
+### Gene ages with `possvm_geneage.py`
 
-**`possom_geneage.py`**: a simple way to obtain the **ages of genes and clusters of orthologs**. It takes as input the output table from `possom.py` (or any similarly formatted table) and a species tree, and outputs a new table with the age of each orthogroup and each gene.
+**`possvm_geneage.py`**: a simple way to obtain the **ages of genes and clusters of orthologs**. It takes as input the output table from `possvm.py` (or any similarly formatted table) and a species tree, and outputs a new table with the age of each orthogroup and each gene.
 
 All gene ages are relative to a pre-defined species of reference, and are defined as follows:
 
@@ -106,8 +106,8 @@ This script **requires a species tree** in newick format.
 Usage:
 
 ```bash
-python possom_nodeage.py -h
-usage: possom_nodeage.py [-h] -tree TREE -ort ORT -out OUT [-ref REF]
+python possvm_nodeage.py -h
+usage: possvm_nodeage.py [-h] -tree TREE -ort ORT -out OUT [-ref REF]
                          [-dict DICT] [-gcol GCOL] [-ccol CCOL] [-split SPLIT]
 
 optional arguments:
@@ -141,10 +141,10 @@ optional arguments:
 
 #### Analyse a collection of gene trees
 
-Run **`possom.py`** on a collection of trees:
+Run **`possvm.py`** on a collection of trees:
 
 ```bash
-python possom.py -phy test_anopheles/trees/ -suf newick -out test_anopheles/output_etemcl -ort test_anopheles/Orthogroups_longformat.csv -ani main
+python possvm.py -phy test_anopheles/trees/ -suf newick -out test_anopheles/output_etemcl -ort test_anopheles/Orthogroups_longformat.csv -ani main
 ```
 
 Check output in `test_anopheles/output_etemcl.orthology.csv`:
@@ -165,10 +165,10 @@ Anoalb_AALB015485-RA	OG0000000	0	OG0000000_0
 
 #### Analyse a a single gene tree
 
-Run **`possom.py`** on a collection of trees:
+Run **`possvm.py`** on a collection of trees:
 
 ```bash
-python possom.py -phy test_anopheles/trees/ -suf newick -out test_anopheles/output_etemcl -ort test_anopheles/Orthogroups_longformat.csv -ani main
+python possvm.py -phy test_anopheles/trees/ -suf newick -out test_anopheles/output_etemcl -ort test_anopheles/Orthogroups_longformat.csv -ani main
 ```
 
 Check output in `test_anopheles/output_etemcl.orthology.csv`:
