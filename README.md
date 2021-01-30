@@ -1,6 +1,6 @@
 # Possvm
 
-**Possvm** (***P**hylogenetic **O**rtholog **S**orting with **S**pecies O**v**erlap and **M**CL*) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[ETE toolkit](http://etetoolkit.org/)** to parse the phylogeny and identify orthologous gene pairs, and **[MCL clustering](https://micans.org/mcl/)** for orthogroup identification.
+**Possvm** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies O**v**erlap and **M**CL_) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[*ETE* toolkit](http://etetoolkit.org/)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
 
 Its basic functionality only requires a gene tree in newick format, with sequence name containing a prefix that indicates their species of origin, e.g. `human_gene1`. It does *not* require a species tree to infer orthologs, because it relies on the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in ETE (see [here](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)).
 
@@ -10,9 +10,9 @@ Dibuix.
 
 ## How to cite
 
-Please cite the following papers:
+If you use *Possvm*, please cite the following papers:
 
-* *POSSVM* paper: **[here]**.
+* *Possvm* paper: **[here]**.
 * *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
 * *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
@@ -25,37 +25,52 @@ Please cite the following papers:
 
 Usage:
 
-```bash
-usage: possvm.py [-h] -p PHY -o OUT [-i ID] [-r REF]
-                 [-refsps REFSPS] [-s SOS]
-                 [-split SPLIT] [-skiproot]
-                 [-skipprint]
+```man
+usage: possvm.py [-h] -i IN [-o OUT] [-p PHY] [-r REF] [-refsps REFSPS]
+                 [-s SOS] [-outgroup OUTGROUP] [-split SPLIT]
+                 [-itermidroot ITERMIDROOT] [-skiproot] [-skipprint]
                  [-min_transfer_support MIN_TRANSFER_SUPPORT]
-                 [-extratio EXTRATIO]
+                 [-clean_gene_names] [-cut_gene_names CUT_GENE_NAMES]
+                 [-ogprefix OGPREFIX]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -p PHY, --phy PHY     Path to a phylogenetic tree in newick format. Each
+  -i IN, --in IN        Path to a phylogenetic tree in newick format. Each
                         sequence in the tree must have a prefix indicating the
                         species, separated from gene name with a split
                         character. Default split character is "_", see --split
                         for options.
-  -o OUT, --out OUT     Path to output folder. Defaults to present working
-                        directory.
-  -i ID, --id ID        OPTIONAL: String. Gene family name, used when naming
-                        ortholog clusters. Defaults to "genefam".
+  -o OUT, --out OUT     OPTIONAL: Path to output folder. Defaults to same
+                        directory as input file.
+  -p PHY, --phy PHY     OPTIONAL: Prefix for output files. Defaults to
+                        `basename` of input phylogeny. Default behaviour will
+                        never overwrite original files, because it adds
+                        suffixes.
   -r REF, --ref REF     OPTIONAL: Path to a table indicating reference gene
                         names that can be used for orthogroup labeling.
                         Format: geneid <tab> name.
   -refsps REFSPS, --refsps REFSPS
                         OPTIONAL: Comma-separated list of reference species
-                        that will be used for orthogroup labeling.
+                        that will be used for orthogroup labeling. If absent,
+                        all sequences present in the -r table will be
+                        considered.
   -s SOS, --sos SOS     OPTIONAL: Species overlap threshold used for orthology
                         inference in ETE. Default is 0.
+  -outgroup OUTGROUP, --outgroup OUTGROUP
+                        OPTIONAL: String. Define a set of species that are
+                        treated as outgroups in the phylogeny, and excluded
+                        from orthology clustering. Can be a comma-separated
+                        list of species, or a file with one species per line.
+                        This option DOES NOT affect tree rooting, just
+                        orthology clustering. Disabled by default.
   -split SPLIT, --split SPLIT
                         OPTIONAL: String to use as species prefix delimiter in
                         gene ids, e.g. "_" for sequences formatted as
                         speciesA_geneX. Defaults to "_".
+  -itermidroot ITERMIDROOT, --itermidroot ITERMIDROOT
+                        OPTIONAL: Turns on iterative midpoint rooting with N
+                        iterations, which is used instead of the default
+                        midpoint rooting.
   -skiproot, --skiproot
                         OPTIONAL: Turns off tree rooting using midpoint root,
                         in case your trees are already rooted.
@@ -66,26 +81,32 @@ optional arguments:
                         OPTIONAL: Min node support to allow transfer of labels
                         from labelled to non-labelled groups in the same
                         clade. If not set, this step is skipped.
-  -extratio EXTRATIO, --extratio EXTRATIO
-                        NOT IN USE!! OPTIONAL: In order to perform extended
-                        label propagation, you can assign XX. Ratio Defaults
-                        to 1.5, ie closest group is 50pp loser to unlabelled
-                        group than the second closest group.
-
+  -clean_gene_names, --clean_gene_names
+                        OPTIONAL: Will attempt to "clean" gene names from the
+                        reference table (see -r) used to create cluster names,
+                        to avoid very long strings in groups with many
+                        paralogs. Currently, it collapses number suffixes in
+                        gene names, and converts strings such as Hox2/Hox4 to
+                        Hox2-4. More complex substitutions are not supported.
+  -cut_gene_names CUT_GENE_NAMES, --cut_gene_names CUT_GENE_NAMES
+                        OPTIONAL: Integer. If set, will shorten cluster name
+                        strings to the given length in the PDF file, to avoid
+                        long strings in groups with many paralogs. Default is
+                        no shortening.
+  -ogprefix OGPREFIX, --ogprefix OGPREFIX
+                        OPTIONAL: String. Prefix for ortholog clusters.
+                        Defaults to "OG".
 ```
 
-##### Input
+Input:
 
-Phylogenies must be in **newick format** and can contain node supports.
+* Phylogenies must be in **newick format** and can contain node supports.
 
-If you are using the **single tree mode**, use `-phy` to point to the gene tree.
+* If you are using the **single tree mode**, use `-phy` to point to the gene tree.
 
-If you are using the **tree collection mode**, use `-phy` to point to the tree folder. Each phylogeny in the tree folder must be named as follows: `orthogroup_name.suffix`. The suffix is indicated with the `-suf` flag. Examples:
+* If you are using the **tree collection mode**, use `-phy` to point to the tree folder. Each phylogeny in the tree folder must be named as follows: `orthogroup_name.suffix`. The suffix is indicated with the `-suf` flag.
 
-* `OG00001.newick`: `-suf newick`
-* `OG00001.iqtree.treefile`: `-suf iqtree.treefile`
-
-#### Output
+Output:
 
 * describe
 
@@ -137,56 +158,48 @@ optional arguments:
 
 ```
 
+
+### Install *Possvm* and its dependencies
+
+***Possvm*** depends on the [*ETE* toolkit](http://etetoolkit.org/) Python library, which currently works best with Python 3.6 and can be installed via *conda*. We thus recommend that you use conda to install *ETE* and all other dependencies.
+
+Once you have a working installation of *conda* (see [here for instructions](http://etetoolkit.org/download/)), you can run the following commands:
+
+```bash
+# create environment for possvm
+conda create -n possvm python=3.6
+# install ETE toolkit
+conda install -c etetoolkit ete3
+# install other dependencies
+conda install -c bioconda pandas networkx markov_clustering matplotlib
+# activate the environment
+conda activate possvm
+```
+
+Alternatively, you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
+
+```bash
+# create env and install packages
+conda env create -n possvm --file environment.yaml
+# activate the environment
+conda activate possvm
+```
+
+Both options should download and install all basic dependencies, including the following packages:
+
+```bash
+ete3                      3.1.2              pyh39e3cac_0    etetoolkit
+markov_clustering         0.0.6                      py_0    bioconda
+matplotlib                3.3.2                h06a4308_0  
+matplotlib-base           3.3.2            py36h817c723_0  
+networkx                  2.5                        py_0  
+numpy                     1.19.2           py36h54aff64_0  
+numpy-base                1.19.2           py36hfa32c7d_0  
+pandas                    1.1.3            py36he6710b0_0  
+python                    3.6.12               hcff3b4d_2  
+```
+
 ### Examples
 
-#### Analyse a collection of gene trees
+Some examples
 
-Run **`possvm.py`** on a collection of trees:
-
-```bash
-python possvm.py -phy test_anopheles/trees/ -suf newick -out test_anopheles/output_etemcl -ort test_anopheles/Orthogroups_longformat.csv -ani main
-```
-
-Check output in `test_anopheles/output_etemcl.orthology.csv`:
-
-```bash
-$ head test_anopheles/output_etemcl.orthology.csv
-node	og	cluster	og_cluster
-Anoalb_AALB001334-RA	OG0000000		OG0000000_nan
-Anoalb_AALB002504-RA	OG0000000	10	OG0000000_10
-Anoalb_AALB002511-RA	OG0000000	2	OG0000000_2
-Anoalb_AALB002512-RA	OG0000000	3	OG0000000_3
-Anoalb_AALB003039-RA	OG0000000	4	OG0000000_4
-Anoalb_AALB008232-RA	OG0000000	9	OG0000000_9
-Anoalb_AALB008239-RA	OG0000000	12	OG0000000_12
-Anoalb_AALB008240-RA	OG0000000	20	OG0000000_20
-Anoalb_AALB015485-RA	OG0000000	0	OG0000000_0
-```
-
-#### Analyse a a single gene tree
-
-Run **`possvm.py`** on a collection of trees:
-
-```bash
-python possvm.py -phy test_anopheles/trees/ -suf newick -out test_anopheles/output_etemcl -ort test_anopheles/Orthogroups_longformat.csv -ani main
-```
-
-Check output in `test_anopheles/output_etemcl.orthology.csv`:
-
-```bash
-$ head test_anopheles/output_etemcl.orthology.csv
-node	og	cluster	og_cluster
-Anoalb_AALB001334-RA	OG0000000		OG0000000_nan
-Anoalb_AALB002504-RA	OG0000000	10	OG0000000_10
-Anoalb_AALB002511-RA	OG0000000	2	OG0000000_2
-Anoalb_AALB002512-RA	OG0000000	3	OG0000000_3
-Anoalb_AALB003039-RA	OG0000000	4	OG0000000_4
-Anoalb_AALB008232-RA	OG0000000	9	OG0000000_9
-Anoalb_AALB008239-RA	OG0000000	12	OG0000000_12
-Anoalb_AALB008240-RA	OG0000000	20	OG0000000_20
-Anoalb_AALB015485-RA	OG0000000	0	OG0000000_0
-```
-
-### Requirements
-
-Also:

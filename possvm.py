@@ -21,13 +21,13 @@ arp.add_argument("-i", "--in", required=True, help="Path to a phylogenetic tree 
 arp.add_argument("-o", "--out", required=False, default=None, help="OPTIONAL: Path to output folder. Defaults to same directory as input file.", type=str)
 arp.add_argument("-p", "--phy",  required=False, default=None, help="OPTIONAL: Prefix for output files. Defaults to `basename` of input phylogeny. Default behaviour will never overwrite original files, because it adds suffixes.", type=str)
 arp.add_argument("-r", "--ref",  required=False, default=None, help="OPTIONAL: Path to a table indicating reference gene names that can be used for orthogroup labeling. Format: geneid <tab> name.", type=str)
-arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: Comma-separated list of reference species that will be used for orthogroup labeling. If absent, all sequences present in the -r table will be considered.", type=str)
+arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: Comma-separated list of reference species that will be used for orthogroup labeling. If absent, gene names present in the -r table will be considered.", type=str)
 arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Species overlap threshold used for orthology inference in ETE. Default is 0.", type=float)
 arp.add_argument("-outgroup","--outgroup", required=False, default=None, help="OPTIONAL: String. Define a set of species that are treated as outgroups in the phylogeny, and excluded from orthology clustering. Can be a comma-separated list of species, or a file with one species per line. This option DOES NOT affect tree rooting, just orthology clustering. Disabled by default.", type=str)
-arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONAL: String to use as species prefix delimiter in gene ids, e.g. \"_\" for sequences formatted as speciesA_geneX. Defaults to \"_\".", type=str)
+arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONAL: String to use as species prefix delimiter in gene ids, e.g. \"_\" for gene names formatted as speciesA_geneX. Defaults to \"_\".", type=str)
 arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Turns on iterative midpoint rooting with N iterations, which is used instead of the default midpoint rooting.", type=int)
 arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false", help="OPTIONAL: Turns off tree rooting using midpoint root, in case your trees are already rooted.")
-arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Turns off printing of annotated tree in PDF (annotated newick is still produced).")
+arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Turns off printing of annotated phylogeny in PDF format (annotated newick is still produced).")
 arp.add_argument("-min_transfer_support","--min_transfer_support", required=False, default=None, help="OPTIONAL: Min node support to allow transfer of labels from labelled to non-labelled groups in the same clade. If not set, this step is skipped.", type=float)
 arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, action="store_true", help="OPTIONAL: Will attempt to \"clean\" gene names from the reference table (see -r) used to create cluster names, to avoid very long strings in groups with many paralogs. Currently, it collapses number suffixes in gene names, and converts strings such as Hox2/Hox4 to Hox2-4. More complex substitutions are not supported.")
 arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length in the PDF file, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
@@ -556,8 +556,6 @@ def natural_sort(l):
 	return sorted(l, key = alphanum_key)
 
 
-
-
 def find_support_cluster(clu, phy, cluster_label="cluster"):
 	
 	# input and output lists
@@ -927,7 +925,7 @@ clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
 clu["node_ref"] = ""
 
 # find cluster supports (support in oldest node in cluster)
-# clu["supports"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
+clu["supports"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
 
 # infer gene-to-gene orthology relationship classes (inparalog/outparalog/ortholog)
 eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
@@ -944,9 +942,9 @@ if do_ref:
 	ref =  ref[ np.isin(element=ref["gene"].values, test_elements=phy_lis) ]
 
 	# report which reference sequences can be found within cluster
-	clu["cluster_ref"]     = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA", clean_gene_names=clean_gene_names)
+	clu["cluster_ref"]  = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA", clean_gene_names=clean_gene_names)
 	clu["cluster_name"] = ogprefix + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
-	print_attributes       = ["cluster_name"]
+	print_attributes    = ["cluster_name"]
 
 	# find named orthologs anywhere in the phylogeny
 	clu["node_ref"] = ref_known_any(clu=clu, evs=evs, ref=ref, syn_nod=None)
@@ -956,8 +954,6 @@ if do_ref:
 	if min_transfer_support is not None:
 		clu["extended_clusters"], clu["extended_labels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_transfer_support=min_transfer_support)
 		ixs_to_rename = np.where(clu["extended_clusters"].values != None)[0]
-		#clu.loc[ ixs_to_rename, "cluster_name" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":islike:" + ogprefix + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str) + ":" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
-		# clu.loc[ ixs_to_rename, "cluster_name" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":like:" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str) + ":likeclu:" + clu.loc[ ixs_to_rename, "extended_clusters" ].astype(str)
 		clu.loc[ ixs_to_rename, "cluster_name" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":like:" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
 		clu["extended_direct"], clu["extended_directlabels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="node_ref", ref_NA_label="NA", cluster_label="node", min_transfer_support=0, exclude_level="cluster_ref", exclude_label="NA")
 		ixs_to_rename = np.where(clu["extended_direct"].values != None)[0]
