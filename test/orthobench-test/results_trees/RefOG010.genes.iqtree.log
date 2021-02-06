@@ -1,0 +1,65 @@
+IQ-TREE multicore version 2.1.0 for Linux 64-bit built Jul 18 2020
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    node-hp0408.linux.crg.es (AVX, 125 GB RAM)
+Command: /users/asebe/xgraubove/Programes/iqtree-2.1.0-Linux/bin/iqtree2 -s results_trees/RefOG010.genes.lt.fasta -m TEST -mset LG,WAG,JTT -nt AUTO -ntmax 8 -bb 1000 -pre results_trees/RefOG010.genes.iqtree -nm 10000 -nstop 200 -cptime 1800
+Seed:    421705 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Sat Feb  6 13:26:52 2021
+Kernel:  AVX - auto-detect threads (8 CPU cores detected)
+
+Reading alignment file results_trees/RefOG010.genes.lt.fasta ... Fasta format detected
+Alignment most likely contains protein sequences
+Alignment has 3 sequences with 420 columns, 36 distinct patterns
+0 parsimony-informative, 0 singleton sites, 420 constant sites
+                           Gap/Ambiguity  Composition  p-value
+   1  Mmus_ENSMUSP00000086311      0.00%    passed    100.00%
+   2  Mmus_ENSMUSP00000086314      0.00%    passed    100.00%
+   3  Ratnor_ENSRNOP00000065522    8.10%    passed    100.00%
+****  TOTAL                        2.70%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+NOTE: Mmus_ENSMUSP00000086314 is identical to Mmus_ENSMUSP00000086311 but kept for subsequent analysis
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.000 seconds
+Measuring multi-threading efficiency up to 8 CPU cores
+Increase to 10 rounds for branch lengths
+111197 trees examined
+Threads: 1 / Time: 8.000 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -1198
+Threads: 2 / Time: 5.360 sec / Speedup: 1.492 / Efficiency: 75% / LogL: -1198
+Threads: 3 / Time: 5.344 sec / Speedup: 1.497 / Efficiency: 50% / LogL: -1198
+BEST NUMBER OF THREADS: 2
+
+Perform fast likelihood tree search using LG model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -1198.020
+Optimal log-likelihood: -1198.020
+Parameters optimization took 1 rounds (0.000 sec)
+Time for fast ML tree search: 0.000 seconds
+
+NOTE: ModelFinder requires 0 MB RAM!
+ModelFinder will test up to 6 protein models (sample size: 420) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  1  LG            1198.020     3   2402.039     2402.097     2414.160
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  2  LG+F          1156.414     22  2356.828     2359.377     2445.713
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  3  WAG           1193.863     3   2393.725     2393.783     2405.846
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  4  WAG+F         1156.414     22  2356.828     2359.377     2445.713
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  5  JTT           1191.873     3   2389.747     2389.804     2401.867
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+  6  JTT+F         1156.414     22  2356.828     2359.377     2445.713
+Akaike Information Criterion:           LG+F
+Corrected Akaike Information Criterion: LG+F
+Bayesian Information Criterion:         JTT
+Best-fit model: JTT chosen according to BIC
+
+All model information printed to results_trees/RefOG010.genes.iqtree.model.gz
+CPU time for ModelFinder: 35.021 seconds (0h:0m:35s)
+Wall-clock time for ModelFinder: 18.743 seconds (0h:0m:18s)
+Generating 1000 samples for ultrafast bootstrap (seed: 421705)...
+ERROR: It makes no sense to perform bootstrap with less than 4 sequences.

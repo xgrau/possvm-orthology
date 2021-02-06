@@ -1,0 +1,359 @@
+IQ-TREE multicore version 2.1.0 for Linux 64-bit built Jul 18 2020
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    node-hp0412.linux.crg.es (AVX, 125 GB RAM)
+Command: /users/asebe/xgraubove/Programes/iqtree-2.1.0-Linux/bin/iqtree2 -s results_trees/RefOG003.genes.lt.fasta -m TEST -mset LG,WAG,JTT -nt AUTO -ntmax 8 -bb 1000 -pre results_trees/RefOG003.genes.iqtree -nm 10000 -nstop 200 -cptime 1800
+Seed:    617004 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Sat Feb  6 13:28:26 2021
+Kernel:  AVX - auto-detect threads (8 CPU cores detected)
+
+Reading alignment file results_trees/RefOG003.genes.lt.fasta ... Fasta format detected
+Alignment most likely contains protein sequences
+Alignment has 150 sequences with 615 columns, 615 distinct patterns
+615 parsimony-informative, 0 singleton sites, 0 constant sites
+                           Gap/Ambiguity  Composition  p-value
+   1  Bralan_BL05838_evm0          8.29%    passed     33.28%
+   2  Hsap_ENSP00000386502        42.44%    failed      1.30%
+   3  Pantro_ENSPTRP00000032291   42.44%    failed      1.33%
+   4  Pantro_ENSPTRP00000078379   42.44%    failed      1.33%
+   5  Ratnor_ENSRNOP00000001382   42.60%    passed     17.43%
+   6  Bralan_BL12884_evm9         44.07%    passed     68.72%
+   7  Galgal_ENSGALP00000013266   42.76%    passed     37.71%
+   8  Cint_ENSCINP00000024626     47.80%    failed      1.33%
+   9  Bralan_BL16542_evm0         72.52%    passed     23.54%
+  10  Canfam_ENSCAFP00000061754   11.38%    passed     10.28%
+  11  Hsap_ENSP00000267116        10.08%    passed     18.34%
+  12  Pantro_ENSPTRP00000008656   10.08%    passed     21.92%
+  13  Mmus_ENSMUSP00000014642     10.08%    passed     21.78%
+  14  Ratnor_ENSRNOP00000045243   10.08%    passed     19.01%
+  15  Galgal_ENSGALP00000058066   10.24%    passed     31.02%
+  16  Tetnig_ENSTNIP00000000101   10.24%    passed     22.58%
+  17  Tetnig_ENSTNIP00000020926   13.01%    passed      7.67%
+  18  Cint_ENSCINP00000032542     14.80%    passed     43.87%
+  19  Bralan_BL23791_cuf11         4.39%    failed      0.00%
+  20  Sman_Smp_143770             68.29%    passed     17.95%
+  21  Bralan_BL18048_cuf6         33.50%    passed     26.83%
+  22  Cint_ENSCINP00000017539     76.26%    passed     11.36%
+  23  Nvec_EDO37520                4.23%    passed      7.12%
+  24  Cele_WBGene00006616.1        3.74%    failed      0.06%
+  25  Tetnig_ENSTNIP00000016960   61.30%    failed      0.36%
+  26  Canfam_ENSCAFP00000011747    6.34%    passed     98.67%
+  27  Hsap_ENSP00000419199         6.34%    passed     85.82%
+  28  Pantro_ENSPTRP00000068816    6.34%    passed     86.87%
+  29  Mondom_ENSMODP00000000114   42.11%    passed     55.24%
+  30  Mmus_ENSMUSP00000087810      5.53%    passed     94.81%
+  31  Mmus_ENSMUSP00000155147      5.53%    passed     94.81%
+  32  Ratnor_ENSRNOP00000017995    6.34%    passed     97.75%
+  33  Galgal_ENSGALP00000008868    5.85%    passed     90.84%
+  34  Tetnig_ENSTNIP00000020643   16.59%    passed     17.00%
+  35  Drer_ENSDARP00000143738      5.69%    passed     91.18%
+  36  Drer_ENSDARP00000151817      5.69%    passed     91.18%
+  37  Drer_ENSDARP00000150851      5.69%    passed     91.54%
+  38  Tetnig_ENSTNIP00000002256   18.70%    passed     89.20%
+  39  Drer_ENSDARP00000142281     15.61%    passed     81.19%
+  40  Canfam_ENSCAFP00000044251    6.18%    passed     40.31%
+  41  Hsap_ENSP00000397655         6.18%    passed     26.03%
+  42  Pantro_ENSPTRP00000033631    6.18%    passed     31.06%
+  43  Mmus_ENSMUSP00000031696      6.99%    passed     17.24%
+  44  Ratnor_ENSRNOP00000057236    6.99%    passed     15.61%
+  45  Mondom_ENSMODP00000044329    5.37%    failed      1.44%
+  46  Galgal_ENSGALP00000014312    6.02%    failed      1.29%
+  47  Drer_ENSDARP00000114637      6.50%    passed     12.24%
+  48  Tetnig_ENSTNIP00000021658   15.12%    failed      0.53%
+  49  Drer_ENSDARP00000146405      7.32%    passed     84.68%
+  50  Drer_ENSDARP00000148698      7.32%    passed     85.35%
+  51  Drer_ENSDARP00000151401      8.62%    passed     77.20%
+  52  Tetnig_ENSTNIP00000013317    7.80%    failed      0.05%
+  53  Canfam_ENSCAFP00000025970    8.94%    passed     47.99%
+  54  Hsap_ENSP00000451575         8.29%    passed     86.91%
+  55  Hsap_ENSP00000480388         8.29%    passed     86.91%
+  56  Pantro_ENSPTRP00000011370    8.29%    passed     84.37%
+  57  Mmus_ENSMUSP00000021617      8.29%    passed     56.53%
+  58  Ratnor_ENSRNOP00000070875   56.42%    passed      6.07%
+  59  Ratnor_ENSRNOP00000071182    8.29%    passed     59.65%
+  60  Mondom_ENSMODP00000002800    8.13%    passed     81.39%
+  61  Galgal_ENSGALP00000017666    8.29%    passed     23.48%
+  62  Drer_ENSDARP00000117664      7.48%    passed     12.86%
+  63  Tetnig_ENSTNIP00000007468   19.84%    passed     97.64%
+  64  Drer_ENSDARP00000127227      6.67%    passed     57.90%
+  65  Tetnig_ENSTNIP00000020505   16.75%    failed      0.00%
+  66  Drer_ENSDARP00000130867     11.87%    failed      0.00%
+  67  Drer_ENSDARP00000118220      4.55%    passed     18.46%
+  68  Mmus_ENSMUSP00000101522      3.58%    passed     25.73%
+  69  Mondom_ENSMODP00000044213    9.27%    failed      3.65%
+  70  Nvec_EDO44153               64.39%    passed     24.46%
+  71  Cele_WBGene00003068.1        8.13%    failed      4.96%
+  72  Tetnig_ENSTNIP00000014843   62.11%    failed      2.15%
+  73  Cint_ENSCINP00000026511     65.85%    passed     47.39%
+  74  Galgal_ENSGALP00000003746    7.80%    failed      0.00%
+  75  Tetnig_ENSTNIP00000021733    6.99%    failed      0.06%
+  76  Canfam_ENSCAFP00000011746   11.54%    passed     41.64%
+  77  Hsap_ENSP00000262209        11.87%    passed      6.70%
+  78  Pantro_ENSPTRP00000046657   11.87%    passed      5.39%
+  79  Mmus_ENSMUSP00000043594     11.54%    passed     14.74%
+  80  Ratnor_ENSRNOP00000009874   11.54%    passed     29.18%
+  81  Drer_ENSDARP00000119200     12.03%    passed     69.13%
+  82  Ratnor_ENSRNOP00000016349   72.36%    passed     91.90%
+  83  Canfam_ENSCAFP00000022439   11.71%    passed     96.07%
+  84  Galgal_ENSGALP00000002221   12.52%    passed     40.75%
+  85  Tetnig_ENSTNIP00000011405   11.87%    passed     44.39%
+  86  Tadh_TriadP25626            45.04%    failed      0.24%
+  87  Mondom_ENSMODP00000024782   21.30%    failed      0.00%
+  88  Bralan_BL18710_cuf1         48.13%    passed     11.31%
+  89  Bralan_BL95838_evm0         50.57%    passed     37.37%
+  90  Dmel_FBpp0086727             6.02%    failed      0.00%
+  91  Drer_ENSDARP00000123268     57.89%    passed     27.32%
+  92  Drer_ENSDARP00000154174     58.70%    passed     44.62%
+  93  Tetnig_ENSTNIP00000016430   56.10%    passed     13.90%
+  94  Mondom_ENSMODP00000002174   56.42%    passed     69.47%
+  95  Bralan_BL23597_cuf3         63.09%    passed     36.34%
+  96  Dmel_FBpp0306094            10.24%    failed      0.17%
+  97  Bralan_BL16431_evm0         46.67%    failed      0.86%
+  98  Canfam_ENSCAFP00000006932   38.70%    failed      0.00%
+  99  Hsap_ENSP00000164227        51.06%    failed      0.32%
+ 100  Pantro_ENSPTRP00000048640   51.06%    failed      0.26%
+ 101  Mmus_ENSMUSP00000113851     51.22%    failed      0.53%
+ 102  Ratnor_ENSRNOP00000025913   53.17%    failed      1.55%
+ 103  Mondom_ENSMODP00000026088   50.41%    failed      0.06%
+ 104  Drer_ENSDARP00000153029     56.75%    passed     20.65%
+ 105  Galgal_ENSGALP00000060090   12.20%    passed      7.70%
+ 106  Hsap_ENSP00000226574        13.01%    passed     10.20%
+ 107  Pantro_ENSPTRP00000028033   13.01%    passed     10.20%
+ 108  Mondom_ENSMODP00000025861   11.38%    passed     12.97%
+ 109  Pantro_ENSPTRP00000066154   17.24%    failed      0.79%
+ 110  Cele_WBGene00007801.1        7.64%    failed      0.05%
+ 111  Canfam_ENSCAFP00000003986   21.46%    passed     37.21%
+ 112  Hsap_ENSP00000499751        20.98%    passed     49.29%
+ 113  Pantro_ENSPTRP00000081641   20.98%    passed     49.29%
+ 114  Mmus_ENSMUSP00000144900     19.84%    passed     38.47%
+ 115  Ratnor_ENSRNOP00000060663   21.95%    passed     43.49%
+ 116  Mondom_ENSMODP00000028428   21.63%    passed     16.01%
+ 117  Galgal_ENSGALP00000059321   20.98%    passed     18.67%
+ 118  Drer_ENSDARP00000012869     23.25%    passed     24.38%
+ 119  Cint_ENSCINP00000001514     14.96%    failed      0.18%
+ 120  Drer_ENSDARP00000091115      9.76%    passed     27.93%
+ 121  Nvec_EDO43577               15.93%    passed     12.43%
+ 122  Canfam_ENSCAFP00000048797   30.24%    failed      0.00%
+ 123  Drer_ENSDARP00000135389     37.40%    passed     86.23%
+ 124  Tetnig_ENSTNIP00000011335   34.15%    passed     54.07%
+ 125  Mmus_ENSMUSP00000038450     33.66%    failed      0.00%
+ 126  Hsap_ENSP00000325895        32.03%    failed      0.02%
+ 127  Pantro_ENSPTRP00000063220   32.03%    failed      0.03%
+ 128  Ratnor_ENSRNOP00000063997   32.52%    failed      0.01%
+ 129  Canfam_ENSCAFP00000010278   24.39%    passed     67.07%
+ 130  Hsap_ENSP00000342295        24.39%    passed     50.11%
+ 131  Pantro_ENSPTRP00000028930   24.39%    passed     55.65%
+ 132  Mmus_ENSMUSP00000022275     24.39%    passed     36.53%
+ 133  Drer_ENSDARP00000130140     25.37%    passed     77.07%
+ 134  Tetnig_ENSTNIP00000021546   28.78%    passed     47.53%
+ 135  Galgal_ENSGALP00000073076   41.79%    passed     33.78%
+ 136  Mondom_ENSMODP00000042849   21.46%    passed      6.67%
+ 137  Cele_WBGene00019782.1       35.45%    passed     41.70%
+ 138  Cele_WBGene00021304.1       18.86%    passed      8.99%
+ 139  Bralan_BL95599_evm1         54.47%    passed      9.07%
+ 140  Bralan_BL95601_evm3         52.85%    failed      2.45%
+ 141  Mondom_ENSMODP00000009499   23.25%    failed      1.85%
+ 142  Mlei_ML358816a-PA           26.34%    failed      0.45%
+ 143  Cint_ENSCINP00000032002     26.34%    failed      0.03%
+ 144  Mlei_ML45397a-PA            20.49%    failed      0.02%
+ 145  Bralan_BL17757_cuf1         37.72%    passed     12.54%
+ 146  Mlei_ML05803a-PA            21.46%    failed      3.29%
+ 147  Cele_WBGene00002069.1       23.74%    failed      0.09%
+ 148  Tetnig_ENSTNIP00000019856   20.98%    failed      1.66%
+ 149  Bralan_BL15566_evm0         34.63%    passed     22.89%
+ 150  Canfam_ENSCAFP00000005476   29.59%    passed      7.06%
+WARNING: 23 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                       24.10%  45 sequences failed composition chi2 test (p-value<5%; df=19)
+NOTE: Pantro_ENSPTRP00000078379 is identical to Pantro_ENSPTRP00000032291 but kept for subsequent analysis
+NOTE: Mmus_ENSMUSP00000155147 is identical to Mmus_ENSMUSP00000087810 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000151817 is identical to Drer_ENSDARP00000143738 but kept for subsequent analysis
+NOTE: Hsap_ENSP00000480388 is identical to Hsap_ENSP00000451575 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000028033 is identical to Hsap_ENSP00000226574 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000081641 is identical to Hsap_ENSP00000499751 but kept for subsequent analysis
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.168 seconds
+Measuring multi-threading efficiency up to 8 CPU cores
+Increase to 10 rounds for branch lengths
+4 trees examined
+Threads: 1 / Time: 9.404 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -150947
+Threads: 2 / Time: 4.655 sec / Speedup: 2.020 / Efficiency: 101% / LogL: -150947
+Threads: 3 / Time: 3.329 sec / Speedup: 2.825 / Efficiency: 94% / LogL: -150947
+Threads: 4 / Time: 2.727 sec / Speedup: 3.449 / Efficiency: 86% / LogL: -150947
+Threads: 5 / Time: 2.255 sec / Speedup: 4.170 / Efficiency: 83% / LogL: -150947
+Threads: 6 / Time: 1.982 sec / Speedup: 4.744 / Efficiency: 79% / LogL: -150947
+Threads: 7 / Time: 1.793 sec / Speedup: 5.246 / Efficiency: 75% / LogL: -150947
+Threads: 8 / Time: 1.668 sec / Speedup: 5.637 / Efficiency: 70% / LogL: -150947
+BEST NUMBER OF THREADS: 8
+
+Perform fast likelihood tree search using LG+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -95060.572
+Optimal log-likelihood: -95060.567
+Gamma shape alpha: 2.025
+Parameters optimization took 1 rounds (0.129 sec)
+Time for fast ML tree search: 2.420 seconds
+
+NOTE: ModelFinder requires 61 MB RAM!
+ModelFinder will test up to 12 protein models (sample size: 615) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  LG            96931.727    297 194457.454   195015.852   195770.676
+  2  LG+G4         95060.573    298 190717.147   191281.083   192034.790
+  4  LG+F+G4       95111.042    317 190856.084   191534.913   192257.739
+  6  WAG+G4        95371.749    298 191339.498   191903.435   192657.141
+  8  WAG+F+G4      95301.512    317 191237.024   191915.853   192638.679
+ 10  JTT+G4        95598.997    298 191793.994   192357.931   193111.638
+ 12  JTT+F+G4      95681.646    317 191997.291   192676.119   193398.945
+Akaike Information Criterion:           LG+G4
+Corrected Akaike Information Criterion: LG+G4
+Bayesian Information Criterion:         LG+G4
+Best-fit model: LG+G4 chosen according to BIC
+
+All model information printed to results_trees/RefOG003.genes.iqtree.model.gz
+CPU time for ModelFinder: 135.009 seconds (0h:2m:15s)
+Wall-clock time for ModelFinder: 33.869 seconds (0h:0m:33s)
+Generating 1000 samples for ultrafast bootstrap (seed: 617004)...
+
+NOTE: 61 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -95060.573
+Optimal log-likelihood: -95060.568
+Gamma shape alpha: 2.026
+Parameters optimization took 1 rounds (0.132 sec)
+Computing ML distances based on estimated model parameters...
+Computing ML distances took 0.636645 sec (of wall-clock time) 4.752889 sec(of CPU time)
+Computing RapidNJ tree took 0.005148 sec (of wall-clock time) 0.011264 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -95311.298
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 8.755 second
+Computing log-likelihood of 98 initial trees ... 5.194 seconds
+Current best score: -95060.568
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -95059.447
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -95008.833
+Iteration 10 / LogL: -95040.948 / Time: 0h:0m:32s
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 13: -94997.796
+Iteration 20 / LogL: -95055.119 / Time: 0h:0m:53s
+Finish initializing candidate tree set (20)
+Current best tree score: -94997.796 / CPU time: 51.943
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 24: -94988.311
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 27: -94982.542
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 30: -94979.552
+Iteration 30 / LogL: -94979.552 / Time: 0h:1m:8s (0h:7m:50s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 32: -94971.284
+Iteration 40 / LogL: -94971.752 / Time: 0h:1m:21s (0h:6m:43s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 44: -94967.908
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 45: -94958.082
+Iteration 50 / LogL: -95024.871 / Time: 0h:1m:34s (0h:6m:17s left)
+Log-likelihood cutoff on original alignment: -95081.118
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 56: -94955.652
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 57: -94955.517
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 58: -94953.976
+Iteration 60 / LogL: -95031.039 / Time: 0h:1m:48s (0h:6m:2s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 66: -94953.357
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 69: -94952.719
+Iteration 70 / LogL: -94957.940 / Time: 0h:2m:1s (0h:5m:50s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 73: -94951.991
+Iteration 80 / LogL: -94953.906 / Time: 0h:2m:14s (0h:5m:29s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 81: -94946.718
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 87: -94945.009
+Iteration 90 / LogL: -94946.154 / Time: 0h:2m:29s (0h:5m:30s left)
+Iteration 100 / LogL: -95016.387 / Time: 0h:2m:43s (0h:5m:9s left)
+Log-likelihood cutoff on original alignment: -95057.484
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.953
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 108: -94944.090
+Iteration 110 / LogL: -94950.896 / Time: 0h:2m:57s (0h:5m:21s left)
+Iteration 120 / LogL: -94947.486 / Time: 0h:3m:10s (0h:5m:0s left)
+Iteration 130 / LogL: -94945.968 / Time: 0h:3m:22s (0h:4m:39s left)
+Iteration 140 / LogL: -94945.556 / Time: 0h:3m:35s (0h:4m:20s left)
+Iteration 150 / LogL: -94978.454 / Time: 0h:3m:48s (0h:4m:2s left)
+Log-likelihood cutoff on original alignment: -95057.484
+Iteration 160 / LogL: -94947.914 / Time: 0h:4m:1s (0h:3m:44s left)
+Iteration 170 / LogL: -95148.910 / Time: 0h:4m:13s (0h:3m:27s left)
+Iteration 180 / LogL: -94945.960 / Time: 0h:4m:25s (0h:3m:10s left)
+Iteration 190 / LogL: -94948.359 / Time: 0h:4m:37s (0h:2m:53s left)
+Iteration 200 / LogL: -94951.752 / Time: 0h:4m:49s (0h:2m:37s left)
+Log-likelihood cutoff on original alignment: -95057.484
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.993
+Iteration 210 / LogL: -94950.913 / Time: 0h:5m:2s (0h:2m:21s left)
+Iteration 220 / LogL: -94944.732 / Time: 0h:5m:14s (0h:2m:6s left)
+Iteration 230 / LogL: -94944.372 / Time: 0h:5m:26s (0h:1m:51s left)
+Iteration 240 / LogL: -94946.575 / Time: 0h:5m:38s (0h:1m:36s left)
+Iteration 250 / LogL: -94947.499 / Time: 0h:5m:51s (0h:1m:21s left)
+Log-likelihood cutoff on original alignment: -95057.484
+Iteration 260 / LogL: -94945.932 / Time: 0h:6m:3s (0h:1m:7s left)
+Iteration 270 / LogL: -94945.392 / Time: 0h:6m:15s (0h:0m:53s left)
+Iteration 280 / LogL: -94945.205 / Time: 0h:6m:27s (0h:0m:38s left)
+Iteration 290 / LogL: -94945.803 / Time: 0h:6m:40s (0h:0m:24s left)
+Iteration 300 / LogL: -94954.707 / Time: 0h:6m:52s (0h:0m:11s left)
+Log-likelihood cutoff on original alignment: -95057.484
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.997
+TREE SEARCH COMPLETED AFTER 309 ITERATIONS / Time: 0h:7m:5s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -94944.090
+Optimal log-likelihood: -94944.086
+Gamma shape alpha: 2.095
+Parameters optimization took 1 rounds (0.130 sec)
+BEST SCORE FOUND : -94944.086
+Creating bootstrap support values...
+Split supports printed to NEXUS file results_trees/RefOG003.genes.iqtree.splits.nex
+Total tree length: 88.309
+
+Total number of iterations: 309
+CPU time used for tree search: 3263.169 sec (0h:54m:23s)
+Wall-clock time used for tree search: 423.721 sec (0h:7m:3s)
+Total CPU time used: 3277.551 sec (0h:54m:37s)
+Total wall-clock time used: 425.859 sec (0h:7m:5s)
+
+Computing bootstrap consensus tree...
+Reading input file results_trees/RefOG003.genes.iqtree.splits.nex...
+150 taxa and 1340 splits.
+Consensus tree written to results_trees/RefOG003.genes.iqtree.contree
+Reading input trees file results_trees/RefOG003.genes.iqtree.contree
+Log-likelihood of consensus tree: -94944.438
+
+Analysis results written to: 
+  IQ-TREE report:                results_trees/RefOG003.genes.iqtree.iqtree
+  Maximum-likelihood tree:       results_trees/RefOG003.genes.iqtree.treefile
+  Likelihood distances:          results_trees/RefOG003.genes.iqtree.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          results_trees/RefOG003.genes.iqtree.splits.nex
+  Consensus tree:                results_trees/RefOG003.genes.iqtree.contree
+  Screen log file:               results_trees/RefOG003.genes.iqtree.log
+
+Date and Time: Sat Feb  6 13:36:07 2021

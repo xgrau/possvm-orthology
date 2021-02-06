@@ -1,0 +1,1015 @@
+IQ-TREE 2.1.0 COVID-edition built Jul 18 2020
+
+Input file name: results_trees/RefOG009.genes.lt.fasta
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 106254
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 222 sequences with 2173 amino-acid sites
+Number of constant sites: 2 (= 0.0920387% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 2 (= 0.0920387% of all sites)
+Number of parsimony informative sites: 2171
+Number of distinct site patterns: 2173
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: WAG+I+G4
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+WAG+I+G4        -344731.459  690348.917 +        1  690576.438 +        1  692866.869 +        1
+WAG+F+I+G4      -344792.532  690509.064 - 1.68e-35  690759.246 - 2.01e-40  693135.009 - 5.94e-59
+LG+I+G4         -345093.307  691072.615 - 7.1e-158  691300.136 - 7.1e-158  693590.566 - 7.1e-158
+LG+G4           -345109.918  691103.836 - 1.18e-164  691330.201 - 2.1e-164  693616.104 - 2.02e-163
+JTT+I+G4        -345815.731  692517.462 -        0  692744.983 -        0  695035.414 -        0
+LG+F+I+G4       -346803.220  694530.439 -        0  694780.622 -        0  697156.384 -        0
+JTT+F+I+G4      -346917.604  694759.207 -        0  695009.389 -        0  697385.152 -        0
+LG+I            -352305.377  705494.755 -        0  705721.120 -        0  708007.023 -        0
+LG              -352388.300  705658.601 -        0  705883.814 -        0  708165.185 -        0
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: WAG+I+G4
+
+State frequencies: (model)
+
+Model of rate heterogeneity: Invar+Gamma with 4 categories
+Proportion of invariable sites: 0.0009
+Gamma shape alpha: 3.0657
+
+ Category  Relative_rate  Proportion
+  0         0              0.0009
+  1         0.3946         0.2498
+  2         0.7358         0.2498
+  3         1.0838         0.2498
+  4         1.7894         0.2498
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -344707.8778 (s.e. 2686.0093)
+Unconstrained log-likelihood (without tree): -16697.0364
+Number of free parameters (#branches + #model parameters): 443
+Akaike information criterion (AIC) score: 690301.7557
+Corrected Akaike information criterion (AICc) score: 690529.2768
+Bayesian information criterion (BIC) score: 692819.7074
+
+Total tree length (sum of branch lengths): 96.8304
+Sum of internal branch lengths: 31.7877 (32.8282% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Bralan_BL01959_cuf17' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++--Bralan_BL01959_cuf17
+|
++--Bralan_BL97267_cuf0
+|
+|          +------Cint_ENSCINP00000016161
+|       +--| (67)
+|       |  +------------Nvec_EDO39276
++-------| (100)
+        |                                     +---------------Dmel_FBpp0309655
+        |                                  +--| (77)
+        |                                  |  |           +**Bralan_BL04054_cuf18
+        |                                  |  +-----------| (100)
+        |                                  |              +--Bralan_BL96325_cuf14
+        |                               +--| (57)
+        |                               |  |                          +--Canfam_ENSCAFP00000039662
+        |                               |  |                       +--| (100)
+        |                               |  |                       |  |     +--Hsap_ENSP00000346964
+        |                               |  |                       |  |  +--| (100)
+        |                               |  |                       |  |  |  +--Pantro_ENSPTRP00000085946
+        |                               |  |                       |  +--| (100)
+        |                               |  |                       |     |  +--Mmus_ENSMUSP00000094238
+        |                               |  |                       |     +--| (100)
+        |                               |  |                       |        +--Ratnor_ENSRNOP00000016722
+        |                               |  |                    +--| (100)
+        |                               |  |                    |  +--Mondom_ENSMODP00000025431
+        |                               |  |                 +--| (100)
+        |                               |  |                 |  +--Galgal_ENSGALP00000005904
+        |                               |  |        +--------| (100)
+        |                               |  |        |        |  +--Drer_ENSDARP00000132488
+        |                               |  |        |        +--| (100)
+        |                               |  |        |           +--Tetnig_ENSTNIP00000004479
+        |                               |  |     +--| (99)
+        |                               |  |     |  +------------Dmel_FBpp0309033
+        |                               |  |  +--| (98)
+        |                               |  |  |  +---------Nvec_EDO46873
+        |                               |  +--| (99)
+        |                               |     |      +----------Cint_ENSCINP00000024218
+        |                               |     +------| (100)
+        |                               |            |           +--Drer_ENSDARP00000101095
+        |                               |            |       +---| (100)
+        |                               |            |       |   +--Drer_ENSDARP00000144898
+        |                               |            +-------| (100)
+        |                               |                    |      +--Mmus_ENSMUSP00000137931
+        |                               |                    |   +--| (100)
+        |                               |                    |   |  +--Ratnor_ENSRNOP00000050623
+        |                               |                    +---| (100)
+        |                               |                        +--Pantro_ENSPTRP00000089337
+        |                            +--| (92)
+        |                            |  |                           +--Canfam_ENSCAFP00000057109
+        |                            |  |                        +--| (97)
+        |                            |  |                        |  |  +--Hsap_ENSP00000363827
+        |                            |  |                        |  +--| (100)
+        |                            |  |                        |     +--Pantro_ENSPTRP00000000536
+        |                            |  |                     +--| (100)
+        |                            |  |                     |  |  +--Mmus_ENSMUSP00000131316
+        |                            |  |                     |  +--| (100)
+        |                            |  |                     |     +--Ratnor_ENSRNOP00000034954
+        |                            |  |                  +--| (100)
+        |                            |  |                  |  +--Mondom_ENSMODP00000020041
+        |                            |  |               +--| (100)
+        |                            |  |               |  +--Galgal_ENSGALP00000051462
+        |                            |  |           +---| (100)
+        |                            |  |           |   |  +--Drer_ENSDARP00000141317
+        |                            |  |           |   +--| (100)
+        |                            |  |           |      +--Tetnig_ENSTNIP00000015396
+        |                            |  |        +--| (98)
+        |                            |  |        |  +-----Bralan_BL96321_cuf5
+        |                            |  |     +--| (97)
+        |                            |  |     |  +-----------Tadh_TriadP26220
+        |                            |  |  +--| (44)
+        |                            |  |  |  +-------------Cint_ENSCINP00000017466
+        |                            |  +--| (72)
+        |                            |     +-----------------Cele_WBGene00006787.1
+        |                         +--| (41)
+        |                         |  +---------------Mlei_ML035910a-PA
+        |                      +--| (72)
+        |                      |  |  +-------------------------Mlei_ML004921a-PA
+        |                      |  +--| (84)
+        |                      |     |                                  +--Mmus_ENSMUSP00000023629
+        |                      |     |                               +--| (100)
+        |                      |     |                               |  +--Ratnor_ENSRNOP00000064737
+        |                      |     |                         +-----| (100)
+        |                      |     |                         |     +--Mondom_ENSMODP00000021186
+        |                      |     |        +----------------| (100)
+        |                      |     |        |                +------Tetnig_ENSTNIP00000012321
+        |                      |     |     +--| (90)
+        |                      |     |     |  |           +-----------------Galgal_ENSGALP00000043837
+        |                      |     |     |  |        +--| (67)
+        |                      |     |     |  |        |  +-----------------Tadh_TriadP57635
+        |                      |     |     |  |     +--| (89)
+        |                      |     |     |  |     |  |                                +--Canfam_ENSCAFP00000036750
+        |                      |     |     |  |     |  |                             +--| (100)
+        |                      |     |     |  |     |  |                             |  |     +**Hsap_ENSP00000488920
+        |                      |     |     |  |     |  |                             |  |  +--| (100)
+        |                      |     |     |  |     |  |                             |  |  |  +**Pantro_ENSPTRP00000045254
+        |                      |     |     |  |     |  |                             |  +--| (100)
+        |                      |     |     |  |     |  |                             |     +--Mmus_ENSMUSP00000129678
+        |                      |     |     |  |     |  |                          +--| (100)
+        |                      |     |     |  |     |  |                          |  +--Mondom_ENSMODP00000006348
+        |                      |     |     |  |     |  |                       +--| (100)
+        |                      |     |     |  |     |  |                       |  +--Galgal_ENSGALP00000064682
+        |                      |     |     |  |     |  |                    +--| (100)
+        |                      |     |     |  |     |  |                    |  |     +--Drer_ENSDARP00000127605
+        |                      |     |     |  |     |  |                    |  |  +--| (98)
+        |                      |     |     |  |     |  |                    |  |  |  +--Tetnig_ENSTNIP00000006779
+        |                      |     |     |  |     |  |                    |  +--| (100)
+        |                      |     |     |  |     |  |                    |     +--Drer_ENSDARP00000107689
+        |                      |     |     |  |     |  |               +----| (100)
+        |                      |     |     |  |     |  |               |    |                 +--Canfam_ENSCAFP00000051642
+        |                      |     |     |  |     |  |               |    |              +--| (99)
+        |                      |     |     |  |     |  |               |    |              |  |  +**Hsap_ENSP00000385142
+        |                      |     |     |  |     |  |               |    |              |  +--| (100)
+        |                      |     |     |  |     |  |               |    |              |     +**Pantro_ENSPTRP00000073023
+        |                      |     |     |  |     |  |               |    |           +--| (100)
+        |                      |     |     |  |     |  |               |    |           |  +--Mmus_ENSMUSP00000124116
+        |                      |     |     |  |     |  |               |    |        +--| (98)
+        |                      |     |     |  |     |  |               |    |        |  +--Mondom_ENSMODP00000001882
+        |                      |     |     |  |     |  |               |    |     +--| (100)
+        |                      |     |     |  |     |  |               |    |     |  +--Galgal_ENSGALP00000052216
+        |                      |     |     |  |     |  |               |    |  +--| (100)
+        |                      |     |     |  |     |  |               |    |  |  |     +**Drer_ENSDARP00000102322
+        |                      |     |     |  |     |  |               |    |  |  |  +--| (100)
+        |                      |     |     |  |     |  |               |    |  |  |  |  +--Drer_ENSDARP00000155886
+        |                      |     |     |  |     |  |               |    |  |  +--| (100)
+        |                      |     |     |  |     |  |               |    |  |     |  +--Tetnig_ENSTNIP00000019699
+        |                      |     |     |  |     |  |               |    |  |     +--| (87)
+        |                      |     |     |  |     |  |               |    |  |        |  +--Drer_ENSDARP00000123742
+        |                      |     |     |  |     |  |               |    |  |        +--| (100)
+        |                      |     |     |  |     |  |               |    |  |           +--Drer_ENSDARP00000153484
+        |                      |     |     |  |     |  |               |    +--| (97)
+        |                      |     |     |  |     |  |               |       |           +--Canfam_ENSCAFP00000037589
+        |                      |     |     |  |     |  |               |       |        +--| (99)
+        |                      |     |     |  |     |  |               |       |        |  |  +**Mmus_ENSMUSP00000119762
+        |                      |     |     |  |     |  |               |       |        |  +--| (100)
+        |                      |     |     |  |     |  |               |       |        |     +**Mmus_ENSMUSP00000144319
+        |                      |     |     |  |     |  |               |       |     +--| (100)
+        |                      |     |     |  |     |  |               |       |     |  |  +--Hsap_ENSP00000265459
+        |                      |     |     |  |     |  |               |       |     |  +--| (100)
+        |                      |     |     |  |     |  |               |       |     |     +**Pantro_ENSPTRP00000077027
+        |                      |     |     |  |     |  |               |       |  +--| (100)
+        |                      |     |     |  |     |  |               |       |  |  +--Mondom_ENSMODP00000006366
+        |                      |     |     |  |     |  |               |       +--| (100)
+        |                      |     |     |  |     |  |               |          +--Drer_ENSDARP00000140509
+        |                      |     |     |  |     |  |            +--| (98)
+        |                      |     |     |  |     |  |            |  +--------Cint_ENSCINP00000010501
+        |                      |     |     |  |     |  |     +------| (100)
+        |                      |     |     |  |     |  |     |      +--------Dmel_FBpp0306677
+        |                      |     |     |  |     |  |  +--| (98)
+        |                      |     |     |  |     |  |  |  |                +------Drer_ENSDARP00000157183
+        |                      |     |     |  |     |  |  |  |             +--| (62)
+        |                      |     |     |  |     |  |  |  |             |  |        +--Hsap_ENSP00000399013
+        |                      |     |     |  |     |  |  |  |             |  |     +--| (100)
+        |                      |     |     |  |     |  |  |  |             |  |     |  +--Pantro_ENSPTRP00000021263
+        |                      |     |     |  |     |  |  |  |             |  |  +--| (100)
+        |                      |     |     |  |     |  |  |  |             |  |  |  +--Mmus_ENSMUSP00000083944
+        |                      |     |     |  |     |  |  |  |             |  +--| (100)
+        |                      |     |     |  |     |  |  |  |             |     +--Mondom_ENSMODP00000045629
+        |                      |     |     |  |     |  |  |  |  +----------| (100)
+        |                      |     |     |  |     |  |  |  |  |          |        +--Hsap_ENSP00000417628
+        |                      |     |     |  |     |  |  |  |  |          |     +--| (100)
+        |                      |     |     |  |     |  |  |  |  |          |     |  +**Hsap_ENSP00000499374
+        |                      |     |     |  |     |  |  |  |  |          |  +--| (100)
+        |                      |     |     |  |     |  |  |  |  |          |  |  +--Pantro_ENSPTRP00000079674
+        |                      |     |     |  |     |  |  |  |  |          +--| (100)
+        |                      |     |     |  |     |  |  |  |  |             |  +--Mmus_ENSMUSP00000112511
+        |                      |     |     |  |     |  |  |  |  |             +--| (100)
+        |                      |     |     |  |     |  |  |  |  |                +--Ratnor_ENSRNOP00000061027
+        |                      |     |     |  |     |  |  |  +--| (97)
+        |                      |     |     |  |     |  |  |     +-----------------Nvec_EDO39261
+        |                      |     |     |  |     |  +--| (65)
+        |                      |     |     |  |     |     +------------------------Bralan_BL10238_cuf15
+        |                      |     |     |  |  +--| (92)
+        |                      |     |     |  |  |  |       +--------------Dmel_FBpp0289570
+        |                      |     |     |  |  |  +-------| (100)
+        |                      |     |     |  |  |          |             +---Drer_ENSDARP00000101512
+        |                      |     |     |  |  |          +-------------| (100)
+        |                      |     |     |  |  |                        +--Tetnig_ENSTNIP00000019031
+        |                      |     |     |  +--| (88)
+        |                      |     |     |     |  +----------------Bralan_BL97268_cuf1
+        |                      |     |     |     +--| (85)
+        |                      |     |     |        +-------------------Drer_ENSDARP00000136786
+        |                      |     |  +--| (64)
+        |                      |     |  |  +------------------------Drer_ENSDARP00000066079
+        |                      |     +--| (52)
+        |                      |        +-----------------Mlei_ML04798a-PA
+        |                   +--| (70)
+        |                   |  |        +-----------Bralan_BL09541_cuf4
+        |                   |  |     +--| (97)
+        |                   |  |     |  +-----------Nvec_EDO31103
+        |                   |  |  +--| (78)
+        |                   |  |  |  +---------------Mlei_ML097515a-PA
+        |                   |  +--| (75)
+        |                   |     |               +-------Nvec_EDO39502
+        |                   |     |            +--| (97)
+        |                   |     |            |  |                       +--Canfam_ENSCAFP00000017386
+        |                   |     |            |  |                    +--| (96)
+        |                   |     |            |  |                    |  |  +--Hsap_ENSP00000388325
+        |                   |     |            |  |                    |  +--| (100)
+        |                   |     |            |  |                    |     +--Pantro_ENSPTRP00000025746
+        |                   |     |            |  |                 +--| (100)
+        |                   |     |            |  |                 |  |  +--Mmus_ENSMUSP00000069087
+        |                   |     |            |  |                 |  +--| (100)
+        |                   |     |            |  |                 |     +--Ratnor_ENSRNOP00000065052
+        |                   |     |            |  |              +--| (100)
+        |                   |     |            |  |              |  +--Mondom_ENSMODP00000040787
+        |                   |     |            |  |           +--| (99)
+        |                   |     |            |  |           |  |  +--Drer_ENSDARP00000123269
+        |                   |     |            |  |           |  +--| (100)
+        |                   |     |            |  |           |     +--Tetnig_ENSTNIP00000005083
+        |                   |     |            |  |        +--| (99)
+        |                   |     |            |  |        |  |              +--Canfam_ENSCAFP00000049135
+        |                   |     |            |  |        |  |           +--| (96)
+        |                   |     |            |  |        |  |           |  |  +--Mmus_ENSMUSP00000002979
+        |                   |     |            |  |        |  |           |  +--| (100)
+        |                   |     |            |  |        |  |           |     +--Ratnor_ENSRNOP00000008321
+        |                   |     |            |  |        |  |        +--| (100)
+        |                   |     |            |  |        |  |        |  |  +--Hsap_ENSP00000377191
+        |                   |     |            |  |        |  |        |  +--| (100)
+        |                   |     |            |  |        |  |        |     +--Pantro_ENSPTRP00000069299
+        |                   |     |            |  |        |  |     +--| (100)
+        |                   |     |            |  |        |  |     |  +--Mondom_ENSMODP00000020390
+        |                   |     |            |  |        |  |  +--| (100)
+        |                   |     |            |  |        |  |  |  +--Galgal_ENSGALP00000012817
+        |                   |     |            |  |        |  +--| (100)
+        |                   |     |            |  |        |     |     +--Drer_ENSDARP00000131540
+        |                   |     |            |  |        |     |  +--| (100)
+        |                   |     |            |  |        |     |  |  +--Tetnig_ENSTNIP00000016750
+        |                   |     |            |  |        |     +--| (100)
+        |                   |     |            |  |        |        |  +---Tetnig_ENSTNIP00000015655
+        |                   |     |            |  |        |        +--| (100)
+        |                   |     |            |  |        |           |    +--Drer_ENSDARP00000066944
+        |                   |     |            |  |        |           +----| (100)
+        |                   |     |            |  |        |                +--Drer_ENSDARP00000156839
+        |                   |     |            |  |     +--| (100)
+        |                   |     |            |  |     |  |        +--Drer_ENSDARP00000048365
+        |                   |     |            |  |     |  |     +--| (100)
+        |                   |     |            |  |     |  |     |  +---Tetnig_ENSTNIP00000005078
+        |                   |     |            |  |     |  |  +--| (99)
+        |                   |     |            |  |     |  |  |  +-------Mondom_ENSMODP00000056254
+        |                   |     |            |  |     |  +--| (99)
+        |                   |     |            |  |     |     |      +--Mondom_ENSMODP00000020037
+        |                   |     |            |  |     |     +------| (100)
+        |                   |     |            |  |     |            +--Pantro_ENSPTRP00000033539
+        |                   |     |            |  |  +--| (100)
+        |                   |     |            |  |  |  +------Cint_ENSCINP00000013062
+        |                   |     |            |  +--| (100)
+        |                   |     |            |     |  +-------Dmel_FBpp0079114
+        |                   |     |            |     +--| (100)
+        |                   |     |            |        +------Cele_WBGene00002247.1
+        |                   |     |         +--| (82)
+        |                   |     |         |  +------------Sman_Smp_148790
+        |                   |     |     +---| (100)
+        |                   |     |     |   +----------Tadh_TriadP24524
+        |                   |     |  +--| (97)
+        |                   |     |  |  |   +-----------Mlei_ML20591a-PA
+        |                   |     |  |  +---| (97)
+        |                   |     |  |      +------------Nvec_EDO36501
+        |                   |     +--| (93)
+        |                   |        |     +-------------Mlei_ML05951a-PA
+        |                   |        |  +--| (100)
+        |                   |        |  |  |        +----Bralan_BL95807_evm1
+        |                   |        |  |  |     +--| (100)
+        |                   |        |  |  |     |  |                       +--Canfam_ENSCAFP00000054457
+        |                   |        |  |  |     |  |                    +--| (100)
+        |                   |        |  |  |     |  |                    |  |     +--Hsap_ENSP00000258341
+        |                   |        |  |  |     |  |                    |  |  +--| (100)
+        |                   |        |  |  |     |  |                    |  |  |  +--Pantro_ENSPTRP00000002939
+        |                   |        |  |  |     |  |                    |  +--| (100)
+        |                   |        |  |  |     |  |                    |     |  +--Mmus_ENSMUSP00000027752
+        |                   |        |  |  |     |  |                    |     +--| (100)
+        |                   |        |  |  |     |  |                    |        +--Ratnor_ENSRNOP00000003605
+        |                   |        |  |  |     |  |                 +--| (100)
+        |                   |        |  |  |     |  |                 |  +--Mondom_ENSMODP00000008686
+        |                   |        |  |  |     |  |              +--| (100)
+        |                   |        |  |  |     |  |              |  +--Galgal_ENSGALP00000038625
+        |                   |        |  |  |     |  |           +--| (100)
+        |                   |        |  |  |     |  |           |  |  +--Drer_ENSDARP00000024860
+        |                   |        |  |  |     |  |           |  +--| (100)
+        |                   |        |  |  |     |  |           |     +--Tetnig_ENSTNIP00000001897
+        |                   |        |  |  |     |  |        +--| (100)
+        |                   |        |  |  |     |  |        |  |          +--Canfam_ENSCAFP00000019515
+        |                   |        |  |  |     |  |        |  |       +--| (100)
+        |                   |        |  |  |     |  |        |  |       |  |     +--Hsap_ENSP00000264144
+        |                   |        |  |  |     |  |        |  |       |  |  +--| (100)
+        |                   |        |  |  |     |  |        |  |       |  |  |  +--Pantro_ENSPTRP00000002941
+        |                   |        |  |  |     |  |        |  |       |  +--| (100)
+        |                   |        |  |  |     |  |        |  |       |     |  +--Mmus_ENSMUSP00000140514
+        |                   |        |  |  |     |  |        |  |       |     +--| (100)
+        |                   |        |  |  |     |  |        |  |       |        +--Ratnor_ENSRNOP00000075844
+        |                   |        |  |  |     |  |        |  +-------| (100)
+        |                   |        |  |  |     |  |        |          +--Mondom_ENSMODP00000008728
+        |                   |        |  |  |     |  |     +--| (100)
+        |                   |        |  |  |     |  |     |  |             +--Canfam_ENSCAFP00000040626
+        |                   |        |  |  |     |  |     |  |          +--| (100)
+        |                   |        |  |  |     |  |     |  |          |  |  +--Hsap_ENSP00000354360
+        |                   |        |  |  |     |  |     |  |          |  +--| (100)
+        |                   |        |  |  |     |  |     |  |          |     +--Pantro_ENSPTRP00000089434
+        |                   |        |  |  |     |  |     |  |       +--| (100)
+        |                   |        |  |  |     |  |     |  |       |  |  +--Mmus_ENSMUSP00000028187
+        |                   |        |  |  |     |  |     |  |       |  +--| (100)
+        |                   |        |  |  |     |  |     |  |       |     +--Ratnor_ENSRNOP00000071272
+        |                   |        |  |  |     |  |     |  |   +---| (100)
+        |                   |        |  |  |     |  |     |  |   |   +--Mondom_ENSMODP00000015227
+        |                   |        |  |  |     |  |     |  +---| (100)
+        |                   |        |  |  |     |  |     |      +-------Drer_ENSDARP00000117247
+        |                   |        |  |  |     |  |  +--| (93)
+        |                   |        |  |  |     |  |  |  +-------Cint_ENSCINP00000014720
+        |                   |        |  |  |     |  +--| (89)
+        |                   |        |  |  |     |     |  +------Dmel_FBpp0076111
+        |                   |        |  |  |     |     +--| (100)
+        |                   |        |  |  |     |        +-------Cele_WBGene00016913.1
+        |                   |        |  |  |  +--| (100)
+        |                   |        |  |  |  |  +--------Nvec_EDO36523
+        |                   |        |  |  +--| (100)
+        |                   |        |  |     +------------Tadh_TriadP21436
+        |                   |        +--| (94)
+        |                   |           +------------Sman_Smp_163810
+        |                +--| (77)
+        |                |  |             +-------Bralan_BL24175_evm3
+        |                |  +-------------| (100)
+        |                |                +------Drer_ENSDARP00000080636
+        |             +--| (61)
+        |             |  |  +-------Nvec_EDO39274
+        |             |  +--| (48)
+        |             |     +---------------Nvec_EDO40131
+        |          +--| (76)
+        |          |  |           +---------Cint_ENSCINP00000010645
+        |          |  |        +--| (100)
+        |          |  |        |  |  +---------Cele_WBGene00001328.1
+        |          |  |        |  +--| (100)
+        |          |  |        |     +---------Dmel_FBpp0076722
+        |          |  |     +--| (100)
+        |          |  |     |  |        +---Tetnig_ENSTNIP00000018283
+        |          |  |     |  |     +--| (97)
+        |          |  |     |  |     |  |  +----Drer_ENSDARP00000119869
+        |          |  |     |  |     |  +--| (100)
+        |          |  |     |  |     |     |  +------Drer_ENSDARP00000150169
+        |          |  |     |  |     |     +--| (100)
+        |          |  |     |  |     |        +---------Tetnig_ENSTNIP00000020781
+        |          |  |     |  |  +--| (95)
+        |          |  |     |  |  |  |        +--Canfam_ENSCAFP00000050272
+        |          |  |     |  |  |  |     +--| (100)
+        |          |  |     |  |  |  |     |  |     +--Hsap_ENSP00000324532
+        |          |  |     |  |  |  |     |  |  +--| (100)
+        |          |  |     |  |  |  |     |  |  |  +--Pantro_ENSPTRP00000016876
+        |          |  |     |  |  |  |     |  +--| (99)
+        |          |  |     |  |  |  |     |     |  +--Mmus_ENSMUSP00000089703
+        |          |  |     |  |  |  |     |     +--| (100)
+        |          |  |     |  |  |  |     |        +--Ratnor_ENSRNOP00000075948
+        |          |  |     |  |  |  |  +--| (100)
+        |          |  |     |  |  |  |  |  +--Mondom_ENSMODP00000035538
+        |          |  |     |  |  |  +--| (100)
+        |          |  |     |  |  |     +---Galgal_ENSGALP00000043775
+        |          |  |     |  +--| (97)
+        |          |  |     |     |     +--Drer_ENSDARP00000045125
+        |          |  |     |     |  +--| (100)
+        |          |  |     |     |  |  +--Tetnig_ENSTNIP00000006343
+        |          |  |     |     +--| (100)
+        |          |  |     |        |  +--Galgal_ENSGALP00000073750
+        |          |  |     |        +--| (100)
+        |          |  |     |           |        +--Hsap_ENSP00000252999
+        |          |  |     |           |     +--| (100)
+        |          |  |     |           |     |  +--Pantro_ENSPTRP00000089454
+        |          |  |     |           |  +--| (100)
+        |          |  |     |           |  |  |  +--Mmus_ENSMUSP00000015791
+        |          |  |     |           |  |  +--| (100)
+        |          |  |     |           |  |     +--Ratnor_ENSRNOP00000074084
+        |          |  |     |           +--| (100)
+        |          |  |     |              +--Mondom_ENSMODP00000020924
+        |          |  |  +--| (99)
+        |          |  |  |  |              +--Canfam_ENSCAFP00000057976
+        |          |  |  |  |           +--| (100)
+        |          |  |  |  |           |  |     +--Hsap_ENSP00000230538
+        |          |  |  |  |           |  |  +--| (100)
+        |          |  |  |  |           |  |  |  +--Pantro_ENSPTRP00000092161
+        |          |  |  |  |           |  +--| (99)
+        |          |  |  |  |           |     |  +--Mmus_ENSMUSP00000019992
+        |          |  |  |  |           |     +--| (100)
+        |          |  |  |  |           |        +--Ratnor_ENSRNOP00000000737
+        |          |  |  |  |        +--| (100)
+        |          |  |  |  |        |  +--Mondom_ENSMODP00000022293
+        |          |  |  |  |     +--| (100)
+        |          |  |  |  |     |  +--Galgal_ENSGALP00000024147
+        |          |  |  |  +-----| (100)
+        |          |  |  |        |   +--Drer_ENSDARP00000006065
+        |          |  |  |        +---| (100)
+        |          |  |  |            +--Tetnig_ENSTNIP00000007943
+        |          |  +--| (97)
+        |          |     +-----------Bralan_BL02579_cuf13
+        |       +--| (83)
+        |       |  |     +-----Bralan_BL96320_cuf4
+        |       |  |  +--| (82)
+        |       |  |  |  +---------Tadh_TriadP27868
+        |       |  +--| (75)
+        |       |     |  +-----------Dmel_FBpp0291871
+        |       |     +--| (96)
+        |       |        +-----------------Sman_Smp_143680
+        |    +--| (89)
+        |    |  +------------Cele_WBGene00002248.1
+        +----| (78)
+             |  +----Bralan_BL97272_cuf8
+             +--| (99)
+                |              +--Canfam_ENSCAFP00000027440
+                |           +--| (100)
+                |           |  |     +--Hsap_ENSP00000374309
+                |           |  |  +--| (100)
+                |           |  |  |  +--Pantro_ENSPTRP00000085556
+                |           |  +--| (96)
+                |           |     |  +--Mmus_ENSMUSP00000043957
+                |           |     +--| (100)
+                |           |        +--Ratnor_ENSRNOP00000023224
+                |        +--| (100)
+                |        |  +--Mondom_ENSMODP00000042084
+                |     +--| (100)
+                |     |  +--Galgal_ENSGALP00000036103
+                |  +--| (100)
+                |  |  |  +--Drer_ENSDARP00000135371
+                |  |  +--| (100)
+                |  |     +------Tetnig_ENSTNIP00000016514
+                +--| (100)
+                   |  +----Drer_ENSDARP00000155312
+                   +--| (100)
+                      |              +--Canfam_ENSCAFP00000031428
+                      |           +--| (100)
+                      |           |  |     +--Hsap_ENSP00000400365
+                      |           |  |  +--| (100)
+                      |           |  |  |  +--Pantro_ENSPTRP00000031732
+                      |           |  +--| (96)
+                      |           |     |  +--Mmus_ENSMUSP00000090304
+                      |           |     +--| (100)
+                      |           |        +--Ratnor_ENSRNOP00000070049
+                      |        +--| (100)
+                      |        |  +--Mondom_ENSMODP00000040336
+                      |     +--| (95)
+                      |     |  +--Galgal_ENSGALP00000066070
+                      |  +--| (100)
+                      |  |  +--Galgal_ENSGALP00000064934
+                      +--| (100)
+                         |  +--Drer_ENSDARP00000131993
+                         +--| (100)
+                            |  +-----Tetnig_ENSTNIP00000019514
+                            +--| (86)
+                               +--Drer_ENSDARP00000145314
+
+Tree in newick format:
+
+(Bralan_BL01959_cuf17:0.0891660475,Bralan_BL97267_cuf0:0.0692588152,((Cint_ENSCINP00000016161:0.4822623705,Nvec_EDO39276:0.9238603997)67:0.1175440207,((((((((((((Dmel_FBpp0309655:1.0973898084,(Bralan_BL04054_cuf18:0.0000021141,Bralan_BL96325_cuf14:0.0049554209)100:0.8130692527)77:0.1227203767,(((((((Canfam_ENSCAFP00000039662:0.0643134837,((Hsap_ENSP00000346964:0.0029085844,Pantro_ENSPTRP00000085946:0.0027731872)100:0.0360241859,(Mmus_ENSMUSP00000094238:0.0262189270,Ratnor_ENSRNOP00000016722:0.0151914479)100:0.0701639236)100:0.0186759472)100:0.1149159721,Mondom_ENSMODP00000025431:0.0925302947)100:0.0843097403,Galgal_ENSGALP00000005904:0.0968561353)100:0.1480504794,(Drer_ENSDARP00000132488:0.1579890407,Tetnig_ENSTNIP00000004479:0.1542335688)100:0.1162241585)100:0.6518926176,Dmel_FBpp0309033:0.8871034600)99:0.1520444153,Nvec_EDO46873:0.7207835650)98:0.0948495667,(Cint_ENSCINP00000024218:0.7447469079,((Drer_ENSDARP00000101095:0.0013288418,Drer_ENSDARP00000144898:0.0245730107)100:0.2689141244,((Mmus_ENSMUSP00000137931:0.0281637921,Ratnor_ENSRNOP00000050623:0.0184578174)100:0.0760468809,Pantro_ENSPTRP00000089337:0.1022528005)100:0.2945206663)100:0.5776473309)100:0.4973490842)99:0.2419058625)57:0.0944589758,(((((((((Canfam_ENSCAFP00000057109:0.0682886902,(Hsap_ENSP00000363827:0.0060515032,Pantro_ENSPTRP00000000536:0.0017865295)100:0.0295414572)97:0.0112221433,(Mmus_ENSMUSP00000131316:0.0119631474,Ratnor_ENSRNOP00000034954:0.0307405926)100:0.0657402197)100:0.0563255796,Mondom_ENSMODP00000020041:0.1010175060)100:0.1399405262,Galgal_ENSGALP00000051462:0.2376355425)100:0.1500918660,(Drer_ENSDARP00000141317:0.1587344605,Tetnig_ENSTNIP00000015396:0.2180495046)100:0.1572169596)100:0.2824255806,Bralan_BL96321_cuf5:0.4066643342)98:0.1927741694,Tadh_TriadP26220:0.8368113173)97:0.2214740263,Cint_ENSCINP00000017466:0.9541597276)44:0.1043394710,Cele_WBGene00006787.1:1.2458288413)72:0.1278524603)92:0.1005912334,Mlei_ML035910a-PA:1.1316289573)41:0.0821342117,(Mlei_ML004921a-PA:1.7412366631,((((((Mmus_ENSMUSP00000023629:0.0341813715,Ratnor_ENSRNOP00000064737:0.0359647714)100:0.2087513618,Mondom_ENSMODP00000021186:0.1694933376)100:0.4358997156,Tetnig_ENSTNIP00000012321:0.4711770917)100:1.1926997910,((((Galgal_ENSGALP00000043837:1.2608756255,Tadh_TriadP57635:1.2100811182)67:0.1758843833,(((((((((Canfam_ENSCAFP00000036750:0.0073013626,((Hsap_ENSP00000488920:0.0000010000,Pantro_ENSPTRP00000045254:0.0000010000)100:0.0051277091,Mmus_ENSMUSP00000129678:0.0118041566)100:0.0009320454)100:0.0083545429,Mondom_ENSMODP00000006348:0.0079307585)100:0.0238858589,Galgal_ENSGALP00000064682:0.0196334935)100:0.0433175504,((Drer_ENSDARP00000127605:0.0620545316,Tetnig_ENSTNIP00000006779:0.2279208236)98:0.0297553680,Drer_ENSDARP00000107689:0.1306315855)100:0.0535073718)100:0.0863872644,((((((Canfam_ENSCAFP00000051642:0.0060794948,(Hsap_ENSP00000385142:0.0000010000,Pantro_ENSPTRP00000073023:0.0000010000)100:0.0010228600)99:0.0024309949,Mmus_ENSMUSP00000124116:0.0016274159)100:0.0280037448,Mondom_ENSMODP00000001882:0.0227952105)98:0.0078771835,Galgal_ENSGALP00000052216:0.0137364167)100:0.0769777517,((Drer_ENSDARP00000102322:0.0000024372,Drer_ENSDARP00000155886:0.0286215420)100:0.0769043438,(Tetnig_ENSTNIP00000019699:0.0799585979,(Drer_ENSDARP00000123742:0.0029814114,Drer_ENSDARP00000153484:0.0011683518)100:0.2214231130)87:0.0186881448)100:0.0682197783)100:0.1020139609,((((Canfam_ENSCAFP00000037589:0.0037962697,(Mmus_ENSMUSP00000119762:0.0000010000,Mmus_ENSMUSP00000144319:0.0000010000)100:0.0103043774)99:0.0022902083,(Hsap_ENSP00000265459:0.0020721252,Pantro_ENSPTRP00000077027:0.0000010000)100:0.0036987636)100:0.0154768839,Mondom_ENSMODP00000006366:0.1562546446)100:0.0938072494,Drer_ENSDARP00000140509:0.1689465489)100:0.1416010121)97:0.0536219872)100:0.3484380879,Cint_ENSCINP00000010501:0.6594860127)98:0.1178466997,Dmel_FBpp0306677:0.6203361761)100:0.5256888729,(((Drer_ENSDARP00000157183:0.5215705397,(((Hsap_ENSP00000399013:0.0028435484,Pantro_ENSPTRP00000021263:0.0052844700)100:0.0545306469,Mmus_ENSMUSP00000083944:0.1467615504)100:0.0758015630,Mondom_ENSMODP00000045629:0.1397275594)100:0.1596008224)62:0.0856079284,(((Hsap_ENSP00000417628:0.0133287034,Hsap_ENSP00000499374:0.0000010000)100:0.0074539322,Pantro_ENSPTRP00000079674:0.0031486973)100:0.0670871160,(Mmus_ENSMUSP00000112511:0.0157110557,Ratnor_ENSRNOP00000061027:0.0496980315)100:0.0708121371)100:0.2323731629)100:0.7872426044,Nvec_EDO39261:1.2639096469)97:0.1826631105)98:0.1389219379,Bralan_BL10238_cuf15:1.6842021906)65:0.0748392298)89:0.1043250849,(Dmel_FBpp0289570:1.0155825908,(Drer_ENSDARP00000101512:0.2778965164,Tetnig_ENSTNIP00000019031:0.1890444287)100:0.9434302912)100:0.5833880912)92:0.1131525783,(Bralan_BL97268_cuf1:1.1774916928,Drer_ENSDARP00000136786:1.4001841733)85:0.1511304406)88:0.1151361253)90:0.0848421503,Drer_ENSDARP00000066079:1.7367649746)64:0.1010039594,Mlei_ML04798a-PA:1.2053852551)52:0.0509489005)84:0.1121137614)72:0.0866421530,(((Bralan_BL09541_cuf4:0.8259506192,Nvec_EDO31103:0.8119607557)97:0.1663944263,Mlei_ML097515a-PA:1.1290286073)78:0.1620029594,(((((Nvec_EDO39502:0.5740499307,((((((((Canfam_ENSCAFP00000017386:0.0513795300,(Hsap_ENSP00000388325:0.0044561420,Pantro_ENSPTRP00000025746:0.0033953941)100:0.0307173079)96:0.0179954274,(Mmus_ENSMUSP00000069087:0.0154817678,Ratnor_ENSRNOP00000065052:0.0190270795)100:0.0515064364)100:0.1225260640,Mondom_ENSMODP00000040787:0.0987793953)100:0.2291273561,(Drer_ENSDARP00000123269:0.1178670142,Tetnig_ENSTNIP00000005083:0.2005756791)100:0.0962595113)99:0.1219777877,(((((Canfam_ENSCAFP00000049135:0.0471480942,(Mmus_ENSMUSP00000002979:0.0083922264,Ratnor_ENSRNOP00000008321:0.0134752908)100:0.0309007826)96:0.0066738706,(Hsap_ENSP00000377191:0.0004935167,Pantro_ENSPTRP00000069299:0.0176178937)100:0.0275809328)100:0.0249210519,Mondom_ENSMODP00000020390:0.0509488043)100:0.0737409787,Galgal_ENSGALP00000012817:0.1063632620)100:0.1170072146,((Drer_ENSDARP00000131540:0.1265849996,Tetnig_ENSTNIP00000016750:0.2080783454)100:0.0532428293,(Tetnig_ENSTNIP00000015655:0.2977140046,(Drer_ENSDARP00000066944:0.0033679075,Drer_ENSDARP00000156839:0.0090135030)100:0.3629100342)100:0.0634212630)100:0.0755462104)100:0.1639696140)99:0.0912999367,(((Drer_ENSDARP00000048365:0.2102192840,Tetnig_ENSTNIP00000005078:0.2767324909)100:0.1912726235,Mondom_ENSMODP00000056254:0.5896714511)99:0.1480025949,(Mondom_ENSMODP00000020037:0.2027104058,Pantro_ENSPTRP00000033539:0.2205628696)100:0.5185582871)99:0.0723331050)100:0.0928508144,Cint_ENSCINP00000013062:0.5311132671)100:0.0923734701,(Dmel_FBpp0079114:0.5763207896,Cele_WBGene00002247.1:0.5239157503)100:0.1355743552)100:0.1221776223)97:0.1161167900,Sman_Smp_148790:0.9205055815)82:0.0791855840,Tadh_TriadP24524:0.7858647188)100:0.2847575549,(Mlei_ML20591a-PA:0.8508501951,Nvec_EDO36501:0.8859765317)97:0.2751655741)97:0.1558384206,((Mlei_ML05951a-PA:0.9903152166,(((Bralan_BL95807_evm1:0.3919673001,((((((((Canfam_ENSCAFP00000054457:0.0385224398,((Hsap_ENSP00000258341:0.0038896517,Pantro_ENSPTRP00000002939:0.0026478515)100:0.0169881285,(Mmus_ENSMUSP00000027752:0.0084958551,Ratnor_ENSRNOP00000003605:0.0133411865)100:0.0342532896)100:0.0056614264)100:0.0263045037,Mondom_ENSMODP00000008686:0.0417769087)100:0.0570349670,Galgal_ENSGALP00000038625:0.0863727986)100:0.0992206845,(Drer_ENSDARP00000024860:0.1097295746,Tetnig_ENSTNIP00000001897:0.1263772376)100:0.0994632818)100:0.1180243991,((Canfam_ENSCAFP00000019515:0.0526809235,((Hsap_ENSP00000264144:0.0042169958,Pantro_ENSPTRP00000002941:0.0033530035)100:0.0609363198,(Mmus_ENSMUSP00000140514:0.0261798587,Ratnor_ENSRNOP00000075844:0.0263233119)100:0.0588145163)100:0.0231637074)100:0.0976927951,Mondom_ENSMODP00000008728:0.1138436437)100:0.5780781285)100:0.0801490157,((((Canfam_ENSCAFP00000040626:0.1039667931,(Hsap_ENSP00000354360:0.0060700269,Pantro_ENSPTRP00000089434:0.0095589959)100:0.0821547346)100:0.0360749724,(Mmus_ENSMUSP00000028187:0.0515245034,Ratnor_ENSRNOP00000071272:0.0535173200)100:0.1365629408)100:0.1483934312,Mondom_ENSMODP00000015227:0.1543345514)100:0.2947389181,Drer_ENSDARP00000117247:0.5354802896)100:0.2866908160)100:0.1175725457,Cint_ENSCINP00000014720:0.5980647249)93:0.0753348344,(Dmel_FBpp0076111:0.5204887766,Cele_WBGene00016913.1:0.5775139230)100:0.1879816219)89:0.0598706008)100:0.0676000296,Nvec_EDO36523:0.6636037870)100:0.0844821305,Tadh_TriadP21436:0.8704703668)100:0.0544080150)100:0.1106460913,Sman_Smp_163810:0.9343680900)94:0.1159760449)93:0.1348580292)75:0.0881811526)70:0.0503946124,(Bralan_BL24175_evm3:0.5744131935,Drer_ENSDARP00000080636:0.4733927434)100:0.9438539532)77:0.0821140568,(Nvec_EDO39274:0.5646634183,Nvec_EDO40131:1.0716259268)48:0.1369910367)61:0.1560689323,((((Cint_ENSCINP00000010645:0.7332265415,(Cele_WBGene00001328.1:0.7224508436,Dmel_FBpp0076722:0.6876677507)100:0.1512063437)100:0.1605368893,(((Tetnig_ENSTNIP00000018283:0.3215851110,(Drer_ENSDARP00000119869:0.3449419123,(Drer_ENSDARP00000150169:0.5320632166,Tetnig_ENSTNIP00000020781:0.7260258196)100:0.1341545179)100:0.2319762291)97:0.1930720296,(((Canfam_ENSCAFP00000050272:0.0831237876,((Hsap_ENSP00000324532:0.0031432662,Pantro_ENSPTRP00000016876:0.0025691610)100:0.0743139076,(Mmus_ENSMUSP00000089703:0.0399747346,Ratnor_ENSRNOP00000075948:0.0419262122)100:0.1267817119)99:0.0231297385)100:0.1104017805,Mondom_ENSMODP00000035538:0.1423943851)100:0.1545642992,Galgal_ENSGALP00000043775:0.2865400283)100:0.1672026219)95:0.0973620826,((Drer_ENSDARP00000045125:0.2306210087,Tetnig_ENSTNIP00000006343:0.1617912154)100:0.1663478226,(Galgal_ENSGALP00000073750:0.2110693913,(((Hsap_ENSP00000252999:0.0055655389,Pantro_ENSPTRP00000089454:0.1151277301)100:0.1038483689,(Mmus_ENSMUSP00000015791:0.0327418293,Ratnor_ENSRNOP00000074084:0.0332648051)100:0.1161721221)100:0.1850957729,Mondom_ENSMODP00000020924:0.1674235731)100:0.1408299755)100:0.1511521062)100:0.1868515519)97:0.1650164378)100:0.1670991235,((((Canfam_ENSCAFP00000057976:0.1041083813,((Hsap_ENSP00000230538:0.0017523345,Pantro_ENSPTRP00000092161:0.0020669022)100:0.0390551677,(Mmus_ENSMUSP00000019992:0.0178076997,Ratnor_ENSRNOP00000000737:0.0270720560)100:0.0461816483)99:0.0079057802)100:0.0514495258,Mondom_ENSMODP00000022293:0.0631945165)100:0.1447068359,Galgal_ENSGALP00000024147:0.1523621513)100:0.2248334316,(Drer_ENSDARP00000006065:0.2002280088,Tetnig_ENSTNIP00000007943:0.2330040817)100:0.2682801551)100:0.4324567798)99:0.0937600254,Bralan_BL02579_cuf13:0.8144925291)97:0.1391407746)76:0.0805850961,((Bralan_BL96320_cuf4:0.4429779943,Tadh_TriadP27868:0.7168204463)82:0.1120488678,(Dmel_FBpp0291871:0.8426864181,Sman_Smp_143680:1.2406970470)96:0.0998681172)75:0.0932868913)83:0.0637407336,Cele_WBGene00002248.1:0.9035055970)89:0.0820468962,(Bralan_BL97272_cuf8:0.3867064732,(((((Canfam_ENSCAFP00000027440:0.0796398676,((Hsap_ENSP00000374309:0.0028536347,Pantro_ENSPTRP00000085556:0.0108944882)100:0.0979751882,(Mmus_ENSMUSP00000043957:0.0352504941,Ratnor_ENSRNOP00000023224:0.0354267877)100:0.1273074087)96:0.0196444511)100:0.0976759798,Mondom_ENSMODP00000042084:0.2307440518)100:0.0573165948,Galgal_ENSGALP00000036103:0.1932522812)100:0.1539283445,(Drer_ENSDARP00000135371:0.2577755241,Tetnig_ENSTNIP00000016514:0.4735844966)100:0.1556670482)100:0.1779348834,(Drer_ENSDARP00000155312:0.3387526396,(((((Canfam_ENSCAFP00000031428:0.0606948743,((Hsap_ENSP00000400365:0.0031832406,Pantro_ENSPTRP00000031732:0.0033999666)100:0.0304780956,(Mmus_ENSMUSP00000090304:0.0270519382,Ratnor_ENSRNOP00000070049:0.0253208821)100:0.0636904286)96:0.0084155730)100:0.0494832025,Mondom_ENSMODP00000040336:0.0752945471)100:0.0690436039,Galgal_ENSGALP00000066070:0.0990123062)95:0.0141724879,Galgal_ENSGALP00000064934:0.1672235875)100:0.1089938980,(Drer_ENSDARP00000131993:0.2371491366,(Tetnig_ENSTNIP00000019514:0.4236158498,Drer_ENSDARP00000145314:0.1293111787)86:0.0124461010)100:0.1541247415)100:0.0678287960)100:0.1368150584)100:0.1422334355)99:0.0772070253)78:0.3437113045)100:0.5940689698);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -344708.600946
+Robinson-Foulds distance between ML tree and consensus tree: 2
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++--Bralan_BL01959_cuf17
+|
++--Bralan_BL97267_cuf0
+|
+|          +------Cint_ENSCINP00000016161
+|       +--| (67)
+|       |  +------------Nvec_EDO39276
++-------| (100)
+        |                                  +---------------Dmel_FBpp0309655
+        |                               +--| (77)
+        |                               |  |           +--Bralan_BL04054_cuf18
+        |                               |  +-----------| (100)
+        |                               |              +--Bralan_BL96325_cuf14
+        |                            +--| (57)
+        |                            |  |                          +--Canfam_ENSCAFP00000039662
+        |                            |  |                       +--| (100)
+        |                            |  |                       |  |     +--Hsap_ENSP00000346964
+        |                            |  |                       |  |  +--| (100)
+        |                            |  |                       |  |  |  +--Pantro_ENSPTRP00000085946
+        |                            |  |                       |  +--| (100)
+        |                            |  |                       |     |  +--Mmus_ENSMUSP00000094238
+        |                            |  |                       |     +--| (100)
+        |                            |  |                       |        +--Ratnor_ENSRNOP00000016722
+        |                            |  |                    +--| (100)
+        |                            |  |                    |  +--Mondom_ENSMODP00000025431
+        |                            |  |                 +--| (100)
+        |                            |  |                 |  +--Galgal_ENSGALP00000005904
+        |                            |  |        +--------| (100)
+        |                            |  |        |        |  +--Drer_ENSDARP00000132488
+        |                            |  |        |        +--| (100)
+        |                            |  |        |           +--Tetnig_ENSTNIP00000004479
+        |                            |  |     +--| (99)
+        |                            |  |     |  +------------Dmel_FBpp0309033
+        |                            |  |  +--| (98)
+        |                            |  |  |  +---------Nvec_EDO46873
+        |                            |  +--| (99)
+        |                            |     |      +----------Cint_ENSCINP00000024218
+        |                            |     +------| (100)
+        |                            |            |           +--Drer_ENSDARP00000101095
+        |                            |            |       +---| (100)
+        |                            |            |       |   +--Drer_ENSDARP00000144898
+        |                            |            +-------| (100)
+        |                            |                    |      +--Mmus_ENSMUSP00000137931
+        |                            |                    |   +--| (100)
+        |                            |                    |   |  +--Ratnor_ENSRNOP00000050623
+        |                            |                    +---| (100)
+        |                            |                        +--Pantro_ENSPTRP00000089337
+        |                         +--| (92)
+        |                         |  |                           +--Canfam_ENSCAFP00000057109
+        |                         |  |                        +--| (97)
+        |                         |  |                        |  |  +--Hsap_ENSP00000363827
+        |                         |  |                        |  +--| (100)
+        |                         |  |                        |     +--Pantro_ENSPTRP00000000536
+        |                         |  |                     +--| (100)
+        |                         |  |                     |  |  +--Mmus_ENSMUSP00000131316
+        |                         |  |                     |  +--| (100)
+        |                         |  |                     |     +--Ratnor_ENSRNOP00000034954
+        |                         |  |                  +--| (100)
+        |                         |  |                  |  +--Mondom_ENSMODP00000020041
+        |                         |  |               +--| (100)
+        |                         |  |               |  +--Galgal_ENSGALP00000051462
+        |                         |  |           +---| (100)
+        |                         |  |           |   |  +--Drer_ENSDARP00000141317
+        |                         |  |           |   +--| (100)
+        |                         |  |           |      +--Tetnig_ENSTNIP00000015396
+        |                         |  |        +--| (98)
+        |                         |  |        |  +-----Bralan_BL96321_cuf5
+        |                         |  |     +--| (97)
+        |                         |  |     |  +-----------Tadh_TriadP26220
+        |                         |  |  +--| (44)
+        |                         |  |  |  +-------------Cint_ENSCINP00000017466
+        |                         |  +--| (72)
+        |                         |     +-----------------Cele_WBGene00006787.1
+        |                      +--| (72)
+        |                      |  |     +------------------------Mlei_ML004921a-PA
+        |                      |  |  +--| (84)
+        |                      |  |  |  |                                  +--Mmus_ENSMUSP00000023629
+        |                      |  |  |  |                               +--| (100)
+        |                      |  |  |  |                               |  +--Ratnor_ENSRNOP00000064737
+        |                      |  |  |  |                         +-----| (100)
+        |                      |  |  |  |                         |     +--Mondom_ENSMODP00000021186
+        |                      |  |  |  |        +----------------| (100)
+        |                      |  |  |  |        |                +------Tetnig_ENSTNIP00000012321
+        |                      |  |  |  |     +--| (90)
+        |                      |  |  |  |     |  |           +-----------------Galgal_ENSGALP00000043837
+        |                      |  |  |  |     |  |        +--| (67)
+        |                      |  |  |  |     |  |        |  +-----------------Tadh_TriadP57635
+        |                      |  |  |  |     |  |     +--| (89)
+        |                      |  |  |  |     |  |     |  |                                +--Canfam_ENSCAFP00000036750
+        |                      |  |  |  |     |  |     |  |                             +--| (100)
+        |                      |  |  |  |     |  |     |  |                             |  |     +--Hsap_ENSP00000488920
+        |                      |  |  |  |     |  |     |  |                             |  |  +--| (100)
+        |                      |  |  |  |     |  |     |  |                             |  |  |  +--Pantro_ENSPTRP00000045254
+        |                      |  |  |  |     |  |     |  |                             |  +--| (100)
+        |                      |  |  |  |     |  |     |  |                             |     +--Mmus_ENSMUSP00000129678
+        |                      |  |  |  |     |  |     |  |                          +--| (100)
+        |                      |  |  |  |     |  |     |  |                          |  +--Mondom_ENSMODP00000006348
+        |                      |  |  |  |     |  |     |  |                       +--| (100)
+        |                      |  |  |  |     |  |     |  |                       |  +--Galgal_ENSGALP00000064682
+        |                      |  |  |  |     |  |     |  |                    +--| (100)
+        |                      |  |  |  |     |  |     |  |                    |  |     +--Drer_ENSDARP00000127605
+        |                      |  |  |  |     |  |     |  |                    |  |  +--| (98)
+        |                      |  |  |  |     |  |     |  |                    |  |  |  +--Tetnig_ENSTNIP00000006779
+        |                      |  |  |  |     |  |     |  |                    |  +--| (100)
+        |                      |  |  |  |     |  |     |  |                    |     +--Drer_ENSDARP00000107689
+        |                      |  |  |  |     |  |     |  |               +----| (100)
+        |                      |  |  |  |     |  |     |  |               |    |                 +--Canfam_ENSCAFP00000051642
+        |                      |  |  |  |     |  |     |  |               |    |              +--| (99)
+        |                      |  |  |  |     |  |     |  |               |    |              |  |  +--Hsap_ENSP00000385142
+        |                      |  |  |  |     |  |     |  |               |    |              |  +--| (100)
+        |                      |  |  |  |     |  |     |  |               |    |              |     +--Pantro_ENSPTRP00000073023
+        |                      |  |  |  |     |  |     |  |               |    |           +--| (100)
+        |                      |  |  |  |     |  |     |  |               |    |           |  +--Mmus_ENSMUSP00000124116
+        |                      |  |  |  |     |  |     |  |               |    |        +--| (98)
+        |                      |  |  |  |     |  |     |  |               |    |        |  +--Mondom_ENSMODP00000001882
+        |                      |  |  |  |     |  |     |  |               |    |     +--| (100)
+        |                      |  |  |  |     |  |     |  |               |    |     |  +--Galgal_ENSGALP00000052216
+        |                      |  |  |  |     |  |     |  |               |    |  +--| (100)
+        |                      |  |  |  |     |  |     |  |               |    |  |  |     +--Drer_ENSDARP00000102322
+        |                      |  |  |  |     |  |     |  |               |    |  |  |  +--| (100)
+        |                      |  |  |  |     |  |     |  |               |    |  |  |  |  +--Drer_ENSDARP00000155886
+        |                      |  |  |  |     |  |     |  |               |    |  |  +--| (100)
+        |                      |  |  |  |     |  |     |  |               |    |  |     |  +--Tetnig_ENSTNIP00000019699
+        |                      |  |  |  |     |  |     |  |               |    |  |     +--| (87)
+        |                      |  |  |  |     |  |     |  |               |    |  |        |  +--Drer_ENSDARP00000123742
+        |                      |  |  |  |     |  |     |  |               |    |  |        +--| (100)
+        |                      |  |  |  |     |  |     |  |               |    |  |           +--Drer_ENSDARP00000153484
+        |                      |  |  |  |     |  |     |  |               |    +--| (97)
+        |                      |  |  |  |     |  |     |  |               |       |           +--Canfam_ENSCAFP00000037589
+        |                      |  |  |  |     |  |     |  |               |       |        +--| (99)
+        |                      |  |  |  |     |  |     |  |               |       |        |  |  +--Mmus_ENSMUSP00000119762
+        |                      |  |  |  |     |  |     |  |               |       |        |  +--| (100)
+        |                      |  |  |  |     |  |     |  |               |       |        |     +--Mmus_ENSMUSP00000144319
+        |                      |  |  |  |     |  |     |  |               |       |     +--| (100)
+        |                      |  |  |  |     |  |     |  |               |       |     |  |  +--Hsap_ENSP00000265459
+        |                      |  |  |  |     |  |     |  |               |       |     |  +--| (100)
+        |                      |  |  |  |     |  |     |  |               |       |     |     +--Pantro_ENSPTRP00000077027
+        |                      |  |  |  |     |  |     |  |               |       |  +--| (100)
+        |                      |  |  |  |     |  |     |  |               |       |  |  +--Mondom_ENSMODP00000006366
+        |                      |  |  |  |     |  |     |  |               |       +--| (100)
+        |                      |  |  |  |     |  |     |  |               |          +--Drer_ENSDARP00000140509
+        |                      |  |  |  |     |  |     |  |            +--| (98)
+        |                      |  |  |  |     |  |     |  |            |  +--------Cint_ENSCINP00000010501
+        |                      |  |  |  |     |  |     |  |     +------| (100)
+        |                      |  |  |  |     |  |     |  |     |      +--------Dmel_FBpp0306677
+        |                      |  |  |  |     |  |     |  |  +--| (98)
+        |                      |  |  |  |     |  |     |  |  |  |                +------Drer_ENSDARP00000157183
+        |                      |  |  |  |     |  |     |  |  |  |             +--| (62)
+        |                      |  |  |  |     |  |     |  |  |  |             |  |        +--Hsap_ENSP00000399013
+        |                      |  |  |  |     |  |     |  |  |  |             |  |     +--| (100)
+        |                      |  |  |  |     |  |     |  |  |  |             |  |     |  +--Pantro_ENSPTRP00000021263
+        |                      |  |  |  |     |  |     |  |  |  |             |  |  +--| (100)
+        |                      |  |  |  |     |  |     |  |  |  |             |  |  |  +--Mmus_ENSMUSP00000083944
+        |                      |  |  |  |     |  |     |  |  |  |             |  +--| (100)
+        |                      |  |  |  |     |  |     |  |  |  |             |     +--Mondom_ENSMODP00000045629
+        |                      |  |  |  |     |  |     |  |  |  |  +----------| (100)
+        |                      |  |  |  |     |  |     |  |  |  |  |          |        +--Hsap_ENSP00000417628
+        |                      |  |  |  |     |  |     |  |  |  |  |          |     +--| (100)
+        |                      |  |  |  |     |  |     |  |  |  |  |          |     |  +--Hsap_ENSP00000499374
+        |                      |  |  |  |     |  |     |  |  |  |  |          |  +--| (100)
+        |                      |  |  |  |     |  |     |  |  |  |  |          |  |  +--Pantro_ENSPTRP00000079674
+        |                      |  |  |  |     |  |     |  |  |  |  |          +--| (100)
+        |                      |  |  |  |     |  |     |  |  |  |  |             |  +--Mmus_ENSMUSP00000112511
+        |                      |  |  |  |     |  |     |  |  |  |  |             +--| (100)
+        |                      |  |  |  |     |  |     |  |  |  |  |                +--Ratnor_ENSRNOP00000061027
+        |                      |  |  |  |     |  |     |  |  |  +--| (97)
+        |                      |  |  |  |     |  |     |  |  |     +-----------------Nvec_EDO39261
+        |                      |  |  |  |     |  |     |  +--| (65)
+        |                      |  |  |  |     |  |     |     +------------------------Bralan_BL10238_cuf15
+        |                      |  |  |  |     |  |  +--| (92)
+        |                      |  |  |  |     |  |  |  |       +--------------Dmel_FBpp0289570
+        |                      |  |  |  |     |  |  |  +-------| (100)
+        |                      |  |  |  |     |  |  |          |             +---Drer_ENSDARP00000101512
+        |                      |  |  |  |     |  |  |          +-------------| (100)
+        |                      |  |  |  |     |  |  |                        +--Tetnig_ENSTNIP00000019031
+        |                      |  |  |  |     |  +--| (88)
+        |                      |  |  |  |     |     |  +----------------Bralan_BL97268_cuf1
+        |                      |  |  |  |     |     +--| (85)
+        |                      |  |  |  |     |        +-------------------Drer_ENSDARP00000136786
+        |                      |  |  |  |  +--| (64)
+        |                      |  |  |  |  |  +------------------------Drer_ENSDARP00000066079
+        |                      |  |  |  +--| (52)
+        |                      |  |  |     +-----------------Mlei_ML04798a-PA
+        |                      |  +--| (42)
+        |                      |     +---------------Mlei_ML035910a-PA
+        |                   +--| (70)
+        |                   |  |        +-----------Bralan_BL09541_cuf4
+        |                   |  |     +--| (97)
+        |                   |  |     |  +-----------Nvec_EDO31103
+        |                   |  |  +--| (78)
+        |                   |  |  |  +---------------Mlei_ML097515a-PA
+        |                   |  +--| (75)
+        |                   |     |               +-------Nvec_EDO39502
+        |                   |     |            +--| (97)
+        |                   |     |            |  |                       +--Canfam_ENSCAFP00000017386
+        |                   |     |            |  |                    +--| (96)
+        |                   |     |            |  |                    |  |  +--Hsap_ENSP00000388325
+        |                   |     |            |  |                    |  +--| (100)
+        |                   |     |            |  |                    |     +--Pantro_ENSPTRP00000025746
+        |                   |     |            |  |                 +--| (100)
+        |                   |     |            |  |                 |  |  +--Mmus_ENSMUSP00000069087
+        |                   |     |            |  |                 |  +--| (100)
+        |                   |     |            |  |                 |     +--Ratnor_ENSRNOP00000065052
+        |                   |     |            |  |              +--| (100)
+        |                   |     |            |  |              |  +--Mondom_ENSMODP00000040787
+        |                   |     |            |  |           +--| (99)
+        |                   |     |            |  |           |  |  +--Drer_ENSDARP00000123269
+        |                   |     |            |  |           |  +--| (100)
+        |                   |     |            |  |           |     +--Tetnig_ENSTNIP00000005083
+        |                   |     |            |  |        +--| (99)
+        |                   |     |            |  |        |  |              +--Canfam_ENSCAFP00000049135
+        |                   |     |            |  |        |  |           +--| (96)
+        |                   |     |            |  |        |  |           |  |  +--Mmus_ENSMUSP00000002979
+        |                   |     |            |  |        |  |           |  +--| (100)
+        |                   |     |            |  |        |  |           |     +--Ratnor_ENSRNOP00000008321
+        |                   |     |            |  |        |  |        +--| (100)
+        |                   |     |            |  |        |  |        |  |  +--Hsap_ENSP00000377191
+        |                   |     |            |  |        |  |        |  +--| (100)
+        |                   |     |            |  |        |  |        |     +--Pantro_ENSPTRP00000069299
+        |                   |     |            |  |        |  |     +--| (100)
+        |                   |     |            |  |        |  |     |  +--Mondom_ENSMODP00000020390
+        |                   |     |            |  |        |  |  +--| (100)
+        |                   |     |            |  |        |  |  |  +--Galgal_ENSGALP00000012817
+        |                   |     |            |  |        |  +--| (100)
+        |                   |     |            |  |        |     |     +--Drer_ENSDARP00000131540
+        |                   |     |            |  |        |     |  +--| (100)
+        |                   |     |            |  |        |     |  |  +--Tetnig_ENSTNIP00000016750
+        |                   |     |            |  |        |     +--| (100)
+        |                   |     |            |  |        |        |  +---Tetnig_ENSTNIP00000015655
+        |                   |     |            |  |        |        +--| (100)
+        |                   |     |            |  |        |           |    +--Drer_ENSDARP00000066944
+        |                   |     |            |  |        |           +----| (100)
+        |                   |     |            |  |        |                +--Drer_ENSDARP00000156839
+        |                   |     |            |  |     +--| (100)
+        |                   |     |            |  |     |  |        +--Drer_ENSDARP00000048365
+        |                   |     |            |  |     |  |     +--| (100)
+        |                   |     |            |  |     |  |     |  +---Tetnig_ENSTNIP00000005078
+        |                   |     |            |  |     |  |  +--| (99)
+        |                   |     |            |  |     |  |  |  +-------Mondom_ENSMODP00000056254
+        |                   |     |            |  |     |  +--| (99)
+        |                   |     |            |  |     |     |      +--Mondom_ENSMODP00000020037
+        |                   |     |            |  |     |     +------| (100)
+        |                   |     |            |  |     |            +--Pantro_ENSPTRP00000033539
+        |                   |     |            |  |  +--| (100)
+        |                   |     |            |  |  |  +------Cint_ENSCINP00000013062
+        |                   |     |            |  +--| (100)
+        |                   |     |            |     |  +-------Dmel_FBpp0079114
+        |                   |     |            |     +--| (100)
+        |                   |     |            |        +------Cele_WBGene00002247.1
+        |                   |     |         +--| (82)
+        |                   |     |         |  +------------Sman_Smp_148790
+        |                   |     |     +---| (100)
+        |                   |     |     |   +----------Tadh_TriadP24524
+        |                   |     |  +--| (97)
+        |                   |     |  |  |   +-----------Mlei_ML20591a-PA
+        |                   |     |  |  +---| (97)
+        |                   |     |  |      +------------Nvec_EDO36501
+        |                   |     +--| (93)
+        |                   |        |     +-------------Mlei_ML05951a-PA
+        |                   |        |  +--| (100)
+        |                   |        |  |  |        +----Bralan_BL95807_evm1
+        |                   |        |  |  |     +--| (100)
+        |                   |        |  |  |     |  |                       +--Canfam_ENSCAFP00000054457
+        |                   |        |  |  |     |  |                    +--| (100)
+        |                   |        |  |  |     |  |                    |  |     +--Hsap_ENSP00000258341
+        |                   |        |  |  |     |  |                    |  |  +--| (100)
+        |                   |        |  |  |     |  |                    |  |  |  +--Pantro_ENSPTRP00000002939
+        |                   |        |  |  |     |  |                    |  +--| (100)
+        |                   |        |  |  |     |  |                    |     |  +--Mmus_ENSMUSP00000027752
+        |                   |        |  |  |     |  |                    |     +--| (100)
+        |                   |        |  |  |     |  |                    |        +--Ratnor_ENSRNOP00000003605
+        |                   |        |  |  |     |  |                 +--| (100)
+        |                   |        |  |  |     |  |                 |  +--Mondom_ENSMODP00000008686
+        |                   |        |  |  |     |  |              +--| (100)
+        |                   |        |  |  |     |  |              |  +--Galgal_ENSGALP00000038625
+        |                   |        |  |  |     |  |           +--| (100)
+        |                   |        |  |  |     |  |           |  |  +--Drer_ENSDARP00000024860
+        |                   |        |  |  |     |  |           |  +--| (100)
+        |                   |        |  |  |     |  |           |     +--Tetnig_ENSTNIP00000001897
+        |                   |        |  |  |     |  |        +--| (100)
+        |                   |        |  |  |     |  |        |  |          +--Canfam_ENSCAFP00000019515
+        |                   |        |  |  |     |  |        |  |       +--| (100)
+        |                   |        |  |  |     |  |        |  |       |  |     +--Hsap_ENSP00000264144
+        |                   |        |  |  |     |  |        |  |       |  |  +--| (100)
+        |                   |        |  |  |     |  |        |  |       |  |  |  +--Pantro_ENSPTRP00000002941
+        |                   |        |  |  |     |  |        |  |       |  +--| (100)
+        |                   |        |  |  |     |  |        |  |       |     |  +--Mmus_ENSMUSP00000140514
+        |                   |        |  |  |     |  |        |  |       |     +--| (100)
+        |                   |        |  |  |     |  |        |  |       |        +--Ratnor_ENSRNOP00000075844
+        |                   |        |  |  |     |  |        |  +-------| (100)
+        |                   |        |  |  |     |  |        |          +--Mondom_ENSMODP00000008728
+        |                   |        |  |  |     |  |     +--| (100)
+        |                   |        |  |  |     |  |     |  |             +--Canfam_ENSCAFP00000040626
+        |                   |        |  |  |     |  |     |  |          +--| (100)
+        |                   |        |  |  |     |  |     |  |          |  |  +--Hsap_ENSP00000354360
+        |                   |        |  |  |     |  |     |  |          |  +--| (100)
+        |                   |        |  |  |     |  |     |  |          |     +--Pantro_ENSPTRP00000089434
+        |                   |        |  |  |     |  |     |  |       +--| (100)
+        |                   |        |  |  |     |  |     |  |       |  |  +--Mmus_ENSMUSP00000028187
+        |                   |        |  |  |     |  |     |  |       |  +--| (100)
+        |                   |        |  |  |     |  |     |  |       |     +--Ratnor_ENSRNOP00000071272
+        |                   |        |  |  |     |  |     |  |   +---| (100)
+        |                   |        |  |  |     |  |     |  |   |   +--Mondom_ENSMODP00000015227
+        |                   |        |  |  |     |  |     |  +---| (100)
+        |                   |        |  |  |     |  |     |      +------Drer_ENSDARP00000117247
+        |                   |        |  |  |     |  |  +--| (93)
+        |                   |        |  |  |     |  |  |  +-------Cint_ENSCINP00000014720
+        |                   |        |  |  |     |  +--| (89)
+        |                   |        |  |  |     |     |  +------Dmel_FBpp0076111
+        |                   |        |  |  |     |     +--| (100)
+        |                   |        |  |  |     |        +-------Cele_WBGene00016913.1
+        |                   |        |  |  |  +--| (100)
+        |                   |        |  |  |  |  +--------Nvec_EDO36523
+        |                   |        |  |  +--| (100)
+        |                   |        |  |     +------------Tadh_TriadP21436
+        |                   |        +--| (94)
+        |                   |           +------------Sman_Smp_163810
+        |                +--| (77)
+        |                |  |             +-------Bralan_BL24175_evm3
+        |                |  +-------------| (100)
+        |                |                +------Drer_ENSDARP00000080636
+        |             +--| (61)
+        |             |  |  +-------Nvec_EDO39274
+        |             |  +--| (48)
+        |             |     +---------------Nvec_EDO40131
+        |          +--| (76)
+        |          |  |           +---------Cint_ENSCINP00000010645
+        |          |  |        +--| (100)
+        |          |  |        |  |  +---------Cele_WBGene00001328.1
+        |          |  |        |  +--| (100)
+        |          |  |        |     +---------Dmel_FBpp0076722
+        |          |  |     +--| (100)
+        |          |  |     |  |        +---Tetnig_ENSTNIP00000018283
+        |          |  |     |  |     +--| (97)
+        |          |  |     |  |     |  |  +----Drer_ENSDARP00000119869
+        |          |  |     |  |     |  +--| (100)
+        |          |  |     |  |     |     |  +------Drer_ENSDARP00000150169
+        |          |  |     |  |     |     +--| (100)
+        |          |  |     |  |     |        +---------Tetnig_ENSTNIP00000020781
+        |          |  |     |  |  +--| (95)
+        |          |  |     |  |  |  |        +--Canfam_ENSCAFP00000050272
+        |          |  |     |  |  |  |     +--| (100)
+        |          |  |     |  |  |  |     |  |     +--Hsap_ENSP00000324532
+        |          |  |     |  |  |  |     |  |  +--| (100)
+        |          |  |     |  |  |  |     |  |  |  +--Pantro_ENSPTRP00000016876
+        |          |  |     |  |  |  |     |  +--| (99)
+        |          |  |     |  |  |  |     |     |  +--Mmus_ENSMUSP00000089703
+        |          |  |     |  |  |  |     |     +--| (100)
+        |          |  |     |  |  |  |     |        +--Ratnor_ENSRNOP00000075948
+        |          |  |     |  |  |  |  +--| (100)
+        |          |  |     |  |  |  |  |  +--Mondom_ENSMODP00000035538
+        |          |  |     |  |  |  +--| (100)
+        |          |  |     |  |  |     +---Galgal_ENSGALP00000043775
+        |          |  |     |  +--| (97)
+        |          |  |     |     |     +--Drer_ENSDARP00000045125
+        |          |  |     |     |  +--| (100)
+        |          |  |     |     |  |  +--Tetnig_ENSTNIP00000006343
+        |          |  |     |     +--| (100)
+        |          |  |     |        |  +--Galgal_ENSGALP00000073750
+        |          |  |     |        +--| (100)
+        |          |  |     |           |        +--Hsap_ENSP00000252999
+        |          |  |     |           |     +--| (100)
+        |          |  |     |           |     |  +--Pantro_ENSPTRP00000089454
+        |          |  |     |           |  +--| (100)
+        |          |  |     |           |  |  |  +--Mmus_ENSMUSP00000015791
+        |          |  |     |           |  |  +--| (100)
+        |          |  |     |           |  |     +--Ratnor_ENSRNOP00000074084
+        |          |  |     |           +--| (100)
+        |          |  |     |              +--Mondom_ENSMODP00000020924
+        |          |  |  +--| (99)
+        |          |  |  |  |              +--Canfam_ENSCAFP00000057976
+        |          |  |  |  |           +--| (100)
+        |          |  |  |  |           |  |     +--Hsap_ENSP00000230538
+        |          |  |  |  |           |  |  +--| (100)
+        |          |  |  |  |           |  |  |  +--Pantro_ENSPTRP00000092161
+        |          |  |  |  |           |  +--| (99)
+        |          |  |  |  |           |     |  +--Mmus_ENSMUSP00000019992
+        |          |  |  |  |           |     +--| (100)
+        |          |  |  |  |           |        +--Ratnor_ENSRNOP00000000737
+        |          |  |  |  |        +--| (100)
+        |          |  |  |  |        |  +--Mondom_ENSMODP00000022293
+        |          |  |  |  |     +--| (100)
+        |          |  |  |  |     |  +--Galgal_ENSGALP00000024147
+        |          |  |  |  +-----| (100)
+        |          |  |  |        |   +--Drer_ENSDARP00000006065
+        |          |  |  |        +---| (100)
+        |          |  |  |            +--Tetnig_ENSTNIP00000007943
+        |          |  +--| (97)
+        |          |     +-----------Bralan_BL02579_cuf13
+        |       +--| (83)
+        |       |  |     +-----Bralan_BL96320_cuf4
+        |       |  |  +--| (82)
+        |       |  |  |  +---------Tadh_TriadP27868
+        |       |  +--| (75)
+        |       |     |  +-----------Dmel_FBpp0291871
+        |       |     +--| (96)
+        |       |        +-----------------Sman_Smp_143680
+        |    +--| (89)
+        |    |  +------------Cele_WBGene00002248.1
+        +----| (78)
+             |  +----Bralan_BL97272_cuf8
+             +--| (99)
+                |              +--Canfam_ENSCAFP00000027440
+                |           +--| (100)
+                |           |  |     +--Hsap_ENSP00000374309
+                |           |  |  +--| (100)
+                |           |  |  |  +--Pantro_ENSPTRP00000085556
+                |           |  +--| (96)
+                |           |     |  +--Mmus_ENSMUSP00000043957
+                |           |     +--| (100)
+                |           |        +--Ratnor_ENSRNOP00000023224
+                |        +--| (100)
+                |        |  +--Mondom_ENSMODP00000042084
+                |     +--| (100)
+                |     |  +--Galgal_ENSGALP00000036103
+                |  +--| (100)
+                |  |  |  +--Drer_ENSDARP00000135371
+                |  |  +--| (100)
+                |  |     +------Tetnig_ENSTNIP00000016514
+                +--| (100)
+                   |  +----Drer_ENSDARP00000155312
+                   +--| (100)
+                      |              +--Canfam_ENSCAFP00000031428
+                      |           +--| (100)
+                      |           |  |     +--Hsap_ENSP00000400365
+                      |           |  |  +--| (100)
+                      |           |  |  |  +--Pantro_ENSPTRP00000031732
+                      |           |  +--| (96)
+                      |           |     |  +--Mmus_ENSMUSP00000090304
+                      |           |     +--| (100)
+                      |           |        +--Ratnor_ENSRNOP00000070049
+                      |        +--| (100)
+                      |        |  +--Mondom_ENSMODP00000040336
+                      |     +--| (95)
+                      |     |  +--Galgal_ENSGALP00000066070
+                      |  +--| (100)
+                      |  |  +--Galgal_ENSGALP00000064934
+                      +--| (100)
+                         |  +--Drer_ENSDARP00000131993
+                         +--| (100)
+                            |  +-----Tetnig_ENSTNIP00000019514
+                            +--| (86)
+                               +--Drer_ENSDARP00000145314
+
+
+Consensus tree in newick format: 
+
+(Bralan_BL01959_cuf17:0.0893129611,Bralan_BL97267_cuf0:0.0691872232,((Cint_ENSCINP00000016161:0.4800829442,Nvec_EDO39276:0.9232528789)67:0.1205227687,(((((((((((Dmel_FBpp0309655:1.0959212587,(Bralan_BL04054_cuf18:0.0000028318,Bralan_BL96325_cuf14:0.0049574030)100:0.8157073530)77:0.1241545498,(((((((Canfam_ENSCAFP00000039662:0.0643384685,((Hsap_ENSP00000346964:0.0029099406,Pantro_ENSPTRP00000085946:0.0027745789)100:0.0360329939,(Mmus_ENSMUSP00000094238:0.0262298586,Ratnor_ENSRNOP00000016722:0.0151979205)100:0.0701928058)100:0.0186877527)100:0.1149485869,Mondom_ENSMODP00000025431:0.0925656377)100:0.0843619296,Galgal_ENSGALP00000005904:0.0968790893)100:0.1485808342,(Drer_ENSDARP00000132488:0.1580432137,Tetnig_ENSTNIP00000004479:0.1543070974)100:0.1158166948)100:0.6515028374,Dmel_FBpp0309033:0.8873306876)99:0.1530026505,Nvec_EDO46873:0.7201712732)98:0.0958414726,(Cint_ENSCINP00000024218:0.7448101703,((Drer_ENSDARP00000101095:0.0013342918,Drer_ENSDARP00000144898:0.0245769890)100:0.2693160066,((Mmus_ENSMUSP00000137931:0.0281719766,Ratnor_ENSRNOP00000050623:0.0184651785)100:0.0760440701,Pantro_ENSPTRP00000089337:0.1023176734)100:0.2943160116)100:0.5780758172)100:0.4976959715)99:0.2405038126)57:0.0951817230,(((((((((Canfam_ENSCAFP00000057109:0.0683100104,(Hsap_ENSP00000363827:0.0060540328,Pantro_ENSPTRP00000000536:0.0017875425)100:0.0295547187)97:0.0112235926,(Mmus_ENSMUSP00000131316:0.0119692775,Ratnor_ENSRNOP00000034954:0.0307532173)100:0.0657669768)100:0.0563675182,Mondom_ENSMODP00000020041:0.1010304118)100:0.1399622852,Galgal_ENSGALP00000051462:0.2376970158)100:0.1504492108,(Drer_ENSDARP00000141317:0.1588444954,Tetnig_ENSTNIP00000015396:0.2180889976)100:0.1569314417)100:0.2829359353,Bralan_BL96321_cuf5:0.4063429825)98:0.1946617528,Tadh_TriadP26220:0.8355257737)97:0.2192145530,Cint_ENSCINP00000017466:0.9538485304)44:0.1085013989,Cele_WBGene00006787.1:1.2464643245)72:0.1280021930)92:0.1705603509,((Mlei_ML004921a-PA:1.7379781023,((((((Mmus_ENSMUSP00000023629:0.0341778235,Ratnor_ENSRNOP00000064737:0.0360004094)100:0.2089284873,Mondom_ENSMODP00000021186:0.1694845675)100:0.4382528427,Tetnig_ENSTNIP00000012321:0.4691873196)100:1.1891744987,((((Galgal_ENSGALP00000043837:1.2632215230,Tadh_TriadP57635:1.2098154505)67:0.1775895366,(((((((((Canfam_ENSCAFP00000036750:0.0073057527,((Hsap_ENSP00000488920:0.0000027943,Pantro_ENSPTRP00000045254:0.0000027943)100:0.0051307224,Mmus_ENSMUSP00000129678:0.0118093732)100:0.0009324999)100:0.0083579626,Mondom_ENSMODP00000006348:0.0079348228)100:0.0238937666,Galgal_ENSGALP00000064682:0.0196431201)100:0.0433402958,((Drer_ENSDARP00000127605:0.0620762047,Tetnig_ENSTNIP00000006779:0.2280059719)98:0.0297664627,Drer_ENSDARP00000107689:0.1306819554)100:0.0535236931)100:0.0864301591,((((((Canfam_ENSCAFP00000051642:0.0060825559,(Hsap_ENSP00000385142:0.0000027943,Pantro_ENSPTRP00000073023:0.0000027943)100:0.0010229966)99:0.0024322434,Mmus_ENSMUSP00000124116:0.0016285553)100:0.0280144972,Mondom_ENSMODP00000001882:0.0228044425)98:0.0078815532,Galgal_ENSGALP00000052216:0.0137401989)100:0.0770080713,((Drer_ENSDARP00000102322:0.0000027017,Drer_ENSDARP00000155886:0.0286324596)100:0.0769368032,(Tetnig_ENSTNIP00000019699:0.0799890400,(Drer_ENSDARP00000123742:0.0029828245,Drer_ENSDARP00000153484:0.0011693633)100:0.2215148324)87:0.0186943991)100:0.0682454258)100:0.1020331972,((((Canfam_ENSCAFP00000037589:0.0037992359,(Mmus_ENSMUSP00000119762:0.0000027943,Mmus_ENSMUSP00000144319:0.0000027943)100:0.0103082372)99:0.0022921200,(Hsap_ENSP00000265459:0.0020739499,Pantro_ENSPTRP00000077027:0.0000027943)100:0.0037001634)100:0.0154786885,Mondom_ENSMODP00000006366:0.1563158359)100:0.0938374458,Drer_ENSDARP00000140509:0.1690193751)100:0.1416815567)97:0.0536400747)100:0.3487684800,Cint_ENSCINP00000010501:0.6595594420)98:0.1169765627,Dmel_FBpp0306677:0.6214710931)100:0.5260061261,(((Drer_ENSDARP00000157183:0.5220451065,(((Hsap_ENSP00000399013:0.0028465673,Pantro_ENSPTRP00000021263:0.0052843992)100:0.0546218345,Mmus_ENSMUSP00000083944:0.1467681600)100:0.0758806611,Mondom_ENSMODP00000045629:0.1397419766)100:0.1595575107)62:0.0869505837,(((Hsap_ENSP00000417628:0.0133350797,Hsap_ENSP00000499374:0.0000027943)100:0.0074598347,Pantro_ENSPTRP00000079674:0.0031497497)100:0.0670973689,(Mmus_ENSMUSP00000112511:0.0156751670,Ratnor_ENSRNOP00000061027:0.0497680502)100:0.0708698674)100:0.2311770517)100:0.7913806786,Nvec_EDO39261:1.2656829055)97:0.1790713260)98:0.1388183603,Bralan_BL10238_cuf15:1.6835866506)65:0.0711316222)89:0.1064887006,(Dmel_FBpp0289570:1.0177502530,(Drer_ENSDARP00000101512:0.2787157105,Tetnig_ENSTNIP00000019031:0.1884510888)100:0.9429157207)100:0.5848377222)92:0.1109061263,(Bralan_BL97268_cuf1:1.1794407955,Drer_ENSDARP00000136786:1.4013668641)85:0.1529759211)88:0.1165000808)90:0.0846408207,Drer_ENSDARP00000066079:1.7367239519)64:0.1012053577,Mlei_ML04798a-PA:1.2073259775)52:0.0452731249)84:0.0673480510,Mlei_ML035910a-PA:1.1141369857)42:0.0577562087)72:0.0910472502,(((Bralan_BL09541_cuf4:0.8277125885,Nvec_EDO31103:0.8119192022)97:0.1663626966,Mlei_ML097515a-PA:1.1295217756)78:0.1617753451,(((((Nvec_EDO39502:0.5740527508,((((((((Canfam_ENSCAFP00000017386:0.0513970009,(Hsap_ENSP00000388325:0.0044582000,Pantro_ENSPTRP00000025746:0.0033970479)100:0.0307282577)96:0.0180021595,(Mmus_ENSMUSP00000069087:0.0154878317,Ratnor_ENSRNOP00000065052:0.0190347153)100:0.0515248274)100:0.1225628712,Mondom_ENSMODP00000040787:0.0988189898)100:0.2292142707,(Drer_ENSDARP00000123269:0.1179034241,Tetnig_ENSTNIP00000005083:0.2006516868)100:0.0962975131)99:0.1219908360,(((((Canfam_ENSCAFP00000049135:0.0471641865,(Mmus_ENSMUSP00000002979:0.0083966562,Ratnor_ENSRNOP00000008321:0.0134808882)100:0.0309118714)96:0.0066767234,(Hsap_ENSP00000377191:0.0004947493,Pantro_ENSPTRP00000069299:0.0176252982)100:0.0275901621)100:0.0249330521,Mondom_ENSMODP00000020390:0.0509646775)100:0.0737716302,Galgal_ENSGALP00000012817:0.1063979534)100:0.1170607249,((Drer_ENSDARP00000131540:0.1266320238,Tetnig_ENSTNIP00000016750:0.2081413329)100:0.0532544059,(Tetnig_ENSTNIP00000015655:0.2978062487,(Drer_ENSDARP00000066944:0.0033701528,Drer_ENSDARP00000156839:0.0090157474)100:0.3630458211)100:0.0634434564)100:0.0755648484)100:0.1640555953)99:0.0913731223,(((Drer_ENSDARP00000048365:0.2103008835,Tetnig_ENSTNIP00000005078:0.2768394863)100:0.1913387268,Mondom_ENSMODP00000056254:0.5899198222)99:0.1480571972,(Mondom_ENSMODP00000020037:0.2027607813,Pantro_ENSPTRP00000033539:0.2206662807)100:0.5187484142)99:0.0723115986)100:0.0929858407,Cint_ENSCINP00000013062:0.5312443960)100:0.0921910675,(Dmel_FBpp0079114:0.5764618696,Cele_WBGene00002247.1:0.5241819622)100:0.1357325563)100:0.1224746634)97:0.1161826112,Sman_Smp_148790:0.9203500543)82:0.0790224486,Tadh_TriadP24524:0.7860865671)100:0.2850952115,(Mlei_ML20591a-PA:0.8507551169,Nvec_EDO36501:0.8868846433)97:0.2748187581)97:0.1560160043,((Mlei_ML05951a-PA:0.9905830589,(((Bralan_BL95807_evm1:0.3920724639,((((((((Canfam_ENSCAFP00000054457:0.0385333058,((Hsap_ENSP00000258341:0.0038912096,Pantro_ENSPTRP00000002939:0.0026495738)100:0.0169937891,(Mmus_ENSMUSP00000027752:0.0084987446,Ratnor_ENSRNOP00000003605:0.0133457075)100:0.0342629676)100:0.0056642147)100:0.0263133541,Mondom_ENSMODP00000008686:0.0417873015)100:0.0570364055,Galgal_ENSGALP00000038625:0.0864135705)100:0.0992325668,(Drer_ENSDARP00000024860:0.1097766922,Tetnig_ENSTNIP00000001897:0.1264024924)100:0.0995103998)100:0.1180814641,((Canfam_ENSCAFP00000019515:0.0526974240,((Hsap_ENSP00000264144:0.0042181311,Pantro_ENSPTRP00000002941:0.0033552645)100:0.0609481807,(Mmus_ENSMUSP00000140514:0.0261872372,Ratnor_ENSRNOP00000075844:0.0263293695)100:0.0588321521)100:0.0231691629)100:0.0977143505,Mondom_ENSMODP00000008728:0.1138894454)100:0.5782324709)100:0.0801952685,((((Canfam_ENSCAFP00000040626:0.1039940328,(Hsap_ENSP00000354360:0.0060722096,Pantro_ENSPTRP00000089434:0.0095626717)100:0.0821777952)100:0.0360877181,(Mmus_ENSMUSP00000028187:0.0515408693,Ratnor_ENSRNOP00000071272:0.0535333121)100:0.1366102561)100:0.1484898561,Mondom_ENSMODP00000015227:0.1543192986)100:0.2948141437,Drer_ENSDARP00000117247:0.5357257797)100:0.2867160921)100:0.1176552805,Cint_ENSCINP00000014720:0.5982433803)93:0.0753896954,(Dmel_FBpp0076111:0.5207057048,Cele_WBGene00016913.1:0.5776429795)100:0.1880419177)89:0.0598979824)100:0.0677568311,Nvec_EDO36523:0.6636016428)100:0.0841010631,Tadh_TriadP21436:0.8713607662)100:0.0551450682)100:0.1102132878,Sman_Smp_163810:0.9348152039)94:0.1152275862)93:0.1342364125)75:0.0915138639)70:0.0498454773,(Bralan_BL24175_evm3:0.5746563999,Drer_ENSDARP00000080636:0.4735292141)100:0.9444695584)77:0.0823890375,(Nvec_EDO39274:0.5656689320,Nvec_EDO40131:1.0746821366)48:0.1370345473)61:0.1560120261,((((Cint_ENSCINP00000010645:0.7334697301,(Cele_WBGene00001328.1:0.7226855818,Dmel_FBpp0076722:0.6879529201)100:0.1511829563)100:0.1606754547,(((Tetnig_ENSTNIP00000018283:0.3216773953,(Drer_ENSDARP00000119869:0.3451199115,(Drer_ENSDARP00000150169:0.5323307247,Tetnig_ENSTNIP00000020781:0.7264223324)100:0.1341892875)100:0.2321254749)97:0.1931581310,(((Canfam_ENSCAFP00000050272:0.0831572957,((Hsap_ENSP00000324532:0.0031446625,Pantro_ENSPTRP00000016876:0.0025712185)100:0.0743429741,(Mmus_ENSMUSP00000089703:0.0399892295,Ratnor_ENSRNOP00000075948:0.0419437381)100:0.1268305202)99:0.0231370881)100:0.1104362876,Mondom_ENSMODP00000035538:0.1424539092)100:0.1546180467,Galgal_ENSGALP00000043775:0.2866555828)100:0.1672746856)95:0.0973829438,((Drer_ENSDARP00000045125:0.2307040360,Tetnig_ENSTNIP00000006343:0.1618596155)100:0.1663803142,(Galgal_ENSGALP00000073750:0.2111302115,(((Hsap_ENSP00000252999:0.0055672054,Pantro_ENSPTRP00000089454:0.1151648235)100:0.1038864030,(Mmus_ENSMUSP00000015791:0.0327531508,Ratnor_ENSRNOP00000074084:0.0332761841)100:0.1162100899)100:0.1851414615,Mondom_ENSMODP00000020924:0.1675077941)100:0.1408906475)100:0.1512125986)100:0.1869389057)97:0.1649670338)100:0.1672522323,((((Canfam_ENSCAFP00000057976:0.1041451658,((Hsap_ENSP00000230538:0.0017533905,Pantro_ENSPTRP00000092161:0.0020681643)100:0.0390717884,(Mmus_ENSMUSP00000019992:0.0178149410,Ratnor_ENSRNOP00000000737:0.0270839175)100:0.0461982865)99:0.0079064970)100:0.0514905904,Mondom_ENSMODP00000022293:0.0632093970)100:0.1448834560,Galgal_ENSGALP00000024147:0.1522968012)100:0.2249511818,(Drer_ENSDARP00000006065:0.2002857862,Tetnig_ENSTNIP00000007943:0.2331007105)100:0.2684560680)100:0.4326640350)99:0.0945132910,Bralan_BL02579_cuf13:0.8143170508)97:0.1399790958)76:0.0789755563,((Bralan_BL96320_cuf4:0.4452911640,Tadh_TriadP27868:0.7204746545)82:0.1081156839,(Dmel_FBpp0291871:0.8428212598,Sman_Smp_143680:1.2415533079)96:0.1004229545)75:0.0932621584)83:0.0637894253,Cele_WBGene00002248.1:0.9039457283)89:0.0822431758,(Bralan_BL97272_cuf8:0.3868873709,(((((Canfam_ENSCAFP00000027440:0.0796719365,((Hsap_ENSP00000374309:0.0028560040,Pantro_ENSPTRP00000085556:0.0108984939)100:0.0980133465,(Mmus_ENSMUSP00000043957:0.0352621715,Ratnor_ENSRNOP00000023224:0.0354399056)100:0.1273528292)96:0.0196474019)100:0.0977165636,Mondom_ENSMODP00000042084:0.2308354195)100:0.0573408118,Galgal_ENSGALP00000036103:0.1933143597)100:0.1539906356,(Drer_ENSDARP00000135371:0.2578774482,Tetnig_ENSTNIP00000016514:0.4737809525)100:0.1557218850)100:0.1780264445,(Drer_ENSDARP00000155312:0.3388734186,(((((Canfam_ENSCAFP00000031428:0.0607152696,((Hsap_ENSP00000400365:0.0031858550,Pantro_ENSPTRP00000031732:0.0034014191)100:0.0304874091,(Mmus_ENSMUSP00000090304:0.0270617369,Ratnor_ENSRNOP00000070049:0.0253306131)100:0.0637135720)96:0.0084193133)100:0.0495010010,Mondom_ENSMODP00000040336:0.0753202144)100:0.0690972127,Galgal_ENSGALP00000066070:0.0990223834)95:0.0141564756,Galgal_ENSGALP00000064934:0.1672732782)100:0.1090872514,(Drer_ENSDARP00000131993:0.2374135766,(Tetnig_ENSTNIP00000019514:0.4236528357,Drer_ENSDARP00000145314:0.1293737423)86:0.0131331681)100:0.1534831031)100:0.0678082450)100:0.1368549655)100:0.1422465124)99:0.0773913800)78:0.3432475165)100:0.5942957257);
+
+TIME STAMP
+----------
+
+Date and time: Sat Feb  6 18:02:55 2021
+Total CPU time used: 14266.97891 seconds (3h:57m:46s)
+Total wall-clock time used: 1825.324225 seconds (0h:30m:25s)
+

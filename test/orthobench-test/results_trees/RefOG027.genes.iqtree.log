@@ -1,0 +1,11 @@
+IQ-TREE multicore version 2.1.0 for Linux 64-bit built Jul 18 2020
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    node-hp0405.linux.crg.es (AVX, 125 GB RAM)
+Command: /users/asebe/xgraubove/Programes/iqtree-2.1.0-Linux/bin/iqtree2 -s results_trees/RefOG027.genes.lt.fasta -m TEST -mset LG,WAG,JTT -nt AUTO -ntmax 8 -bb 1000 -pre results_trees/RefOG027.genes.iqtree -nm 10000 -nstop 200 -cptime 1800
+Seed:    199984 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Sat Feb  6 15:10:32 2021
+Kernel:  AVX - auto-detect threads (8 CPU cores detected)
+
+Reading alignment file results_trees/RefOG027.genes.lt.fasta ... ERROR: File not found results_trees/RefOG027.genes.lt.fasta

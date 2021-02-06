@@ -1,9 +1,0 @@
-2019-10-18 17:15:53,294 [INFO ]	Input args: {'refsp': 'Hsap', 'sos': 0.0, 'inf': 1.1, 'pid': 'tree', 'minbs': 0, 'nopt': 500, 'mode': 'single', 'suf': 'newick', 'split': '_', 'root': 'F', 'ort': None, 'phy': 'test/single_genes/adar_holozoa.newick', 'out': 'test/adar_out', 'print': 'T'}
-2019-10-18 17:15:53,294 [INFO ]	MODE: find orthogroups in one phylogeny with ETE(SO)+MCL: test/single_genes/adar_holozoa.newick
-2019-10-18 17:15:53,303 [INFO ]	tree num nodes = 284
-2019-10-18 17:15:53,303 [INFO ]	tree Tree is unrooted, apply midpoint root
-2019-10-18 17:15:53,467 [INFO ]	tree Create network
-2019-10-18 17:15:53,547 [INFO ]	tree MCL clustering, inflation = 1.100000
-2019-10-18 17:15:54,735 [INFO ]	tree MCL clustering, num clusters = 4
-2019-10-18 17:15:54,738 [INFO ]	tree MCL clustering, num clustered genes = 283
-2019-10-18 17:15:58,612 [INFO ]	All done in test/single_genes/adar_holozoa.newick

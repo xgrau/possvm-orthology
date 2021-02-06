@@ -1,0 +1,259 @@
+IQ-TREE 2.1.0 COVID-edition built Jul 18 2020
+
+Input file name: results_trees/RefOG044.genes.lt.fasta
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 96569
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 33 sequences with 540 amino-acid sites
+Number of constant sites: 27 (= 5% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 27 (= 5% of all sites)
+Number of parsimony informative sites: 513
+Number of distinct site patterns: 537
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: LG+I+G4
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+LG+I+G4          -19264.489   38658.979 +        1   38677.080 +        1   38937.931 +        1
+LG+G4            -19302.588   38733.176 - 7.73e-17   38750.691 - 1.04e-16   39007.836 - 6.61e-16
+LG+F+I+G4        -19266.206   38700.412 - 1.01e-09   38731.796 - 1.31e-12   39060.903 - 1.98e-27
+WAG+I+G4         -19357.911   38845.822 - 2.68e-41   38863.923 - 2.68e-41   39124.774 - 2.68e-41
+JTT+I+G4         -19358.924   38847.848 - 9.72e-42   38865.949 - 9.72e-42   39126.800 - 9.72e-42
+JTT+F+I+G4       -19331.000   38830.001 -  7.3e-38   38861.385 - 9.52e-41   39190.492 - 1.44e-55
+WAG+F+I+G4       -19343.221   38854.442 -  3.6e-43   38885.827 - 4.69e-46   39214.934 - 7.07e-61
+LG+I             -19654.143   39436.285 - 1.62e-169   39453.801 - 2.17e-169   39710.946 - 1.39e-168
+LG               -19852.081   39830.163 - 4.79e-255   39847.104 - 8.56e-255   40100.531 - 3.5e-253
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: LG+I+G4
+
+State frequencies: (model)
+
+Model of rate heterogeneity: Invar+Gamma with 4 categories
+Proportion of invariable sites: 0.0439
+Gamma shape alpha: 1.9192
+
+ Category  Relative_rate  Proportion
+  0         0              0.0439
+  1         0.2965         0.2390
+  2         0.6758         0.2390
+  3         1.1169         0.2390
+  4         2.0946         0.2390
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -19264.4854 (s.e. 339.5982)
+Unconstrained log-likelihood (without tree): -3393.2885
+Number of free parameters (#branches + #model parameters): 65
+Akaike information criterion (AIC) score: 38658.9708
+Corrected Akaike information criterion (AICc) score: 38677.0720
+Bayesian information criterion (BIC) score: 38937.9228
+
+Total tree length (sum of branch lengths): 20.4096
+Sum of internal branch lengths: 5.6083 (27.4790% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Bralan_BL02222_evm0' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++-------Bralan_BL02222_evm0
+|
++-----------Bralan_BL08862_cuf1
+|
+|                         +------Bralan_BL11064_evm5
+|                      +--| (70)
+|                      |  |                +--Canfam_ENSCAFP00000059509
+|                      |  |             +--| (90)
+|                      |  |             |  |     +--Hsap_ENSP00000349577
+|                      |  |             |  |  +--| (99)
+|                      |  |             |  |  |  +**Hsap_ENSP00000481127
+|                      |  |             |  +--| (100)
+|                      |  |             |     +--Pantro_ENSPTRP00000078153
+|                      |  |         +---| (94)
+|                      |  |         |   |     +**Mmus_ENSMUSP00000003620
+|                      |  |         |   |  +--| (98)
+|                      |  |         |   |  |  +**Mmus_ENSMUSP00000149861
+|                      |  |         |   +--| (99)
+|                      |  |         |      +--Ratnor_ENSRNOP00000002576
+|                      |  |      +--| (93)
+|                      |  |      |  |  +--Galgal_ENSGALP00000012517
+|                      |  |      |  +--| (86)
+|                      |  |      |     +---------------Mondom_ENSMODP00000046488
+|                      |  +------| (100)
+|                      |         |     +--Drer_ENSDARP00000085764
+|                      |         |  +--| (100)
+|                      |         |  |  +--Tetnig_ENSTNIP00000011923
+|                      |         +--| (99)
+|                      |            +--Drer_ENSDARP00000108900
+|                   +--| (88)
+|                   |  |     +-------------Dmel_FBpp0076904
+|                   |  |  +--| (71)
+|                   |  |  |  +-----------Cele_WBGene00007197.1
+|                   |  +--| (62)
+|                   |     +------------------Sman_Smp_170690
+|           +-------| (92)
+|           |       |  +-----------Nvec_EDO37792
+|           |       +--| (63)
+|           |          |  +-----------------Tadh_TriadP1010
+|           |          +--| (92)
+|           |             |        +----------------Mlei_ML444213a-PA
+|           |             +--------| (100)
+|           |                      +----------------------Mlei_ML154126a-PA
+|        +--| (88)
+|        |  +-------------------------Nvec_EDO39930
++--------| (100)
+         |                       +--Canfam_ENSCAFP00000010099
+         |                    +--| (62)
+         |                    |  |  +**Hsap_ENSP00000301175
+         |                    |  +--| (100)
+         |                    |     +--Pantro_ENSPTRP00000018613
+         |                 +--| (72)
+         |                 |  |  +--Mmus_ENSMUSP00000062214
+         |                 |  +--| (100)
+         |                 |     +--Ratnor_ENSRNOP00000073423
+         |           +-----| (81)
+         |           |     +---Mondom_ENSMODP00000017562
+         |     +-----| (94)
+         |     |     +----------------------------Galgal_ENSGALP00000070065
+         |  +--| (94)
+         |  |  |          +---Drer_ENSDARP00000118592
+         |  |  +----------| (100)
+         |  |             +-----Tetnig_ENSTNIP00000018269
+         +--| (78)
+            +--------------------------------Cint_ENSCINP00000035419
+
+Tree in newick format:
+
+(Bralan_BL02222_evm0:0.4561955597,Bralan_BL08862_cuf1:0.6181643093,(((((Bralan_BL11064_evm5:0.3929700134,((((Canfam_ENSCAFP00000059509:0.1336459156,((Hsap_ENSP00000349577:0.0019211636,Hsap_ENSP00000481127:0.0000010064)99:0.0173266078,Pantro_ENSPTRP00000078153:0.0043145260)100:0.0962448967)90:0.0313007835,((Mmus_ENSMUSP00000003620:0.0000010064,Mmus_ENSMUSP00000149861:0.0000010064)98:0.0093261218,Ratnor_ENSRNOP00000002576:0.0341859248)99:0.1294675258)94:0.2114360068,(Galgal_ENSGALP00000012517:0.1358323112,Mondom_ENSMODP00000046488:0.8539847046)86:0.0920783867)93:0.0966282004,((Drer_ENSDARP00000085764:0.1069067943,Tetnig_ENSTNIP00000011923:0.1143044474)100:0.0904741230,Drer_ENSDARP00000108900:0.1967842324)99:0.1077486616)100:0.3627212315)70:0.1140346576,((Dmel_FBpp0076904:0.7283172164,Cele_WBGene00007197.1:0.6591380348)71:0.0862874212,Sman_Smp_170690:1.0104801799)62:0.1362479795)88:0.1068741541,(Nvec_EDO37792:0.6526897646,(Tadh_TriadP1010:0.9268742959,(Mlei_ML444213a-PA:0.9018510325,Mlei_ML154126a-PA:1.1752964513)100:0.4974287737)92:0.1927566733)63:0.1142697865)92:0.4224308000,Nvec_EDO39930:1.3621894464)88:0.1885599223,((((((Canfam_ENSCAFP00000010099:0.1534686793,(Hsap_ENSP00000301175:0.0000027741,Pantro_ENSPTRP00000018613:0.0109949310)100:0.1030466292)62:0.0576442660,(Mmus_ENSMUSP00000062214:0.0510187589,Ratnor_ENSRNOP00000073423:0.1220113902)100:0.1306477279)72:0.1629730484,Mondom_ENSMODP00000017562:0.2473546341)81:0.3356005156,Galgal_ENSGALP00000070065:1.4979864747)94:0.3529738953,(Drer_ENSDARP00000118592:0.2265217659,Tetnig_ENSTNIP00000018269:0.3218842784)100:0.6028938402)94:0.1736013812,Cint_ENSCINP00000035419:1.6946241242)78:0.1322320977)100:0.4624089135);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -19264.488635
+Robinson-Foulds distance between ML tree and consensus tree: 0
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++-------Bralan_BL02222_evm0
+|
++-----------Bralan_BL08862_cuf1
+|
+|                         +------Bralan_BL11064_evm5
+|                      +--| (70)
+|                      |  |                +--Canfam_ENSCAFP00000059509
+|                      |  |             +--| (90)
+|                      |  |             |  |     +--Hsap_ENSP00000349577
+|                      |  |             |  |  +--| (99)
+|                      |  |             |  |  |  +--Hsap_ENSP00000481127
+|                      |  |             |  +--| (100)
+|                      |  |             |     +--Pantro_ENSPTRP00000078153
+|                      |  |         +---| (94)
+|                      |  |         |   |     +--Mmus_ENSMUSP00000003620
+|                      |  |         |   |  +--| (98)
+|                      |  |         |   |  |  +--Mmus_ENSMUSP00000149861
+|                      |  |         |   +--| (99)
+|                      |  |         |      +--Ratnor_ENSRNOP00000002576
+|                      |  |      +--| (93)
+|                      |  |      |  |  +--Galgal_ENSGALP00000012517
+|                      |  |      |  +--| (86)
+|                      |  |      |     +---------------Mondom_ENSMODP00000046488
+|                      |  +------| (100)
+|                      |         |     +--Drer_ENSDARP00000085764
+|                      |         |  +--| (100)
+|                      |         |  |  +--Tetnig_ENSTNIP00000011923
+|                      |         +--| (99)
+|                      |            +--Drer_ENSDARP00000108900
+|                   +--| (88)
+|                   |  |     +-------------Dmel_FBpp0076904
+|                   |  |  +--| (71)
+|                   |  |  |  +-----------Cele_WBGene00007197.1
+|                   |  +--| (62)
+|                   |     +------------------Sman_Smp_170690
+|           +-------| (92)
+|           |       |  +-----------Nvec_EDO37792
+|           |       +--| (63)
+|           |          |  +-----------------Tadh_TriadP1010
+|           |          +--| (92)
+|           |             |        +----------------Mlei_ML444213a-PA
+|           |             +--------| (100)
+|           |                      +----------------------Mlei_ML154126a-PA
+|        +--| (88)
+|        |  +-------------------------Nvec_EDO39930
++--------| (100)
+         |                       +--Canfam_ENSCAFP00000010099
+         |                    +--| (62)
+         |                    |  |  +--Hsap_ENSP00000301175
+         |                    |  +--| (100)
+         |                    |     +--Pantro_ENSPTRP00000018613
+         |                 +--| (72)
+         |                 |  |  +--Mmus_ENSMUSP00000062214
+         |                 |  +--| (100)
+         |                 |     +--Ratnor_ENSRNOP00000073423
+         |           +-----| (81)
+         |           |     +---Mondom_ENSMODP00000017562
+         |     +-----| (94)
+         |     |     +----------------------------Galgal_ENSGALP00000070065
+         |  +--| (94)
+         |  |  |          +---Drer_ENSDARP00000118592
+         |  |  +----------| (100)
+         |  |             +-----Tetnig_ENSTNIP00000018269
+         +--| (78)
+            +--------------------------------Cint_ENSCINP00000035419
+
+
+Consensus tree in newick format: 
+
+(Bralan_BL02222_evm0:0.4561269794,Bralan_BL08862_cuf1:0.6182754772,(((((Bralan_BL11064_evm5:0.3929921847,((((Canfam_ENSCAFP00000059509:0.1336511950,((Hsap_ENSP00000349577:0.0019201818,Hsap_ENSP00000481127:0.0000028102)99:0.0172887464,Pantro_ENSPTRP00000078153:0.0043371899)100:0.0962742390)90:0.0313044909,((Mmus_ENSMUSP00000003620:0.0000028102,Mmus_ENSMUSP00000149861:0.0000028102)98:0.0093256822,Ratnor_ENSRNOP00000002576:0.0341859499)99:0.1294610703)94:0.2115055953,(Galgal_ENSGALP00000012517:0.1365316419,Mondom_ENSMODP00000046488:0.8540208030)86:0.0911966862)93:0.0966618351,((Drer_ENSDARP00000085764:0.1069139071,Tetnig_ENSTNIP00000011923:0.1143053911)100:0.0904764989,Drer_ENSDARP00000108900:0.1967902735)99:0.1077516958)100:0.3627469447)70:0.1140496813,((Dmel_FBpp0076904:0.7283203572,Cele_WBGene00007197.1:0.6591763421)71:0.0863093655,Sman_Smp_170690:1.0105264471)62:0.1362594982)88:0.1067846626,(Nvec_EDO37792:0.6526940549,(Tadh_TriadP1010:0.9268916965,(Mlei_ML444213a-PA:0.9018881183,Mlei_ML154126a-PA:1.1753835508)100:0.4974579720)92:0.1928304736)63:0.1143315768)92:0.4227616829,Nvec_EDO39930:1.3623418082)88:0.1883980736,((((((Canfam_ENSCAFP00000010099:0.1534757949,(Hsap_ENSP00000301175:0.0000028134,Pantro_ENSPTRP00000018613:0.0109949483)100:0.1030499963)62:0.0576494763,(Mmus_ENSMUSP00000062214:0.0510214263,Ratnor_ENSRNOP00000073423:0.1220161152)100:0.1306525932)72:0.1629111464,Mondom_ENSMODP00000017562:0.2474408479)81:0.3332451865,Galgal_ENSGALP00000070065:1.4983189983)94:0.3560094707,(Drer_ENSDARP00000118592:0.2266516111,Tetnig_ENSTNIP00000018269:0.3218026410)100:0.6027145902)94:0.1735029722,Cint_ENSCINP00000035419:1.6947813717)78:0.1322856499)100:0.4624097806);
+
+TIME STAMP
+----------
+
+Date and time: Sat Feb  6 14:19:28 2021
+Total CPU time used: 268.280672 seconds (0h:4m:28s)
+Total wall-clock time used: 34.65360308 seconds (0h:0m:34s)
+

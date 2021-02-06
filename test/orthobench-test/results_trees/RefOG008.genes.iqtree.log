@@ -1,0 +1,196 @@
+IQ-TREE multicore version 2.1.0 for Linux 64-bit built Jul 18 2020
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    node-hp0211.linux.crg.es (AVX, 125 GB RAM)
+Command: /users/asebe/xgraubove/Programes/iqtree-2.1.0-Linux/bin/iqtree2 -s results_trees/RefOG008.genes.lt.fasta -m TEST -mset LG,WAG,JTT -nt AUTO -ntmax 8 -bb 1000 -pre results_trees/RefOG008.genes.iqtree -nm 10000 -nstop 200 -cptime 1800
+Seed:    911139 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Sat Feb  6 13:25:51 2021
+Kernel:  AVX - auto-detect threads (8 CPU cores detected)
+
+Reading alignment file results_trees/RefOG008.genes.lt.fasta ... Fasta format detected
+Alignment most likely contains protein sequences
+Alignment has 18 sequences with 192 columns, 169 distinct patterns
+151 parsimony-informative, 0 singleton sites, 41 constant sites
+                           Gap/Ambiguity  Composition  p-value
+   1  Bralan_BL18514_evm5         28.65%    passed     93.93%
+   2  Canfam_ENSCAFP00000016379    0.00%    passed    100.00%
+   3  Hsap_ENSP00000326817         0.00%    passed    100.00%
+   4  Pantro_ENSPTRP00000011913    0.00%    passed    100.00%
+   5  Mmus_ENSMUSP00000099554      0.00%    passed    100.00%
+   6  Ratnor_ENSRNOP00000050922    0.00%    passed    100.00%
+   7  Hsap_ENSP00000497618         3.12%    passed     99.99%
+   8  Galgal_ENSGALP00000064119    0.52%    passed     99.08%
+   9  Mondom_ENSMODP00000057788    0.52%    passed     91.32%
+  10  Drer_ENSDARP00000064514      0.52%    passed     88.76%
+  11  Tetnig_ENSTNIP00000005152    0.52%    passed     95.38%
+  12  Ratnor_ENSRNOP00000075733   29.69%    passed     99.68%
+  13  Nvec_EDO34345                0.52%    passed     99.43%
+  14  Cint_ENSCINP00000024085      0.52%    passed     90.33%
+  15  Tadh_TriadP51807             0.00%    passed     97.55%
+  16  Dmel_FBpp0070997             0.52%    passed     93.62%
+  17  Cele_WBGene00022759.1        1.04%    passed     71.46%
+  18  Mlei_ML16565a-PA             0.52%    failed      0.30%
+****  TOTAL                        3.70%  1 sequences failed composition chi2 test (p-value<5%; df=19)
+NOTE: Pantro_ENSPTRP00000011913 is identical to Hsap_ENSP00000326817 but kept for subsequent analysis
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.002 seconds
+Measuring multi-threading efficiency up to 8 CPU cores
+Increase to 10 rounds for branch lengths
+118 trees examined
+Threads: 1 / Time: 8.023 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -4014
+Threads: 2 / Time: 4.375 sec / Speedup: 1.834 / Efficiency: 92% / LogL: -4014
+Threads: 3 / Time: 3.318 sec / Speedup: 2.418 / Efficiency: 81% / LogL: -4014
+Threads: 4 / Time: 2.826 sec / Speedup: 2.839 / Efficiency: 71% / LogL: -4014
+Threads: 5 / Time: 2.492 sec / Speedup: 3.219 / Efficiency: 64% / LogL: -4014
+Threads: 6 / Time: 2.320 sec / Speedup: 3.458 / Efficiency: 58% / LogL: -4014
+Threads: 7 / Time: 2.170 sec / Speedup: 3.697 / Efficiency: 53% / LogL: -4014
+Threads: 8 / Time: 2.105 sec / Speedup: 3.812 / Efficiency: 48% / LogL: -4014
+BEST NUMBER OF THREADS: 7
+
+Perform fast likelihood tree search using LG+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -3761.847
+Optimal log-likelihood: -3761.732
+Proportion of invariable sites: 0.190
+Gamma shape alpha: 2.655
+Parameters optimization took 1 rounds (0.011 sec)
+Time for fast ML tree search: 0.048 seconds
+
+NOTE: ModelFinder requires 2 MB RAM!
+ModelFinder will test up to 24 protein models (sample size: 192) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  LG            3904.849     33  7875.698     7889.901     7983.195
+  2  LG+I          3787.863     34  7643.726     7658.885     7754.481
+  3  LG+G4         3779.893     34  7627.785     7642.944     7738.540
+  4  LG+I+G4       3761.727     35  7593.453     7609.607     7707.465
+  8  LG+F+I+G4     3749.459     54  7606.918     7650.275     7782.823
+ 12  WAG+I+G4      3798.204     35  7666.407     7682.561     7780.419
+ 16  WAG+F+I+G4    3787.582     54  7683.164     7726.522     7859.069
+ 20  JTT+I+G4      3796.538     35  7663.076     7679.230     7777.088
+ 24  JTT+F+I+G4    3779.658     54  7667.315     7710.673     7843.220
+Akaike Information Criterion:           LG+I+G4
+Corrected Akaike Information Criterion: LG+I+G4
+Bayesian Information Criterion:         LG+I+G4
+Best-fit model: LG+I+G4 chosen according to BIC
+
+All model information printed to results_trees/RefOG008.genes.iqtree.model.gz
+CPU time for ModelFinder: 97.732 seconds (0h:1m:37s)
+Wall-clock time for ModelFinder: 27.855 seconds (0h:0m:27s)
+WARNING: States(s) W rarely appear in alignment and may cause numerical problems
+Generating 1000 samples for ultrafast bootstrap (seed: 911139)...
+
+NOTE: 2 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+Thoroughly optimizing +I+G parameters from 10 start values...
+Init pinv, alpha: 0.000, 2.704 / Estimate: 0.000, 0.830 / LogL: -3779.892
+Init pinv, alpha: 0.024, 2.704 / Estimate: 0.190, 2.667 / LogL: -3761.730
+Init pinv, alpha: 0.047, 2.704 / Estimate: 0.191, 2.693 / LogL: -3761.727
+Init pinv, alpha: 0.071, 2.704 / Estimate: 0.191, 2.688 / LogL: -3761.727
+Init pinv, alpha: 0.095, 2.704 / Estimate: 0.190, 2.669 / LogL: -3761.729
+Init pinv, alpha: 0.119, 2.704 / Estimate: 0.190, 2.686 / LogL: -3761.727
+Init pinv, alpha: 0.142, 2.704 / Estimate: 0.191, 2.696 / LogL: -3761.727
+Init pinv, alpha: 0.166, 2.704 / Estimate: 0.190, 2.688 / LogL: -3761.728
+Init pinv, alpha: 0.190, 2.704 / Estimate: 0.191, 2.704 / LogL: -3761.727
+Init pinv, alpha: 0.214, 2.704 / Estimate: 0.192, 2.719 / LogL: -3761.727
+Optimal pinv,alpha: 0.191, 2.704 / LogL: -3761.727
+
+Parameters optimization took 0.307 sec
+Computing ML distances based on estimated model parameters...
+Computing ML distances took 0.006753 sec (of wall-clock time) 0.047185 sec(of CPU time)
+Computing RapidNJ tree took 0.000364 sec (of wall-clock time) 0.002534 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -3762.971
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.155 second
+Computing log-likelihood of 98 initial trees ... 0.231 seconds
+Current best score: -3761.727
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -3761.727
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -3761.692
+Iteration 10 / LogL: -3761.727 / Time: 0h:0m:1s
+Iteration 20 / LogL: -3765.831 / Time: 0h:0m:1s
+Finish initializing candidate tree set (6)
+Current best tree score: -3761.692 / CPU time: 1.150
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+UPDATE BEST LOG-LIKELIHOOD: -3761.692
+Iteration 30 / LogL: -3761.692 / Time: 0h:0m:1s (0h:0m:11s left)
+Iteration 40 / LogL: -3763.062 / Time: 0h:0m:2s (0h:0m:10s left)
+UPDATE BEST LOG-LIKELIHOOD: -3761.692
+Iteration 50 / LogL: -3761.692 / Time: 0h:0m:3s (0h:0m:9s left)
+Log-likelihood cutoff on original alignment: -3787.167
+Iteration 60 / LogL: -3761.727 / Time: 0h:0m:3s (0h:0m:8s left)
+Iteration 70 / LogL: -3761.692 / Time: 0h:0m:4s (0h:0m:8s left)
+UPDATE BEST LOG-LIKELIHOOD: -3761.692
+UPDATE BEST LOG-LIKELIHOOD: -3761.692
+Iteration 80 / LogL: -3761.696 / Time: 0h:0m:4s (0h:0m:7s left)
+Iteration 90 / LogL: -3779.113 / Time: 0h:0m:5s (0h:0m:6s left)
+Iteration 100 / LogL: -3761.727 / Time: 0h:0m:5s (0h:0m:6s left)
+Log-likelihood cutoff on original alignment: -3787.167
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.998
+Iteration 110 / LogL: -3761.692 / Time: 0h:0m:6s (0h:0m:5s left)
+UPDATE BEST LOG-LIKELIHOOD: -3761.692
+Iteration 120 / LogL: -3761.727 / Time: 0h:0m:6s (0h:0m:4s left)
+Iteration 130 / LogL: -3761.692 / Time: 0h:0m:7s (0h:0m:4s left)
+Iteration 140 / LogL: -3761.692 / Time: 0h:0m:8s (0h:0m:3s left)
+Iteration 150 / LogL: -3761.727 / Time: 0h:0m:8s (0h:0m:3s left)
+Log-likelihood cutoff on original alignment: -3787.838
+Iteration 160 / LogL: -3761.692 / Time: 0h:0m:9s (0h:0m:2s left)
+Iteration 170 / LogL: -3762.641 / Time: 0h:0m:9s (0h:0m:1s left)
+UPDATE BEST LOG-LIKELIHOOD: -3761.692
+Iteration 180 / LogL: -3762.795 / Time: 0h:0m:10s (0h:0m:1s left)
+Iteration 190 / LogL: -3761.727 / Time: 0h:0m:10s (0h:0m:0s left)
+Iteration 200 / LogL: -3761.692 / Time: 0h:0m:11s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -3787.167
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.999
+TREE SEARCH COMPLETED AFTER 203 ITERATIONS / Time: 0h:0m:11s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -3761.692
+Optimal log-likelihood: -3761.692
+Proportion of invariable sites: 0.191
+Gamma shape alpha: 2.692
+Parameters optimization took 1 rounds (0.006 sec)
+BEST SCORE FOUND : -3761.692
+Creating bootstrap support values...
+Split supports printed to NEXUS file results_trees/RefOG008.genes.iqtree.splits.nex
+Total tree length: 7.211
+
+Total number of iterations: 203
+CPU time used for tree search: 76.408 sec (0h:1m:16s)
+Wall-clock time used for tree search: 11.164 sec (0h:0m:11s)
+Total CPU time used: 79.145 sec (0h:1m:19s)
+Total wall-clock time used: 11.564 sec (0h:0m:11s)
+
+Computing bootstrap consensus tree...
+Reading input file results_trees/RefOG008.genes.iqtree.splits.nex...
+18 taxa and 165 splits.
+Consensus tree written to results_trees/RefOG008.genes.iqtree.contree
+Reading input trees file results_trees/RefOG008.genes.iqtree.contree
+Log-likelihood of consensus tree: -3761.693
+
+Analysis results written to: 
+  IQ-TREE report:                results_trees/RefOG008.genes.iqtree.iqtree
+  Maximum-likelihood tree:       results_trees/RefOG008.genes.iqtree.treefile
+  Likelihood distances:          results_trees/RefOG008.genes.iqtree.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          results_trees/RefOG008.genes.iqtree.splits.nex
+  Consensus tree:                results_trees/RefOG008.genes.iqtree.contree
+  Screen log file:               results_trees/RefOG008.genes.iqtree.log
+
+Date and Time: Sat Feb  6 13:26:31 2021
