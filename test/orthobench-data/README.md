@@ -4,7 +4,8 @@ Test the accuracy of *Possvm* using manually curated orthologs from the [Orthobe
 
 # Steps
 
-1. Get Orthobench reference groups (`refOG`) from the [Open_Orthobench Github](https://github.com/davidemms/Open_Orthobench/tree/master/BENCHMARKS); total: 70 RefOGs):
+1. Get Orthobench reference groups (`refOG`) from the [Open_Orthobench Github](https://github.com/davidemms/Open_Orthobench/tree/master/BENCHMARKS); total: 70 RefOGs), as well as raw and tight trees (ignore intermediate trees).
+:
 
 ```bash
 # get Orthobench repository
@@ -12,6 +13,10 @@ git clone git@github.com:davidemms/Open_Orthobench.git
 
 # refOGs assignments:
 ls <path>/Open_Orthobench/BENCHMARKS/RefOGs/
+
+# tight and raw trees:
+ls <path>/Open_Orthobench/Supporting_Data/Data_for_RefOGs/trees
+ls <path>/Open_Orthobench/Supporting_Data/Data_for_RefOGs/trees_tight
 
 # # HMM profiles in this folder
 # ls <path>/Open_Orthobench/Supporting_Data/Additional_Files/hmm_profiles/
@@ -28,9 +33,24 @@ ls <path>/Open_Orthobench/Supporting_Data/Additional_Files/proteomes/primary_tra
 # copy the fasta files into the `proteomes` folder in in the present directory and concatenate them...
 ```
 
-4. Run HMM searches, MSAs and phylogenies:
+4. Run homology searches, MSAs and phylogenies:
 
 ```bash
 # run from the present directory
 bash s01_get_trees-diamond.sh
+```
+
+5. Run *Possvm* as follows:
+
+```bash
+# find OGs in each tree with possom:
+for i in orthobench_trees/tight/*.tre ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." -outgroup outgroups.txt ; done
+for i in orthobench_trees/raw/*.tre ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." -outgroup outgroups.txt ; done
+for i in results_orthology/*.treefile ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." -outgroup outgroups.txt ; done
+```
+
+6. Calculate accuracy relative to `refOGs.csv`:
+
+```bash
+Rscript s02_evaluate_orthobench.R
 ```
