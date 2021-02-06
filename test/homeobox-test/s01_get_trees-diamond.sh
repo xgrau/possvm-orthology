@@ -1,6 +1,6 @@
 # input variables
 n_cpu="8"
-input_fastas="../orthobench-data/proteomes/"
+input_fastas="../orthobench-test/proteomes/"
 alignments="results_trees"
 searches="results_searches"
 
