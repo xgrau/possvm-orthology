@@ -10,4 +10,8 @@
 
 5. POSSVM.
 
+```bash
+python ../../possvm.py -i results_trees/tale.genes.iqtree.treefile -p tale.possom -outgroup outgroups.txt
+```
+
 6. Evaluate using classification from blast to HomeoDB.
