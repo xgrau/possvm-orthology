@@ -245,6 +245,7 @@ def parse_events(phy, outgroup):
 		in_evs_sps =  [ i.split(split_ch)[0] in set(outgroup) for i in evs["in_gene"]  ]
 		out_evs_sps = [ i.split(split_ch)[0] in set(outgroup) for i in evs["out_gene"] ]
 		evs = evs.drop(np.where(np.logical_or(in_evs_sps, out_evs_sps))[0])
+		phy_lis =  [ i for i in phy_lis if i.split(split_ch)[0] not in set(outgroup) ]
 
 	# duplications and speciation events
 	eva    = np.empty((len(evev)*len(evev), 5), dtype="object")
