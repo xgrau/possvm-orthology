@@ -1,0 +1,1769 @@
+IQ-TREE multicore version 2.1.0 for Linux 64-bit built Jul 18 2020
+Developed by Bui Quang Minh, James Barbetti, Nguyen Lam Tung,
+Olga Chernomor, Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    node-hp0407.linux.crg.es (AVX, 125 GB RAM)
+Command: /users/asebe/xgraubove/Programes/iqtree-2.1.0-Linux/bin/iqtree2 -s results_trees/ANTP.genes.lt.fasta -m TEST -mset LG,WAG,JTT -nt AUTO -ntmax 8 -bb 1000 -pre results_trees/ANTP.genes.iqtree -nm 10000 -nstop 200 -cptime 1800
+Seed:    386116 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Sun Feb  7 02:52:31 2021
+Kernel:  AVX - auto-detect threads (8 CPU cores detected)
+
+Reading alignment file results_trees/ANTP.genes.lt.fasta ... Fasta format detected
+Alignment most likely contains protein sequences
+Alignment has 1335 sequences with 266 columns, 266 distinct patterns
+266 parsimony-informative, 0 singleton sites, 0 constant sites
+                           Gap/Ambiguity  Composition  p-value
+   1  Bralan_BL00186_evm0         71.43%    passed     61.60%
+   2  Cint_ENSCINP00000023551     36.09%    passed     13.75%
+   3  Dmel_FBpp0081168            33.46%    failed      0.00%
+   4  Bralan_BL00743_evm0         34.21%    passed     56.05%
+   5  Canfam_ENSCAFP00000018666   36.47%    passed     44.43%
+   6  Nvec_EDO48767               73.68%    passed     69.18%
+   7  Hsap_ENSP00000350549        29.70%    passed     63.54%
+   8  Pantro_ENSPTRP00000077302   29.70%    passed     65.09%
+   9  Mmus_ENSMUSP00000039018     30.08%    passed     70.10%
+  10  Ratnor_ENSRNOP00000028007   30.08%    passed     63.83%
+  11  Mondom_ENSMODP00000009369   30.45%    passed     85.20%
+  12  Galgal_ENSGALP00000011796   36.09%    passed     99.79%
+  13  Drer_ENSDARP00000095383     34.21%    passed     97.52%
+  14  Drer_ENSDARP00000139084     34.21%    passed     97.52%
+  15  Drer_ENSDARP00000127346     46.24%    passed     60.97%
+  16  Tetnig_ENSTNIP00000016341   33.83%    passed     98.14%
+  17  Tetnig_ENSTNIP00000004607   34.21%    passed     96.20%
+  18  Tetnig_ENSTNIP00000013048   62.41%    passed     69.76%
+  19  Dmel_FBpp0303412            22.93%    passed     15.91%
+  20  Drer_ENSDARP00000102248     39.47%    passed     88.83%
+  21  Drer_ENSDARP00000149500     39.47%    passed     88.83%
+  22  Drer_ENSDARP00000147937     39.47%    passed     88.83%
+  23  Canfam_ENSCAFP00000021527   32.33%    failed      0.47%
+  24  Hsap_ENSP00000383516        31.95%    failed      0.34%
+  25  Hsap_ENSP00000499825        31.95%    failed      0.34%
+  26  Pantro_ENSPTRP00000066690   31.95%    failed      0.34%
+  27  Mmus_ENSMUSP00000084958     36.47%    failed      4.65%
+  28  Ratnor_ENSRNOP00000012304   36.09%    failed      3.35%
+  29  Mondom_ENSMODP00000004012   35.71%    passed     72.03%
+  30  Canfam_ENSCAFP00000058136   37.59%    passed     47.72%
+  31  Mmus_ENSMUSP00000138799     37.59%    passed     56.90%
+  32  Ratnor_ENSRNOP00000028011   37.59%    passed     64.07%
+  33  Hsap_ENSP00000341108        37.59%    passed     46.04%
+  34  Pantro_ENSPTRP00000084374   37.59%    passed     46.04%
+  35  Mondom_ENSMODP00000009363   37.59%    passed     79.73%
+  36  Galgal_ENSGALP00000054245   39.10%    passed     86.28%
+  37  Drer_ENSDARP00000108860     39.10%    passed     58.73%
+  38  Drer_ENSDARP00000152960     39.10%    passed     58.73%
+  39  Tetnig_ENSTNIP00000016340   37.97%    passed     50.93%
+  40  Bralan_BL05106_evm0         73.68%    passed     30.48%
+  41  Dmel_FBpp0301047            49.25%    passed     31.27%
+  42  Nvec_EDO33356               78.57%    failed      0.67%
+  43  Nvec_EDO37617               76.69%    passed      5.09%
+  44  Nvec_EDO33357               78.20%    passed      5.63%
+  45  Bralan_BL12992_cuf1         49.25%    passed     24.73%
+  46  Nvec_EDO30882               77.82%    failed      2.64%
+  47  Dmel_FBpp0082400            28.57%    passed     14.02%
+  48  Cele_WBGene00000434.1       57.89%    failed      1.31%
+  49  Cele_WBGene00000584.1       48.50%    passed     67.10%
+  50  Bralan_BL01266_cuf1         62.03%    failed      0.68%
+  51  Bralan_BL05807_cuf2         36.84%    passed     88.69%
+  52  Canfam_ENSCAFP00000029463   31.95%    passed     76.57%
+  53  Drer_ENSDARP00000016114     34.59%    passed     99.45%
+  54  Drer_ENSDARP00000153665     34.59%    passed     99.45%
+  55  Drer_ENSDARP00000051473     39.47%    passed     95.60%
+  56  Drer_ENSDARP00000145201     39.47%    passed     95.60%
+  57  Drer_ENSDARP00000154641     39.47%    passed     95.60%
+  58  Tetnig_ENSTNIP00000008179   64.29%    passed     80.81%
+  59  Galgal_ENSGALP00000054174   36.09%    passed     95.53%
+  60  Hsap_ENSP00000263610        34.21%    passed     85.29%
+  61  Pantro_ENSPTRP00000036790   34.21%    passed     85.29%
+  62  Mmus_ENSMUSP00000053147     34.21%    passed     87.25%
+  63  Ratnor_ENSRNOP00000017725   34.21%    passed     87.25%
+  64  Mondom_ENSMODP00000015700   34.21%    passed     92.84%
+  65  Canfam_ENSCAFP00000029951   29.70%    passed     77.49%
+  66  Hsap_ENSP00000359474        29.70%    passed     64.15%
+  67  Pantro_ENSPTRP00000001630   29.70%    passed     64.85%
+  68  Mmus_ENSMUSP00000084005     29.70%    passed     62.65%
+  69  Ratnor_ENSRNOP00000002887   29.70%    passed     62.65%
+  70  Galgal_ENSGALP00000057131   29.70%    passed     71.30%
+  71  Mondom_ENSMODP00000015106   48.50%    passed     82.98%
+  72  Drer_ENSDARP00000137279     30.83%    passed     74.49%
+  73  Drer_ENSDARP00000152686     30.83%    passed     74.49%
+  74  Drer_ENSDARP00000154957     30.83%    passed     74.49%
+  75  Tetnig_ENSTNIP00000016761   31.20%    passed     70.88%
+  76  Tetnig_ENSTNIP00000008783   72.93%    failed      2.12%
+  77  Sman_Smp_125600             78.95%    passed     28.64%
+  78  Dmel_FBpp0074203            27.07%    failed      0.00%
+  79  Cint_ENSCINP00000004162     38.72%    passed     14.26%
+  80  Nvec_EDO32495               78.20%    passed     22.62%
+  81  Nvec_EDO46621               50.75%    failed      0.39%
+  82  Dmel_FBpp0309583            57.14%    passed     55.56%
+  83  Nvec_EDO38891               73.68%    passed     16.49%
+  84  Nvec_EDO43402               76.69%    passed      7.35%
+  85  Nvec_EDO47164               77.07%    passed     11.14%
+  86  Dmel_FBpp0074204            34.59%    failed      1.86%
+  87  Bralan_BL01814_cuf2         28.57%    passed     31.79%
+  88  Nvec_EDO34127               76.32%    passed     25.55%
+  89  Bralan_BL06267_cuf0         45.11%    passed     66.52%
+  90  Cint_ENSCINP00000024460     47.37%    passed     89.07%
+  91  Nvec_EDO38217               78.20%    passed     32.82%
+  92  Nvec_EDO46971               78.95%    passed     16.05%
+  93  Mlei_ML199115a-PA           21.80%    passed      6.66%
+  94  Bralan_BL18096_evm0         54.89%    passed     22.21%
+  95  Nvec_EDO35072               72.56%    passed     27.62%
+  96  Nvec_EDO35073               70.30%    failed      3.68%
+  97  Nvec_EDO47402               77.82%    passed     14.03%
+  98  Canfam_ENSCAFP00000015011   40.23%    passed     44.15%
+  99  Hsap_ENSP00000281437        40.23%    passed     37.83%
+ 100  Pantro_ENSPTRP00000007648   40.23%    passed     37.83%
+ 101  Mmus_ENSMUSP00000112314     40.23%    passed     37.57%
+ 102  Ratnor_ENSRNOP00000011386   40.23%    passed     25.12%
+ 103  Mondom_ENSMODP00000005996   40.23%    passed     16.98%
+ 104  Galgal_ENSGALP00000051619   43.98%    passed     22.67%
+ 105  Drer_ENSDARP00000120269     40.60%    passed     19.78%
+ 106  Tetnig_ENSTNIP00000009549   47.74%    passed     38.47%
+ 107  Canfam_ENSCAFP00000043800   39.47%    passed     11.90%
+ 108  Hsap_ENSP00000253968        42.48%    passed     77.49%
+ 109  Pantro_ENSPTRP00000047016   42.48%    passed     77.49%
+ 110  Mmus_ENSMUSP00000021813     42.48%    passed     85.62%
+ 111  Ratnor_ENSRNOP00000022830   42.48%    passed     80.41%
+ 112  Mondom_ENSMODP00000010854   42.48%    passed     87.50%
+ 113  Drer_ENSDARP00000014797     41.35%    passed     57.32%
+ 114  Tetnig_ENSTNIP00000009507   43.23%    passed     51.37%
+ 115  Mlei_ML00268a-PA            47.74%    passed     94.18%
+ 116  Bralan_BL95610_evm1         41.35%    passed     32.13%
+ 117  Canfam_ENSCAFP00000012413   34.21%    passed     10.13%
+ 118  Hsap_ENSP00000233638        34.21%    passed     21.61%
+ 119  Pantro_ENSPTRP00000020756   34.21%    passed     21.61%
+ 120  Mmus_ENSMUSP00000087069     34.21%    passed     17.44%
+ 121  Ratnor_ENSRNOP00000069677   34.21%    passed     17.44%
+ 122  Ratnor_ENSRNOP00000069972   34.21%    passed     17.44%
+ 123  Mondom_ENSMODP00000006027   33.83%    passed     11.80%
+ 124  Canfam_ENSCAFP00000014449   35.34%    passed     70.95%
+ 125  Hsap_ENSP00000359215        36.84%    passed     74.09%
+ 126  Pantro_ENSPTRP00000071975   36.84%    passed     74.09%
+ 127  Mmus_ENSMUSP00000026236     36.47%    passed     75.26%
+ 128  Ratnor_ENSRNOP00000021714   36.47%    passed     75.26%
+ 129  Mondom_ENSMODP00000014916   39.47%    passed     52.74%
+ 130  Galgal_ENSGALP00000012693   40.23%    passed     24.10%
+ 131  Drer_ENSDARP00000003103     37.22%    passed     32.78%
+ 132  Drer_ENSDARP00000153385     34.21%    passed     73.69%
+ 133  Tetnig_ENSTNIP00000016039   35.34%    passed     71.99%
+ 134  Canfam_ENSCAFP00000024876   34.59%    passed     57.26%
+ 135  Hsap_ENSP00000296921        34.59%    passed     57.26%
+ 136  Mmus_ENSMUSP00000047457     34.59%    passed     57.26%
+ 137  Ratnor_ENSRNOP00000006676   34.59%    passed     57.26%
+ 138  Pantro_ENSPTRP00000029928   34.59%    passed     47.71%
+ 139  Mondom_ENSMODP00000008076   34.59%    passed     32.85%
+ 140  Galgal_ENSGALP00000003422   34.21%    passed     32.40%
+ 141  Drer_ENSDARP00000009156     35.34%    passed     62.90%
+ 142  Drer_ENSDARP00000141637     35.34%    passed     62.90%
+ 143  Drer_ENSDARP00000131620     37.97%    passed     39.02%
+ 144  Tetnig_ENSTNIP00000016093   35.34%    passed     60.46%
+ 145  Galgal_ENSGALP00000070643   31.20%    failed      2.73%
+ 146  Bralan_BL01012_evm0         31.95%    passed     46.01%
+ 147  Bralan_BL24614_evm0         35.34%    passed     68.62%
+ 148  Canfam_ENSCAFP00000007681   57.89%    passed     23.92%
+ 149  Hsap_ENSP00000252971        27.44%    failed      1.12%
+ 150  Pantro_ENSPTRP00000047521   27.44%    failed      1.12%
+ 151  Mmus_ENSMUSP00000129503     27.07%    passed     11.41%
+ 152  Ratnor_ENSRNOP00000064986   27.82%    passed     11.21%
+ 153  Mondom_ENSMODP00000033422   28.95%    passed      8.68%
+ 154  Drer_ENSDARP00000052235     35.71%    passed      8.37%
+ 155  Drer_ENSDARP00000147123     35.71%    passed      8.37%
+ 156  Tetnig_ENSTNIP00000015757   34.59%    passed     44.79%
+ 157  Nvec_EDO42243               74.81%    passed     36.92%
+ 158  Galgal_ENSGALP00000056537   33.08%    passed     13.73%
+ 159  Drer_ENSDARP00000100110     33.46%    passed     18.01%
+ 160  Tetnig_ENSTNIP00000012354   44.74%    passed     87.99%
+ 161  Drer_ENSDARP00000061715     37.97%    passed     81.33%
+ 162  Galgal_ENSGALP00000018495   36.09%    passed     18.25%
+ 163  Tetnig_ENSTNIP00000020174   36.47%    passed     59.86%
+ 164  Cint_ENSCINP00000011818     40.98%    passed     10.01%
+ 165  Bralan_BL03198_evm0         34.59%    passed     10.64%
+ 166  Bralan_BL12193_cuf2         66.17%    failed      3.47%
+ 167  Bralan_BL04899_evm1         37.22%    passed      7.51%
+ 168  Canfam_ENSCAFP00000017647   38.35%    passed     43.42%
+ 169  Hsap_ENSP00000450962        38.35%    passed     43.42%
+ 170  Mmus_ENSMUSP00000053361     38.35%    passed     43.42%
+ 171  Pantro_ENSPTRP00000005259   38.35%    passed     43.42%
+ 172  Ratnor_ENSRNOP00000012564   38.35%    passed     43.42%
+ 173  Mondom_ENSMODP00000011730   38.35%    passed     41.97%
+ 174  Drer_ENSDARP00000058035     38.35%    passed     54.18%
+ 175  Tetnig_ENSTNIP00000005546   38.35%    passed     27.47%
+ 176  Galgal_ENSGALP00000067273   37.59%    passed     54.03%
+ 177  Drer_ENSDARP00000057809     39.85%    passed     83.27%
+ 178  Tetnig_ENSTNIP00000013462   39.85%    passed     55.61%
+ 179  Galgal_ENSGALP00000052472   39.85%    passed     89.51%
+ 180  Hsap_ENSP00000258106        38.72%    passed     39.51%
+ 181  Pantro_ENSPTRP00000057829   38.72%    passed     39.51%
+ 182  Mmus_ENSMUSP00000046026     38.72%    passed     53.50%
+ 183  Ratnor_ENSRNOP00000020786   38.72%    passed     52.28%
+ 184  Nvec_EDO48710               76.32%    passed     35.51%
+ 185  Nvec_EDO35273               75.19%    passed     37.44%
+ 186  Drer_ENSDARP00000018933     40.98%    passed     59.13%
+ 187  Tetnig_ENSTNIP00000015944   54.51%    passed     67.67%
+ 188  Mondom_ENSMODP00000054337   42.86%    passed      6.00%
+ 189  Dmel_FBpp0082343            18.42%    failed      0.42%
+ 190  Cint_ENSCINP00000036336     46.24%    passed     46.35%
+ 191  Cele_WBGene00000429.1       53.01%    passed     46.47%
+ 192  Nvec_EDO37142               73.68%    passed     33.23%
+ 193  Bralan_BL04895_evm0         64.66%    passed     86.59%
+ 194  Nvec_EDO49301               74.81%    passed     56.25%
+ 195  Nvec_EDO38506               75.94%    failed      3.62%
+ 196  Nvec_EDO36876               72.18%    passed     17.54%
+ 197  Cint_ENSCINP00000027946     68.80%    passed     23.20%
+ 198  Nvec_EDO47724               77.82%    passed     12.94%
+ 199  Dmel_FBpp0082993            45.11%    passed     35.92%
+ 200  Drer_ENSDARP00000022555     51.88%    passed     81.59%
+ 201  Tetnig_ENSTNIP00000006872   50.38%    passed     83.18%
+ 202  Tetnig_ENSTNIP00000013463   50.38%    passed     81.06%
+ 203  Galgal_ENSGALP00000017209   55.64%    passed     14.01%
+ 204  Galgal_ENSGALP00000056174   57.14%    passed     32.37%
+ 205  Nvec_EDO49356               75.56%    passed     28.57%
+ 206  Sman_Smp_134690             68.42%    passed     26.29%
+ 207  Tadh_TriadP49524            46.24%    failed      1.59%
+ 208  Nvec_EDO49251               75.56%    failed      1.81%
+ 209  Dmel_FBpp0082326            23.68%    passed      7.12%
+ 210  Canfam_ENSCAFP00000013462   33.08%    passed     95.99%
+ 211  Hsap_ENSP00000295886        33.08%    passed     95.99%
+ 212  Pantro_ENSPTRP00000027895   33.08%    passed     95.99%
+ 213  Mmus_ENSMUSP00000042716     33.08%    passed     92.73%
+ 214  Ratnor_ENSRNOP00000002928   33.08%    passed     92.73%
+ 215  Mondom_ENSMODP00000025990   33.08%    passed     97.43%
+ 216  Drer_ENSDARP00000035373     36.84%    passed     90.55%
+ 217  Tetnig_ENSTNIP00000011865   38.72%    passed     83.44%
+ 218  Galgal_ENSGALP00000057070   40.23%    passed      8.09%
+ 219  Drer_ENSDARP00000079830     37.59%    passed     60.51%
+ 220  Tadh_TriadP31334            77.07%    passed     32.09%
+ 221  Nvec_EDO30887               67.29%    passed     87.99%
+ 222  Tetnig_ENSTNIP00000009045   38.72%    passed     92.45%
+ 223  Galgal_ENSGALP00000017079   39.85%    passed     75.48%
+ 224  Hsap_ENSP00000428361        39.10%    passed     98.47%
+ 225  Pantro_ENSPTRP00000053180   39.10%    passed     98.47%
+ 226  Mmus_ENSMUSP00000071517     39.10%    passed     92.92%
+ 227  Ratnor_ENSRNOP00000024532   39.10%    passed     85.22%
+ 228  Mondom_ENSMODP00000013086   39.10%    passed     90.99%
+ 229  Canfam_ENSCAFP00000066725   36.84%    passed     14.49%
+ 230  Hsap_ENSP00000357581        37.59%    passed     17.18%
+ 231  Pantro_ENSPTRP00000005418   37.97%    passed     22.44%
+ 232  Mmus_ENSMUSP00000095588     37.59%    passed     19.19%
+ 233  Ratnor_ENSRNOP00000051771   37.59%    passed     19.19%
+ 234  Drer_ENSDARP00000140556     37.97%    passed     64.74%
+ 235  Tetnig_ENSTNIP00000020220   38.35%    passed     75.33%
+ 236  Galgal_ENSGALP00000018279   36.84%    passed     60.33%
+ 237  Cint_ENSCINP00000023047     31.95%    passed     14.08%
+ 238  Canfam_ENSCAFP00000058270   40.60%    passed     16.28%
+ 239  Dmel_FBpp0075463            36.09%    passed     38.56%
+ 240  Sman_Smp_126870             22.56%    failed      0.05%
+ 241  Bralan_BL04439_cuf4         66.17%    passed     52.76%
+ 242  Dmel_FBpp0288576            31.58%    passed     31.68%
+ 243  Tadh_TriadP18102            77.82%    passed      6.19%
+ 244  Drer_ENSDARP00000013350     35.71%    passed     57.93%
+ 245  Drer_ENSDARP00000157556     35.71%    passed     67.85%
+ 246  Tetnig_ENSTNIP00000012488   39.10%    passed     14.03%
+ 247  Drer_ENSDARP00000023732     36.09%    failed      4.33%
+ 248  Canfam_ENSCAFP00000014415   40.60%    failed      0.05%
+ 249  Galgal_ENSGALP00000006307   33.83%    passed     11.36%
+ 250  Hsap_ENSP00000436881        33.08%    passed     37.16%
+ 251  Pantro_ENSPTRP00000068188   33.08%    passed     34.37%
+ 252  Mmus_ENSMUSP00000032717     33.08%    passed     45.33%
+ 253  Ratnor_ENSRNOP00000019739   33.08%    passed     45.33%
+ 254  Mondom_ENSMODP00000011321   32.71%    passed     12.52%
+ 255  Tetnig_ENSTNIP00000007515   42.86%    passed     63.06%
+ 256  Cint_ENSCINP00000023789     52.26%    passed     20.29%
+ 257  Tetnig_ENSTNIP00000019067   49.25%    passed     95.74%
+ 258  Drer_ENSDARP00000132527     62.03%    passed     14.28%
+ 259  Bralan_BL17526_cuf1         58.65%    failed      3.27%
+ 260  Nvec_EDO42443               74.06%    passed     20.73%
+ 261  Nvec_EDO49466               72.93%    passed     63.15%
+ 262  Nvec_EDO45886               77.07%    passed     15.53%
+ 263  Tetnig_ENSTNIP00000019497   28.57%    passed     29.36%
+ 264  Drer_ENSDARP00000116160     33.83%    failed      4.72%
+ 265  Hsap_ENSP00000355870        25.19%    passed     70.72%
+ 266  Pantro_ENSPTRP00000003358   25.19%    passed     84.64%
+ 267  Mmus_ENSMUSP00000040505     26.32%    passed     64.02%
+ 268  Ratnor_ENSRNOP00000003155   26.32%    passed     64.02%
+ 269  Mondom_ENSMODP00000005747   24.44%    passed     71.13%
+ 270  Galgal_ENSGALP00000057780   23.68%    passed     78.52%
+ 271  Canfam_ENSCAFP00000013803   47.74%    passed     46.29%
+ 272  Hsap_ENSP00000331470        31.95%    passed     55.28%
+ 273  Pantro_ENSPTRP00000008293   31.95%    passed     42.79%
+ 274  Mmus_ENSMUSP00000060424     34.96%    passed     27.98%
+ 275  Ratnor_ENSRNOP00000009143   34.96%    passed     34.75%
+ 276  Galgal_ENSGALP00000037987   34.96%    passed     48.68%
+ 277  Mondom_ENSMODP00000023108   32.71%    passed     40.84%
+ 278  Nvec_EDO49155               78.20%    passed     32.50%
+ 279  Dmel_FBpp0078858            39.47%    passed     59.89%
+ 280  Cint_ENSCINP00000034480     30.45%    passed     96.38%
+ 281  Canfam_ENSCAFP00000011144   39.85%    passed     93.57%
+ 282  Hsap_ENSP00000282728        39.85%    passed     94.64%
+ 283  Pantro_ENSPTRP00000004814   39.85%    passed     94.64%
+ 284  Mmus_ENSMUSP00000025944     39.47%    passed     92.57%
+ 285  Mmus_ENSMUSP00000150958     39.47%    passed     92.57%
+ 286  Ratnor_ENSRNOP00000022384   41.35%    passed     90.66%
+ 287  Mondom_ENSMODP00000007998   39.85%    passed     66.49%
+ 288  Galgal_ENSGALP00000064983   35.34%    passed     11.69%
+ 289  Nvec_EDO47661               78.95%    passed     44.64%
+ 290  Tetnig_ENSTNIP00000003771   43.98%    passed     47.59%
+ 291  Cint_ENSCINP00000002464     21.05%    failed      3.73%
+ 292  Tadh_TriadP9560             77.82%    passed     16.48%
+ 293  Cele_WBGene00004011.1       47.74%    passed     73.42%
+ 294  Dmel_FBpp0083439            37.22%    passed     47.07%
+ 295  Drer_ENSDARP00000137249     54.14%    passed     27.35%
+ 296  Bralan_BL21529_cuf0         43.61%    passed     33.28%
+ 297  Dmel_FBpp0087667            23.31%    passed     34.95%
+ 298  Drer_ENSDARP00000096349     32.33%    passed     92.66%
+ 299  Tetnig_ENSTNIP00000011336   30.45%    passed     90.78%
+ 300  Hsap_ENSP00000297537        28.20%    passed     40.16%
+ 301  Pantro_ENSPTRP00000034045   28.20%    passed     40.16%
+ 302  Mmus_ENSMUSP00000085651     29.32%    passed     59.15%
+ 303  Ratnor_ENSRNOP00000017854   28.20%    passed     59.07%
+ 304  Mondom_ENSMODP00000033527   28.57%    passed     37.20%
+ 305  Galgal_ENSGALP00000048043   48.87%    passed     50.68%
+ 306  Nvec_EDO42470               67.29%    passed     10.20%
+ 307  Canfam_ENSCAFP00000017900   29.32%    passed     90.35%
+ 308  Hsap_ENSP00000302251        29.32%    passed     92.61%
+ 309  Pantro_ENSPTRP00000022357   29.32%    passed     90.35%
+ 310  Mmus_ENSMUSP00000048508     29.32%    passed     90.13%
+ 311  Ratnor_ENSRNOP00000026419   29.32%    passed     91.97%
+ 312  Mondom_ENSMODP00000009342   29.32%    passed     92.08%
+ 313  Galgal_ENSGALP00000052169   30.45%    passed     21.63%
+ 314  Drer_ENSDARP00000004972     29.32%    passed     23.55%
+ 315  Drer_ENSDARP00000151315     29.32%    passed     23.55%
+ 316  Tetnig_ENSTNIP00000007858   33.83%    passed     87.75%
+ 317  Dmel_FBpp0303415            16.17%    failed      0.03%
+ 318  Cele_WBGene00000451.1       43.61%    passed     12.71%
+ 319  Cele_WBGene00000452.1       44.36%    passed     26.30%
+ 320  Nvec_EDO43513               73.68%    failed      2.52%
+ 321  Mlei_ML16524a-PA            27.44%    failed      3.71%
+ 322  Bralan_BL03350_cuf0         37.97%    passed     71.19%
+ 323  Canfam_ENSCAFP00000021358   30.45%    passed     84.84%
+ 324  Hsap_ENSP00000321684        30.45%    passed     84.75%
+ 325  Pantro_ENSPTRP00000015740   30.45%    passed     77.95%
+ 326  Mmus_ENSMUSP00000051158     30.45%    passed     87.42%
+ 327  Ratnor_ENSRNOP00000028220   30.45%    passed     74.59%
+ 328  Mondom_ENSMODP00000018976   30.83%    passed     89.14%
+ 329  Canfam_ENSCAFP00000059356   23.31%    failed      0.02%
+ 330  Galgal_ENSGALP00000017534   28.20%    passed      7.77%
+ 331  Hsap_ENSP00000262041        27.82%    passed     20.48%
+ 332  Pantro_ENSPTRP00000032370   27.82%    passed     16.35%
+ 333  Mmus_ENSMUSP00000043587     27.82%    passed     16.20%
+ 334  Ratnor_ENSRNOP00000008803   27.82%    passed     16.20%
+ 335  Mondom_ENSMODP00000057462   27.82%    passed      5.29%
+ 336  Drer_ENSDARP00000059953     29.32%    passed     11.22%
+ 337  Drer_ENSDARP00000083051     30.45%    failed      4.45%
+ 338  Drer_ENSDARP00000154804     30.45%    failed      4.45%
+ 339  Nvec_EDO33846               70.30%    failed      0.07%
+ 340  Nvec_EDO33847               78.57%    passed     12.80%
+ 341  Nvec_EDO33849               66.17%    failed      2.03%
+ 342  Nvec_EDO33848               70.68%    failed      3.70%
+ 343  Galgal_ENSGALP00000001804   32.71%    passed     81.56%
+ 344  Drer_ENSDARP00000027691     30.08%    passed     36.86%
+ 345  Drer_ENSDARP00000096438     30.08%    passed     36.86%
+ 346  Tetnig_ENSTNIP00000017423   30.08%    passed     39.76%
+ 347  Tetnig_ENSTNIP00000007666   32.33%    passed     48.48%
+ 348  Dmel_FBpp0083671            51.13%    passed      5.35%
+ 349  Bralan_BL11413_evm0         59.02%    passed     74.18%
+ 350  Canfam_ENSCAFP00000004363   33.08%    passed     88.07%
+ 351  Hsap_ENSP00000222718        33.08%    passed     81.55%
+ 352  Pantro_ENSPTRP00000032491   33.08%    passed     81.55%
+ 353  Pantro_ENSPTRP00000071105   33.08%    passed     81.55%
+ 354  Mmus_ENSMUSP00000014848     33.08%    passed     92.24%
+ 355  Ratnor_ENSRNOP00000008023   33.08%    passed     94.82%
+ 356  Ratnor_ENSRNOP00000074175   33.08%    passed     94.82%
+ 357  Mondom_ENSMODP00000000596   31.20%    passed     76.75%
+ 358  Galgal_ENSGALP00000044883   33.08%    passed     71.43%
+ 359  Nvec_EDO42185               57.14%    passed     50.78%
+ 360  Nvec_EDO42187               76.69%    passed      5.80%
+ 361  Drer_ENSDARP00000023072     33.46%    passed     90.12%
+ 362  Tetnig_ENSTNIP00000004130   34.96%    passed     95.05%
+ 363  Tetnig_ENSTNIP00000004111   34.21%    passed     88.17%
+ 364  Canfam_ENSCAFP00000004377   35.34%    passed     14.50%
+ 365  Mmus_ENSMUSP00000058755     35.34%    passed     11.75%
+ 366  Ratnor_ENSRNOP00000070190   35.34%    passed     15.77%
+ 367  Ratnor_ENSRNOP00000075013   35.34%    passed     15.77%
+ 368  Hsap_ENSP00000222728        35.34%    passed     14.99%
+ 369  Pantro_ENSPTRP00000066596   35.34%    passed     14.99%
+ 370  Pantro_ENSPTRP00000059919   35.34%    passed     14.99%
+ 371  Galgal_ENSGALP00000042068   35.34%    failed      4.61%
+ 372  Mondom_ENSMODP00000000561   35.34%    passed      7.81%
+ 373  Canfam_ENSCAFP00000004385   36.09%    passed     26.45%
+ 374  Hsap_ENSP00000242159        36.09%    passed     25.97%
+ 375  Pantro_ENSPTRP00000032500   36.09%    passed     23.70%
+ 376  Pantro_ENSPTRP00000088828   36.09%    passed     23.70%
+ 377  Mmus_ENSMUSP00000048648     36.09%    passed     54.06%
+ 378  Ratnor_ENSRNOP00000065479   36.09%    passed     56.94%
+ 379  Ratnor_ENSRNOP00000066086   36.09%    passed     56.94%
+ 380  Ratnor_ENSRNOP00000072980   36.09%    passed     56.94%
+ 381  Galgal_ENSGALP00000060910   37.97%    passed     38.83%
+ 382  Mondom_ENSMODP00000048179   37.59%    passed     41.87%
+ 383  Canfam_ENSCAFP00000024794   36.47%    failed      4.14%
+ 384  Hsap_ENSP00000239165        36.47%    failed      2.42%
+ 385  Pantro_ENSPTRP00000015906   36.47%    failed      1.81%
+ 386  Mmus_ENSMUSP00000040121     36.47%    passed      7.09%
+ 387  Ratnor_ENSRNOP00000033609   36.47%    failed      4.74%
+ 388  Mondom_ENSMODP00000055162   36.47%    passed     19.30%
+ 389  Cint_ENSCINP00000034732     71.43%    failed      1.22%
+ 390  Galgal_ENSGALP00000051004   36.47%    passed     45.89%
+ 391  Drer_ENSDARP00000072915     35.34%    passed     26.15%
+ 392  Tetnig_ENSTNIP00000012989   31.20%    passed     29.41%
+ 393  Drer_ENSDARP00000002263     35.71%    passed     29.93%
+ 394  Canfam_ENSCAFP00000024788   35.34%    passed     35.92%
+ 395  Mmus_ENSMUSP00000133281     35.34%    passed     52.72%
+ 396  Ratnor_ENSRNOP00000010527   35.34%    passed     52.72%
+ 397  Hsap_ENSP00000420009        35.34%    passed     51.26%
+ 398  Pantro_ENSPTRP00000015905   35.34%    passed     51.26%
+ 399  Mondom_ENSMODP00000015452   34.96%    passed     47.63%
+ 400  Galgal_ENSGALP00000058472   35.71%    passed     41.68%
+ 401  Canfam_ENSCAFP00000054040   30.08%    passed     42.40%
+ 402  Mmus_ENSMUSP00000097740     30.08%    passed     41.25%
+ 403  Ratnor_ENSRNOP00000022398   30.08%    passed     43.42%
+ 404  Hsap_ENSP00000305973        30.08%    passed     44.31%
+ 405  Pantro_ENSPTRP00000073973   30.08%    passed     44.31%
+ 406  Galgal_ENSGALP00000047584   29.70%    passed     34.26%
+ 407  Nvec_EDO45896               77.07%    passed      9.18%
+ 408  Sman_Smp_166150             45.49%    passed     80.37%
+ 409  Drer_ENSDARP00000010277     37.22%    passed     18.82%
+ 410  Drer_ENSDARP00000150618     37.22%    passed     18.82%
+ 411  Tetnig_ENSTNIP00000004134   34.96%    passed     55.52%
+ 412  Canfam_ENSCAFP00000010069   36.09%    passed     19.23%
+ 413  Hsap_ENSP00000370421        36.09%    passed     10.57%
+ 414  Pantro_ENSPTRP00000009769   36.09%    passed     10.49%
+ 415  Mmus_ENSMUSP00000082729     36.09%    passed     47.69%
+ 416  Ratnor_ENSRNOP00000066935   36.09%    passed     57.58%
+ 417  Galgal_ENSGALP00000054383   42.48%    passed     56.24%
+ 418  Mondom_ENSMODP00000011240   36.09%    passed     71.51%
+ 419  Drer_ENSDARP00000017531     40.23%    passed     43.11%
+ 420  Drer_ENSDARP00000157224     40.23%    passed     43.11%
+ 421  Nvec_EDO45719               79.32%    passed     17.74%
+ 422  Tetnig_ENSTNIP00000015683   39.85%    passed     64.73%
+ 423  Cint_ENSCINP00000014298     67.67%    passed     19.68%
+ 424  Dmel_FBpp0088333            22.18%    passed     14.06%
+ 425  Canfam_ENSCAFP00000037349   26.32%    passed     47.21%
+ 426  Hsap_ENSP00000417207        26.69%    passed     61.52%
+ 427  Pantro_ENSPTRP00000063008   26.69%    passed     49.49%
+ 428  Mmus_ENSMUSP00000091476     26.69%    passed     42.97%
+ 429  Ratnor_ENSRNOP00000011027   26.69%    passed     42.97%
+ 430  Mondom_ENSMODP00000032923   57.14%    passed     98.72%
+ 431  Drer_ENSDARP00000072928     26.32%    passed     52.50%
+ 432  Galgal_ENSGALP00000050233   27.07%    passed     27.57%
+ 433  Tetnig_ENSTNIP00000004115   24.81%    passed     22.77%
+ 434  Nvec_EDO37100               74.44%    failed      4.54%
+ 435  Nvec_EDO45606               78.20%    passed      6.36%
+ 436  Canfam_ENSCAFP00000037493   26.69%    passed     51.69%
+ 437  Mmus_ENSMUSP00000110077     26.32%    passed     66.33%
+ 438  Ratnor_ENSRNOP00000008447   26.32%    passed     78.22%
+ 439  Ratnor_ENSRNOP00000072327   26.32%    passed     78.22%
+ 440  Hsap_ENSP00000379640        26.69%    passed     50.75%
+ 441  Pantro_ENSPTRP00000032494   26.69%    passed     50.75%
+ 442  Pantro_ENSPTRP00000070439   26.69%    passed     50.75%
+ 443  Galgal_ENSGALP00000064246   26.69%    passed     41.25%
+ 444  Mondom_ENSMODP00000032315   26.69%    passed     40.52%
+ 445  Tetnig_ENSTNIP00000004112   28.20%    passed     40.92%
+ 446  Drer_ENSDARP00000152861     27.82%    passed     64.11%
+ 447  Canfam_ENSCAFP00000019824   28.95%    passed     68.62%
+ 448  Hsap_ENSP00000386498        28.57%    passed     73.61%
+ 449  Pantro_ENSPTRP00000021651   28.57%    passed     73.61%
+ 450  Mmus_ENSMUSP00000107614     28.57%    passed     71.42%
+ 451  Ratnor_ENSRNOP00000034938   28.57%    passed     62.97%
+ 452  Mondom_ENSMODP00000051493   28.20%    passed     71.12%
+ 453  Galgal_ENSGALP00000037900   28.20%    passed     16.09%
+ 454  Drer_ENSDARP00000120633     28.57%    passed     73.24%
+ 455  Tetnig_ENSTNIP00000004125   28.95%    passed     74.21%
+ 456  Canfam_ENSCAFP00000009890   35.71%    passed     13.05%
+ 457  Hsap_ENSP00000243108        35.71%    passed     13.37%
+ 458  Mmus_ENSMUSP00000001711     35.71%    passed     13.37%
+ 459  Pantro_ENSPTRP00000008561   35.71%    passed     13.37%
+ 460  Ratnor_ENSRNOP00000022217   35.71%    passed     13.37%
+ 461  Mondom_ENSMODP00000058989   35.71%    passed     15.92%
+ 462  Drer_ENSDARP00000107797     44.36%    passed     10.47%
+ 463  Tetnig_ENSTNIP00000004122   36.09%    failed      4.66%
+ 464  Drer_ENSDARP00000157370     37.59%    failed      0.39%
+ 465  Canfam_ENSCAFP00000024802   37.97%    passed     43.50%
+ 466  Hsap_ENSP00000239144        37.97%    passed     48.41%
+ 467  Pantro_ENSPTRP00000089697   37.97%    passed     48.41%
+ 468  Mmus_ENSMUSP00000052496     37.97%    passed     36.77%
+ 469  Ratnor_ENSRNOP00000009986   37.97%    passed     36.77%
+ 470  Galgal_ENSGALP00000050767   37.97%    passed     28.47%
+ 471  Drer_ENSDARP00000046637     37.59%    passed     60.89%
+ 472  Tetnig_ENSTNIP00000007682   68.42%    passed     38.84%
+ 473  Drer_ENSDARP00000070632     37.97%    passed     31.56%
+ 474  Drer_ENSDARP00000148023     37.97%    passed     31.56%
+ 475  Galgal_ENSGALP00000064922   42.48%    passed     80.98%
+ 476  Mondom_ENSMODP00000060047   37.59%    passed     41.82%
+ 477  Hsap_ENSP00000315949        37.59%    passed     61.30%
+ 478  Pantro_ENSPTRP00000054685   37.59%    passed     61.30%
+ 479  Mmus_ENSMUSP00000019749     37.97%    passed     78.54%
+ 480  Canfam_ENSCAFP00000042826   39.47%    passed     39.38%
+ 481  Hsap_ENSP00000040584        39.47%    passed     53.23%
+ 482  Mmus_ENSMUSP00000001703     39.47%    passed     41.25%
+ 483  Pantro_ENSPTRP00000008559   39.47%    passed     41.25%
+ 484  Ratnor_ENSRNOP00000035473   39.47%    passed     41.25%
+ 485  Galgal_ENSGALP00000050413   39.47%    passed     54.13%
+ 486  Drer_ENSDARP00000093913     37.59%    passed     30.18%
+ 487  Tetnig_ENSTNIP00000004123   45.11%    passed     35.96%
+ 488  Ratnor_ENSRNOP00000060145   42.11%    passed     70.19%
+ 489  Canfam_ENSCAFP00000004370   24.44%    passed     46.52%
+ 490  Hsap_ENSP00000353151        24.44%    passed     50.73%
+ 491  Pantro_ENSPTRP00000041603   24.44%    passed     41.44%
+ 492  Pantro_ENSPTRP00000085072   24.44%    passed     41.44%
+ 493  Mmus_ENSMUSP00000098943     26.32%    passed     18.06%
+ 494  Ratnor_ENSRNOP00000035732   26.32%    passed     16.42%
+ 495  Ratnor_ENSRNOP00000075736   26.32%    passed     16.42%
+ 496  Canfam_ENSCAFP00000060334   30.08%    passed     46.68%
+ 497  Hsap_ENSP00000328928        32.71%    passed     73.30%
+ 498  Pantro_ENSPTRP00000015903   32.71%    passed     73.30%
+ 499  Mmus_ENSMUSP00000048002     32.71%    passed     76.61%
+ 500  Ratnor_ENSRNOP00000010965   32.71%    passed     76.61%
+ 501  Mondom_ENSMODP00000057968   33.46%    passed     56.18%
+ 502  Galgal_ENSGALP00000000372   32.33%    passed     19.06%
+ 503  Drer_ENSDARP00000008458     32.71%    passed     52.39%
+ 504  Tetnig_ENSTNIP00000004116   27.82%    passed     56.54%
+ 505  Galgal_ENSGALP00000029207   22.18%    passed     19.69%
+ 506  Canfam_ENSCAFP00000019812   31.95%    passed     24.52%
+ 507  Galgal_ENSGALP00000037899   33.46%    passed     73.13%
+ 508  Mondom_ENSMODP00000011991   33.46%    passed     67.72%
+ 509  Hsap_ENSP00000302548        29.32%    passed     66.40%
+ 510  Pantro_ENSPTRP00000089314   29.32%    passed     63.05%
+ 511  Mmus_ENSMUSP00000107611     30.45%    passed     50.40%
+ 512  Ratnor_ENSRNOP00000002145   30.08%    passed     75.35%
+ 513  Drer_ENSDARP00000076791     33.46%    passed     59.62%
+ 514  Tetnig_ENSTNIP00000004126   33.08%    passed     90.48%
+ 515  Drer_ENSDARP00000093906     28.57%    passed     26.40%
+ 516  Tetnig_ENSTNIP00000004120   28.57%    passed     57.24%
+ 517  Canfam_ENSCAFP00000004393   37.22%    passed     66.96%
+ 518  Mmus_ENSMUSP00000046939     37.22%    passed     57.22%
+ 519  Ratnor_ENSRNOP00000064444   37.22%    passed     52.45%
+ 520  Ratnor_ENSRNOP00000064914   37.22%    passed     52.45%
+ 521  Ratnor_ENSRNOP00000074975   37.22%    passed     52.45%
+ 522  Hsap_ENSP00000343619        37.22%    passed     61.28%
+ 523  Pantro_ENSPTRP00000067466   37.22%    passed     61.28%
+ 524  Pantro_ENSPTRP00000077831   37.22%    passed     61.28%
+ 525  Hsap_ENSP00000421799        65.04%    passed     17.80%
+ 526  Galgal_ENSGALP00000018013   37.97%    passed     51.52%
+ 527  Canfam_ENSCAFP00000062016   70.30%    passed      8.25%
+ 528  Hsap_ENSP00000249499        36.09%    passed     98.85%
+ 529  Pantro_ENSPTRP00000079436   36.09%    passed     99.18%
+ 530  Mmus_ENSMUSP00000058490     36.09%    passed     90.83%
+ 531  Ratnor_ENSRNOP00000059218   37.22%    passed     87.08%
+ 532  Galgal_ENSGALP00000029264   37.22%    passed     68.40%
+ 533  Mondom_ENSMODP00000011982   34.96%    passed     96.43%
+ 534  Galgal_ENSGALP00000055289   37.59%    passed     45.88%
+ 535  Hsap_ENSP00000423861        37.59%    passed     75.73%
+ 536  Pantro_ENSPTRP00000008558   37.59%    passed     75.73%
+ 537  Mmus_ENSMUSP00000001706     37.59%    passed     71.48%
+ 538  Ratnor_ENSRNOP00000021910   37.59%    passed     71.48%
+ 539  Drer_ENSDARP00000076790     36.47%    passed     46.69%
+ 540  Drer_ENSDARP00000105244     37.97%    passed     21.96%
+ 541  Tetnig_ENSTNIP00000004124   37.22%    passed      6.13%
+ 542  Canfam_ENSCAFP00000024808   37.22%    passed     92.13%
+ 543  Pantro_ENSPTRP00000046637   37.22%    passed     92.13%
+ 544  Hsap_ENSP00000309439        37.22%    passed     92.13%
+ 545  Mmus_ENSMUSP00000000010     37.22%    passed     96.29%
+ 546  Ratnor_ENSRNOP00000009951   37.22%    passed     96.29%
+ 547  Mondom_ENSMODP00000015444   37.97%    passed     84.97%
+ 548  Galgal_ENSGALP00000001945   37.97%    passed     87.61%
+ 549  Drer_ENSDARP00000022169     37.22%    passed     69.91%
+ 550  Tetnig_ENSTNIP00000013750   35.71%    passed     21.03%
+ 551  Tetnig_ENSTNIP00000020079   35.71%    passed     66.87%
+ 552  Drer_ENSDARP00000073839     39.10%    passed     50.34%
+ 553  Tetnig_ENSTNIP00000000288   40.23%    passed     69.72%
+ 554  Tetnig_ENSTNIP00000004131   40.60%    passed     67.44%
+ 555  Drer_ENSDARP00000140324     40.23%    passed     41.16%
+ 556  Canfam_ENSCAFP00000004395   68.05%    failed      4.19%
+ 557  Ratnor_ENSRNOP00000075538   68.05%    failed      4.19%
+ 558  Galgal_ENSGALP00000018009   34.59%    passed     72.17%
+ 559  Mondom_ENSMODP00000000552   33.46%    passed     81.45%
+ 560  Mmus_ENSMUSP00000120276     33.08%    passed     48.73%
+ 561  Ratnor_ENSRNOP00000037877   33.46%    passed     65.90%
+ 562  Ratnor_ENSRNOP00000067766   33.46%    passed     65.90%
+ 563  Hsap_ENSP00000283921        32.71%    passed     32.17%
+ 564  Pantro_ENSPTRP00000067141   32.71%    passed     36.25%
+ 565  Pantro_ENSPTRP00000066629   32.71%    passed     46.98%
+ 566  Drer_ENSDARP00000046765     36.47%    passed     17.02%
+ 567  Tetnig_ENSTNIP00000004144   35.34%    passed     58.76%
+ 568  Tetnig_ENSTNIP00000004128   34.21%    passed     10.08%
+ 569  Galgal_ENSGALP00000054679   33.08%    failed      1.24%
+ 570  Canfam_ENSCAFP00000009915   34.96%    passed     48.57%
+ 571  Hsap_ENSP00000307321        34.96%    passed     32.56%
+ 572  Pantro_ENSPTRP00000008557   34.96%    passed     32.56%
+ 573  Mmus_ENSMUSP00000001699     34.96%    passed     15.19%
+ 574  Ratnor_ENSRNOP00000021647   34.96%    passed     27.07%
+ 575  Hsap_ENSP00000476742        66.17%    passed     26.84%
+ 576  Canfam_ENSCAFP00000019805   34.59%    passed     69.35%
+ 577  Hsap_ENSP00000249501        34.59%    passed     69.35%
+ 578  Pantro_ENSPTRP00000021646   34.59%    passed     69.35%
+ 579  Mmus_ENSMUSP00000062412     34.59%    passed     69.77%
+ 580  Ratnor_ENSRNOP00000002148   34.59%    passed     69.12%
+ 581  Galgal_ENSGALP00000037896   34.59%    passed     14.33%
+ 582  Mondom_ENSMODP00000011973   34.59%    passed     21.56%
+ 583  Drer_ENSDARP00000075055     36.09%    passed     15.13%
+ 584  Tetnig_ENSTNIP00000004139   36.09%    passed     88.50%
+ 585  Canfam_ENSCAFP00000041898   53.01%    passed     65.17%
+ 586  Hsap_ENSP00000309336        53.01%    passed     59.70%
+ 587  Pantro_ENSPTRP00000071625   53.01%    passed     59.70%
+ 588  Mmus_ENSMUSP00000001709     53.01%    passed     59.70%
+ 589  Ratnor_ENSRNOP00000022247   53.01%    passed     59.70%
+ 590  Galgal_ENSGALP00000058570   52.63%    passed     68.12%
+ 591  Drer_ENSDARP00000111519     37.97%    passed      6.34%
+ 592  Drer_ENSDARP00000099793     48.87%    passed      9.16%
+ 593  Dmel_FBpp0081138            14.29%    failed      0.09%
+ 594  Tetnig_ENSTNIP00000004113   30.08%    passed     86.77%
+ 595  Canfam_ENSCAFP00000004371   32.71%    passed     45.69%
+ 596  Pantro_ENSPTRP00000032498   32.71%    passed     47.16%
+ 597  Pantro_ENSPTRP00000080279   32.71%    passed     47.16%
+ 598  Mmus_ENSMUSP00000039012     32.71%    passed     45.69%
+ 599  Ratnor_ENSRNOP00000008523   32.71%    passed     45.69%
+ 600  Ratnor_ENSRNOP00000064639   32.71%    passed     45.69%
+ 601  Ratnor_ENSRNOP00000073150   32.71%    passed     45.69%
+ 602  Hsap_ENSP00000222726        32.71%    passed     46.18%
+ 603  Galgal_ENSGALP00000064050   28.20%    passed     18.42%
+ 604  Mondom_ENSMODP00000000572   32.71%    passed     62.27%
+ 605  Drer_ENSDARP00000133102     34.96%    passed     84.56%
+ 606  Tetnig_ENSTNIP00000004114   33.83%    passed     52.26%
+ 607  Canfam_ENSCAFP00000024781   39.85%    passed     88.78%
+ 608  Hsap_ENSP00000239151        39.85%    passed     88.78%
+ 609  Pantro_ENSPTRP00000015904   39.85%    passed     88.78%
+ 610  Mmus_ENSMUSP00000035423     39.85%    passed     85.24%
+ 611  Ratnor_ENSRNOP00000010724   39.85%    passed     85.24%
+ 612  Mondom_ENSMODP00000015458   39.85%    passed     82.47%
+ 613  Galgal_ENSGALP00000048616   39.85%    passed     69.63%
+ 614  Drer_ENSDARP00000004270     39.10%    passed     81.03%
+ 615  Drer_ENSDARP00000070639     39.85%    passed     29.31%
+ 616  Drer_ENSDARP00000149862     39.85%    passed     29.31%
+ 617  Tetnig_ENSTNIP00000004133   40.23%    passed     40.25%
+ 618  Tetnig_ENSTNIP00000013749   34.96%    passed      7.49%
+ 619  Bralan_BL16282_cuf0         55.26%    passed     45.11%
+ 620  Dmel_FBpp0084460            31.58%    passed     26.74%
+ 621  Nvec_EDO42196               72.56%    failed      2.67%
+ 622  Canfam_ENSCAFP00000004404   34.96%    passed     59.43%
+ 623  Mmus_ENSMUSP00000031787     34.96%    passed     57.85%
+ 624  Ratnor_ENSRNOP00000063934   34.96%    passed     59.72%
+ 625  Ratnor_ENSRNOP00000071029   34.96%    passed     59.72%
+ 626  Hsap_ENSP00000419266        34.96%    passed     63.53%
+ 627  Pantro_ENSPTRP00000032506   34.96%    passed     63.53%
+ 628  Pantro_ENSPTRP00000066850   34.96%    passed     63.53%
+ 629  Drer_ENSDARP00000133433     58.27%    passed     94.51%
+ 630  Drer_ENSDARP00000141114     36.84%    passed     87.00%
+ 631  Tetnig_ENSTNIP00000001316   37.59%    passed     86.68%
+ 632  Galgal_ENSGALP00000047409   35.34%    passed     67.23%
+ 633  Mondom_ENSMODP00000000528   35.34%    passed     66.07%
+ 634  Canfam_ENSCAFP00000019743   30.08%    failed      4.36%
+ 635  Hsap_ENSP00000312385        30.08%    passed     11.07%
+ 636  Pantro_ENSPTRP00000021642   30.08%    passed     11.07%
+ 637  Mmus_ENSMUSP00000134131     30.08%    failed      3.87%
+ 638  Ratnor_ENSRNOP00000002156   39.85%    passed     34.23%
+ 639  Mondom_ENSMODP00000011931   30.83%    passed     23.89%
+ 640  Drer_ENSDARP00000076765     32.33%    passed     42.09%
+ 641  Tetnig_ENSTNIP00000004184   33.83%    passed     45.46%
+ 642  Sman_Smp_156360             24.06%    failed      0.00%
+ 643  Canfam_ENSCAFP00000024769   33.46%    passed     38.04%
+ 644  Hsap_ENSP00000331741        33.08%    passed     36.85%
+ 645  Pantro_ENSPTRP00000015901   33.08%    passed     36.85%
+ 646  Mmus_ENSMUSP00000098092     33.08%    passed     57.88%
+ 647  Ratnor_ENSRNOP00000011213   33.08%    passed     55.40%
+ 648  Mondom_ENSMODP00000015467   33.46%    passed     60.21%
+ 649  Galgal_ENSGALP00000043067   33.46%    passed     82.32%
+ 650  Drer_ENSDARP00000118498     33.83%    passed     87.05%
+ 651  Tetnig_ENSTNIP00000003394   33.46%    passed     93.03%
+ 652  Cint_ENSCINP00000002640     39.10%    failed      1.32%
+ 653  Sman_Smp_002640              9.77%    failed      0.00%
+ 654  Tetnig_ENSTNIP00000004121   42.48%    passed     73.63%
+ 655  Drer_ENSDARP00000121862     42.86%    passed     39.83%
+ 656  Nvec_EDO49562               56.02%    passed     31.45%
+ 657  Dmel_FBpp0423170            10.15%    failed      0.63%
+ 658  Bralan_BL01497_evm0         35.34%    passed     78.93%
+ 659  Bralan_BL02690_evm0         31.95%    passed     72.04%
+ 660  Dmel_FBpp0089246            23.31%    failed      0.00%
+ 661  Sman_Smp_029620             62.78%    failed      0.00%
+ 662  Tetnig_ENSTNIP00000004142   34.21%    passed     25.61%
+ 663  Dmel_FBpp0082829            12.41%    passed     11.07%
+ 664  Bralan_BL01142_evm0         40.23%    passed     49.82%
+ 665  Dmel_FBpp0081194            10.15%    failed      0.00%
+ 666  Cele_WBGene00003102.1       42.11%    failed      3.93%
+ 667  Bralan_BL12289_cuf1         31.20%    failed      0.20%
+ 668  Canfam_ENSCAFP00000004350   22.18%    passed     54.46%
+ 669  Hsap_ENSP00000494260        22.18%    passed     67.27%
+ 670  Pantro_ENSPTRP00000032489   22.18%    passed     59.25%
+ 671  Pantro_ENSPTRP00000079605   22.18%    passed     59.25%
+ 672  Mmus_ENSMUSP00000000964     22.18%    passed     58.32%
+ 673  Ratnor_ENSRNOP00000007807   22.18%    passed     56.73%
+ 674  Ratnor_ENSRNOP00000074252   22.18%    passed     56.73%
+ 675  Mondom_ENSMODP00000000605   21.80%    passed     76.46%
+ 676  Galgal_ENSGALP00000041535   23.68%    passed     71.61%
+ 677  Drer_ENSDARP00000133272     22.93%    passed     18.60%
+ 678  Tetnig_ENSTNIP00000001353   22.18%    passed     85.40%
+ 679  Drer_ENSDARP00000101854     28.95%    passed     63.17%
+ 680  Tetnig_ENSTNIP00000005927   24.44%    passed     55.55%
+ 681  Drer_ENSDARP00000122259     40.23%    passed     40.84%
+ 682  Drer_ENSDARP00000147825     26.69%    passed     43.04%
+ 683  Tetnig_ENSTNIP00000012991   24.81%    passed     85.13%
+ 684  Canfam_ENSCAFP00000024764   24.81%    passed     23.96%
+ 685  Hsap_ENSP00000355140        24.81%    passed     39.18%
+ 686  Pantro_ENSPTRP00000015899   24.81%    passed     45.03%
+ 687  Mmus_ENSMUSP00000019117     25.19%    passed     48.57%
+ 688  Ratnor_ENSRNOP00000011416   25.19%    passed     49.75%
+ 689  Mondom_ENSMODP00000048318   24.81%    passed     12.59%
+ 690  Cint_ENSCINP00000002468     19.17%    failed      0.00%
+ 691  Cele_WBGene00000437.1       39.10%    failed      3.81%
+ 692  Dmel_FBpp0082793            29.32%    failed      2.99%
+ 693  Bralan_BL11265_evm0         36.84%    passed      7.61%
+ 694  Bralan_BL01669_evm1         36.47%    passed     39.03%
+ 695  Drer_ENSDARP00000107444     43.61%    passed     90.65%
+ 696  Drer_ENSDARP00000149040     61.65%    passed     78.89%
+ 697  Canfam_ENSCAFP00000022688   28.95%    passed     18.77%
+ 698  Hsap_ENSP00000371875        29.32%    passed     11.65%
+ 699  Pantro_ENSPTRP00000068919   29.32%    passed     15.16%
+ 700  Mmus_ENSMUSP00000051990     29.32%    passed     49.79%
+ 701  Ratnor_ENSRNOP00000071016   32.71%    passed     21.54%
+ 702  Mondom_ENSMODP00000052687   28.95%    passed     11.83%
+ 703  Drer_ENSDARP00000054821     38.72%    passed     29.49%
+ 704  Tetnig_ENSTNIP00000018807   36.09%    passed     39.43%
+ 705  Galgal_ENSGALP00000064633   38.35%    failed      3.38%
+ 706  Nvec_EDO40354               36.09%    passed     42.95%
+ 707  Dmel_FBpp0083486            30.45%    passed     85.89%
+ 708  Bralan_BL01674_cuf1         46.62%    passed     17.88%
+ 709  Bralan_BL15126_cuf1         33.83%    passed     24.00%
+ 710  Dmel_FBpp0112474            34.96%    passed     57.78%
+ 711  Tadh_TriadP9507             78.57%    passed     23.57%
+ 712  Dmel_FBpp0070105            19.55%    failed      0.00%
+ 713  Tadh_TriadP9561             78.20%    passed     11.43%
+ 714  Drer_ENSDARP00000153588     39.10%    passed     92.96%
+ 715  Tetnig_ENSTNIP00000020010   37.97%    passed     79.45%
+ 716  Galgal_ENSGALP00000054805   38.72%    passed     95.49%
+ 717  Hsap_ENSP00000366347        38.72%    passed     97.15%
+ 718  Pantro_ENSPTRP00000022825   38.72%    passed     97.15%
+ 719  Mmus_ENSMUSP00000069666     38.72%    passed     97.15%
+ 720  Ratnor_ENSRNOP00000017364   38.72%    passed     97.15%
+ 721  Mondom_ENSMODP00000007650   38.72%    passed     95.93%
+ 722  Nvec_EDO33946               62.41%    passed     10.29%
+ 723  Nvec_EDO33963               75.19%    passed     33.95%
+ 724  Nvec_EDO33947               68.80%    passed      5.31%
+ 725  Canfam_ENSCAFP00000063267   36.09%    passed     85.95%
+ 726  Nvec_EDO45871               76.32%    passed     22.76%
+ 727  Sman_Smp_027990             23.68%    failed      0.01%
+ 728  Drer_ENSDARP00000131321     44.36%    passed     39.09%
+ 729  Canfam_ENSCAFP00000037150   58.27%    passed     34.08%
+ 730  Hsap_ENSP00000345147        33.46%    passed     41.00%
+ 731  Pantro_ENSPTRP00000022824   33.46%    passed     38.04%
+ 732  Mmus_ENSMUSP00000066690     33.46%    passed     49.62%
+ 733  Ratnor_ENSRNOP00000016915   33.46%    passed     54.66%
+ 734  Mondom_ENSMODP00000007645   31.95%    passed     70.13%
+ 735  Drer_ENSDARP00000104286     33.08%    passed     46.64%
+ 736  Tetnig_ENSTNIP00000020011   34.96%    passed     86.82%
+ 737  Drer_ENSDARP00000138951     37.59%    passed     93.78%
+ 738  Galgal_ENSGALP00000049097   36.47%    passed      8.34%
+ 739  Drer_ENSDARP00000025546     33.08%    passed     10.03%
+ 740  Galgal_ENSGALP00000055123   33.08%    passed     36.47%
+ 741  Mondom_ENSMODP00000015878   33.08%    passed     30.63%
+ 742  Hsap_ENSP00000346879        32.71%    failed      3.44%
+ 743  Pantro_ENSPTRP00000072897   32.71%    failed      3.44%
+ 744  Mmus_ENSMUSP00000136103     32.71%    failed      3.44%
+ 745  Ratnor_ENSRNOP00000011453   32.71%    failed      3.44%
+ 746  Canfam_ENSCAFP00000037496   41.73%    failed      2.44%
+ 747  Hsap_ENSP00000258829        41.73%    passed     11.02%
+ 748  Pantro_ENSPTRP00000010650   41.73%    passed     11.02%
+ 749  Mmus_ENSMUSP00000072425     41.73%    passed     14.92%
+ 750  Ratnor_ENSRNOP00000011591   41.73%    failed      4.30%
+ 751  Galgal_ENSGALP00000042165   47.37%    passed     78.46%
+ 752  Cint_ENSCINP00000012840     24.44%    failed      0.32%
+ 753  Tetnig_ENSTNIP00000020206   46.99%    passed     24.88%
+ 754  Tetnig_ENSTNIP00000013631   38.72%    passed     81.10%
+ 755  Canfam_ENSCAFP00000013925   28.57%    passed     37.40%
+ 756  Hsap_ENSP00000342828        28.57%    passed     45.76%
+ 757  Pantro_ENSPTRP00000074649   28.57%    passed     45.76%
+ 758  Mmus_ENSMUSP00000050933     29.70%    passed     39.63%
+ 759  Ratnor_ENSRNOP00000051598   29.70%    passed     30.53%
+ 760  Mondom_ENSMODP00000060382   28.57%    passed     53.89%
+ 761  Galgal_ENSGALP00000048445   30.83%    passed     48.96%
+ 762  Mondom_ENSMODP00000020954   59.02%    failed      4.06%
+ 763  Galgal_ENSGALP00000048780   46.24%    passed      8.26%
+ 764  Canfam_ENSCAFP00000033778   34.96%    failed      0.42%
+ 765  Hsap_ENSP00000320089        34.21%    passed      5.97%
+ 766  Pantro_ENSPTRP00000034388   34.21%    failed      3.30%
+ 767  Mmus_ENSMUSP00000049898     36.09%    passed     30.12%
+ 768  Ratnor_ENSRNOP00000034838   50.38%    passed     24.18%
+ 769  Canfam_ENSCAFP00000041395   33.46%    failed      3.90%
+ 770  Hsap_ENSP00000327758        33.08%    passed      9.98%
+ 771  Pantro_ENSPTRP00000029961   33.08%    passed      9.98%
+ 772  Mmus_ENSMUSP00000015723     34.59%    passed      8.19%
+ 773  Ratnor_ENSRNOP00000028155   34.59%    passed     13.64%
+ 774  Galgal_ENSGALP00000004542   38.72%    passed     30.16%
+ 775  Mondom_ENSMODP00000007627   34.21%    passed     62.81%
+ 776  Drer_ENSDARP00000016308     32.33%    passed     16.94%
+ 777  Drer_ENSDARP00000146707     32.33%    passed     24.71%
+ 778  Tetnig_ENSTNIP00000020207   33.83%    passed     75.51%
+ 779  Cint_ENSCINP00000024324     18.42%    passed     63.58%
+ 780  Nvec_EDO27633               77.07%    failed      1.02%
+ 781  Nvec_EDO43646               77.07%    failed      1.02%
+ 782  Sman_Smp_186930             38.35%    failed      0.00%
+ 783  Drer_ENSDARP00000057093     31.20%    passed     44.14%
+ 784  Drer_ENSDARP00000152953     31.20%    passed     44.14%
+ 785  Tetnig_ENSTNIP00000008548   31.20%    passed     94.87%
+ 786  Cele_WBGene00000449.1       42.11%    passed     48.62%
+ 787  Tadh_TriadP9531             78.95%    failed      2.77%
+ 788  Nvec_EDO33948               46.24%    failed      3.69%
+ 789  Drer_ENSDARP00000004716     39.10%    passed     53.60%
+ 790  Mondom_ENSMODP00000015866   43.98%    passed     36.74%
+ 791  Tetnig_ENSTNIP00000013739   46.24%    passed      6.08%
+ 792  Nvec_EDO40355               32.71%    passed     90.36%
+ 793  Cele_WBGene00000447.1       37.59%    passed     87.87%
+ 794  Cele_WBGene00000445.1       24.06%    failed      4.73%
+ 795  Canfam_ENSCAFP00000013395   50.00%    passed     51.10%
+ 796  Hsap_ENSP00000370253        42.11%    passed     40.93%
+ 797  Pantro_ENSPTRP00000081164   42.11%    passed     54.98%
+ 798  Mmus_ENSMUSP00000022646     40.23%    passed     91.07%
+ 799  Ratnor_ENSRNOP00000020753   40.23%    passed     58.72%
+ 800  Mondom_ENSMODP00000020955   40.98%    passed     37.60%
+ 801  Bralan_BL17549_cuf0         36.47%    failed      2.09%
+ 802  Nvec_EDO49539               70.68%    passed     51.93%
+ 803  Nvec_EDO49538               75.19%    passed     47.54%
+ 804  Dmel_FBpp0083375            49.62%    passed     52.48%
+ 805  Sman_Smp_000075             40.23%    failed      0.00%
+ 806  Canfam_ENSCAFP00000023077   39.47%    passed     15.10%
+ 807  Galgal_ENSGALP00000024163   37.59%    passed     31.34%
+ 808  Nvec_EDO48651               67.67%    passed     34.59%
+ 809  Tetnig_ENSTNIP00000013490   43.23%    passed     15.14%
+ 810  Tetnig_ENSTNIP00000000019   46.62%    passed     89.31%
+ 811  Hsap_ENSP00000372170        38.35%    passed     32.21%
+ 812  Pantro_ENSPTRP00000055966   38.35%    passed     32.21%
+ 813  Mmus_ENSMUSP00000058354     38.35%    passed     47.07%
+ 814  Ratnor_ENSRNOP00000009101   39.47%    passed     59.17%
+ 815  Mondom_ENSMODP00000001867   38.35%    passed     28.45%
+ 816  Canfam_ENSCAFP00000041488   42.86%    passed     69.94%
+ 817  Hsap_ENSP00000239243        42.86%    passed     85.07%
+ 818  Pantro_ENSPTRP00000029971   42.86%    passed     85.07%
+ 819  Mmus_ENSMUSP00000021922     42.86%    passed     97.49%
+ 820  Ratnor_ENSRNOP00000024765   42.86%    passed     93.91%
+ 821  Galgal_ENSGALP00000046638   42.11%    passed     97.76%
+ 822  Mondom_ENSMODP00000007337   40.60%    passed     88.15%
+ 823  Pantro_ENSPTRP00000072871   45.86%    passed     93.21%
+ 824  Drer_ENSDARP00000147264     46.99%    passed     45.43%
+ 825  Tetnig_ENSTNIP00000013930   39.10%    passed     87.07%
+ 826  Mmus_ENSMUSP00000133484     47.37%    passed      8.24%
+ 827  Ratnor_ENSRNOP00000067831   47.37%    passed     11.20%
+ 828  Mondom_ENSMODP00000013159   36.84%    passed     21.73%
+ 829  Drer_ENSDARP00000024644     40.98%    passed     60.11%
+ 830  Drer_ENSDARP00000140454     41.73%    passed     65.37%
+ 831  Drer_ENSDARP00000015954     44.74%    passed     46.12%
+ 832  Tetnig_ENSTNIP00000021385   41.35%    passed     11.40%
+ 833  Drer_ENSDARP00000132799     42.48%    passed     44.36%
+ 834  Drer_ENSDARP00000152491     42.48%    passed     44.36%
+ 835  Dmel_FBpp0084807            30.45%    passed      9.06%
+ 836  Cint_ENSCINP00000018527     36.09%    passed     61.79%
+ 837  Cele_WBGene00006881.1       42.11%    passed     58.05%
+ 838  Sman_Smp_144380             41.73%    failed      0.06%
+ 839  Cele_WBGene00000432.1       70.68%    failed      3.81%
+ 840  Dmel_FBpp0076468            18.80%    failed      1.11%
+ 841  Cele_WBGene00000436.1       49.25%    passed     20.82%
+ 842  Mmus_ENSMUSP00000027778     42.11%    passed      9.59%
+ 843  Ratnor_ENSRNOP00000004244   42.11%    passed     16.46%
+ 844  Ratnor_ENSRNOP00000064882   42.11%    passed     16.46%
+ 845  Pantro_ENSPTRP00000070725   41.35%    failed      0.12%
+ 846  Mondom_ENSMODP00000007416   39.47%    passed     19.06%
+ 847  Bralan_BL03270_evm1         48.12%    passed     52.63%
+ 848  Canfam_ENSCAFP00000002612   46.24%    passed     40.45%
+ 849  Hsap_ENSP00000226382        46.24%    passed     40.45%
+ 850  Mmus_ENSMUSP00000012664     46.24%    passed     40.45%
+ 851  Pantro_ENSPTRP00000027552   46.24%    passed     40.45%
+ 852  Mondom_ENSMODP00000025734   46.24%    passed     26.66%
+ 853  Ratnor_ENSRNOP00000070623   48.50%    passed     51.16%
+ 854  Galgal_ENSGALP00000036658   46.24%    passed     30.55%
+ 855  Drer_ENSDARP00000130156     46.99%    passed     71.40%
+ 856  Tetnig_ENSTNIP00000016030   46.99%    passed     57.47%
+ 857  Canfam_ENSCAFP00000022903   31.20%    passed     75.46%
+ 858  Pantro_ENSPTRP00000000452   30.45%    passed     77.40%
+ 859  Mmus_ENSMUSP00000133536     30.45%    passed     77.68%
+ 860  Ratnor_ENSRNOP00000025488   31.20%    passed     75.46%
+ 861  Galgal_ENSGALP00000044020   31.20%    passed     75.79%
+ 862  Hsap_ENSP00000364524        29.70%    passed     85.36%
+ 863  Drer_ENSDARP00000138120     29.70%    passed     65.60%
+ 864  Drer_ENSDARP00000146126     29.70%    passed     65.60%
+ 865  Nvec_EDO47151               73.68%    passed     13.58%
+ 866  Cint_ENSCINP00000031389     57.89%    passed     84.98%
+ 867  Canfam_ENSCAFP00000045310   43.98%    passed     35.45%
+ 868  Hsap_ENSP00000298231        44.36%    passed     78.46%
+ 869  Pantro_ENSPTRP00000047816   44.36%    passed     78.46%
+ 870  Mmus_ENSMUSP00000008090     44.36%    passed     69.94%
+ 871  Ratnor_ENSRNOP00000026702   44.36%    passed     69.94%
+ 872  Drer_ENSDARP00000013072     44.74%    passed     83.37%
+ 873  Tetnig_ENSTNIP00000008304   43.61%    passed     79.36%
+ 874  Mondom_ENSMODP00000009803   46.62%    passed     55.20%
+ 875  Nvec_EDO42755               77.44%    passed     49.82%
+ 876  Cele_WBGene00044330.1       43.61%    passed     16.31%
+ 877  Dmel_FBpp0072133            54.89%    passed     38.33%
+ 878  Mmus_ENSMUSP00000134368     46.62%    passed     89.62%
+ 879  Ratnor_ENSRNOP00000057796   46.62%    passed     91.55%
+ 880  Hsap_ENSP00000386037        48.87%    passed     23.68%
+ 881  Pantro_ENSPTRP00000024616   48.87%    passed     21.97%
+ 882  Dmel_FBpp0072363            31.95%    passed     82.18%
+ 883  Tetnig_ENSTNIP00000018185   51.50%    passed     93.98%
+ 884  Mondom_ENSMODP00000040691   24.44%    failed      0.20%
+ 885  Drer_ENSDARP00000155914     48.87%    passed     70.18%
+ 886  Drer_ENSDARP00000157305     48.87%    passed     70.18%
+ 887  Tetnig_ENSTNIP00000020229   62.41%    passed     81.96%
+ 888  Bralan_BL08182_evm0         49.62%    passed     53.88%
+ 889  Bralan_BL14817_evm0         25.94%    failed      0.77%
+ 890  Cele_WBGene00000428.1       50.38%    passed     63.52%
+ 891  Canfam_ENSCAFP00000039953   30.08%    failed      0.01%
+ 892  Hsap_ENSP00000407978        30.83%    failed      0.87%
+ 893  Pantro_ENSPTRP00000060910   31.58%    failed      1.33%
+ 894  Mmus_ENSMUSP00000133620     31.20%    passed      7.26%
+ 895  Ratnor_ENSRNOP00000064746   31.20%    passed      5.16%
+ 896  Galgal_ENSGALP00000044989   33.83%    failed      0.19%
+ 897  Drer_ENSDARP00000131103     36.09%    passed     24.27%
+ 898  Tetnig_ENSTNIP00000001177   35.71%    passed     71.76%
+ 899  Tetnig_ENSTNIP00000016590   57.52%    passed     74.17%
+ 900  Drer_ENSDARP00000034835     47.37%    passed     89.06%
+ 901  Canfam_ENSCAFP00000042357   33.46%    failed      0.56%
+ 902  Hsap_ENSP00000451945        34.96%    passed     30.49%
+ 903  Pantro_ENSPTRP00000062434   34.96%    passed     30.29%
+ 904  Mmus_ENSMUSP00000052778     33.83%    passed     22.57%
+ 905  Ratnor_ENSRNOP00000022904   33.83%    passed     23.39%
+ 906  Galgal_ENSGALP00000073987   35.34%    failed      1.27%
+ 907  Mondom_ENSMODP00000055189   34.96%    passed     19.80%
+ 908  Nvec_EDO48768               38.72%    passed     83.82%
+ 909  Drer_ENSDARP00000080281     37.97%    passed     54.51%
+ 910  Tetnig_ENSTNIP00000002643   36.84%    passed     63.40%
+ 911  Sman_Smp_137140             24.06%    failed      0.00%
+ 912  Bralan_BL50426_cuf0         59.77%    passed      5.82%
+ 913  Canfam_ENSCAFP00000017532   42.48%    passed     69.69%
+ 914  Hsap_ENSP00000358207        42.48%    passed     64.35%
+ 915  Pantro_ENSPTRP00000089035   42.48%    passed     72.01%
+ 916  Mmus_ENSMUSP00000134642     42.11%    passed     73.97%
+ 917  Ratnor_ENSRNOP00000011743   42.11%    passed     69.88%
+ 918  Mondom_ENSMODP00000011781   42.11%    passed     62.97%
+ 919  Galgal_ENSGALP00000015056   42.11%    passed     77.29%
+ 920  Drer_ENSDARP00000039283     42.11%    passed     62.26%
+ 921  Drer_ENSDARP00000155707     42.11%    passed     62.26%
+ 922  Tetnig_ENSTNIP00000008540   43.98%    passed     69.11%
+ 923  Drer_ENSDARP00000076061     41.35%    failed      2.21%
+ 924  Tetnig_ENSTNIP00000022248   41.73%    passed     13.22%
+ 925  Hsap_ENSP00000234392        44.36%    passed     70.17%
+ 926  Pantro_ENSPTRP00000020663   44.36%    passed     63.71%
+ 927  Mmus_ENSMUSP00000035976     44.36%    passed     76.43%
+ 928  Ratnor_ENSRNOP00000018128   44.36%    passed     56.56%
+ 929  Mondom_ENSMODP00000014074   38.35%    passed      7.90%
+ 930  Cele_WBGene00000430.1       66.17%    passed     82.07%
+ 931  Cint_ENSCINP00000014296     10.90%    failed      1.36%
+ 932  Drer_ENSDARP00000010904     46.99%    passed     74.22%
+ 933  Drer_ENSDARP00000154256     59.77%    passed     68.65%
+ 934  Drer_ENSDARP00000156279     59.77%    passed     68.65%
+ 935  Tetnig_ENSTNIP00000015006   55.26%    passed     65.60%
+ 936  Tetnig_ENSTNIP00000013047   57.14%    passed     91.54%
+ 937  Galgal_ENSGALP00000025106   35.71%    passed     25.82%
+ 938  Mondom_ENSMODP00000044103   33.46%    passed     37.88%
+ 939  Sman_Smp_013600             25.56%    failed      0.00%
+ 940  Bralan_BL15948_evm0         63.91%    passed     66.28%
+ 941  Canfam_ENSCAFP00000010073   37.22%    passed     49.96%
+ 942  Hsap_ENSP00000304331        37.22%    passed     47.57%
+ 943  Pantro_ENSPTRP00000009768   37.22%    passed     47.57%
+ 944  Mmus_ENSMUSP00000069728     37.22%    passed     50.55%
+ 945  Ratnor_ENSRNOP00000001260   37.22%    passed     47.72%
+ 946  Mondom_ENSMODP00000011233   36.84%    passed     16.60%
+ 947  Galgal_ENSGALP00000053557   39.85%    passed     33.26%
+ 948  Drer_ENSDARP00000051832     40.98%    passed     35.72%
+ 949  Tetnig_ENSTNIP00000012924   41.35%    passed     63.29%
+ 950  Drer_ENSDARP00000063600     43.23%    passed     62.09%
+ 951  Drer_ENSDARP00000146944     43.23%    passed     65.37%
+ 952  Tetnig_ENSTNIP00000020808   49.25%    passed     75.67%
+ 953  Galgal_ENSGALP00000049767   40.98%    passed     79.26%
+ 954  Hsap_ENSP00000319118        36.09%    passed     53.98%
+ 955  Pantro_ENSPTRP00000027634   36.09%    passed     45.24%
+ 956  Mmus_ENSMUSP00000036625     35.71%    passed     34.94%
+ 957  Ratnor_ENSRNOP00000003080   35.71%    passed     39.46%
+ 958  Mondom_ENSMODP00000055179   36.09%    passed     55.04%
+ 959  Dmel_FBpp0081170            37.59%    failed      3.21%
+ 960  Mlei_ML15251a-PA            43.61%    passed     16.89%
+ 961  Bralan_BL11564_cuf0         42.11%    passed     49.66%
+ 962  Bralan_BL25553_evm0         42.11%    passed     49.66%
+ 963  Canfam_ENSCAFP00000038383   37.22%    passed     70.72%
+ 964  Mmus_ENSMUSP00000096997     37.22%    passed     77.24%
+ 965  Ratnor_ENSRNOP00000021747   37.22%    passed     77.24%
+ 966  Hsap_ENSP00000359212        37.22%    passed     83.44%
+ 967  Pantro_ENSPTRP00000050349   37.22%    passed     87.49%
+ 968  Mondom_ENSMODP00000050181   37.22%    passed     80.88%
+ 969  Galgal_ENSGALP00000054288   41.73%    passed     82.77%
+ 970  Drer_ENSDARP00000045350     37.22%    passed     93.38%
+ 971  Tetnig_ENSTNIP00000022571   37.22%    passed     86.49%
+ 972  Drer_ENSDARP00000014246     37.97%    passed     80.30%
+ 973  Nvec_EDO42702               67.29%    passed     22.58%
+ 974  Drer_ENSDARP00000029690     40.23%    passed     82.96%
+ 975  Tetnig_ENSTNIP00000016035   37.97%    passed     73.17%
+ 976  Galgal_ENSGALP00000052107   43.23%    passed      7.67%
+ 977  Dmel_FBpp0304711            30.83%    passed     35.87%
+ 978  Canfam_ENSCAFP00000039470   42.86%    failed      2.72%
+ 979  Hsap_ENSP00000366789        40.98%    passed      6.70%
+ 980  Pantro_ENSPTRP00000051890   40.98%    passed      8.40%
+ 981  Mmus_ENSMUSP00000047134     41.35%    passed     16.63%
+ 982  Ratnor_ENSRNOP00000011189   41.35%    passed     30.81%
+ 983  Ratnor_ENSRNOP00000071551   41.35%    passed     30.81%
+ 984  Mondom_ENSMODP00000006062   39.47%    failed      1.29%
+ 985  Dmel_FBpp0083490            26.32%    passed     45.91%
+ 986  Sman_Smp_158000             66.92%    failed      0.76%
+ 987  Mlei_ML319810a-PA           25.94%    passed      7.18%
+ 988  Cint_ENSCINP00000012758     23.68%    passed      8.42%
+ 989  Cele_WBGene00000450.1       43.98%    passed     15.07%
+ 990  Drer_ENSDARP00000115852     46.62%    passed     10.27%
+ 991  Sman_Smp_140730             24.81%    failed      1.74%
+ 992  Canfam_ENSCAFP00000003194   33.46%    passed     51.50%
+ 993  Hsap_ENSP00000498116        33.46%    passed     74.02%
+ 994  Pantro_ENSPTRP00000033230   33.46%    passed     74.02%
+ 995  Mmus_ENSMUSP00000052559     33.46%    passed     67.18%
+ 996  Ratnor_ENSRNOP00000014946   33.46%    passed     76.77%
+ 997  Galgal_ENSGALP00000014846   33.46%    passed     73.88%
+ 998  Mondom_ENSMODP00000020564   34.21%    passed     66.73%
+ 999  Drer_ENSDARP00000100492     33.46%    passed     79.95%
+1000  Tetnig_ENSTNIP00000020912   34.59%    passed     72.50%
+1001  Canfam_ENSCAFP00000031627   32.71%    passed     59.37%
+1002  Hsap_ENSP00000234198        32.71%    passed     62.11%
+1003  Pantro_ENSPTRP00000021601   32.71%    passed     62.11%
+1004  Mmus_ENSMUSP00000024159     32.71%    passed     67.20%
+1005  Ratnor_ENSRNOP00000002076   32.71%    passed     67.20%
+1006  Mondom_ENSMODP00000011090   32.71%    passed     76.33%
+1007  Drer_ENSDARP00000103004     34.21%    passed     87.09%
+1008  Tetnig_ENSTNIP00000020058   34.96%    passed     71.51%
+1009  Drer_ENSDARP00000007080     34.21%    passed     67.94%
+1010  Drer_ENSDARP00000148270     34.21%    passed     67.94%
+1011  Galgal_ENSGALP00000052409   36.09%    failed      0.10%
+1012  Canfam_ENSCAFP00000063947   54.51%    passed     63.43%
+1013  Drer_ENSDARP00000011033     35.34%    passed     81.69%
+1014  Tetnig_ENSTNIP00000020057   35.71%    passed     52.98%
+1015  Galgal_ENSGALP00000006636   35.34%    passed     27.24%
+1016  Hsap_ENSP00000354478        35.34%    passed     48.20%
+1017  Pantro_ENSPTRP00000039172   35.34%    passed     48.20%
+1018  Mmus_ENSMUSP00000042413     35.34%    passed     49.92%
+1019  Ratnor_ENSRNOP00000002078   35.34%    passed     49.92%
+1020  Mondom_ENSMODP00000011081   35.34%    passed     52.87%
+1021  Drer_ENSDARP00000093553     38.35%    passed     23.52%
+1022  Tetnig_ENSTNIP00000020913   38.72%    passed     17.53%
+1023  Hsap_ENSP00000428480        33.08%    failed      3.97%
+1024  Pantro_ENSPTRP00000058756   32.71%    failed      2.55%
+1025  Mmus_ENSMUSP00000124204     32.71%    passed      6.05%
+1026  Ratnor_ENSRNOP00000067918   48.50%    passed     58.88%
+1027  Mondom_ENSMODP00000052958   57.52%    passed     14.98%
+1028  Drer_ENSDARP00000096665     35.34%    passed     25.56%
+1029  Drer_ENSDARP00000122639     35.71%    passed     11.41%
+1030  Nvec_EDO46555               74.06%    passed     10.78%
+1031  Tetnig_ENSTNIP00000014101   35.71%    passed     10.00%
+1032  Galgal_ENSGALP00000061681   39.85%    passed      9.57%
+1033  Tetnig_ENSTNIP00000015832   34.96%    passed     19.56%
+1034  Mondom_ENSMODP00000015160   34.59%    failed      1.38%
+1035  Dmel_FBpp0289353            39.47%    passed     79.44%
+1036  Cint_ENSCINP00000014582     64.66%    passed      5.30%
+1037  Canfam_ENSCAFP00000052288   32.33%    passed     58.58%
+1038  Hsap_ENSP00000389870        32.33%    passed     64.25%
+1039  Pantro_ENSPTRP00000015940   32.33%    passed     64.25%
+1040  Mmus_ENSMUSP00000090443     32.33%    passed     67.34%
+1041  Ratnor_ENSRNOP00000005797   32.33%    passed     62.85%
+1042  Mondom_ENSMODP00000015153   32.71%    passed     57.14%
+1043  Drer_ENSDARP00000022291     33.46%    passed     79.09%
+1044  Tetnig_ENSTNIP00000015831   34.21%    passed     61.79%
+1045  Tetnig_ENSTNIP00000014100   31.95%    passed     58.52%
+1046  Sman_Smp_138110             15.04%    failed      0.00%
+1047  Canfam_ENSCAFP00000037285   33.83%    passed     24.05%
+1048  Hsap_ENSP00000240306        34.96%    passed     16.64%
+1049  Pantro_ENSPTRP00000015939   34.96%    passed     17.23%
+1050  Mmus_ENSMUSP00000021241     35.71%    failed      1.95%
+1051  Ratnor_ENSRNOP00000005807   36.09%    failed      0.81%
+1052  Galgal_ENSGALP00000067082   30.83%    failed      1.06%
+1053  Cint_ENSCINP00000009039     24.81%    failed      1.24%
+1054  Canfam_ENSCAFP00000064473   40.98%    passed     18.54%
+1055  Cint_ENSCINP00000009044     13.91%    failed      0.06%
+1056  Galgal_ENSGALP00000069962   37.59%    failed      0.01%
+1057  Tadh_TriadP49530            29.70%    failed      0.00%
+1058  Cele_WBGene00000463.1       36.09%    passed     37.04%
+1059  Bralan_BL18701_cuf2         56.39%    passed     23.79%
+1060  Drer_ENSDARP00000023487     38.35%    passed     19.82%
+1061  Drer_ENSDARP00000028905     38.35%    passed     42.84%
+1062  Drer_ENSDARP00000145475     38.35%    passed     42.84%
+1063  Drer_ENSDARP00000056747     36.09%    passed     22.03%
+1064  Galgal_ENSGALP00000045557   34.21%    passed     57.20%
+1065  Tetnig_ENSTNIP00000021310   68.42%    passed     47.03%
+1066  Mondom_ENSMODP00000006129   33.83%    passed     37.24%
+1067  Hsap_ENSP00000297375        34.21%    passed     52.74%
+1068  Pantro_ENSPTRP00000071578   34.21%    passed     52.74%
+1069  Pantro_ENSPTRP00000073091   34.21%    passed     52.74%
+1070  Mmus_ENSMUSP00000036761     34.21%    passed     54.18%
+1071  Ratnor_ENSRNOP00000008951   34.21%    passed     30.06%
+1072  Tetnig_ENSTNIP00000015750   37.22%    passed     56.99%
+1073  Galgal_ENSGALP00000052689   31.20%    passed     38.85%
+1074  Hsap_ENSP00000295206        29.32%    passed     12.99%
+1075  Pantro_ENSPTRP00000049224   27.82%    failed      3.18%
+1076  Mmus_ENSMUSP00000078659     28.20%    passed      5.25%
+1077  Ratnor_ENSRNOP00000068605   28.20%    passed      5.25%
+1078  Mondom_ENSMODP00000006131   27.82%    failed      3.51%
+1079  Drer_ENSDARP00000150261     34.21%    passed     29.82%
+1080  Dmel_FBpp0311724            34.96%    passed     27.04%
+1081  Dmel_FBpp0087198            26.69%    passed     15.04%
+1082  Cele_WBGene00000439.1       43.98%    passed     74.86%
+1083  Sman_Smp_145200             37.22%    failed      0.00%
+1084  Cint_ENSCINP00000004407     23.31%    passed     47.36%
+1085  Bralan_BL12756_cuf0         56.39%    passed     96.73%
+1086  Canfam_ENSCAFP00000010063   24.44%    passed     87.97%
+1087  Hsap_ENSP00000370408        24.44%    passed     78.87%
+1088  Pantro_ENSPTRP00000070197   24.44%    passed     82.11%
+1089  Ratnor_ENSRNOP00000045045   24.44%    passed     93.81%
+1090  Mmus_ENSMUSP00000031650     24.44%    passed     59.97%
+1091  Mondom_ENSMODP00000011246   25.19%    passed     68.95%
+1092  Drer_ENSDARP00000152903     31.95%    passed     48.88%
+1093  Galgal_ENSGALP00000009094   29.70%    passed     51.31%
+1094  Mondom_ENSMODP00000012137   28.20%    passed     54.63%
+1095  Tetnig_ENSTNIP00000002359   63.91%    passed     39.24%
+1096  Tetnig_ENSTNIP00000017237   34.21%    passed     73.94%
+1097  Canfam_ENSCAFP00000026906   30.45%    failed      0.13%
+1098  Hsap_ENSP00000231656        30.45%    failed      1.47%
+1099  Pantro_ENSPTRP00000029751   30.45%    failed      1.88%
+1100  Mmus_ENSMUSP00000025521     29.32%    failed      0.22%
+1101  Ratnor_ENSRNOP00000071345   27.82%    failed      1.46%
+1102  Drer_ENSDARP00000098008     28.20%    passed     61.30%
+1103  Canfam_ENSCAFP00000025318   29.70%    passed     39.22%
+1104  Hsap_ENSP00000362613        29.70%    passed     41.99%
+1105  Pantro_ENSPTRP00000037889   29.70%    passed     41.06%
+1106  Mmus_ENSMUSP00000033689     30.45%    passed     44.80%
+1107  Ratnor_ENSRNOP00000003973   29.70%    passed     20.75%
+1108  Galgal_ENSGALP00000012387   30.45%    passed     77.69%
+1109  Galgal_ENSGALP00000038691   28.57%    passed     52.19%
+1110  Drer_ENSDARP00000151122     38.35%    passed     76.86%
+1111  Tetnig_ENSTNIP00000000805   39.47%    passed     95.14%
+1112  Mondom_ENSMODP00000026060   32.71%    passed     54.04%
+1113  Cint_ENSCINP00000015052     20.30%    passed     32.76%
+1114  Dmel_FBpp0307151            13.53%    failed      0.03%
+1115  Cint_ENSCINP00000014292     35.71%    passed     41.93%
+1116  Sman_Smp_081620             45.11%    failed      0.04%
+1117  Sman_Smp_126190             61.28%    passed     61.99%
+1118  Mlei_ML042114a-PA           18.80%    failed      1.73%
+1119  Mlei_ML12641a-PA            59.77%    passed     35.59%
+1120  Mlei_ML11616a-PA            47.37%    passed     17.85%
+1121  Mlei_ML03151a-PA             9.02%    failed      0.86%
+1122  Canfam_ENSCAFP00000017172   41.35%    passed     64.44%
+1123  Hsap_ENSP00000344285        41.35%    passed     74.91%
+1124  Pantro_ENSPTRP00000007538   41.35%    passed     72.25%
+1125  Mmus_ENSMUSP00000068057     41.35%    passed     76.46%
+1126  Ratnor_ENSRNOP00000030106   41.35%    passed     77.63%
+1127  Mondom_ENSMODP00000016215   41.35%    passed     38.16%
+1128  Galgal_ENSGALP00000010513   41.35%    passed     10.55%
+1129  Drer_ENSDARP00000090755     41.35%    passed     51.07%
+1130  Drer_ENSDARP00000149609     41.35%    passed     51.07%
+1131  Tetnig_ENSTNIP00000011444   41.73%    passed     81.43%
+1132  Cele_WBGene00006380.1       47.37%    passed     32.84%
+1133  Dmel_FBpp0088920            22.93%    passed     26.33%
+1134  Cint_ENSCINP00000001819     16.54%    passed     69.36%
+1135  Tadh_TriadP33728            38.72%    passed     20.39%
+1136  Nvec_EDO45720               42.86%    passed     64.82%
+1137  Bralan_BL01764_evm0         53.76%    passed     16.39%
+1138  Tetnig_ENSTNIP00000004016   34.96%    passed     23.09%
+1139  Tetnig_ENSTNIP00000020304   34.96%    passed     14.32%
+1140  Tetnig_ENSTNIP00000004135   34.59%    passed     57.39%
+1141  Dmel_FBpp0082826            19.17%    failed      0.00%
+1142  Tetnig_ENSTNIP00000004143   34.59%    passed     56.32%
+1143  Canfam_ENSCAFP00000004401   26.32%    passed     87.53%
+1144  Hsap_ENSP00000006015        26.69%    passed     94.38%
+1145  Pantro_ENSPTRP00000032504   26.69%    passed     94.38%
+1146  Pantro_ENSPTRP00000077262   26.69%    passed     94.38%
+1147  Mmus_ENSMUSP00000040920     27.44%    passed     94.46%
+1148  Ratnor_ENSRNOP00000010256   27.44%    passed     95.06%
+1149  Ratnor_ENSRNOP00000066085   27.44%    passed     95.06%
+1150  Ratnor_ENSRNOP00000075163   27.44%    passed     95.06%
+1151  Mondom_ENSMODP00000000537   25.19%    passed     73.80%
+1152  Galgal_ENSGALP00000046000   27.82%    passed     79.90%
+1153  Drer_ENSDARP00000005174     29.70%    passed     56.80%
+1154  Tetnig_ENSTNIP00000004129   32.71%    passed     40.36%
+1155  Drer_ENSDARP00000132310     30.83%    passed     93.67%
+1156  Tetnig_ENSTNIP00000003617   30.83%    passed     80.55%
+1157  Canfam_ENSCAFP00000009922   29.70%    passed     28.31%
+1158  Mmus_ENSMUSP00000001701     29.70%    passed     30.93%
+1159  Ratnor_ENSRNOP00000021589   29.70%    passed     30.93%
+1160  Pantro_ENSPTRP00000008556   29.70%    passed     36.55%
+1161  Drer_ENSDARP00000093920     28.95%    passed      9.31%
+1162  Tetnig_ENSTNIP00000004136   29.32%    passed     17.58%
+1163  Galgal_ENSGALP00000073544   53.38%    passed     16.41%
+1164  Drer_ENSDARP00000156809     28.20%    passed     21.47%
+1165  Canfam_ENSCAFP00000019793   28.95%    failed      0.74%
+1166  Hsap_ENSP00000249504        28.95%    passed     13.69%
+1167  Pantro_ENSPTRP00000057136   28.95%    failed      4.45%
+1168  Mmus_ENSMUSP00000122582     28.95%    failed      2.11%
+1169  Ratnor_ENSRNOP00000073361   30.08%    passed     26.00%
+1170  Galgal_ENSGALP00000046110   35.34%    passed     32.89%
+1171  Mondom_ENSMODP00000011952   30.83%    passed     38.09%
+1172  Drer_ENSDARP00000076780     32.33%    passed     30.68%
+1173  Tetnig_ENSTNIP00000020078   32.71%    passed     39.26%
+1174  Cint_ENSCINP00000001927     23.31%    passed     52.00%
+1175  Cele_WBGene00045215.1       57.89%    passed     12.35%
+1176  Cele_WBGene00011069.1       43.23%    passed     21.91%
+1177  Canfam_ENSCAFP00000038405   34.21%    failed      0.06%
+1178  Hsap_ENSP00000328598        25.94%    passed     31.83%
+1179  Pantro_ENSPTRP00000090178   25.94%    passed     34.63%
+1180  Mmus_ENSMUSP00000043078     25.94%    passed     24.34%
+1181  Ratnor_ENSRNOP00000002140   25.94%    passed     34.96%
+1182  Mondom_ENSMODP00000011998   22.56%    passed     76.35%
+1183  Dmel_FBpp0081139            13.91%    failed      0.03%
+1184  Cint_ENSCINP00000031118     60.90%    failed      0.50%
+1185  Sman_Smp_147640             32.33%    failed      0.11%
+1186  Cele_WBGene00003779.1       37.59%    passed     90.91%
+1187  Cele_WBGene00004024.1       37.22%    passed     28.74%
+1188  Canfam_ENSCAFP00000019799   44.74%    failed      1.85%
+1189  Hsap_ENSP00000357556        43.98%    passed     63.77%
+1190  Pantro_ENSPTRP00000005437   43.98%    passed     65.04%
+1191  Drer_ENSDARP00000130826     51.50%    passed     94.14%
+1192  Drer_ENSDARP00000131684     39.85%    passed     45.76%
+1193  Tetnig_ENSTNIP00000000660   43.61%    passed     46.67%
+1194  Drer_ENSDARP00000140685     35.34%    passed     37.90%
+1195  Tetnig_ENSTNIP00000016560   36.09%    passed     47.18%
+1196  Canfam_ENSCAFP00000009931   39.47%    passed     63.35%
+1197  Hsap_ENSP00000243103        39.47%    passed     24.44%
+1198  Pantro_ENSPTRP00000008555   39.47%    passed     31.72%
+1199  Mmus_ENSMUSP00000051003     39.47%    passed     41.89%
+1200  Ratnor_ENSRNOP00000021580   39.47%    passed     28.30%
+1201  Galgal_ENSGALP00000051801   40.23%    passed     34.35%
+1202  Drer_ENSDARP00000093921     39.85%    passed     28.63%
+1203  Tetnig_ENSTNIP00000004137   39.85%    passed     61.34%
+1204  Drer_ENSDARP00000132869     39.10%    failed      2.37%
+1205  Canfam_ENSCAFP00000031334   37.59%    passed     38.98%
+1206  Hsap_ENSP00000385586        37.59%    passed     38.53%
+1207  Pantro_ENSPTRP00000060527   37.59%    passed     41.60%
+1208  Mmus_ENSMUSP00000001878     37.59%    passed     86.81%
+1209  Ratnor_ENSRNOP00000059759   37.59%    passed     87.71%
+1210  Mondom_ENSMODP00000035418   37.97%    passed     41.93%
+1211  Galgal_ENSGALP00000062834   37.97%    passed     44.56%
+1212  Drer_ENSDARP00000076775     38.35%    passed     29.03%
+1213  Tetnig_ENSTNIP00000004141   39.85%    passed     58.88%
+1214  Cint_ENSCINP00000015319     54.14%    passed     58.82%
+1215  Sman_Smp_138140             31.20%    failed      0.01%
+1216  Sman_Smp_189380             63.16%    failed      0.00%
+1217  Bralan_BL11259_evm0         41.73%    failed      3.94%
+1218  Cint_ENSCINP00000014451     22.56%    failed      2.77%
+1219  Mlei_ML01435a-PA            54.14%    passed     28.58%
+1220  Cint_ENSCINP00000010616     24.44%    failed      4.99%
+1221  Bralan_BL01409_evm0         47.74%    passed     59.42%
+1222  Drer_ENSDARP00000093905     33.46%    passed     34.97%
+1223  Cele_WBGene00003024.1       40.60%    passed     41.52%
+1224  Dmel_FBpp0083485            25.19%    passed     67.88%
+1225  Mlei_ML04966a-PA            44.36%    passed     50.56%
+1226  Dmel_FBpp0306007            32.71%    passed     10.31%
+1227  Mlei_ML058515a-PA           27.44%    failed      0.26%
+1228  Mlei_ML32743a-PA            43.61%    passed     28.78%
+1229  Bralan_BL08778_evm0         30.08%    passed     37.73%
+1230  Drer_ENSDARP00000072887     54.14%    passed     49.98%
+1231  Tetnig_ENSTNIP00000004183   51.88%    passed     37.34%
+1232  Dmel_FBpp0087478            39.85%    passed     46.83%
+1233  Cele_WBGene00006873.1       41.73%    passed     65.22%
+1234  Nvec_EDO42188               71.80%    failed      2.90%
+1235  Dmel_FBpp0077730            54.89%    passed     31.81%
+1236  Tetnig_ENSTNIP00000003529   68.80%    failed      1.72%
+1237  Canfam_ENSCAFP00000020496   33.83%    failed      0.21%
+1238  Hsap_ENSP00000229307        33.83%    failed      0.04%
+1239  Hsap_ENSP00000487073        33.83%    failed      0.02%
+1240  Pantro_ENSPTRP00000007892   33.83%    failed      0.05%
+1241  Pantro_ENSPTRP00000073411   36.09%    failed      0.05%
+1242  Pantro_ENSPTRP00000071338   37.22%    failed      0.44%
+1243  Pantro_ENSPTRP00000083127   45.49%    failed      0.23%
+1244  Pantro_ENSPTRP00000090372   40.60%    failed      0.11%
+1245  Pantro_ENSPTRP00000086503   51.13%    failed      0.77%
+1246  Mmus_ENSMUSP00000012540     34.96%    failed      4.18%
+1247  Ratnor_ENSRNOP00000063016   34.96%    failed      3.87%
+1248  Mondom_ENSMODP00000022421   39.47%    failed      0.85%
+1249  Galgal_ENSGALP00000043037   31.58%    passed      5.58%
+1250  Galgal_ENSGALP00000067067   59.77%    failed      0.13%
+1251  Mlei_ML02215a-PA            23.68%    passed     38.44%
+1252  Mlei_ML08269a-PA            39.10%    passed     41.48%
+1253  Mlei_ML05471a-PA            44.74%    passed     86.55%
+1254  Drer_ENSDARP00000102376     27.82%    passed     13.13%
+1255  Cele_WBGene00000442.1       54.14%    passed     14.05%
+1256  Mlei_ML223516a-PA           39.47%    passed     47.96%
+1257  Cele_WBGene00003377.1       33.08%    failed      0.17%
+1258  Tadh_TriadP50928            43.61%    passed     63.83%
+1259  Cint_ENSCINP00000029491     51.88%    passed     49.42%
+1260  Mlei_ML008015a-PA           38.72%    passed     21.33%
+1261  Dmel_FBpp0083510            34.21%    passed     31.54%
+1262  Bralan_BL06974_evm0         38.35%    passed     24.25%
+1263  Bralan_BL14812_cuf0         40.98%    passed     43.27%
+1264  Mlei_ML20568a-PA            52.26%    passed     19.61%
+1265  Canfam_ENSCAFP00000005148   55.64%    passed     23.43%
+1266  Dmel_FBpp0081171            51.50%    passed     54.88%
+1267  Sman_Smp_001980             65.79%    passed     28.61%
+1268  Sman_Smp_152980             43.61%    failed      0.22%
+1269  Dmel_FBpp0073489            32.33%    failed      4.88%
+1270  Nvec_EDO42189               28.20%    passed      5.56%
+1271  Tadh_TriadP50911            38.72%    failed      0.17%
+1272  Drer_ENSDARP00000129398     43.61%    passed     26.66%
+1273  Cele_WBGene00001174.1       37.59%    passed     41.74%
+1274  Tetnig_ENSTNIP00000012990   35.34%    passed     79.38%
+1275  Cele_WBGene00000446.1       35.71%    passed     47.66%
+1276  Hsap_ENSP00000381486        38.72%    passed     38.14%
+1277  Pantro_ENSPTRP00000056142   38.72%    passed     38.14%
+1278  Mmus_ENSMUSP00000087006     37.97%    passed     18.52%
+1279  Ratnor_ENSRNOP00000054325   37.59%    passed     66.29%
+1280  Bralan_BL06042_cuf1         38.35%    passed     71.35%
+1281  Canfam_ENSCAFP00000004403   33.46%    passed     63.96%
+1282  Hsap_ENSP00000497112        33.46%    passed     71.25%
+1283  Pantro_ENSPTRP00000048099   33.46%    passed     71.25%
+1284  Pantro_ENSPTRP00000063505   33.46%    passed     71.25%
+1285  Mmus_ENSMUSP00000039170     33.46%    passed     63.96%
+1286  Ratnor_ENSRNOP00000073843   48.87%    passed     35.36%
+1287  Ratnor_ENSRNOP00000073370   33.46%    passed     63.96%
+1288  Mondom_ENSMODP00000000533   31.95%    passed     26.49%
+1289  Galgal_ENSGALP00000043198   37.59%    passed     44.40%
+1290  Drer_ENSDARP00000052661     37.97%    passed     29.95%
+1291  Tetnig_ENSTNIP00000012067   37.22%    passed     58.60%
+1292  Drer_ENSDARP00000135830     37.22%    passed     84.53%
+1293  Drer_ENSDARP00000072890     36.84%    passed     93.09%
+1294  Tetnig_ENSTNIP00000000506   34.21%    passed     94.67%
+1295  Tetnig_ENSTNIP00000004145   41.35%    passed     10.20%
+1296  Canfam_ENSCAFP00000024813   36.84%    passed     61.47%
+1297  Hsap_ENSP00000290295        36.84%    passed     88.29%
+1298  Pantro_ENSPTRP00000015908   36.84%    passed     88.29%
+1299  Mmus_ENSMUSP00000056315     36.84%    passed     87.34%
+1300  Ratnor_ENSRNOP00000009934   36.84%    passed     85.39%
+1301  Mondom_ENSMODP00000015421   36.84%    passed     64.25%
+1302  Galgal_ENSGALP00000049140   39.85%    passed     15.76%
+1303  Drer_ENSDARP00000093923     36.09%    passed     13.14%
+1304  Tetnig_ENSTNIP00000004138   35.71%    passed     32.57%
+1305  Drer_ENSDARP00000147440     39.47%    passed     34.10%
+1306  Hsap_ENSP00000243056        34.96%    passed      9.28%
+1307  Pantro_ENSPTRP00000008554   34.96%    passed      9.28%
+1308  Mmus_ENSMUSP00000001700     34.96%    passed      9.28%
+1309  Ratnor_ENSRNOP00000034124   34.96%    passed      9.28%
+1310  Galgal_ENSGALP00000047125   36.47%    passed      5.64%
+1311  Galgal_ENSGALP00000054291   38.72%    passed     37.86%
+1312  Mondom_ENSMODP00000011934   36.84%    passed     53.89%
+1313  Hsap_ENSP00000376322        36.84%    passed     33.86%
+1314  Pantro_ENSPTRP00000021643   36.84%    passed     38.66%
+1315  Mmus_ENSMUSP00000001872     36.84%    passed     49.90%
+1316  Ratnor_ENSRNOP00000002155   37.97%    passed     41.99%
+1317  Drer_ENSDARP00000076768     43.98%    passed     81.26%
+1318  Bralan_BL11262_cuf5         50.75%    passed     60.93%
+1319  Galgal_ENSGALP00000008823   51.13%    passed     21.10%
+1320  Tadh_TriadP51739            38.72%    failed      0.53%
+1321  Mlei_ML05006a-PA            41.73%    passed     18.08%
+1322  Cint_ENSCINP00000015189     28.57%    passed     48.89%
+1323  Bralan_BL05986_evm0         38.35%    passed     22.45%
+1324  Cint_ENSCINP00000021664     33.83%    failed      1.47%
+1325  Tetnig_ENSTNIP00000015007   44.74%    passed      5.62%
+1326  Tetnig_ENSTNIP00000007868   38.35%    passed     21.39%
+1327  Galgal_ENSGALP00000047265   34.21%    passed     23.32%
+1328  Cele_WBGene00003912.1       36.47%    failed      2.46%
+1329  Bralan_BL22794_evm0         50.38%    passed     38.06%
+1330  Bralan_BL21396_evm8         44.74%    failed      0.42%
+1331  Bralan_BL21899_evm3         44.74%    passed     46.78%
+1332  Sman_Smp_202120             43.23%    failed      0.00%
+1333  Canfam_ENSCAFP00000041543   44.36%    passed     12.06%
+1334  Hsap_ENSP00000438832        45.11%    passed     30.32%
+1335  Nvec_EDO49019               51.13%    passed     13.99%
+WARNING: 165 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                       38.79%  174 sequences failed composition chi2 test (p-value<5%; df=19)
+NOTE: Drer_ENSDARP00000139084 is identical to Drer_ENSDARP00000095383 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000149500 is identical to Drer_ENSDARP00000102248 but kept for subsequent analysis
+NOTE: Hsap_ENSP00000499825 is identical to Hsap_ENSP00000383516 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000084374 is identical to Hsap_ENSP00000341108 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000152960 is identical to Drer_ENSDARP00000108860 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000153665 is identical to Drer_ENSDARP00000016114 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000145201 is identical to Drer_ENSDARP00000051473 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000036790 is identical to Hsap_ENSP00000263610 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000017725 is identical to Mmus_ENSMUSP00000053147 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000002887 is identical to Mmus_ENSMUSP00000084005 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000152686 is identical to Drer_ENSDARP00000137279 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000007648 is identical to Hsap_ENSP00000281437 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000047016 is identical to Hsap_ENSP00000253968 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000020756 is identical to Hsap_ENSP00000233638 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000069972 is identical to Ratnor_ENSRNOP00000069677 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000071975 is identical to Hsap_ENSP00000359215 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000021714 is identical to Mmus_ENSMUSP00000026236 but kept for subsequent analysis
+NOTE: Hsap_ENSP00000296921 is identical to Canfam_ENSCAFP00000024876 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000141637 is identical to Drer_ENSDARP00000009156 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000047521 is identical to Hsap_ENSP00000252971 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000147123 is identical to Drer_ENSDARP00000052235 but kept for subsequent analysis
+NOTE: Hsap_ENSP00000450962 is identical to Canfam_ENSCAFP00000017647 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000057829 is identical to Hsap_ENSP00000258106 but kept for subsequent analysis
+NOTE: Hsap_ENSP00000295886 is identical to Canfam_ENSCAFP00000013462 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000002928 is identical to Mmus_ENSMUSP00000042716 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000053180 is identical to Hsap_ENSP00000428361 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000051771 is identical to Mmus_ENSMUSP00000095588 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000003155 is identical to Mmus_ENSMUSP00000040505 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000004814 is identical to Hsap_ENSP00000282728 but kept for subsequent analysis
+NOTE: Mmus_ENSMUSP00000150958 is identical to Mmus_ENSMUSP00000025944 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000034045 is identical to Hsap_ENSP00000297537 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000022357 is identical to Canfam_ENSCAFP00000017900 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000151315 is identical to Drer_ENSDARP00000004972 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000154804 is identical to Drer_ENSDARP00000083051 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000096438 is identical to Drer_ENSDARP00000027691 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000032491 is identical to Hsap_ENSP00000222718 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000074175 is identical to Ratnor_ENSRNOP00000008023 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000075013 is identical to Ratnor_ENSRNOP00000070190 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000066596 is identical to Hsap_ENSP00000222728 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000088828 is identical to Pantro_ENSPTRP00000032500 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000066086 is identical to Ratnor_ENSRNOP00000065479 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000010527 is identical to Mmus_ENSMUSP00000133281 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000015905 is identical to Hsap_ENSP00000420009 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000073973 is identical to Hsap_ENSP00000305973 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000150618 is identical to Drer_ENSDARP00000010277 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000157224 is identical to Drer_ENSDARP00000017531 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000011027 is identical to Mmus_ENSMUSP00000091476 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000072327 is identical to Ratnor_ENSRNOP00000008447 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000032494 is identical to Hsap_ENSP00000379640 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000021651 is identical to Hsap_ENSP00000386498 but kept for subsequent analysis
+NOTE: Mmus_ENSMUSP00000001711 is identical to Hsap_ENSP00000243108 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000089697 is identical to Hsap_ENSP00000239144 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000009986 is identical to Mmus_ENSMUSP00000052496 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000148023 is identical to Drer_ENSDARP00000070632 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000054685 is identical to Hsap_ENSP00000315949 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000008559 is identical to Mmus_ENSMUSP00000001703 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000085072 is identical to Pantro_ENSPTRP00000041603 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000075736 is identical to Ratnor_ENSRNOP00000035732 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000015903 is identical to Hsap_ENSP00000328928 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000010965 is identical to Mmus_ENSMUSP00000048002 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000064914 is identical to Ratnor_ENSRNOP00000064444 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000067466 is identical to Hsap_ENSP00000343619 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000008558 is identical to Hsap_ENSP00000423861 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000021910 is identical to Mmus_ENSMUSP00000001706 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000046637 is identical to Canfam_ENSCAFP00000024808 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000009951 is identical to Mmus_ENSMUSP00000000010 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000075538 is identical to Canfam_ENSCAFP00000004395 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000067766 is identical to Ratnor_ENSRNOP00000037877 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000008557 is identical to Hsap_ENSP00000307321 but kept for subsequent analysis
+NOTE: Hsap_ENSP00000249501 is identical to Canfam_ENSCAFP00000019805 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000071625 is identical to Hsap_ENSP00000309336 but kept for subsequent analysis
+NOTE: Mmus_ENSMUSP00000039012 is identical to Canfam_ENSCAFP00000004371 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000080279 is identical to Pantro_ENSPTRP00000032498 but kept for subsequent analysis
+NOTE: Hsap_ENSP00000239151 is identical to Canfam_ENSCAFP00000024781 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000010724 is identical to Mmus_ENSMUSP00000035423 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000149862 is identical to Drer_ENSDARP00000070639 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000071029 is identical to Ratnor_ENSRNOP00000063934 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000032506 is identical to Hsap_ENSP00000419266 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000021642 is identical to Hsap_ENSP00000312385 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000015901 is identical to Hsap_ENSP00000331741 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000079605 is identical to Pantro_ENSPTRP00000032489 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000074252 is identical to Ratnor_ENSRNOP00000007807 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000022825 is identical to Hsap_ENSP00000366347 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000072897 is identical to Hsap_ENSP00000346879 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000010650 is identical to Hsap_ENSP00000258829 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000074649 is identical to Hsap_ENSP00000342828 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000029961 is identical to Hsap_ENSP00000327758 but kept for subsequent analysis
+NOTE: Nvec_EDO43646 is identical to Nvec_EDO27633 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000152953 is identical to Drer_ENSDARP00000057093 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000055966 is identical to Hsap_ENSP00000372170 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000029971 is identical to Hsap_ENSP00000239243 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000152491 is identical to Drer_ENSDARP00000132799 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000064882 is identical to Ratnor_ENSRNOP00000004244 but kept for subsequent analysis
+NOTE: Hsap_ENSP00000226382 is identical to Canfam_ENSCAFP00000002612 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000146126 is identical to Drer_ENSDARP00000138120 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000047816 is identical to Hsap_ENSP00000298231 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000026702 is identical to Mmus_ENSMUSP00000008090 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000157305 is identical to Drer_ENSDARP00000155914 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000155707 is identical to Drer_ENSDARP00000039283 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000156279 is identical to Drer_ENSDARP00000154256 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000009768 is identical to Hsap_ENSP00000304331 but kept for subsequent analysis
+NOTE: Bralan_BL25553_evm0 is identical to Bralan_BL11564_cuf0 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000021747 is identical to Mmus_ENSMUSP00000096997 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000071551 is identical to Ratnor_ENSRNOP00000011189 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000033230 is identical to Hsap_ENSP00000498116 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000021601 is identical to Hsap_ENSP00000234198 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000002076 is identical to Mmus_ENSMUSP00000024159 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000148270 is identical to Drer_ENSDARP00000007080 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000039172 is identical to Hsap_ENSP00000354478 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000002078 is identical to Mmus_ENSMUSP00000042413 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000015940 is identical to Hsap_ENSP00000389870 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000145475 is identical to Drer_ENSDARP00000028905 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000071578 is identical to Hsap_ENSP00000297375 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000068605 is identical to Mmus_ENSMUSP00000078659 but kept for subsequent analysis
+NOTE: Drer_ENSDARP00000149609 is identical to Drer_ENSDARP00000090755 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000032504 is identical to Hsap_ENSP00000006015 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000066085 is identical to Ratnor_ENSRNOP00000010256 but kept for subsequent analysis
+NOTE: Ratnor_ENSRNOP00000021589 is identical to Mmus_ENSMUSP00000001701 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000056142 is identical to Hsap_ENSP00000381486 but kept for subsequent analysis
+NOTE: Mmus_ENSMUSP00000039170 is identical to Canfam_ENSCAFP00000004403 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000048099 is identical to Hsap_ENSP00000497112 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000015908 is identical to Hsap_ENSP00000290295 but kept for subsequent analysis
+NOTE: Pantro_ENSPTRP00000008554 is identical to Hsap_ENSP00000243056 but kept for subsequent analysis
+NOTE: 41 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: Drer_ENSDARP00000147937 (identical to Drer_ENSDARP00000102248) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000066690 (identical to Hsap_ENSP00000383516) is ignored but added at the end
+NOTE: Drer_ENSDARP00000154641 (identical to Drer_ENSDARP00000051473) is ignored but added at the end
+NOTE: Drer_ENSDARP00000154957 (identical to Drer_ENSDARP00000137279) is ignored but added at the end
+NOTE: Mmus_ENSMUSP00000047457 (identical to Canfam_ENSCAFP00000024876) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000006676 (identical to Canfam_ENSCAFP00000024876) is ignored but added at the end
+NOTE: Mmus_ENSMUSP00000053361 (identical to Canfam_ENSCAFP00000017647) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000005259 (identical to Canfam_ENSCAFP00000017647) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000012564 (identical to Canfam_ENSCAFP00000017647) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000027895 (identical to Canfam_ENSCAFP00000013462) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000071105 (identical to Hsap_ENSP00000222718) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000059919 (identical to Hsap_ENSP00000222728) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000072980 (identical to Ratnor_ENSRNOP00000065479) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000070439 (identical to Hsap_ENSP00000379640) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000008561 (identical to Hsap_ENSP00000243108) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000022217 (identical to Hsap_ENSP00000243108) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000035473 (identical to Mmus_ENSMUSP00000001703) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000074975 (identical to Ratnor_ENSRNOP00000064444) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000077831 (identical to Hsap_ENSP00000343619) is ignored but added at the end
+NOTE: Hsap_ENSP00000309439 (identical to Canfam_ENSCAFP00000024808) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000021646 (identical to Canfam_ENSCAFP00000019805) is ignored but added at the end
+NOTE: Mmus_ENSMUSP00000001709 (identical to Hsap_ENSP00000309336) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000022247 (identical to Hsap_ENSP00000309336) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000008523 (identical to Canfam_ENSCAFP00000004371) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000064639 (identical to Canfam_ENSCAFP00000004371) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000073150 (identical to Canfam_ENSCAFP00000004371) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000015904 (identical to Canfam_ENSCAFP00000024781) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000066850 (identical to Hsap_ENSP00000419266) is ignored but added at the end
+NOTE: Mmus_ENSMUSP00000069666 (identical to Hsap_ENSP00000366347) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000017364 (identical to Hsap_ENSP00000366347) is ignored but added at the end
+NOTE: Mmus_ENSMUSP00000136103 (identical to Hsap_ENSP00000346879) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000011453 (identical to Hsap_ENSP00000346879) is ignored but added at the end
+NOTE: Mmus_ENSMUSP00000012664 (identical to Canfam_ENSCAFP00000002612) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000027552 (identical to Canfam_ENSCAFP00000002612) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000073091 (identical to Hsap_ENSP00000297375) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000077262 (identical to Hsap_ENSP00000006015) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000075163 (identical to Ratnor_ENSRNOP00000010256) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000073370 (identical to Canfam_ENSCAFP00000004403) is ignored but added at the end
+NOTE: Pantro_ENSPTRP00000063505 (identical to Hsap_ENSP00000497112) is ignored but added at the end
+NOTE: Mmus_ENSMUSP00000001700 (identical to Hsap_ENSP00000243056) is ignored but added at the end
+NOTE: Ratnor_ENSRNOP00000034124 (identical to Hsap_ENSP00000243056) is ignored but added at the end
+Alignment was printed to results_trees/ANTP.genes.iqtree.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to results_trees/ANTP.genes.iqtree.uniqueseq.phy
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 1.777 seconds
+Measuring multi-threading efficiency up to 8 CPU cores
+4 trees examined
+Threads: 1 / Time: 8.139 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -446353
+Threads: 2 / Time: 4.910 sec / Speedup: 1.658 / Efficiency: 83% / LogL: -446353
+Threads: 3 / Time: 3.993 sec / Speedup: 2.038 / Efficiency: 68% / LogL: -446353
+Threads: 4 / Time: 3.619 sec / Speedup: 2.249 / Efficiency: 56% / LogL: -446353
+Threads: 5 / Time: 3.288 sec / Speedup: 2.475 / Efficiency: 50% / LogL: -446353
+BEST NUMBER OF THREADS: 4
+
+Perform fast likelihood tree search using LG+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -178062.326
+2. Current log-likelihood: -178059.765
+Optimal log-likelihood: -178059.329
+Gamma shape alpha: 0.835
+Parameters optimization took 2 rounds (3.511 sec)
+Time for fast ML tree search: 42.396 seconds
+
+NOTE: ModelFinder requires 231 MB RAM!
+ModelFinder will test up to 12 protein models (sample size: 266) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  LG            189793.269   2585 384756.539   13754376.539 394019.877
+  2  LG+G4         178063.693   2586 361299.386   13741263.386 370566.307
+  4  LG+F+G4       176869.937   2605 358949.875   13936209.875 368284.882
+  6  WAG+G4        177721.613   2586 360615.227   13740579.227 369882.148
+  8  WAG+F+G4      177996.877   2605 361203.755   13938463.755 370538.762
+ 10  JTT+G4        176474.703   2586 358121.406   13738085.406 367388.327
+ 12  JTT+F+G4      176432.549   2605 358075.097   13935335.097 367410.105
+Akaike Information Criterion:           JTT+F+G4
+Corrected Akaike Information Criterion: JTT+G4
+Bayesian Information Criterion:         JTT+G4
+Best-fit model: JTT+G4 chosen according to BIC
+
+All model information printed to results_trees/ANTP.genes.iqtree.model.gz
+CPU time for ModelFinder: 427.294 seconds (0h:7m:7s)
+Wall-clock time for ModelFinder: 120.923 seconds (0h:2m:0s)
+Generating 1000 samples for ultrafast bootstrap (seed: 386116)...
+
+NOTE: 231 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -176474.703
+Optimal log-likelihood: -176474.683
+Gamma shape alpha: 0.970
+Parameters optimization took 1 rounds (1.834 sec)
+Computing ML distances based on estimated model parameters...
+Computing ML distances took 64.404209 sec (of wall-clock time) 253.762133 sec(of CPU time)
+WARNING: Some pairwise ML distances are too long (saturated)
+Computing RapidNJ tree took 0.169002 sec (of wall-clock time) 0.629970 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -179072.872
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 167.058 second
+Computing log-likelihood of 98 initial trees ... 65.563 seconds
+Current best score: -176474.683
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -176392.287
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -176314.932
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 3: -176173.548
+Iteration 10 / LogL: -176275.984 / Time: 0h:14m:25s
+Iteration 20 / LogL: -176334.240 / Time: 0h:24m:41s
+Finish initializing candidate tree set (20)
+Current best tree score: -176173.548 / CPU time: 1394.396
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 24: -176154.510
+Iteration 30 / LogL: -176228.339 / Time: 0h:30m:36s (3h:24m:46s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 35: -176123.261
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 38: -176101.372
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 39: -176052.177
+Iteration 40 / LogL: -176075.918 / Time: 0h:36m:42s (3h:7m:18s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 42: -176045.261
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 45: -176042.421
+Iteration 50 / LogL: -176129.564 / Time: 0h:42m:29s (2h:49m:4s left)
+Log-likelihood cutoff on original alignment: -176299.507
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 59: -176020.055
+Iteration 60 / LogL: -176036.211 / Time: 0h:48m:41s (2h:44m:14s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 68: -176008.201
+Iteration 70 / LogL: -176030.983 / Time: 0h:55m:26s (2h:39m:4s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 79: -176002.510
+Iteration 80 / LogL: -176054.995 / Time: 1h:1m:37s (2h:35m:13s left)
+Iteration 90 / LogL: -176011.342 / Time: 1h:8m:44s (2h:25m:58s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 98: -175985.918
+Iteration 100 / LogL: -176044.851 / Time: 1h:14m:32s (2h:29m:4s left)
+Log-likelihood cutoff on original alignment: -176224.227
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.953
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 110 / LogL: -176026.584 / Time: 1h:20m:47s (2h:19m:21s left)
+Iteration 120 / LogL: -176006.183 / Time: 1h:26m:53s (2h:9m:58s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 123: -175954.780
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 126: -175931.998
+Iteration 130 / LogL: -176024.207 / Time: 1h:33m:5s (2h:21m:26s left)
+Iteration 140 / LogL: -176102.024 / Time: 1h:39m:49s (2h:13m:34s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 142: -175927.740
+Iteration 150 / LogL: -175999.915 / Time: 1h:45m:51s (2h:16m:24s left)
+Log-likelihood cutoff on original alignment: -176224.227
+Iteration 160 / LogL: -175971.685 / Time: 1h:52m:2s (2h:8m:15s left)
+Iteration 170 / LogL: -176035.733 / Time: 1h:58m:55s (2h:1m:2s left)
+Iteration 180 / LogL: -175961.087 / Time: 2h:5m:10s (1h:53m:17s left)
+Iteration 190 / LogL: -176055.972 / Time: 2h:11m:28s (1h:45m:43s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 198: -175926.859
+Iteration 200 / LogL: -175949.133 / Time: 2h:17m:50s (2h:17m:8s left)
+Log-likelihood cutoff on original alignment: -176224.227
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.930
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 210 / LogL: -176123.227 / Time: 2h:24m:55s (2h:10m:22s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 219: -175925.939
+Iteration 220 / LogL: -176030.641 / Time: 2h:31m:46s (2h:17m:55s left)
+Iteration 230 / LogL: -175976.135 / Time: 2h:37m:44s (2h:10m:11s left)
+Iteration 240 / LogL: -176041.624 / Time: 2h:45m:0s (2h:3m:34s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 246: -175923.805
+Iteration 250 / LogL: -175983.732 / Time: 2h:51m:31s (2h:15m:1s left)
+Log-likelihood cutoff on original alignment: -176224.227
+Iteration 260 / LogL: -176016.573 / Time: 2h:57m:36s (2h:7m:33s left)
+Iteration 270 / LogL: -175996.168 / Time: 3h:3m:37s (2h:0m:8s left)
+Iteration 280 / LogL: -175961.189 / Time: 3h:9m:51s (1h:52m:57s left)
+Iteration 290 / LogL: -176058.470 / Time: 3h:16m:11s (1h:45m:54s left)
+Iteration 300 / LogL: -175952.678 / Time: 3h:23m:11s (1h:39m:12s left)
+Log-likelihood cutoff on original alignment: -176224.227
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.983
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 310 / LogL: -176152.703 / Time: 3h:29m:19s (1h:32m:7s left)
+Iteration 320 / LogL: -175979.723 / Time: 3h:35m:40s (1h:25m:11s left)
+Iteration 330 / LogL: -175967.585 / Time: 3h:42m:17s (1h:18m:22s left)
+Iteration 340 / LogL: -175971.655 / Time: 3h:48m:49s (1h:11m:32s left)
+Iteration 350 / LogL: -176050.803 / Time: 3h:54m:47s (1h:4m:35s left)
+Log-likelihood cutoff on original alignment: -176224.227
+Iteration 360 / LogL: -176029.793 / Time: 4h:1m:19s (0h:57m:48s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 369: -175915.687
+Iteration 370 / LogL: -175975.807 / Time: 4h:7m:43s (2h:13m:35s left)
+Iteration 380 / LogL: -175985.978 / Time: 4h:15m:15s (2h:7m:17s left)
+Iteration 390 / LogL: -176002.129 / Time: 4h:22m:16s (2h:0m:41s left)
+Iteration 400 / LogL: -175997.524 / Time: 4h:28m:22s (1h:53m:40s left)
+Log-likelihood cutoff on original alignment: -176224.227
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.991
+Iteration 410 / LogL: -175976.105 / Time: 4h:35m:59s (1h:47m:17s left)
+Iteration 420 / LogL: -176002.211 / Time: 4h:42m:20s (1h:40m:24s left)
+Iteration 430 / LogL: -176015.033 / Time: 4h:49m:0s (1h:33m:38s left)
+Iteration 440 / LogL: -175946.026 / Time: 4h:55m:26s (1h:26m:48s left)
+Iteration 450 / LogL: -175971.487 / Time: 5h:2m:1s (1h:20m:2s left)
+Log-likelihood cutoff on original alignment: -176224.227
+Iteration 460 / LogL: -175926.603 / Time: 5h:8m:51s (1h:13m:20s left)
+Iteration 470 / LogL: -175985.672 / Time: 5h:15m:41s (1h:6m:38s left)
+Iteration 480 / LogL: -175999.347 / Time: 5h:22m:31s (0h:59m:55s left)
+Iteration 490 / LogL: -176018.912 / Time: 5h:29m:24s (0h:53m:13s left)
+Iteration 500 / LogL: -175989.899 / Time: 5h:35m:35s (0h:46m:24s left)
+Log-likelihood cutoff on original alignment: -176224.227
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.992
+Iteration 510 / LogL: -175968.281 / Time: 5h:42m:3s (1h:0m:28s left)
+Iteration 520 / LogL: -176021.598 / Time: 5h:48m:57s (0h:53m:47s left)
+Iteration 530 / LogL: -175983.037 / Time: 5h:55m:40s (0h:47m:3s left)
+Iteration 540 / LogL: -176091.699 / Time: 6h:1m:59s (0h:40m:17s left)
+Iteration 550 / LogL: -176026.367 / Time: 6h:8m:31s (0h:33m:33s left)
+Log-likelihood cutoff on original alignment: -176224.227
+Iteration 560 / LogL: -175952.606 / Time: 6h:15m:22s (0h:26m:51s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 568: -175911.931
+Iteration 570 / LogL: -175976.962 / Time: 6h:22m:6s (2h:12m:58s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 574: -175911.416
+Iteration 580 / LogL: -175993.206 / Time: 6h:28m:30s (2h:10m:10s left)
+Iteration 590 / LogL: -175962.209 / Time: 6h:36m:31s (2h:3m:52s left)
+Iteration 600 / LogL: -175941.825 / Time: 6h:44m:3s (1h:57m:22s left)
+Log-likelihood cutoff on original alignment: -176224.227
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.990
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 606: -175909.168
+Iteration 610 / LogL: -176181.371 / Time: 6h:51m:57s (2h:12m:35s left)
+Iteration 620 / LogL: -175948.510 / Time: 6h:57m:51s (2h:5m:33s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 629: -175908.615
+Iteration 630 / LogL: -175999.429 / Time: 7h:3m:52s (2h:14m:6s left)
+Iteration 640 / LogL: -176058.020 / Time: 7h:10m:22s (2h:7m:17s left)
+Iteration 650 / LogL: -175974.542 / Time: 7h:16m:26s (2h:0m:22s left)
+Log-likelihood cutoff on original alignment: -176055.143
+Iteration 660 / LogL: -175961.410 / Time: 7h:22m:34s (1h:53m:29s left)
+Iteration 670 / LogL: -175960.937 / Time: 7h:27m:47s (1h:46m:25s left)
+Iteration 680 / LogL: -176006.554 / Time: 7h:33m:13s (1h:39m:27s left)
+Iteration 690 / LogL: -176017.781 / Time: 7h:38m:49s (1h:32m:33s left)
+Iteration 700 / LogL: -175996.870 / Time: 7h:45m:16s (1h:25m:52s left)
+Log-likelihood cutoff on original alignment: -176055.143
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.987
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 710 / LogL: -175932.234 / Time: 7h:50m:52s (1h:19m:2s left)
+Iteration 720 / LogL: -176042.254 / Time: 7h:56m:41s (1h:12m:15s left)
+Iteration 730 / LogL: -176054.512 / Time: 8h:2m:46s (1h:5m:33s left)
+Iteration 740 / LogL: -175994.459 / Time: 8h:8m:7s (0h:58m:47s left)
+Iteration 750 / LogL: -175934.362 / Time: 8h:13m:34s (0h:52m:3s left)
+Log-likelihood cutoff on original alignment: -176055.143
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 757: -175906.865
+Iteration 760 / LogL: -175967.915 / Time: 8h:19m:48s (2h:9m:43s left)
+Iteration 770 / LogL: -175960.510 / Time: 8h:25m:12s (2h:2m:51s left)
+Iteration 780 / LogL: -175946.498 / Time: 8h:31m:46s (1h:56m:16s left)
+Iteration 790 / LogL: -175979.724 / Time: 8h:39m:0s (1h:49m:51s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 791: -175881.658
+Iteration 800 / LogL: -175983.046 / Time: 8h:45m:21s (2h:5m:35s left)
+Log-likelihood cutoff on original alignment: -176052.022
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.979
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 810 / LogL: -175966.256 / Time: 8h:51m:48s (1h:58m:58s left)
+Iteration 820 / LogL: -176048.622 / Time: 8h:58m:7s (1h:52m:21s left)
+Iteration 830 / LogL: -175973.115 / Time: 9h:3m:20s (1h:45m:31s left)
+Iteration 840 / LogL: -175967.607 / Time: 9h:9m:5s (1h:38m:49s left)
+Iteration 850 / LogL: -176113.104 / Time: 9h:14m:6s (1h:32m:1s left)
+Log-likelihood cutoff on original alignment: -176052.022
+Iteration 860 / LogL: -175960.488 / Time: 9h:19m:45s (1h:25m:21s left)
+Iteration 870 / LogL: -175924.487 / Time: 9h:26m:10s (1h:18m:50s left)
+Iteration 880 / LogL: -175910.461 / Time: 9h:32m:5s (1h:12m:14s left)
+Iteration 890 / LogL: -175967.954 / Time: 9h:37m:24s (1h:5m:36s left)
+Iteration 900 / LogL: -176064.069 / Time: 9h:43m:48s (0h:59m:5s left)
+Log-likelihood cutoff on original alignment: -176033.510
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.974
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 910 / LogL: -175926.702 / Time: 9h:49m:36s (0h:58m:22s left)
+Iteration 920 / LogL: -176096.040 / Time: 9h:55m:48s (0h:51m:51s left)
+Iteration 930 / LogL: -176056.714 / Time: 10h:1m:32s (0h:45m:19s left)
+Iteration 940 / LogL: -175960.902 / Time: 10h:7m:10s (0h:38m:47s left)
+Iteration 950 / LogL: -175929.563 / Time: 10h:12m:51s (0h:32m:17s left)
+Log-likelihood cutoff on original alignment: -176020.620
