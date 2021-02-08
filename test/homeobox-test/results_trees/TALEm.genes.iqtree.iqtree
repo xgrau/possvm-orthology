@@ -1,0 +1,1116 @@
+IQ-TREE 2.1.0 COVID-edition built Jul 18 2020
+
+Input file name: results_trees/TALEm.genes.lt.fasta
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 815279
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 233 sequences with 452 amino-acid sites
+Number of constant sites: 1 (= 0.221239% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 1 (= 0.221239% of all sites)
+Number of parsimony informative sites: 451
+Number of distinct site patterns: 452
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: LG+F+I+G4
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+LG+F+I+G4        -83643.347  168254.694 +    0.983  637734.694 -        0  170245.716 +    0.879
+LG+F+G4          -83648.385  168262.770 -   0.0173  635806.770 -        0  170249.678 +    0.121
+JTT+F+I+G4       -83668.864  168305.729 - 8.13e-12  637785.729 -        0  170296.751 - 7.27e-12
+JTT+F+G4         -83682.902  168331.804 - 1.77e-17  635875.804 -        0  170318.713 - 1.24e-16
+WAG+F+I+G4       -83886.536  168741.072 - 2.38e-106  638221.072 -        0  170732.095 - 2.13e-106
+WAG+F+G4         -83894.763  168755.525 - 1.73e-109  636299.525 -        0  170742.434 - 1.21e-108
+JTT+I+G4         -84171.510  169273.020 - 7.34e-222  602653.020 -        0  171185.882 - 6.16e-205
+JTT+G4           -84183.688  169295.377 - 1.03e-226  600815.377 +        1  171204.125 - 6.73e-209
+WAG+I+G4         -84417.753  169765.506 -        0  603145.506 -        0  171678.369 - 7.04e-312
+WAG+G4           -84425.809  169779.618 -        0  601299.618 - 7.05e-106  171688.367 - 4.74e-314
+LG+I+G4          -84581.801  170093.602 -        0  603473.602 -        0  172006.464 -        0
+LG+G4            -84585.966  170099.931 -        0  601619.931 - 1.96e-175  172008.680 -        0
+LG+I             -87835.078  176598.155 -        0  608118.155 -        0  178506.904 -        0
+LG               -87871.786  176669.571 -        0  606333.571 -        0  178574.206 -        0
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: LG+F+I+G4
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.0759
+  pi(R) = 0.0585
+  pi(N) = 0.0510
+  pi(D) = 0.0465
+  pi(C) = 0.0150
+  pi(Q) = 0.0612
+  pi(E) = 0.0582
+  pi(G) = 0.0507
+  pi(H) = 0.0297
+  pi(I) = 0.0414
+  pi(L) = 0.0754
+  pi(K) = 0.0597
+  pi(M) = 0.0309
+  pi(F) = 0.0237
+  pi(P) = 0.0800
+  pi(S) = 0.1044
+  pi(T) = 0.0629
+  pi(W) = 0.0065
+  pi(Y) = 0.0278
+  pi(V) = 0.0407
+
+Model of rate heterogeneity: Invar+Gamma with 4 categories
+Proportion of invariable sites: 0.0022
+Gamma shape alpha: 0.9654
+
+ Category  Relative_rate  Proportion
+  0         0              0.0022
+  1         0.1303         0.2494
+  2         0.4671         0.2494
+  3         0.9962         0.2494
+  4         2.4152         0.2494
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -83497.2425 (s.e. 1603.2367)
+Unconstrained log-likelihood (without tree): -2763.3843
+Number of free parameters (#branches + #model parameters): 484
+Akaike information criterion (AIC) score: 167962.4849
+Corrected Akaike information criterion (AICc) score: 637442.4849
+Bayesian information criterion (BIC) score: 169953.5071
+
+**************************** WARNING ****************************
+Number of parameters (K, model parameters and branch lengths): 484
+Sample size (n, alignment length): 452
+
+Given that K>=n, the parameter estimates might be inaccurate.
+Thus, phylogenetic estimates should be interpreted with caution.
+
+Ideally, it is desirable that n >> K. When selecting optimal models,
+1. use AIC or BIC if n > 40K;
+2. use AICc or BIC if 40K >= n > K;
+3. be extremely cautious if n <= K
+
+To improve the situation (3), consider the following options:
+  1. Increase the sample size (n)
+  2. Decrease the number of parameters (K) to be estimated. If
+     possible:
+     a. Remove the least important sequences from the alignment
+     b. Specify some of the parameter values for the substitution
+        model (e.g., the nucleotide or amino acid frequencies)
+     c. Specify some of the parameter values for the rates-across-
+        sites model (e.g., the shape parameter for the discrete
+        Gamma distribution, the proportion of invariable sites, or
+        the rates of change for different rate categories under
+        the FreeRate model)
+
+Reference:
+Burnham KR, Anderson DR (2002). Model Selection and Multimodel
+Inference: A Practical Information-Theoretic Approach. Springer,
+New York.
+************************ END OF WARNING ***********************
+
+Total tree length (sum of branch lengths): 177.9794
+Sum of internal branch lengths: 57.1075 (32.0866% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Aaur_scaffold348.g6.t2' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++---Aaur_scaffold348.g6.t2
+|
+|                          +--Aaur_scaffold718.g7.t1
+|                       +--| (100)
+|                       |  +--Morvir_scaffold259.g33.t2
+|                    +--| (95)
+|                    |  +----Chem_TCONS_00052864
+|                 +--| (49)
+|                 |  |              +--Adig_XM_015921586.1
+|                 |  |           +--| (99)
+|                 |  |           |  +--Gfas_gfas1.m1.16105.m1
+|                 |  |        +--| (100)
+|                 |  |        |  |     +--Fspp_ffun1.m4.336.m1
+|                 |  |        |  |  +--| (100)
+|                 |  |        |  |  |  +--Gasp_gasp1.m3.4477.m1
+|                 |  |        |  +--| (100)
+|                 |  |        |     +--Spis_XP_022788915_1
+|                 |  |     +--| (99)
+|                 |  |     |  |  +--Nvec_v1g22855
+|                 |  |     |  +--| (100)
+|                 |  |     |     +--Exapal_XM_021046951.2
+|                 |  |  +--| (94)
+|                 |  |  |  |     +--Bflo_XM_035815286.1
+|                 |  |  |  |  +--| (98)
+|                 |  |  |  |  |  |        +--Hsap_ENST00000298282
+|                 |  |  |  |  |  |     +--| (100)
+|                 |  |  |  |  |  |     |  +--Mmus_ENSMUST00000039674
+|                 |  |  |  |  |  |  +--| (100)
+|                 |  |  |  |  |  |  |  |  +--Hsap_ENST00000291547
+|                 |  |  |  |  |  |  |  +--| (100)
+|                 |  |  |  |  |  |  |     +--Mmus_ENSMUST00000097352
+|                 |  |  |  |  |  +--| (94)
+|                 |  |  |  |  |     |     +--Skow_XM_006812986.1
+|                 |  |  |  |  |     |  +--| (93)
+|                 |  |  |  |  |     |  |  +---Spur_XM_030977469.1
+|                 |  |  |  |  |     +--| (86)
+|                 |  |  |  |  |        +----Tcas_TC006040_001
+|                 |  |  |  +--| (99)
+|                 |  |  |     |     +---Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA221385
+|                 |  |  |     |  +--| (40)
+|                 |  |  |     |  |  +----Hmia_HMIM001342-RA
+|                 |  |  |     +--| (62)
+|                 |  |  |        +--Cgig_XM_011429180.3
+|                 |  +--| (64)
+|                 |     |  +--Hhon_g06747.t1
+|                 |     +--| (100)
+|                 |        +**Tadh_TriadT9468
+|              +--| (60)
+|              |  |    +--Dgig_XM_028549898.1
+|              |  +----| (100)
+|              |       +--Xesp_014119-T1
+|           +--| (98)
+|           |  +------Smed_SMEST013307001.1
+|        +--| (96)
+|        |  |                        +-------------------Cgig_XM_020063630.2
+|        |  |                    +---| (87)
+|        |  |                    |   +--------------------------Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA88304
+|        |  |                +---| (99)
+|        |  |                |   |  +-----------------Cowc_KJE94912
+|        |  |                |   +--| (77)
+|        |  |                |      |                                       +--Adig_XM_015903172.1
+|        |  |                |      |                                    +--| (99)
+|        |  |                |      |                                    |  |  +--Gfas_gfas1.m1.2731.m1
+|        |  |                |      |                                    |  +--| (76)
+|        |  |                |      |                                    |     |     +--Fspp_ffun1.m4.15989.m1
+|        |  |                |      |                                    |     |  +--| (78)
+|        |  |                |      |                                    |     |  |  +--Gasp_gasp1.m3.14076.m1
+|        |  |                |      |                                    |     +--| (78)
+|        |  |                |      |                                    |        +--Spis_XP_022781877_1
+|        |  |                |      |                                 +--| (97)
+|        |  |                |      |                                 |  |  +--Nvec_v1g229018
+|        |  |                |      |                                 |  +--| (73)
+|        |  |                |      |                                 |     |        +--Hhon_g05343.t1
+|        |  |                |      |                                 |     |     +--| (100)
+|        |  |                |      |                                 |     |     |  +--Tadh_TriadT21171
+|        |  |                |      |                                 |     |  +--| (76)
+|        |  |                |      |                                 |     |  |  +----Exapal_XM_021051016.2
+|        |  |                |      |                                 |     +--| (61)
+|        |  |                |      |                                 |        +--Exapal_XM_021051015.2
+|        |  |                |      |                              +--| (91)
+|        |  |                |      |                              |  |     +--Dgig_XM_028555199.1
+|        |  |                |      |                              |  |  +--| (100)
+|        |  |                |      |                              |  |  |  +--Xesp_007990-T1
+|        |  |                |      |                              |  +--| (73)
+|        |  |                |      |                              |     +--Morvir_scaffold356.g14.t1
+|        |  |                |      |                           +--| (70)
+|        |  |                |      |                           |  |              +**Hsap_ENST00000373487
+|        |  |                |      |                           |  |           +--| (100)
+|        |  |                |      |                           |  |           |  +--Mmus_ENSMUST00000040638
+|        |  |                |      |                           |  |        +--| (71)
+|        |  |                |      |                           |  |        |  |  +--Hsap_ENST00000375050
+|        |  |                |      |                           |  |        |  +--| (100)
+|        |  |                |      |                           |  |        |     +--Mmus_ENSMUST00000038149
+|        |  |                |      |                           |  |     +--| (71)
+|        |  |                |      |                           |  |     |  |  +**Hsap_ENST00000420696
+|        |  |                |      |                           |  |     |  +--| (100)
+|        |  |                |      |                           |  |     |     +**Mmus_ENSMUST00000176540
+|        |  |                |      |                           |  |  +--| (93)
+|        |  |                |      |                           |  |  |  |  +--Hsap_ENST00000251203
+|        |  |                |      |                           |  |  |  +--| (100)
+|        |  |                |      |                           |  |  |     +--Mmus_ENSMUST00000081503
+|        |  |                |      |                           |  +--| (82)
+|        |  |                |      |                           |     |     +--Chem_TCONS_00057373
+|        |  |                |      |                           |     |  +--| (100)
+|        |  |                |      |                           |     |  |  |  +**Hvul_g21489_1
+|        |  |                |      |                           |     |  |  +--| (100)
+|        |  |                |      |                           |     |  |     +--Hvul_g26585_1
+|        |  |                |      |                           |     +--| (86)
+|        |  |                |      |                           |        +--Hmia_HMIM020042-RA
+|        |  |                |      |                        +--| (70)
+|        |  |                |      |                        |  +--Spur_XM_030997376.1
+|        |  |                |      |                     +--| (60)
+|        |  |                |      |                     |  +--Skow_XM_006816776.1
+|        |  |                |      |                  +--| (82)
+|        |  |                |      |                  |  +--Bflo_XM_035828980.1
+|        |  |                |      |               +--| (62)
+|        |  |                |      |               |  +--Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA223738
+|        |  |                |      |            +--| (63)
+|        |  |                |      |            |  +--Cgig_XM_011453922.3
+|        |  |                |      |         +--| (96)
+|        |  |                |      |         |  |  +--Dmel_FBtr0074135
+|        |  |                |      |         |  +--| (100)
+|        |  |                |      |         |     +--Tcas_TC011311_001
+|        |  |                |      |      +--| (99)
+|        |  |                |      |      |  |  +**Smed_SMEST001913004.1
+|        |  |                |      |      |  +--| (100)
+|        |  |                |      |      |     +**Smed_SMEST022232001.1
+|        |  |                |      +------| (100)
+|        |  |                |             |        +--Mlei_ML0476.g8.i1
+|        |  |                |             |     +--| (100)
+|        |  |                |             |     |  |      +--Pbac_sb2646810
+|        |  |                |             |     |  +------| (100)
+|        |  |                |             |     |         +--Pbac_sb2656167
+|        |  |                |             +-----| (100)
+|        |  |                |                   +-----Vmul_SimC390800
+|        |  |             +--| (77)
+|        |  |             |  |                            +--Aaur_scaffold70.g33.t1
+|        |  |             |  |                         +--| (100)
+|        |  |             |  |                         |  +--Morvir_scaffold459.g11.t1
+|        |  |             |  |                      +--| (97)
+|        |  |             |  |                      |  |  +--Chem_TCONS_00016543
+|        |  |             |  |                      |  +--| (100)
+|        |  |             |  |                      |     +--Hvul_g20769_1
+|        |  |             |  |                   +--| (23)
+|        |  |             |  |                   |  |                        +--Adig_XM_015917910.1
+|        |  |             |  |                   |  |                     +--| (83)
+|        |  |             |  |                   |  |                     |  |        +--Fspp_ffun1.m4.5662.m1
+|        |  |             |  |                   |  |                     |  |     +--| (91)
+|        |  |             |  |                   |  |                     |  |     |  +--Spis_XP_022804454_1
+|        |  |             |  |                   |  |                     |  |  +--| (97)
+|        |  |             |  |                   |  |                     |  |  |  +--Gasp_gasp1.m3.7933.m1
+|        |  |             |  |                   |  |                     |  +--| (87)
+|        |  |             |  |                   |  |                     |     +--Gfas_gfas1.m1.2989.m1
+|        |  |             |  |                   |  |                  +--| (87)
+|        |  |             |  |                   |  |                  |  |  +--Nvec_v1g29874
+|        |  |             |  |                   |  |                  |  +--| (100)
+|        |  |             |  |                   |  |                  |     +--Exapal_XM_021052122.2
+|        |  |             |  |                   |  |              +---| (100)
+|        |  |             |  |                   |  |              |   |       +**Hhon_g00976.t1
+|        |  |             |  |                   |  |              |   |  +----| (99)
+|        |  |             |  |                   |  |              |   |  |    +**Tadh_TriadT24265
+|        |  |             |  |                   |  |              |   +--| (87)
+|        |  |             |  |                   |  |              |      |  +--Dgig_XM_028536328.1
+|        |  |             |  |                   |  |              |      +--| (100)
+|        |  |             |  |                   |  |              |         +--Xesp_007094-T1
+|        |  |             |  |                   |  |           +--| (59)
+|        |  |             |  |                   |  |           |  +--Spur_NM_001129813.1
+|        |  |             |  |                   |  |        +--| (75)
+|        |  |             |  |                   |  |        |  |  +--Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA79780
+|        |  |             |  |                   |  |        |  +--| (62)
+|        |  |             |  |                   |  |        |     +--Skow_NM_001164887.2
+|        |  |             |  |                   |  |     +--| (67)
+|        |  |             |  |                   |  |     |  |  +--Cgig_XM_011442812.3
+|        |  |             |  |                   |  |     |  +--| (68)
+|        |  |             |  |                   |  |     |     |  +----Cgig_XM_011444968.3
+|        |  |             |  |                   |  |     |     +--| (71)
+|        |  |             |  |                   |  |     |        |        +--Dmel_FBtr0075908
+|        |  |             |  |                   |  |     |        |     +--| (98)
+|        |  |             |  |                   |  |     |        |     |  +--Dmel_FBtr0075909
+|        |  |             |  |                   |  |     |        |  +--| (100)
+|        |  |             |  |                   |  |     |        |  |  +--Tcas_TC031040_001
+|        |  |             |  |                   |  |     |        +--| (97)
+|        |  |             |  |                   |  |     |           |  +--Tcas_TC032451_001
+|        |  |             |  |                   |  |     |           +--| (100)
+|        |  |             |  |                   |  |     |              +--Dmel_FBtr0330077
+|        |  |             |  |                   |  |  +--| (35)
+|        |  |             |  |                   |  |  |  |  +--Bflo_XM_035822666.1
+|        |  |             |  |                   |  |  |  +--| (100)
+|        |  |             |  |                   |  |  |     |  +--Bflo_XM_035822663.1
+|        |  |             |  |                   |  |  |     +--| (97)
+|        |  |             |  |                   |  |  |        +--Bflo_XM_035823683.1
+|        |  |             |  |                   |  +--| (32)
+|        |  |             |  |                   |     |      +--Hsap_ENST00000290552
+|        |  |             |  |                   |     |  +---| (100)
+|        |  |             |  |                   |     |  |   +--Mmus_ENSMUST00000034185
+|        |  |             |  |                   |     +--| (100)
+|        |  |             |  |                   |        |  +--Hsap_ENST00000613726
+|        |  |             |  |                   |        +--| (100)
+|        |  |             |  |                   |           +--Mmus_ENSMUST00000022095
+|        |  |             |  |                +--| (24)
+|        |  |             |  |                |  |     +--Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA88378
+|        |  |             |  |                |  |  +--| (21)
+|        |  |             |  |                |  |  |  |    +--Smed_SMEST061184001.1
+|        |  |             |  |                |  |  |  +----| (77)
+|        |  |             |  |                |  |  |       +-------------------------Hmia_HMIM017088-RA
+|        |  |             |  |                |  +--| (23)
+|        |  |             |  |                |     |        +--Hsap_ENST00000329734
+|        |  |             |  |                |     |     +--| (100)
+|        |  |             |  |                |     |     |  +--Mmus_ENSMUST00000093312
+|        |  |             |  |                |     |  +--| (100)
+|        |  |             |  |                |     |  |  |  +--Hsap_ENST00000302006
+|        |  |             |  |                |     |  |  +--| (100)
+|        |  |             |  |                |     |  |     +**Mmus_ENSMUST00000077337
+|        |  |             |  |                |     +--| (99)
+|        |  |             |  |                |        |     +--Hsap_ENST00000302057
+|        |  |             |  |                |        |  +--| (100)
+|        |  |             |  |                |        |  |  +--Mmus_ENSMUST00000074372
+|        |  |             |  |                |        +--| (100)
+|        |  |             |  |                |           |  +**Hsap_ENST00000394636
+|        |  |             |  |                |           +--| (100)
+|        |  |             |  |                |              +--Mmus_ENSMUST00000210246
+|        |  |             |  |             +--| (27)
+|        |  |             |  |             |  |           +-------Hmia_HMIM017302-RA
+|        |  |             |  |             |  |        +--| (94)
+|        |  |             |  |             |  |        |  +---------Smed_SMEST022899001.1
+|        |  |             |  |             |  |     +--| (74)
+|        |  |             |  |             |  |     |  +-----Smed_SMEST015279001.1
+|        |  |             |  |             |  |  +--| (96)
+|        |  |             |  |             |  |  |  +-----Smed_SMEST026100001.1
+|        |  |             |  |             |  +--| (26)
+|        |  |             |  |             |     +-----------Hmia_HMIM003112-RA
+|        |  |             |  |        +----| (100)
+|        |  |             |  |        |    |        +-------Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA168300
+|        |  |             |  |        |    |     +--| (71)
+|        |  |             |  |        |    |     |  |  +----Cgig_XM_011425049.3
+|        |  |             |  |        |    |     |  +--| (97)
+|        |  |             |  |        |    |     |     |            +------Aque_Aqu2.1.32516_001
+|        |  |             |  |        |    |     |     +------------| (100)
+|        |  |             |  |        |    |     |                  +------Emue_Em0019g907a.t1
+|        |  |             |  |        |    |  +--| (30)
+|        |  |             |  |        |    |  |  +-------Cgig_XM_011439588.3
+|        |  |             |  |        |    +--| (31)
+|        |  |             |  |        |       +----------Hmia_HMIM010871-RA
+|        |  |             |  |     +--| (87)
+|        |  |             |  |     |  |             +-------------Aque_Aqu2.1.38323_001
+|        |  |             |  |     |  |         +---| (99)
+|        |  |             |  |     |  |         |   +---------Emue_Em0018g285a.t1
+|        |  |             |  |     |  |  +------| (100)
+|        |  |             |  |     |  |  |      |  +--Aque_Aqu2.1.38324_001
+|        |  |             |  |     |  |  |      +--| (100)
+|        |  |             |  |     |  |  |         +--Emue_Em0018g287a.t1
+|        |  |             |  |     |  +--| (96)
+|        |  |             |  |     |     |     +-----------Scil_scict022560.1
+|        |  |             |  |     |     |  +--| (99)
+|        |  |             |  |     |     |  |  |  +------------Scil_scict006109.3
+|        |  |             |  |     |     |  |  +--| (100)
+|        |  |             |  |     |     |  |     |  +------------Scil_scict014911.1
+|        |  |             |  |     |     |  |     +--| (59)
+|        |  |             |  |     |     |  |        +-----------Scil_scict019494.1
+|        |  |             |  |     |     +--| (100)
+|        |  |             |  |     |        +------Ocar_g5040
+|        |  |             |  |  +--| (99)
+|        |  |             |  |  |  |               +--Bflo_XM_035806206.1
+|        |  |             |  |  |  |            +--| (76)
+|        |  |             |  |  |  |            |  |  +--Skow_XM_002739212.2
+|        |  |             |  |  |  |            |  +--| (88)
+|        |  |             |  |  |  |            |     |   +--Hsap_ENST00000375790
+|        |  |             |  |  |  |            |     +---| (100)
+|        |  |             |  |  |  |            |         +--Mmus_ENSMUST00000079788
+|        |  |             |  |  |  |         +--| (87)
+|        |  |             |  |  |  |         |  |  +----Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA224655
+|        |  |             |  |  |  |         |  +--| (72)
+|        |  |             |  |  |  |         |     |   +**Spur_XM_011680625.2
+|        |  |             |  |  |  |         |     +---| (100)
+|        |  |             |  |  |  |         |         +--Spur_XM_030996857.1
+|        |  |             |  |  |  |     +---| (99)
+|        |  |             |  |  |  |     |   +----Cgig_XM_011417385.3
+|        |  |             |  |  |  +-----| (99)
+|        |  |             |  |  |        |         +-----Dmel_FBtr0078146
+|        |  |             |  |  |        +---------| (100)
+|        |  |             |  |  |                  +--Tcas_TC013021_001
+|        |  |             |  +--| (83)
+|        |  |             |     |         +-----------------------Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA100741
+|        |  |             |     |      +--| (62)
+|        |  |             |     |      |  |  +---------Bflo_XM_035840693.1
+|        |  |             |     |      |  +--| (70)
+|        |  |             |     |      |     +------------------Morvir_scaffold73.g22.t1
+|        |  |             |     |  +---| (93)
+|        |  |             |     |  |   |     +----------Chem_TCONS_00012394
+|        |  |             |     |  |   |  +--| (97)
+|        |  |             |     |  |   |  |  +--------Spis_XP_022778987_1
+|        |  |             |     |  |   +--| (78)
+|        |  |             |     |  |      |     +-----Exapal_XM_021053018.2
+|        |  |             |     |  |      |  +--| (83)
+|        |  |             |     |  |      |  |  +--------Nvec_v1g206468
+|        |  |             |     |  |      +--| (92)
+|        |  |             |     |  |         |       +---Fspp_ffun1.m4.9582.m1
+|        |  |             |     |  |         +-------| (100)
+|        |  |             |     |  |                 +---Spis_XP_022782439_1
+|        |  |             |     +--| (82)
+|        |  |             |        |   +------------Scil_scict017601.2
+|        |  |             |        +---| (90)
+|        |  |             |            +-------------------Scil_scict021233.2
+|        |  |          +--| (64)
+|        |  |          |  |                                              +--Adig_XM_015900720.1
+|        |  |          |  |                                           +--| (99)
+|        |  |          |  |                                           |  +--Gfas_gfas1.m1.6519.m1
+|        |  |          |  |                                        +--| (98)
+|        |  |          |  |                                        |  |  +--Fspp_ffun1.m4.4427.m1
+|        |  |          |  |                                        |  +--| (85)
+|        |  |          |  |                                        |     +--Gasp_gasp1.m3.9859.m1
+|        |  |          |  |                                     +--| (99)
+|        |  |          |  |                                     |  +--Spis_XP_022798665_1
+|        |  |          |  |                                  +--| (100)
+|        |  |          |  |                                  |  |  +--Exapal_XM_021059194.2
+|        |  |          |  |                                  |  +--| (100)
+|        |  |          |  |                                  |     +--Nvec_v1g105055
+|        |  |          |  |                             +----| (100)
+|        |  |          |  |                             |    |  +--Dgig_XM_028556627.1
+|        |  |          |  |                             |    +--| (100)
+|        |  |          |  |                             |       +--Xesp_008206-T1
+|        |  |          |  |                          +--| (64)
+|        |  |          |  |                          |  +----Skow_NM_001164980.1
+|        |  |          |  |                       +--| (63)
+|        |  |          |  |                       |  |  +-------Bflo_XM_035818274.1
+|        |  |          |  |                       |  +--| (89)
+|        |  |          |  |                       |     +-----Spur_XM_775847.5
+|        |  |          |  |                    +--| (26)
+|        |  |          |  |                    |  |             +**Hsap_ENST00000373872
+|        |  |          |  |                    |  |          +--| (67)
+|        |  |          |  |                    |  |          |  +--Mmus_ENSMUST00000081335
+|        |  |          |  |                    |  |       +--| (96)
+|        |  |          |  |                    |  |       |  +----Hsap_ENST00000558530
+|        |  |          |  |                    |  |    +--| (82)
+|        |  |          |  |                    |  |    |  |   +--Hsap_ENST00000618001
+|        |  |          |  |                    |  |    |  +---| (100)
+|        |  |          |  |                    |  |    |      +--Mmus_ENSMUST00000166395
+|        |  |          |  |                    |  +----| (92)
+|        |  |          |  |                    |       |            +**Hsap_ENST00000283891
+|        |  |          |  |                    |       |    +-------| (100)
+|        |  |          |  |                    |       |    |       +--Hsap_ENST00000321217
+|        |  |          |  |                    |       +----| (94)
+|        |  |          |  |                    |            |                 +**Mmus_ENSMUST00000072518
+|        |  |          |  |                    |            +-----------------| (100)
+|        |  |          |  |                    |                              +**Mmus_ENSMUST00000073857
+|        |  |          |  |                 +--| (49)
+|        |  |          |  |                 |  +-----Cgig_XM_011418640.3
+|        |  |          |  |              +--| (90)
+|        |  |          |  |              |  |        +--Dmel_FBtr0087942
+|        |  |          |  |              |  |  +-----| (100)
+|        |  |          |  |              |  |  |     +--Dmel_FBtr0087945
+|        |  |          |  |              |  +--| (100)
+|        |  |          |  |              |     +--Tcas_TC009623_001
+|        |  |          |  |           +--| (92)
+|        |  |          |  |           |  +---------Tcas_TC013909_001
+|        |  |          |  |        +--| (99)
+|        |  |          |  |        |  +---------Ocar_g5336
+|        |  |          |  |     +--| (85)
+|        |  |          |  |     |  +------------------Hmia_HMIM018929-RA
+|        |  |          |  |  +--| (81)
+|        |  |          |  |  |  |  +-----------------Aque_Aqu2.1.41527_001
+|        |  |          |  |  |  +--| (94)
+|        |  |          |  |  |     +-----------------Scil_scict022612.1
+|        |  |          |  +--| (74)
+|        |  |          |     |                 +-------Cgig_XM_034463645.1
+|        |  |          |     |     +-----------| (100)
+|        |  |          |     |     |           +---Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA207287
+|        |  |          |     |  +--| (81)
+|        |  |          |     |  |  |  +------------Scil_scict021603.2
+|        |  |          |     |  |  +--| (96)
+|        |  |          |     |  |     +-------------Scil_scict012065.2
+|        |  |          |     +--| (86)
+|        |  |          |        |  +----------Scil_scict025710.3
+|        |  |          |        +--| (83)
+|        |  |          |           +------------Scil_scict008484.1
+|        |  |       +--| (67)
+|        |  |       |  +--------------------Smed_SMEST071247002.1
+|        |  |  +----| (100)
+|        |  |  |    |        +-----------------Cowc_KJE91708
+|        |  |  |    |     +--| (65)
+|        |  |  |    |     |  +----------Sros_EGD73507
+|        |  |  |    |  +--| (94)
+|        |  |  |    |  |  +----------------------Cowc_KJE97947
+|        |  |  |    +--| (80)
+|        |  |  |       |      +-----------Scil_scict014091.1
+|        |  |  |       |  +---| (99)
+|        |  |  |       |  |   +---------Scil_scict012796.3
+|        |  |  |       +--| (80)
+|        |  |  |          |  +--------------------Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA181110
+|        |  |  |          +--| (88)
+|        |  |  |             +--------------Sros_EGD73338
+|        |  +--| (95)
+|        |     |       +--Mlei_ML2207.g8.i1
+|        |     +-------| (100)
+|        |             +--Pbac_sb2644616
+|     +--| (95)
+|     |  +--------------Smed_SMEST062973002.1
+|  +--| (90)
+|  |  |                    +--Adig_XM_015908372.1
+|  |  |                 +--| (75)
+|  |  |                 |  +--Gfas_gfas1.m1.14916.m1
+|  |  |              +--| (65)
+|  |  |              |  |  +--Fspp_ffun1.m4.19096.m1
+|  |  |              |  +--| (90)
+|  |  |              |     +--Gasp_gasp1.m3.26800.m1
+|  |  |           +--| (100)
+|  |  |           |  +**Spis_XP_022779483_1
+|  |  |        +--| (100)
+|  |  |        |  |  +--Exapal_XM_028656936.1
+|  |  |        |  +--| (100)
+|  |  |        |     +--Nvec_v1g119733
+|  |  |     +--| (100)
+|  |  |     |  |  +--Dgig_XM_028540514.1
+|  |  |     |  +--| (100)
+|  |  |     |     +--Xesp_011953-T1
+|  |  |  +--| (84)
+|  |  |  |  |           +--Bflo_XM_035826473.1
+|  |  |  |  |        +--| (90)
+|  |  |  |  |        |  |  +--Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA139538
+|  |  |  |  |        |  +--| (90)
+|  |  |  |  |        |     |     +--Hsap_ENST00000398506
+|  |  |  |  |        |     |  +--| (100)
+|  |  |  |  |        |     |  |  +--Mmus_ENSMUST00000185131
+|  |  |  |  |        |     +--| (100)
+|  |  |  |  |        |        |     +**Hsap_ENST00000561208
+|  |  |  |  |        |        |  +--| (100)
+|  |  |  |  |        |        |  |  +--Mmus_ENSMUST00000028639
+|  |  |  |  |        |        +--| (95)
+|  |  |  |  |        |           |  +--Hsap_ENST00000561096
+|  |  |  |  |        |           +--| (100)
+|  |  |  |  |        |              +--Mmus_ENSMUST00000002495
+|  |  |  |  |     +--| (68)
+|  |  |  |  |     |  |  +--Dmel_FBtr0082255
+|  |  |  |  |     |  +--| (100)
+|  |  |  |  |     |     +--Tcas_TC008629_001
+|  |  |  |  |  +--| (98)
+|  |  |  |  |  |  |  +--Skow_XM_006811461.1
+|  |  |  |  |  |  +--| (70)
+|  |  |  |  |  |     +--Spur_XM_030998664.1
+|  |  |  |  +--| (81)
+|  |  |  |     |     +--Smed_SMEST078684002.1
+|  |  |  |     |  +--| (100)
+|  |  |  |     |  |  +--Smed_SMEST006530001.1
+|  |  |  |     +--| (84)
+|  |  |  |        |     +**Hmia_HMIM006988-RA
+|  |  |  |        |  +--| (100)
+|  |  |  |        |  |  +**Hmia_HMIM007254-RA
+|  |  |  |        +--| (100)
+|  |  |  |           +--Hmia_HMIM009354-RA
+|  |  +--| (83)
+|  |     |        +----Vmul_SimC398114
+|  |     |  +-----| (100)
+|  |     |  |     +--Pbac_sb2639882
+|  |     +--| (67)
+|  |        |     +--Hhon_g10567.t1
+|  |        +-----| (100)
+|  |              +--Tadh_TriadT59844
++--| (91)
+|  |  +--Chem_TCONS_00004568
+|  +--| (100)
+|     +--Hvul_g4616_1
+|
+|  +--Morvir_scaffold31.g41.t1
++--| (95)
+   +--------Aaur_scaffold348.g8.t1
+
+Tree in newick format:
+
+(Aaur_scaffold348.g6.t2:0.5759296416,(((((((((Aaur_scaffold718.g7.t1:0.3246393789,Morvir_scaffold259.g33.t2:0.3200844792)100:0.1652854975,Chem_TCONS_00052864:0.6593358049)95:0.2125938669,(((((Adig_XM_015921586.1:0.0620633991,Gfas_gfas1.m1.16105.m1:0.0189874363)99:0.0158581828,((Fspp_ffun1.m4.336.m1:0.0280259059,Gasp_gasp1.m3.4477.m1:0.0350286659)100:0.0098589115,Spis_XP_022788915_1:0.0654407854)100:0.0167454575)100:0.1627787682,(Nvec_v1g22855:0.1717008158,Exapal_XM_021046951.2:0.1731693804)100:0.1156451303)99:0.2263625267,((Bflo_XM_035815286.1:0.3859873336,(((Hsap_ENST00000298282:0.0054597816,Mmus_ENSMUST00000039674:0.0037520834)100:0.1859595186,(Hsap_ENST00000291547:0.0320313908,Mmus_ENSMUST00000097352:0.0119158554)100:0.4129874269)100:0.1281036687,((Skow_XM_006812986.1:0.2193657839,Spur_XM_030977469.1:0.5400392151)93:0.0463504804,Tcas_TC006040_001:0.6436548864)86:0.0951981867)94:0.1664279599)98:0.1243400681,((Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA221385:0.4758494031,Hmia_HMIM001342-RA:0.5915633035)40:0.0606264804,Cgig_XM_011429180.3:0.3632948583)62:0.0625572394)99:0.1581952186)94:0.1820066870,(Hhon_g06747.t1:0.1749638241,Tadh_TriadT9468:0.0000022304)100:0.4565613359)64:0.1364069451)49:0.0858707034,(Dgig_XM_028549898.1:0.1256066914,Xesp_014119-T1:0.2893002777)100:0.6755901899)60:0.1581749444,Smed_SMEST013307001.1:0.8587971957)98:0.1909414834,(((((((Cgig_XM_020063630.2:2.4380841756,Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA88304:3.3093601309)87:0.4805818143,(Cowc_KJE94912:2.1291973683,((((((((((((Adig_XM_015903172.1:0.0206927487,(Gfas_gfas1.m1.2731.m1:0.0149607029,((Fspp_ffun1.m4.15989.m1:0.0745377683,Gasp_gasp1.m3.14076.m1:0.0078215442)78:0.0051014781,Spis_XP_022781877_1:0.0304405729)78:0.0174894573)76:0.0090402063)99:0.1620701069,(Nvec_v1g229018:0.0862037006,(((Hhon_g05343.t1:0.0161573219,Tadh_TriadT21171:0.0465853072)100:0.3628599777,Exapal_XM_021051016.2:0.6577020910)76:0.0622344815,Exapal_XM_021051015.2:0.4056472509)61:0.0482084804)73:0.0520488294)97:0.0800148473,((Dgig_XM_028555199.1:0.0022555620,Xesp_007990-T1:0.0639910886)100:0.2036308104,Morvir_scaffold356.g14.t1:0.2785694925)73:0.0385163481)91:0.0820755416,(((((Hsap_ENST00000373487:0.0000022731,Mmus_ENSMUST00000040638:0.0028201196)100:0.0597013194,(Hsap_ENST00000375050:0.0050587137,Mmus_ENSMUST00000038149:0.0137977270)100:0.1346526117)71:0.0192298234,(Hsap_ENST00000420696:0.0000010000,Mmus_ENSMUST00000176540:0.0000010000)100:0.0514280868)71:0.0392089510,(Hsap_ENST00000251203:0.0778809319,Mmus_ENSMUST00000081503:0.1802469349)100:0.3052979111)93:0.0617379568,((Chem_TCONS_00057373:0.2348241801,(Hvul_g21489_1:0.0021217532,Hvul_g26585_1:0.0088541067)100:0.3184719337)100:0.1601509437,Hmia_HMIM020042-RA:0.3950399351)86:0.0980724008)82:0.0679909844)70:0.0395321505,Spur_XM_030997376.1:0.2007246561)70:0.0340048212,Skow_XM_006816776.1:0.0767513136)60:0.0434829981,Bflo_XM_035828980.1:0.2430379728)82:0.0736060204,Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA223738:0.1426652785)62:0.0588917667,Cgig_XM_011453922.3:0.1500642651)63:0.0345365681,(Dmel_FBtr0074135:0.0261514733,Tcas_TC011311_001:0.0348633079)100:0.1772760204)96:0.1416144351,(Smed_SMEST001913004.1:0.0000027966,Smed_SMEST022232001.1:0.0000010000)100:0.3783440475)99:0.3348950558,((Mlei_ML0476.g8.i1:0.3551466244,(Pbac_sb2646810:0.0405182685,Pbac_sb2656167:0.0026252422)100:0.8358659295)100:0.3334996471,Vmul_SimC390800:0.8207560144)100:0.7990617623)100:0.9032188718)77:0.3092035817)99:0.5834641192,(((((((((Aaur_scaffold70.g33.t1:0.3128812587,Morvir_scaffold459.g11.t1:0.3968392197)100:0.1324290785,(Chem_TCONS_00016543:0.2797250459,Hvul_g20769_1:0.4633828622)100:0.4171514394)97:0.3173375572,((((((((Adig_XM_015917910.1:0.1196567512,(((Fspp_ffun1.m4.5662.m1:0.0341358069,Spis_XP_022804454_1:0.1150763798)91:0.0106146008,Gasp_gasp1.m3.7933.m1:0.0297471697)97:0.0786381706,Gfas_gfas1.m1.2989.m1:0.0179729104)87:0.0469204764)83:0.0404423089,(Nvec_v1g29874:0.1771019815,Exapal_XM_021052122.2:0.1628840843)100:0.1162636802)87:0.1093600224,((Hhon_g00976.t1:0.0000023874,Tadh_TriadT24265:0.0000025407)99:0.6075541224,(Dgig_XM_028536328.1:0.1808555283,Xesp_007094-T1:0.3302327990)100:0.3014142122)87:0.1649227881)100:0.4879337615,Spur_NM_001129813.1:0.4145916246)59:0.0224877623,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA79780:0.1926615341,Skow_NM_001164887.2:0.2092521877)62:0.0385001783)75:0.0650509383,(Cgig_XM_011442812.3:0.2362905728,(Cgig_XM_011444968.3:0.6684048357,(((Dmel_FBtr0075908:0.2397083023,Dmel_FBtr0075909:0.3812209249)98:0.0396494732,Tcas_TC031040_001:0.2156321072)100:0.3507603906,(Tcas_TC032451_001:0.2193803878,Dmel_FBtr0330077:0.4532603213)100:0.3524576498)97:0.2621136946)71:0.1019594984)68:0.1308491142)67:0.0916386173,(Bflo_XM_035822666.1:0.1140274338,(Bflo_XM_035822663.1:0.2071847910,Bflo_XM_035823683.1:0.1548268870)97:0.0756276216)100:0.1762288807)35:0.1270703743,((Hsap_ENST00000290552:0.0797563359,Mmus_ENSMUST00000034185:0.1788917833)100:0.5317476825,(Hsap_ENST00000613726:0.0494724940,Mmus_ENSMUST00000022095:0.0389730258)100:0.4283583842)100:0.2140857037)32:0.2260293530)23:0.0878235507,((Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA88378:0.2817877168,(Smed_SMEST061184001.1:0.3763010444,Hmia_HMIM017088-RA:3.1171120152)77:0.6773761063)21:0.0270848880,(((Hsap_ENST00000329734:0.0318972277,Mmus_ENSMUST00000093312:0.0842700538)100:0.3452867587,(Hsap_ENST00000302006:0.0481848735,Mmus_ENSMUST00000077337:0.0000023915)100:0.4219311972)100:0.2970394080,((Hsap_ENST00000302057:0.0476056862,Mmus_ENSMUST00000074372:0.0071622240)100:0.3113213018,(Hsap_ENST00000394636:0.0000020822,Mmus_ENSMUST00000210246:0.0294662919)100:0.3304127579)100:0.4653378574)99:0.2037829931)23:0.0488109036)24:0.2345844796,((((Hmia_HMIM017302-RA:0.9978401662,Smed_SMEST022899001.1:1.2310680208)94:0.0594619302,Smed_SMEST015279001.1:0.7668154127)74:0.1755848513,Smed_SMEST026100001.1:0.7849883659)96:0.2563401313,Hmia_HMIM003112-RA:1.5189661127)26:0.1784512450)27:0.0544071899,(((Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA168300:0.9946070565,(Cgig_XM_011425049.3:0.6521071056,(Aque_Aqu2.1.32516_001:0.9039132298,Emue_Em0019g907a.t1:0.8347848246)100:1.5544442470)97:0.3459326233)71:0.1417948244,Cgig_XM_011439588.3:0.9903440833)30:0.0874650464,Hmia_HMIM010871-RA:1.3957437800)31:0.0822010638)100:0.6903207211,(((Aque_Aqu2.1.38323_001:1.6858157929,Emue_Em0018g285a.t1:1.2575166877)99:0.5296756318,(Aque_Aqu2.1.38324_001:0.2545214796,Emue_Em0018g287a.t1:0.2710629269)100:0.2796514985)100:0.8504966550,((Scil_scict022560.1:1.4981844893,(Scil_scict006109.3:1.5625661848,(Scil_scict014911.1:1.5903345893,Scil_scict019494.1:1.4657757939)59:0.2182884037)100:0.3847304011)99:0.1708768951,Ocar_g5040:0.9163524099)100:0.3474675189)96:0.1766462209)87:0.2013241947,((((Bflo_XM_035806206.1:0.2640330186,(Skow_XM_002739212.2:0.3598048534,(Hsap_ENST00000375790:0.0774078715,Mmus_ENSMUST00000079788:0.0034966730)100:0.5260716542)88:0.1151928681)76:0.1176715329,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA224655:0.6144788032,(Spur_XM_011680625.2:0.0000024642,Spur_XM_030996857.1:0.0033941203)100:0.5815200215)72:0.0753076678)87:0.0643903500,Cgig_XM_011417385.3:0.6682368678)99:0.4945784361,(Dmel_FBtr0078146:0.7920292045,Tcas_TC013021_001:0.4047058472)100:1.2857981590)99:0.7408056632)99:0.3391389503,(((Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA100741:2.8878666383,(Bflo_XM_035840693.1:1.2831188699,Morvir_scaffold73.g22.t1:2.3472866988)70:0.2952722991)62:0.0838007065,((Chem_TCONS_00012394:1.3639959676,Spis_XP_022778987_1:1.0701960649)97:0.2612578898,((Exapal_XM_021053018.2:0.7304014638,Nvec_v1g206468:1.0666470533)83:0.1886888258,(Fspp_ffun1.m4.9582.m1:0.4740804224,Spis_XP_022782439_1:0.5147225876)100:1.0505027320)92:0.3072828081)78:0.2085140710)93:0.5587144021,(Scil_scict017601.2:1.5919543571,Scil_scict021233.2:2.3732773568)90:0.4942282545)82:0.2723278062)83:0.0700671331)77:0.1251922156,(((((((((((((((Adig_XM_015900720.1:0.1246773740,Gfas_gfas1.m1.6519.m1:0.0776303076)99:0.0902294960,(Fspp_ffun1.m4.4427.m1:0.0389788043,Gasp_gasp1.m3.9859.m1:0.0652844274)85:0.0207560304)98:0.0349324098,Spis_XP_022798665_1:0.0314693885)99:0.2740544201,(Exapal_XM_021059194.2:0.1455271547,Nvec_v1g105055:0.1038468146)100:0.1572020252)100:0.4131137835,(Dgig_XM_028556627.1:0.1033011185,Xesp_008206-T1:0.2404220106)100:0.3607050638)100:0.6138043246,Skow_NM_001164980.1:0.6300348551)64:0.1706406678,(Bflo_XM_035818274.1:0.9568709653,Spur_XM_775847.5:0.7762700795)89:0.1644554217)63:0.2354375601,((((Hsap_ENST00000373872:0.0000027165,Mmus_ENSMUST00000081335:0.0578005654)67:0.0241938263,Hsap_ENST00000558530:0.6133142826)96:0.1864620686,(Hsap_ENST00000618001:0.0901587823,Mmus_ENSMUST00000166395:0.0641011612)100:0.5024714127)82:0.0048933590,((Hsap_ENST00000283891:0.0000027153,Hsap_ENST00000321217:0.1808104868)100:0.9716480334,(Mmus_ENSMUST00000072518:0.0000020269,Mmus_ENSMUST00000073857:0.0000024605)100:2.2448623280)94:0.5999395019)92:0.6851764677)26:0.2097671169,Cgig_XM_011418640.3:0.8168749775)49:0.2513450284,((Dmel_FBtr0087942:0.0165267943,Dmel_FBtr0087945:0.0320599808)100:0.7589721732,Tcas_TC009623_001:0.4637522936)100:0.4091844746)90:0.2939008563,Tcas_TC013909_001:1.1939888097)92:0.2405511961,Ocar_g5336:1.1933955227)99:0.2698993949,Hmia_HMIM018929-RA:2.2522913396)85:0.3357109205,(Aque_Aqu2.1.41527_001:2.2001791133,Scil_scict022612.1:2.1892133903)94:0.3408976226)81:0.2761262327,(((Cgig_XM_034463645.1:0.9734731230,Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA207287:0.4757634870)100:1.4897699050,(Scil_scict021603.2:1.5459815282,Scil_scict012065.2:1.6841100307)96:0.3211422627)81:0.1328241367,(Scil_scict025710.3:1.4018041043,Scil_scict008484.1:1.5910734555)83:0.4728961572)86:0.2335087593)74:0.0541871370)64:0.0587268873,Smed_SMEST071247002.1:2.5696062147)67:0.0690020710,(((Cowc_KJE91708:2.1762609291,Sros_EGD73507:1.3304021753)65:0.3308937996,Cowc_KJE97947:2.7460484954)94:0.2143688623,((Scil_scict014091.1:1.4257217347,Scil_scict012796.3:1.2547173183)99:0.4923756826,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA181110:2.5884730427,Sros_EGD73338:1.8152505512)88:0.2845358260)80:0.2303121449)80:0.3971039496)100:0.5915160472,(Mlei_ML2207.g8.i1:0.3988903615,Pbac_sb2644616:0.1603421204)100:1.0108655150)95:0.2971858722)96:0.1069962621,Smed_SMEST062973002.1:1.8346151988)95:0.2862135747,(((((((Adig_XM_015908372.1:0.0252334753,Gfas_gfas1.m1.14916.m1:0.0050229766)75:0.0074244460,(Fspp_ffun1.m4.19096.m1:0.0025082119,Gasp_gasp1.m3.26800.m1:0.0048990735)90:0.0073143713)65:0.0099582089,Spis_XP_022779483_1:0.0000025406)100:0.1146540231,(Exapal_XM_028656936.1:0.0477532835,Nvec_v1g119733:0.0602071199)100:0.0896807353)100:0.1105029987,(Dgig_XM_028540514.1:0.0496153433,Xesp_011953-T1:0.0528410647)100:0.1980212397)100:0.1216116340,((((Bflo_XM_035826473.1:0.2033871448,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA139538:0.2064819610,((Hsap_ENST00000398506:0.0024311334,Mmus_ENSMUST00000185131:0.0085745284)100:0.0704829961,((Hsap_ENST00000561208:0.0000021257,Mmus_ENSMUST00000028639:0.0053755558)100:0.0406720648,(Hsap_ENST00000561096:0.0409156944,Mmus_ENSMUST00000002495:0.0546730001)100:0.3655439753)95:0.0418522421)100:0.1805276597)90:0.0434560280)90:0.0166647612,(Dmel_FBtr0082255:0.0863234085,Tcas_TC008629_001:0.1284503227)100:0.3799697063)68:0.0582422072,(Skow_XM_006811461.1:0.2122676396,Spur_XM_030998664.1:0.3761695184)70:0.0730806612)98:0.1433898146,((Smed_SMEST078684002.1:0.4084475768,Smed_SMEST006530001.1:0.3992343568)100:0.3213814485,((Hmia_HMIM006988-RA:0.0000027177,Hmia_HMIM007254-RA:0.0000010000)100:0.2417781959,Hmia_HMIM009354-RA:0.4320894312)100:0.4225453892)84:0.0965085538)81:0.1432403844)84:0.1260774090,((Vmul_SimC398114:0.6431403706,Pbac_sb2639882:0.1944053142)100:0.8043673213,(Hhon_g10567.t1:0.0307889903,Tadh_TriadT59844:0.0344981923)100:0.7679940304)67:0.0381217239)83:0.0975347590)90:0.0707492062,(Chem_TCONS_00004568:0.3377196026,Hvul_g4616_1:0.3588174587)100:0.2680069517)91:0.0303739114,(Morvir_scaffold31.g41.t1:0.2660243920,Aaur_scaffold348.g8.t1:1.1238996424)95:0.1039444161);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -83497.750033
+Robinson-Foulds distance between ML tree and consensus tree: 22
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++----Aaur_scaffold348.g6.t2
+|
+|                          +--Aaur_scaffold718.g7.t1
+|                       +--| (100)
+|                       |  +--Morvir_scaffold259.g33.t2
+|                    +--| (95)
+|                    |  +-----Chem_TCONS_00052864
+|                 +--| (49)
+|                 |  |              +--Adig_XM_015921586.1
+|                 |  |           +--| (99)
+|                 |  |           |  +--Gfas_gfas1.m1.16105.m1
+|                 |  |        +--| (100)
+|                 |  |        |  |     +--Fspp_ffun1.m4.336.m1
+|                 |  |        |  |  +--| (100)
+|                 |  |        |  |  |  +--Gasp_gasp1.m3.4477.m1
+|                 |  |        |  +--| (100)
+|                 |  |        |     +--Spis_XP_022788915_1
+|                 |  |     +--| (99)
+|                 |  |     |  |  +--Nvec_v1g22855
+|                 |  |     |  +--| (100)
+|                 |  |     |     +--Exapal_XM_021046951.2
+|                 |  |  +--| (94)
+|                 |  |  |  |     +--Bflo_XM_035815286.1
+|                 |  |  |  |  +--| (98)
+|                 |  |  |  |  |  |        +--Hsap_ENST00000298282
+|                 |  |  |  |  |  |     +--| (100)
+|                 |  |  |  |  |  |     |  +--Mmus_ENSMUST00000039674
+|                 |  |  |  |  |  |  +--| (100)
+|                 |  |  |  |  |  |  |  |  +--Hsap_ENST00000291547
+|                 |  |  |  |  |  |  |  +--| (100)
+|                 |  |  |  |  |  |  |     +--Mmus_ENSMUST00000097352
+|                 |  |  |  |  |  +--| (94)
+|                 |  |  |  |  |     |     +--Skow_XM_006812986.1
+|                 |  |  |  |  |     |  +--| (93)
+|                 |  |  |  |  |     |  |  +---Spur_XM_030977469.1
+|                 |  |  |  |  |     +--| (86)
+|                 |  |  |  |  |        +----Tcas_TC006040_001
+|                 |  |  |  +--| (99)
+|                 |  |  |     |     +---Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA221385
+|                 |  |  |     |  +--| (56)
+|                 |  |  |     |  |  +--Cgig_XM_011429180.3
+|                 |  |  |     +--| (62)
+|                 |  |  |        +----Hmia_HMIM001342-RA
+|                 |  +--| (64)
+|                 |     |   +--Hhon_g06747.t1
+|                 |     +---| (100)
+|                 |         +--Tadh_TriadT9468
+|              +--| (60)
+|              |  |     +--Dgig_XM_028549898.1
+|              |  +-----| (100)
+|              |        +--Xesp_014119-T1
+|           +--| (98)
+|           |  +------Smed_SMEST013307001.1
+|        +--| (96)
+|        |  |                         +---------------------Cgig_XM_020063630.2
+|        |  |                     +---| (87)
+|        |  |                     |   +----------------------------Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA88304
+|        |  |                +----| (99)
+|        |  |                |    |  +------------------Cowc_KJE94912
+|        |  |                |    +--| (77)
+|        |  |                |       |                                        +--Adig_XM_015903172.1
+|        |  |                |       |                                     +--| (99)
+|        |  |                |       |                                     |  |  +--Gfas_gfas1.m1.2731.m1
+|        |  |                |       |                                     |  +--| (76)
+|        |  |                |       |                                     |     |     +--Fspp_ffun1.m4.15989.m1
+|        |  |                |       |                                     |     |  +--| (78)
+|        |  |                |       |                                     |     |  |  +--Gasp_gasp1.m3.14076.m1
+|        |  |                |       |                                     |     +--| (78)
+|        |  |                |       |                                     |        +--Spis_XP_022781877_1
+|        |  |                |       |                                  +--| (97)
+|        |  |                |       |                                  |  |  +--Nvec_v1g229018
+|        |  |                |       |                                  |  +--| (73)
+|        |  |                |       |                                  |     |        +--Hhon_g05343.t1
+|        |  |                |       |                                  |     |     +--| (100)
+|        |  |                |       |                                  |     |     |  +--Tadh_TriadT21171
+|        |  |                |       |                                  |     |  +--| (76)
+|        |  |                |       |                                  |     |  |  +-----Exapal_XM_021051016.2
+|        |  |                |       |                                  |     +--| (61)
+|        |  |                |       |                                  |        +--Exapal_XM_021051015.2
+|        |  |                |       |                               +--| (91)
+|        |  |                |       |                               |  |     +--Dgig_XM_028555199.1
+|        |  |                |       |                               |  |  +--| (100)
+|        |  |                |       |                               |  |  |  +--Xesp_007990-T1
+|        |  |                |       |                               |  +--| (73)
+|        |  |                |       |                               |     +--Morvir_scaffold356.g14.t1
+|        |  |                |       |                            +--| (70)
+|        |  |                |       |                            |  |              +--Hsap_ENST00000373487
+|        |  |                |       |                            |  |           +--| (100)
+|        |  |                |       |                            |  |           |  +--Mmus_ENSMUST00000040638
+|        |  |                |       |                            |  |        +--| (71)
+|        |  |                |       |                            |  |        |  |  +--Hsap_ENST00000375050
+|        |  |                |       |                            |  |        |  +--| (100)
+|        |  |                |       |                            |  |        |     +--Mmus_ENSMUST00000038149
+|        |  |                |       |                            |  |     +--| (71)
+|        |  |                |       |                            |  |     |  |  +--Hsap_ENST00000420696
+|        |  |                |       |                            |  |     |  +--| (100)
+|        |  |                |       |                            |  |     |     +--Mmus_ENSMUST00000176540
+|        |  |                |       |                            |  |  +--| (93)
+|        |  |                |       |                            |  |  |  |  +--Hsap_ENST00000251203
+|        |  |                |       |                            |  |  |  +--| (100)
+|        |  |                |       |                            |  |  |     +--Mmus_ENSMUST00000081503
+|        |  |                |       |                            |  +--| (82)
+|        |  |                |       |                            |     |     +--Chem_TCONS_00057373
+|        |  |                |       |                            |     |  +--| (100)
+|        |  |                |       |                            |     |  |  |  +--Hvul_g21489_1
+|        |  |                |       |                            |     |  |  +--| (100)
+|        |  |                |       |                            |     |  |     +--Hvul_g26585_1
+|        |  |                |       |                            |     +--| (86)
+|        |  |                |       |                            |        +--Hmia_HMIM020042-RA
+|        |  |                |       |                         +--| (70)
+|        |  |                |       |                         |  +--Spur_XM_030997376.1
+|        |  |                |       |                      +--| (60)
+|        |  |                |       |                      |  +--Skow_XM_006816776.1
+|        |  |                |       |                   +--| (82)
+|        |  |                |       |                   |  +--Bflo_XM_035828980.1
+|        |  |                |       |                +--| (62)
+|        |  |                |       |                |  +--Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA223738
+|        |  |                |       |             +--| (63)
+|        |  |                |       |             |  +--Cgig_XM_011453922.3
+|        |  |                |       |          +--| (96)
+|        |  |                |       |          |  |  +--Dmel_FBtr0074135
+|        |  |                |       |          |  +--| (100)
+|        |  |                |       |          |     +--Tcas_TC011311_001
+|        |  |                |       |       +--| (99)
+|        |  |                |       |       |  |  +--Smed_SMEST001913004.1
+|        |  |                |       |       |  +--| (100)
+|        |  |                |       |       |     +--Smed_SMEST022232001.1
+|        |  |                |       +-------| (100)
+|        |  |                |               |         +--Mlei_ML0476.g8.i1
+|        |  |                |               |      +--| (100)
+|        |  |                |               |      |  |      +--Pbac_sb2646810
+|        |  |                |               |      |  +------| (100)
+|        |  |                |               |      |         +--Pbac_sb2656167
+|        |  |                |               +------| (100)
+|        |  |                |                      +------Vmul_SimC390800
+|        |  |             +--| (77)
+|        |  |             |  |                                +--Aaur_scaffold70.g33.t1
+|        |  |             |  |                             +--| (100)
+|        |  |             |  |                             |  +--Morvir_scaffold459.g11.t1
+|        |  |             |  |                          +--| (97)
+|        |  |             |  |                          |  |  +--Chem_TCONS_00016543
+|        |  |             |  |                          |  +--| (100)
+|        |  |             |  |                          |     +---Hvul_g20769_1
+|        |  |             |  |                       +--| (43)
+|        |  |             |  |                       |  |                              +--Adig_XM_015917910.1
+|        |  |             |  |                       |  |                           +--| (83)
+|        |  |             |  |                       |  |                           |  |        +--Fspp_ffun1.m4.5662.m1
+|        |  |             |  |                       |  |                           |  |     +--| (91)
+|        |  |             |  |                       |  |                           |  |     |  +--Spis_XP_022804454_1
+|        |  |             |  |                       |  |                           |  |  +--| (97)
+|        |  |             |  |                       |  |                           |  |  |  +--Gasp_gasp1.m3.7933.m1
+|        |  |             |  |                       |  |                           |  +--| (87)
+|        |  |             |  |                       |  |                           |     +--Gfas_gfas1.m1.2989.m1
+|        |  |             |  |                       |  |                        +--| (87)
+|        |  |             |  |                       |  |                        |  |  +--Nvec_v1g29874
+|        |  |             |  |                       |  |                        |  +--| (100)
+|        |  |             |  |                       |  |                        |     +--Exapal_XM_021052122.2
+|        |  |             |  |                       |  |                    +---| (100)
+|        |  |             |  |                       |  |                    |   |       +--Hhon_g00976.t1
+|        |  |             |  |                       |  |                    |   |  +----| (99)
+|        |  |             |  |                       |  |                    |   |  |    +--Tadh_TriadT24265
+|        |  |             |  |                       |  |                    |   +--| (87)
+|        |  |             |  |                       |  |                    |      |  +--Dgig_XM_028536328.1
+|        |  |             |  |                       |  |                    |      +--| (100)
+|        |  |             |  |                       |  |                    |         +--Xesp_007094-T1
+|        |  |             |  |                       |  |                 +--| (59)
+|        |  |             |  |                       |  |                 |  +--Spur_NM_001129813.1
+|        |  |             |  |                       |  |              +--| (75)
+|        |  |             |  |                       |  |              |  |  +--Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA79780
+|        |  |             |  |                       |  |              |  +--| (62)
+|        |  |             |  |                       |  |              |     +--Skow_NM_001164887.2
+|        |  |             |  |                       |  |           +--| (67)
+|        |  |             |  |                       |  |           |  |  +--Cgig_XM_011442812.3
+|        |  |             |  |                       |  |           |  +--| (68)
+|        |  |             |  |                       |  |           |     |  +-----Cgig_XM_011444968.3
+|        |  |             |  |                       |  |           |     +--| (71)
+|        |  |             |  |                       |  |           |        |        +--Dmel_FBtr0075908
+|        |  |             |  |                       |  |           |        |     +--| (98)
+|        |  |             |  |                       |  |           |        |     |  +--Dmel_FBtr0075909
+|        |  |             |  |                       |  |           |        |  +--| (100)
+|        |  |             |  |                       |  |           |        |  |  +--Tcas_TC031040_001
+|        |  |             |  |                       |  |           |        +--| (97)
+|        |  |             |  |                       |  |           |           |  +--Tcas_TC032451_001
+|        |  |             |  |                       |  |           |           +--| (100)
+|        |  |             |  |                       |  |           |              +---Dmel_FBtr0330077
+|        |  |             |  |                       |  |        +--| (35)
+|        |  |             |  |                       |  |        |  |  +--Bflo_XM_035822666.1
+|        |  |             |  |                       |  |        |  +--| (100)
+|        |  |             |  |                       |  |        |     |  +--Bflo_XM_035822663.1
+|        |  |             |  |                       |  |        |     +--| (97)
+|        |  |             |  |                       |  |        |        +--Bflo_XM_035823683.1
+|        |  |             |  |                       |  |     +--| (37)
+|        |  |             |  |                       |  |     |  +--Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA88378
+|        |  |             |  |                       |  |  +--| (37)
+|        |  |             |  |                       |  |  |  |      +--Hsap_ENST00000290552
+|        |  |             |  |                       |  |  |  |  +---| (100)
+|        |  |             |  |                       |  |  |  |  |   +--Mmus_ENSMUST00000034185
+|        |  |             |  |                       |  |  |  +--| (100)
+|        |  |             |  |                       |  |  |     |  +--Hsap_ENST00000613726
+|        |  |             |  |                       |  |  |     +--| (100)
+|        |  |             |  |                       |  |  |        +--Mmus_ENSMUST00000022095
+|        |  |             |  |                       |  +--| (44)
+|        |  |             |  |                       |     +----------Cgig_XM_011439588.3
+|        |  |             |  |                    +--| (61)
+|        |  |             |  |                    |  |        +--Hsap_ENST00000329734
+|        |  |             |  |                    |  |     +--| (100)
+|        |  |             |  |                    |  |     |  +--Mmus_ENSMUST00000093312
+|        |  |             |  |                    |  |  +--| (100)
+|        |  |             |  |                    |  |  |  |  +--Hsap_ENST00000302006
+|        |  |             |  |                    |  |  |  +--| (100)
+|        |  |             |  |                    |  |  |     +--Mmus_ENSMUST00000077337
+|        |  |             |  |                    |  +--| (99)
+|        |  |             |  |                    |     |      +--Hsap_ENST00000302057
+|        |  |             |  |                    |     |   +--| (100)
+|        |  |             |  |                    |     |   |  +--Mmus_ENSMUST00000074372
+|        |  |             |  |                    |     +---| (100)
+|        |  |             |  |                    |         |  +--Hsap_ENST00000394636
+|        |  |             |  |                    |         +--| (100)
+|        |  |             |  |                    |            +--Mmus_ENSMUST00000210246
+|        |  |             |  |                 +--| (34)
+|        |  |             |  |                 |  |  +--------Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA168300
+|        |  |             |  |                 |  +--| (71)
+|        |  |             |  |                 |     |  +----Cgig_XM_011425049.3
+|        |  |             |  |                 |     +--| (97)
+|        |  |             |  |                 |        |             +-------Aque_Aqu2.1.32516_001
+|        |  |             |  |                 |        +-------------| (100)
+|        |  |             |  |                 |                      +------Emue_Em0019g907a.t1
+|        |  |             |  |              +--| (51)
+|        |  |             |  |              |  |  +-----------Hmia_HMIM010871-RA
+|        |  |             |  |              |  +--| (35)
+|        |  |             |  |              |     |     +---Smed_SMEST061184001.1
+|        |  |             |  |              |     |  +--| (77)
+|        |  |             |  |              |     |  |  +--------------------------Hmia_HMIM017088-RA
+|        |  |             |  |              |     +--| (41)
+|        |  |             |  |              |        +------------Hmia_HMIM003112-RA
+|        |  |             |  |        +-----| (100)
+|        |  |             |  |        |     |        +--------Hmia_HMIM017302-RA
+|        |  |             |  |        |     |     +--| (94)
+|        |  |             |  |        |     |     |  +---------Smed_SMEST022899001.1
+|        |  |             |  |        |     |  +--| (74)
+|        |  |             |  |        |     |  |  +-----Smed_SMEST015279001.1
+|        |  |             |  |        |     +--| (96)
+|        |  |             |  |        |        +-----Smed_SMEST026100001.1
+|        |  |             |  |     +--| (87)
+|        |  |             |  |     |  |             +--------------Aque_Aqu2.1.38323_001
+|        |  |             |  |     |  |         +---| (99)
+|        |  |             |  |     |  |         |   +----------Emue_Em0018g285a.t1
+|        |  |             |  |     |  |  +------| (100)
+|        |  |             |  |     |  |  |      |  +--Aque_Aqu2.1.38324_001
+|        |  |             |  |     |  |  |      +--| (100)
+|        |  |             |  |     |  |  |         +--Emue_Em0018g287a.t1
+|        |  |             |  |     |  +--| (96)
+|        |  |             |  |     |     |     +------------Scil_scict022560.1
+|        |  |             |  |     |     |  +--| (99)
+|        |  |             |  |     |     |  |  |  +-------------Scil_scict006109.3
+|        |  |             |  |     |     |  |  +--| (100)
+|        |  |             |  |     |     |  |     |  +-------------Scil_scict014911.1
+|        |  |             |  |     |     |  |     +--| (59)
+|        |  |             |  |     |     |  |        +------------Scil_scict019494.1
+|        |  |             |  |     |     +--| (100)
+|        |  |             |  |     |        +-------Ocar_g5040
+|        |  |             |  |  +--| (99)
+|        |  |             |  |  |  |               +--Bflo_XM_035806206.1
+|        |  |             |  |  |  |            +--| (76)
+|        |  |             |  |  |  |            |  |  +--Skow_XM_002739212.2
+|        |  |             |  |  |  |            |  +--| (88)
+|        |  |             |  |  |  |            |     |   +--Hsap_ENST00000375790
+|        |  |             |  |  |  |            |     +---| (100)
+|        |  |             |  |  |  |            |         +--Mmus_ENSMUST00000079788
+|        |  |             |  |  |  |         +--| (87)
+|        |  |             |  |  |  |         |  |  +----Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA224655
+|        |  |             |  |  |  |         |  +--| (72)
+|        |  |             |  |  |  |         |     |    +--Spur_XM_011680625.2
+|        |  |             |  |  |  |         |     +----| (100)
+|        |  |             |  |  |  |         |          +--Spur_XM_030996857.1
+|        |  |             |  |  |  |     +---| (99)
+|        |  |             |  |  |  |     |   +-----Cgig_XM_011417385.3
+|        |  |             |  |  |  +-----| (99)
+|        |  |             |  |  |        |          +------Dmel_FBtr0078146
+|        |  |             |  |  |        +----------| (100)
+|        |  |             |  |  |                   +--Tcas_TC013021_001
+|        |  |             |  +--| (83)
+|        |  |             |     |          +-------------------------Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA100741
+|        |  |             |     |       +--| (62)
+|        |  |             |     |       |  |  +----------Bflo_XM_035840693.1
+|        |  |             |     |       |  +--| (70)
+|        |  |             |     |       |     +--------------------Morvir_scaffold73.g22.t1
+|        |  |             |     |  +----| (93)
+|        |  |             |     |  |    |     +-----------Chem_TCONS_00012394
+|        |  |             |     |  |    |  +--| (97)
+|        |  |             |     |  |    |  |  +--------Spis_XP_022778987_1
+|        |  |             |     |  |    +--| (78)
+|        |  |             |     |  |       |     +-----Exapal_XM_021053018.2
+|        |  |             |     |  |       |  +--| (83)
+|        |  |             |     |  |       |  |  +--------Nvec_v1g206468
+|        |  |             |     |  |       +--| (92)
+|        |  |             |     |  |          |        +---Fspp_ffun1.m4.9582.m1
+|        |  |             |     |  |          +--------| (100)
+|        |  |             |     |  |                   +---Spis_XP_022782439_1
+|        |  |             |     +--| (82)
+|        |  |             |        |   +-------------Scil_scict017601.2
+|        |  |             |        +---| (90)
+|        |  |             |            +--------------------Scil_scict021233.2
+|        |  |          +--| (64)
+|        |  |          |  |                                              +--Adig_XM_015900720.1
+|        |  |          |  |                                           +--| (99)
+|        |  |          |  |                                           |  +--Gfas_gfas1.m1.6519.m1
+|        |  |          |  |                                        +--| (98)
+|        |  |          |  |                                        |  |  +--Fspp_ffun1.m4.4427.m1
+|        |  |          |  |                                        |  +--| (85)
+|        |  |          |  |                                        |     +--Gasp_gasp1.m3.9859.m1
+|        |  |          |  |                                     +--| (99)
+|        |  |          |  |                                     |  +--Spis_XP_022798665_1
+|        |  |          |  |                                  +--| (100)
+|        |  |          |  |                                  |  |  +--Exapal_XM_021059194.2
+|        |  |          |  |                                  |  +--| (100)
+|        |  |          |  |                                  |     +--Nvec_v1g105055
+|        |  |          |  |                             +----| (100)
+|        |  |          |  |                             |    |  +--Dgig_XM_028556627.1
+|        |  |          |  |                             |    +--| (100)
+|        |  |          |  |                             |       +--Xesp_008206-T1
+|        |  |          |  |                          +--| (64)
+|        |  |          |  |                          |  +----Skow_NM_001164980.1
+|        |  |          |  |                       +--| (63)
+|        |  |          |  |                       |  |  +-------Bflo_XM_035818274.1
+|        |  |          |  |                       |  +--| (89)
+|        |  |          |  |                       |     +------Spur_XM_775847.5
+|        |  |          |  |                    +--| (44)
+|        |  |          |  |                    |  +------Cgig_XM_011418640.3
+|        |  |          |  |                 +--| (49)
+|        |  |          |  |                 |  |             +--Hsap_ENST00000373872
+|        |  |          |  |                 |  |          +--| (67)
+|        |  |          |  |                 |  |          |  +--Mmus_ENSMUST00000081335
+|        |  |          |  |                 |  |       +--| (96)
+|        |  |          |  |                 |  |       |  +----Hsap_ENST00000558530
+|        |  |          |  |                 |  |    +--| (82)
+|        |  |          |  |                 |  |    |  |   +--Hsap_ENST00000618001
+|        |  |          |  |                 |  |    |  +---| (100)
+|        |  |          |  |                 |  |    |      +--Mmus_ENSMUST00000166395
+|        |  |          |  |                 |  +----| (92)
+|        |  |          |  |                 |       |            +--Hsap_ENST00000283891
+|        |  |          |  |                 |       |    +-------| (100)
+|        |  |          |  |                 |       |    |       +--Hsap_ENST00000321217
+|        |  |          |  |                 |       +----| (94)
+|        |  |          |  |                 |            |                   +--Mmus_ENSMUST00000072518
+|        |  |          |  |                 |            +-------------------| (100)
+|        |  |          |  |                 |                                +--Mmus_ENSMUST00000073857
+|        |  |          |  |              +--| (90)
+|        |  |          |  |              |  |         +--Dmel_FBtr0087942
+|        |  |          |  |              |  |   +-----| (100)
+|        |  |          |  |              |  |   |     +--Dmel_FBtr0087945
+|        |  |          |  |              |  +---| (100)
+|        |  |          |  |              |      +---Tcas_TC009623_001
+|        |  |          |  |           +--| (92)
+|        |  |          |  |           |  +---------Tcas_TC013909_001
+|        |  |          |  |        +--| (99)
+|        |  |          |  |        |  +---------Ocar_g5336
+|        |  |          |  |     +--| (85)
+|        |  |          |  |     |  +-------------------Hmia_HMIM018929-RA
+|        |  |          |  |  +--| (81)
+|        |  |          |  |  |  |  +-------------------Aque_Aqu2.1.41527_001
+|        |  |          |  |  |  +--| (94)
+|        |  |          |  |  |     +------------------Scil_scict022612.1
+|        |  |          |  +--| (74)
+|        |  |          |     |                  +-------Cgig_XM_034463645.1
+|        |  |          |     |     +------------| (100)
+|        |  |          |     |     |            +---Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA207287
+|        |  |          |     |  +--| (81)
+|        |  |          |     |  |  |  +-------------Scil_scict021603.2
+|        |  |          |     |  |  +--| (96)
+|        |  |          |     |  |     +--------------Scil_scict012065.2
+|        |  |          |     +--| (86)
+|        |  |          |        |   +-----------Scil_scict025710.3
+|        |  |          |        +---| (83)
+|        |  |          |            +-------------Scil_scict008484.1
+|        |  |       +--| (67)
+|        |  |       |  +----------------------Smed_SMEST071247002.1
+|        |  |  +----| (100)
+|        |  |  |    |        +------------------Cowc_KJE91708
+|        |  |  |    |     +--| (65)
+|        |  |  |    |     |  +-----------Sros_EGD73507
+|        |  |  |    |  +--| (94)
+|        |  |  |    |  |  +-----------------------Cowc_KJE97947
+|        |  |  |    +--| (80)
+|        |  |  |       |      +------------Scil_scict014091.1
+|        |  |  |       |  +---| (99)
+|        |  |  |       |  |   +----------Scil_scict012796.3
+|        |  |  |       +--| (80)
+|        |  |  |          |  +----------------------Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA181110
+|        |  |  |          +--| (88)
+|        |  |  |             +---------------Sros_EGD73338
+|        |  +--| (95)
+|        |     |        +--Mlei_ML2207.g8.i1
+|        |     +--------| (100)
+|        |              +--Pbac_sb2644616
+|     +--| (95)
+|     |  +---------------Smed_SMEST062973002.1
+|  +--| (90)
+|  |  |                    +--Adig_XM_015908372.1
+|  |  |                 +--| (75)
+|  |  |                 |  +--Gfas_gfas1.m1.14916.m1
+|  |  |              +--| (65)
+|  |  |              |  |  +--Fspp_ffun1.m4.19096.m1
+|  |  |              |  +--| (90)
+|  |  |              |     +--Gasp_gasp1.m3.26800.m1
+|  |  |           +--| (100)
+|  |  |           |  +--Spis_XP_022779483_1
+|  |  |        +--| (100)
+|  |  |        |  |  +--Exapal_XM_028656936.1
+|  |  |        |  +--| (100)
+|  |  |        |     +--Nvec_v1g119733
+|  |  |     +--| (100)
+|  |  |     |  |  +--Dgig_XM_028540514.1
+|  |  |     |  +--| (100)
+|  |  |     |     +--Xesp_011953-T1
+|  |  |  +--| (84)
+|  |  |  |  |           +--Bflo_XM_035826473.1
+|  |  |  |  |        +--| (90)
+|  |  |  |  |        |  |  +--Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA139538
+|  |  |  |  |        |  +--| (90)
+|  |  |  |  |        |     |     +--Hsap_ENST00000398506
+|  |  |  |  |        |     |  +--| (100)
+|  |  |  |  |        |     |  |  +--Mmus_ENSMUST00000185131
+|  |  |  |  |        |     +--| (100)
+|  |  |  |  |        |        |     +--Hsap_ENST00000561208
+|  |  |  |  |        |        |  +--| (100)
+|  |  |  |  |        |        |  |  +--Mmus_ENSMUST00000028639
+|  |  |  |  |        |        +--| (95)
+|  |  |  |  |        |           |  +--Hsap_ENST00000561096
+|  |  |  |  |        |           +--| (100)
+|  |  |  |  |        |              +--Mmus_ENSMUST00000002495
+|  |  |  |  |     +--| (68)
+|  |  |  |  |     |  |  +--Dmel_FBtr0082255
+|  |  |  |  |     |  +--| (100)
+|  |  |  |  |     |     +--Tcas_TC008629_001
+|  |  |  |  |  +--| (98)
+|  |  |  |  |  |  |  +--Skow_XM_006811461.1
+|  |  |  |  |  |  +--| (70)
+|  |  |  |  |  |     +--Spur_XM_030998664.1
+|  |  |  |  +--| (81)
+|  |  |  |     |     +--Smed_SMEST078684002.1
+|  |  |  |     |  +--| (100)
+|  |  |  |     |  |  +--Smed_SMEST006530001.1
+|  |  |  |     +--| (84)
+|  |  |  |        |     +--Hmia_HMIM006988-RA
+|  |  |  |        |  +--| (100)
+|  |  |  |        |  |  +--Hmia_HMIM007254-RA
+|  |  |  |        +--| (100)
+|  |  |  |           +--Hmia_HMIM009354-RA
+|  |  +--| (83)
+|  |     |         +----Vmul_SimC398114
+|  |     |  +------| (100)
+|  |     |  |      +--Pbac_sb2639882
+|  |     +--| (67)
+|  |        |     +--Hhon_g10567.t1
+|  |        +-----| (100)
+|  |              +--Tadh_TriadT59844
++--| (91)
+|  |  +--Chem_TCONS_00004568
+|  +--| (100)
+|     +--Hvul_g4616_1
+|
+|  +--Morvir_scaffold31.g41.t1
++--| (95)
+   +---------Aaur_scaffold348.g8.t1
+
+
+Consensus tree in newick format: 
+
+(Aaur_scaffold348.g6.t2:0.5810887245,(((((((((Aaur_scaffold718.g7.t1:0.3272665203,Morvir_scaffold259.g33.t2:0.3218215087)100:0.1676959712,Chem_TCONS_00052864:0.6671641533)95:0.2105233949,(((((Adig_XM_015921586.1:0.0625691383,Gfas_gfas1.m1.16105.m1:0.0191606684)99:0.0159469406,((Fspp_ffun1.m4.336.m1:0.0282087913,Gasp_gasp1.m3.4477.m1:0.0352619054)100:0.0099024893,Spis_XP_022788915_1:0.0658368924)100:0.0168012878)100:0.1632083957,(Nvec_v1g22855:0.1778691995,Exapal_XM_021046951.2:0.1710517768)100:0.1181924837)99:0.2287028914,((Bflo_XM_035815286.1:0.3939176921,(((Hsap_ENST00000298282:0.0055149335,Mmus_ENSMUST00000039674:0.0037437200)100:0.1874122938,(Hsap_ENST00000291547:0.0320193615,Mmus_ENSMUST00000097352:0.0121897126)100:0.4159391910)100:0.1240039199,((Skow_XM_006812986.1:0.2241923235,Spur_XM_030977469.1:0.5421963020)93:0.0475104046,Tcas_TC006040_001:0.6492060758)86:0.0996098423)94:0.1694756573)98:0.1178667745,((Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA221385:0.4929895347,Cgig_XM_011429180.3:0.3493309242)56:0.0601674490,Hmia_HMIM001342-RA:0.6174293356)62:0.0593318049)99:0.1587112249)94:0.1809334836,(Hhon_g06747.t1:0.1756783220,Tadh_TriadT9468:0.0000020852)100:0.4560997800)64:0.1416940420)49:0.0881977812,(Dgig_XM_028549898.1:0.1271057001,Xesp_014119-T1:0.2912874470)100:0.6799385019)60:0.1590245330,Smed_SMEST013307001.1:0.8694659672)98:0.1907827727,(((((((Cgig_XM_020063630.2:2.4600396933,Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA88304:3.3083738140)87:0.4860615832,(Cowc_KJE94912:2.1383507702,((((((((((((Adig_XM_015903172.1:0.0208575830,(Gfas_gfas1.m1.2731.m1:0.0150692752,((Fspp_ffun1.m4.15989.m1:0.0751049307,Gasp_gasp1.m3.14076.m1:0.0078776609)78:0.0051322019,Spis_XP_022781877_1:0.0306648914)78:0.0176208927)76:0.0090952429)99:0.1634629427,(Nvec_v1g229018:0.0867422744,(((Hhon_g05343.t1:0.0162933030,Tadh_TriadT21171:0.0471185978)100:0.3662356564,Exapal_XM_021051016.2:0.6651729420)76:0.0630390047,Exapal_XM_021051015.2:0.4103176605)61:0.0481420435)73:0.0524659371)97:0.0805874837,((Dgig_XM_028555199.1:0.0022459321,Xesp_007990-T1:0.0645626797)100:0.2052746461,Morvir_scaffold356.g14.t1:0.2808807943)73:0.0390040927)91:0.0826600334,(((((Hsap_ENST00000373487:0.0000021124,Mmus_ENSMUST00000040638:0.0028397329)100:0.0601319321,(Hsap_ENST00000375050:0.0051044210,Mmus_ENSMUST00000038149:0.0138956422)100:0.1357963393)71:0.0193298201,(Hsap_ENST00000420696:0.0000020824,Mmus_ENSMUST00000176540:0.0000020824)100:0.0518419397)71:0.0393758315,(Hsap_ENST00000251203:0.0782341216,Mmus_ENSMUST00000081503:0.1818655934)100:0.3082569995)93:0.0623648910,((Chem_TCONS_00057373:0.2371766015,(Hvul_g21489_1:0.0020797504,Hvul_g26585_1:0.0089765571)100:0.3213759253)100:0.1615039940,Hmia_HMIM020042-RA:0.3987434567)86:0.0990621147)82:0.0684150801)70:0.0398390777,Spur_XM_030997376.1:0.2024599247)70:0.0342700033,Skow_XM_006816776.1:0.0772932655)60:0.0436808514,Bflo_XM_035828980.1:0.2451210704)82:0.0741343807,Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA223738:0.1438238101)62:0.0591759429,Cgig_XM_011453922.3:0.1515724389)63:0.0355730229,(Dmel_FBtr0074135:0.0263141381,Tcas_TC011311_001:0.0351897375)100:0.1783952498)96:0.1413048523,(Smed_SMEST001913004.1:0.0000027193,Smed_SMEST022232001.1:0.0000020824)100:0.3824040764)99:0.3347339411,((Mlei_ML0476.g8.i1:0.3600652816,(Pbac_sb2646810:0.0409500999,Pbac_sb2656167:0.0025123109)100:0.8438720077)100:0.3343849316,Vmul_SimC390800:0.8333615022)100:0.8119343542)100:0.9199239883)77:0.3038271236)99:0.5716044906,((((((((((Aaur_scaffold70.g33.t1:0.3139549688,Morvir_scaffold459.g11.t1:0.3999009930)100:0.1258017674,(Chem_TCONS_00016543:0.2809836933,Hvul_g20769_1:0.4653295980)100:0.4329362025)97:0.3173755098,((((((((((Adig_XM_015917910.1:0.1207112696,(((Fspp_ffun1.m4.5662.m1:0.0344876170,Spis_XP_022804454_1:0.1163310534)91:0.0107056162,Gasp_gasp1.m3.7933.m1:0.0300187508)97:0.0795545001,Gfas_gfas1.m1.2989.m1:0.0180370044)87:0.0473671989)83:0.0409833654,(Nvec_v1g29874:0.1783098426,Exapal_XM_021052122.2:0.1643731672)100:0.1169782122)87:0.1092791545,((Hhon_g00976.t1:0.0000023571,Tadh_TriadT24265:0.0000020824)99:0.6108082346,(Dgig_XM_028536328.1:0.1837765585,Xesp_007094-T1:0.3310686028)100:0.3027002701)87:0.1670688191)100:0.4952184783,Spur_NM_001129813.1:0.4194122927)59:0.0227110772,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA79780:0.1929335452,Skow_NM_001164887.2:0.0000029307)62:0.2520397022)75:0.0641595406,(Cgig_XM_011442812.3:0.2327114969,(Cgig_XM_011444968.3:0.6778928028,(((Dmel_FBtr0075908:0.2424284667,Dmel_FBtr0075909:0.3847079930)98:0.0407040675,Tcas_TC031040_001:0.2154102557)100:0.3554532523,(Tcas_TC032451_001:0.2208533854,Dmel_FBtr0330077:0.4578163439)100:0.3545047589)97:0.2645176989)71:0.1061495780)68:0.1350352698)67:0.0915509320,(Bflo_XM_035822666.1:0.1146606160,(Bflo_XM_035822663.1:0.2094303828,Bflo_XM_035823683.1:0.1561949911)97:0.0764005523)100:0.1746610773)35:0.0000029093,Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA88378:0.3262270973)37:0.1399472190,((Hsap_ENST00000290552:0.0857569998,Mmus_ENSMUST00000034185:0.1755438803)100:0.5303987128,(Hsap_ENST00000613726:0.0506635638,Mmus_ENSMUST00000022095:0.0387030295)100:0.4325364071)100:0.2123589352)37:0.1515675492,Cgig_XM_011439588.3:1.2718133845)44:0.0849283520)43:0.1070882324,(((Hsap_ENST00000329734:0.0305807030,Mmus_ENSMUST00000093312:0.0863435758)100:0.3517695007,(Hsap_ENST00000302006:0.0486367031,Mmus_ENSMUST00000077337:0.0000020768)100:0.4229214236)100:0.3072161893,((Hsap_ENST00000302057:0.0469189261,Mmus_ENSMUST00000074372:0.0083463691)100:0.3056576469,(Hsap_ENST00000394636:0.0000027083,Mmus_ENSMUST00000210246:0.0297083089)100:0.3411898530)100:0.4539264198)99:0.2144484365)61:0.1530366645,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA168300:1.1078502374,(Cgig_XM_011425049.3:0.6033499266,(Aque_Aqu2.1.32516_001:0.9341448934,Emue_Em0019g907a.t1:0.8079702564)100:1.6182760716)97:0.3293206671)71:0.2168719945)34:0.0883778914,(Hmia_HMIM010871-RA:1.3689784651,((Smed_SMEST061184001.1:0.5198852199,Hmia_HMIM017088-RA:3.0598960169)77:0.3059943331,Hmia_HMIM003112-RA:1.4681354477)41:0.0799308938)35:0.1701387550)51:0.1455784397,(((Hmia_HMIM017302-RA:1.0169324757,Smed_SMEST022899001.1:1.2111885206)94:0.0782262026,Smed_SMEST015279001.1:0.7705952018)74:0.2404028482,Smed_SMEST026100001.1:0.7407776221)96:0.2435010018)100:0.6739278767,(((Aque_Aqu2.1.38323_001:1.6842276092,Emue_Em0018g285a.t1:1.2578306302)99:0.5168584877,(Aque_Aqu2.1.38324_001:0.2655553532,Emue_Em0018g287a.t1:0.2627794506)100:0.2927064544)100:0.8497976551,((Scil_scict022560.1:1.4922982995,(Scil_scict006109.3:1.5816142500,(Scil_scict014911.1:1.6076861110,Scil_scict019494.1:1.4890016387)59:0.2230449641)100:0.3901631236)99:0.1908793941,Ocar_g5040:0.9138890869)100:0.3781747532)96:0.1869536729)87:0.1816205976,((((Bflo_XM_035806206.1:0.2669924991,(Skow_XM_002739212.2:0.3612314764,(Hsap_ENST00000375790:0.0791250919,Mmus_ENSMUST00000079788:0.0023974893)100:0.5290414813)88:0.1184568552)76:0.1170161331,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA224655:0.6236043247,(Spur_XM_011680625.2:0.0000020824,Spur_XM_030996857.1:0.0034135727)100:0.5848929611)72:0.0759905721)87:0.0664696473,Cgig_XM_011417385.3:0.6702110913)99:0.5115121752,(Dmel_FBtr0078146:0.7982083609,Tcas_TC013021_001:0.4043870084)100:1.2785919902)99:0.7395096372)99:0.3218415517,(((Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA100741:2.8988002207,(Bflo_XM_035840693.1:1.2973302333,Morvir_scaffold73.g22.t1:2.3549900477)70:0.2988671452)62:0.0852205151,((Chem_TCONS_00012394:1.3808679531,Spis_XP_022778987_1:1.0824624674)97:0.2647388375,((Exapal_XM_021053018.2:0.7343757081,Nvec_v1g206468:1.0837710359)83:0.1876201009,(Fspp_ffun1.m4.9582.m1:0.4812556519,Spis_XP_022782439_1:0.5166134084)100:1.0681450727)92:0.3148789469)78:0.2069485900)93:0.5815510674,(Scil_scict017601.2:1.6157477226,Scil_scict021233.2:2.4101772581)90:0.4983777474)82:0.2786789624)83:0.0696045094)77:0.1276895634,(((((((((((((((Adig_XM_015900720.1:0.1254946465,Gfas_gfas1.m1.6519.m1:0.0783748720)99:0.0908788618,(Fspp_ffun1.m4.4427.m1:0.0392636155,Gasp_gasp1.m3.9859.m1:0.0657509480)85:0.0209281140)98:0.0348829402,Spis_XP_022798665_1:0.0320828232)99:0.2721733300,(Exapal_XM_021059194.2:0.1467061151,Nvec_v1g105055:0.1042601231)100:0.1627981590)100:0.4153683841,(Dgig_XM_028556627.1:0.1008653924,Xesp_008206-T1:0.2453381239)100:0.3670199911)100:0.6144653105,Skow_NM_001164980.1:0.6167387473)64:0.1447467838,(Bflo_XM_035818274.1:0.9723442756,Spur_XM_775847.5:0.7868541987)89:0.1893376810)63:0.2437185870,Cgig_XM_011418640.3:0.8557149536)44:0.2009483092,((((Hsap_ENST00000373872:0.0000021052,Mmus_ENSMUST00000081335:0.0580081826)67:0.0234272417,Hsap_ENST00000558530:0.6154528114)96:0.1947602150,(Hsap_ENST00000618001:0.0949197819,Mmus_ENSMUST00000166395:0.0602087666)100:0.4972696465)82:0.0748693165,((Hsap_ENST00000283891:0.0000028503,Hsap_ENST00000321217:0.1815444452)100:0.9439285045,(Mmus_ENSMUST00000072518:0.0000020824,Mmus_ENSMUST00000073857:0.0000020824)100:2.2405754870)94:0.5779235715)92:0.6228838342)49:0.2309473397,((Dmel_FBtr0087942:0.0151852263,Dmel_FBtr0087945:0.0336538445)100:0.7700932347,Tcas_TC009623_001:0.4586503059)100:0.4768858798)90:0.2785075218,Tcas_TC013909_001:1.2146064345)92:0.2248758399,Ocar_g5336:1.2062022497)99:0.2678677242,Hmia_HMIM018929-RA:2.2535153775)85:0.3421300894,(Aque_Aqu2.1.41527_001:2.2419504720,Scil_scict022612.1:2.1828438186)94:0.3493620162)81:0.2723564067,(((Cgig_XM_034463645.1:0.9879401498,Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA207287:0.4763147601)100:1.4831698309,(Scil_scict021603.2:1.5559414120,Scil_scict012065.2:1.7095366336)96:0.3267765680)81:0.1361886338,(Scil_scict025710.3:1.4092284514,Scil_scict008484.1:1.6034853573)83:0.4815733082)86:0.2296968503)74:0.0537998518)64:0.0599073860,Smed_SMEST071247002.1:2.5864113626)67:0.0713069039,(((Cowc_KJE91708:2.1983553308,Sros_EGD73507:1.3373314895)65:0.3363992658,Cowc_KJE97947:2.7602209738)94:0.2181921801,((Scil_scict014091.1:1.4445863918,Scil_scict012796.3:1.2632612246)99:0.5038153181,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA181110:2.6308625633,Sros_EGD73338:1.8416348906)88:0.2850081035)80:0.2384213367)80:0.4129315443)100:0.5808936766,(Mlei_ML2207.g8.i1:0.4033637433,Pbac_sb2644616:0.1586220061)100:1.0196336985)95:0.3040739106)96:0.1090334995,Smed_SMEST062973002.1:1.8402482613)95:0.2879195169,(((((((Adig_XM_015908372.1:0.0254049032,Gfas_gfas1.m1.14916.m1:0.0050568909)75:0.0074720685,(Fspp_ffun1.m4.19096.m1:0.0025237236,Gasp_gasp1.m3.26800.m1:0.0049312482)90:0.0073617576)65:0.0100241661,Spis_XP_022779483_1:0.0000026319)100:0.1154009567,(Exapal_XM_028656936.1:0.0481868156,Nvec_v1g119733:0.0606483311)100:0.0905789306)100:0.1117300094,(Dgig_XM_028540514.1:0.0499354973,Xesp_011953-T1:0.0531423452)100:0.1993141593)100:0.1213845500,((((Bflo_XM_035826473.1:0.2046716376,(Ctel_gnl_WGS_AMQN_CAPTEDRAFT_mRNA139538:0.2087118065,((Hsap_ENST00000398506:0.0024403083,Mmus_ENSMUST00000185131:0.0086334982)100:0.0707619847,((Hsap_ENST00000561208:0.0000020824,Mmus_ENSMUST00000028639:0.0054070678)100:0.0407769325,(Hsap_ENST00000561096:0.0412465761,Mmus_ENSMUST00000002495:0.0550813409)100:0.3686923903)95:0.0424629739)100:0.1819065781)90:0.0438064202)90:0.0167690246,(Dmel_FBtr0082255:0.0866677171,Tcas_TC008629_001:0.1298930310)100:0.3836025479)68:0.0582734963,(Skow_XM_006811461.1:0.2147028669,Spur_XM_030998664.1:0.3779807957)70:0.0745585332)98:0.1437690606,((Smed_SMEST078684002.1:0.4112041288,Smed_SMEST006530001.1:0.4016816706)100:0.3228207213,((Hmia_HMIM006988-RA:0.0000020824,Hmia_HMIM007254-RA:0.0000020824)100:0.2435438198,Hmia_HMIM009354-RA:0.4358100085)100:0.4263002512)84:0.0982342920)81:0.1453753682)84:0.1279466233,((Vmul_SimC398114:0.6479790654,Pbac_sb2639882:0.1961992281)100:0.8115439188,(Hhon_g10567.t1:0.0308976110,Tadh_TriadT59844:0.0345921836)100:0.7726058585)67:0.0385212127)83:0.0995245145)90:0.0690556704,(Chem_TCONS_00004568:0.3402421182,Hvul_g4616_1:0.3613193489)100:0.2706739426)91:0.0300775617,(Morvir_scaffold31.g41.t1:0.2662390148,Aaur_scaffold348.g8.t1:1.1285418909)95:0.1075295856);
+
+TIME STAMP
+----------
+
+Date and time: Sun Feb  7 13:36:30 2021
+Total CPU time used: 11652.46667 seconds (3h:14m:12s)
+Total wall-clock time used: 1514.210788 seconds (0h:25m:14s)
+

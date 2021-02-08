@@ -1,18 +1,18 @@
 # input variables
 n_cpu="8"
-input_fastas="../orthobench-test/proteomes/"
 alignments="results_trees"
 searches="results_searches"
 
 seed_fasta=$1
 ref=$2
+input_fastas=$3
 
 mkdir -p ${alignments}
 mkdir -p ${searches}
 
 # concatenate all proteomes
 echo "# Prepare input..."
-zcat ${input_fastas}/*.fasta.gz > ${input_fastas}/all_proteomes.fa
+zcat ${input_fastas}/*.fasta.gz | bioawk -c fastx '{ print ">"$1"\n"$2 }' > ${input_fastas}/all_proteomes.fa
 esl-sfetch --index ${input_fastas}/all_proteomes.fa
 diamond makedb --in ${input_fastas}/all_proteomes.fa -d ${input_fastas}/all_proteomes.fa --quiet
 
