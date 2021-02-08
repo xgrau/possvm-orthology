@@ -44,9 +44,9 @@ bash s01_get_trees-diamond.sh
 
 ```bash
 # find OGs in each tree with possom:
-for i in orthobench_trees/tight/*.tre ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." -outgroup outgroups.txt ; done
-for i in orthobench_trees/raw/*.tre ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." -outgroup outgroups.txt ; done
-for i in results_orthology/*.treefile ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." -outgroup outgroups.txt ; done
+for i in orthobench_trees/tight/*.tre ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." ; done
+for i in orthobench_trees/raw/*.tre ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." ; done
+for i in results_orthology/*.treefile ; do python ../../possvm.py -i $i -p  $(basename ${i%%.*}).possom -ogprefix "$(basename ${i%%.*})." ; done
 ```
 
 6. Calculate accuracy relative to `refOGs.csv`:

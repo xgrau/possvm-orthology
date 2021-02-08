@@ -24,7 +24,7 @@ for (set in set_list) {
   
   # load data
   ref = read.table(ref_fn, sep="\t", header = F, col.names = c("qseqid","sseqid","pident","length","mismatch","gapopen","qstart","qend","sstart","send","evalue","bitscore"), stringsAsFactors=F)
-  ref = ref[ref$pident==100,]
+  ref = ref[ref$pident>=99,]
   ref$refOG = stringr::str_split(ref$qseqid, "_", simplify = T)[,3]
   ref$species = stringr::str_split(ref$sseqid, pattern="_", simplify = T)[,1]
   ref = ref[,c("sseqid","refOG","species")]
