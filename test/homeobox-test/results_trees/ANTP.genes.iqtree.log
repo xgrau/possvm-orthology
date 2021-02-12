@@ -2041,3 +2041,64 @@ NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.989
 NOTE: UFBoot does not converge, continue at least 100 more iterations
 Iteration 2810 / LogL: -175906.773 / Time: 29h:44m:38s (1h:54m:59s left)
 Iteration 2820 / LogL: -175924.542 / Time: 29h:50m:47s (1h:48m:37s left)
+Iteration 2830 / LogL: -176040.839 / Time: 29h:57m:13s (1h:42m:16s left)
+Iteration 2840 / LogL: -175908.600 / Time: 30h:3m:9s (1h:35m:54s left)
+Iteration 2850 / LogL: -175935.991 / Time: 30h:9m:41s (1h:29m:33s left)
+Log-likelihood cutoff on original alignment: -175989.360
+Iteration 2860 / LogL: -175939.799 / Time: 30h:17m:17s (1h:23m:16s left)
+Iteration 2870 / LogL: -175972.372 / Time: 30h:23m:56s (1h:16m:55s left)
+Iteration 2880 / LogL: -176000.961 / Time: 30h:30m:54s (1h:10m:35s left)
+Iteration 2890 / LogL: -176113.051 / Time: 30h:37m:32s (1h:4m:14s left)
+Iteration 2900 / LogL: -175881.286 / Time: 30h:44m:5s (0h:57m:53s left)
+Log-likelihood cutoff on original alignment: -175989.360
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.991
+Iteration 2910 / LogL: -175958.659 / Time: 30h:50m:18s (0h:57m:14s left)
+Iteration 2920 / LogL: -176077.319 / Time: 30h:56m:47s (0h:50m:53s left)
+Iteration 2930 / LogL: -175920.776 / Time: 31h:2m:56s (0h:44m:31s left)
+Iteration 2940 / LogL: -175934.901 / Time: 31h:9m:8s (0h:38m:9s left)
+Iteration 2950 / LogL: -175919.844 / Time: 31h:14m:46s (0h:31m:47s left)
+Log-likelihood cutoff on original alignment: -175989.360
+Iteration 2960 / LogL: -175926.751 / Time: 31h:21m:46s (0h:25m:26s left)
+Iteration 2970 / LogL: -175942.147 / Time: 31h:28m:6s (0h:19m:4s left)
+Iteration 2980 / LogL: -175925.298 / Time: 31h:34m:15s (0h:12m:43s left)
+Iteration 2990 / LogL: -175903.286 / Time: 31h:40m:43s (0h:6m:21s left)
+TREE SEARCH COMPLETED AFTER 2992 ITERATIONS / Time: 31h:42m:4s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -175862.471
+Optimal log-likelihood: -175862.469
+Gamma shape alpha: 1.014
+Parameters optimization took 1 rounds (2.114 sec)
+BEST SCORE FOUND : -175862.469
+Creating bootstrap support values...
+Split supports printed to NEXUS file results_trees/ANTP.genes.iqtree.splits.nex
+Total tree length: 339.212
+
+Total number of iterations: 2992
+CPU time used for tree search: 422845.456 sec (117h:27m:25s)
+Wall-clock time used for tree search: 114037.021 sec (31h:40m:37s)
+Total CPU time used: 423183.027 sec (117h:33m:3s)
+Total wall-clock time used: 114134.998 sec (31h:42m:14s)
+
+Computing bootstrap consensus tree...
+Reading input file results_trees/ANTP.genes.iqtree.splits.nex...
+1294 taxa and 6869 splits.
+Consensus tree written to results_trees/ANTP.genes.iqtree.contree
+Reading input trees file results_trees/ANTP.genes.iqtree.contree
+Log-likelihood of consensus tree: -175839.808
+
+Analysis results written to: 
+  IQ-TREE report:                results_trees/ANTP.genes.iqtree.iqtree
+  Maximum-likelihood tree:       results_trees/ANTP.genes.iqtree.treefile
+  Likelihood distances:          results_trees/ANTP.genes.iqtree.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          results_trees/ANTP.genes.iqtree.splits.nex
+  Consensus tree:                results_trees/ANTP.genes.iqtree.contree
+  Screen log file:               results_trees/ANTP.genes.iqtree.log
+
+Date and Time: Mon Feb  8 10:37:19 2021
