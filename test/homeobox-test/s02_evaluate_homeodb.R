@@ -9,12 +9,12 @@ out_fo = "results_evaluation/"
 
 # list of datasets
 set_list = list(
-  list(id = "ANTPm", ref = "results_searches/ANTPm.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Bflo","Dmel","Tcas")),
-  list(id = "PRDm", ref = "results_searches/PRDm.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Bflo","Dmel","Tcas")),
-  list(id = "TALEm", ref = "results_searches/TALEm.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Bflo","Dmel","Tcas")),
+  list(id = "ANTPm", ref = "results_searches/ANTPm.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Galgal","Xtro","Drer","Bflo","Dmel","Apimel","Tcas")),
+  list(id = "PRDm", ref = "results_searches/PRDm.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Galgal","Xtro","Drer","Bflo","Dmel","Apimel","Tcas")),
+  list(id = "TALEm", ref = "results_searches/TALEm.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Galgal","Xtro","Drer","Bflo","Dmel","Apimel","Tcas")),
   list(id = "ANTP", ref = "results_searches/ANTP.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Ggal","Xtro","Drer","Bflo","Dmel","Tcas","Cele")),
   list(id = "PRD", ref = "results_searches/PRD.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Ggal","Xtro","Drer","Bflo","Dmel","Tcas","Cele")),
-  list(id = "tale", ref = "results_searches/tale.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Ggal","Xtro","Drer","Bflo","Dmel","Tcas","Cele"))
+  list(id = "TALE", ref = "results_searches/TALE.seed.diamond.csv", eval_sps = c("Hsap","Mmus","Ggal","Xtro","Drer","Bflo","Dmel","Tcas","Cele"))
 )
 
 for (set in set_list) {
