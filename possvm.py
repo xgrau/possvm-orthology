@@ -28,6 +28,7 @@ arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONA
 arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Turns on iterative midpoint rooting with N iterations, which is used instead of the default midpoint rooting.", type=int)
 arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false", help="OPTIONAL: Turns off tree rooting using midpoint root, in case your trees are already rooted.")
 arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Turns off printing of annotated phylogeny in PDF format (annotated newick is still produced).")
+arp.add_argument("-printallpairs","--printallpairs", required=False, action="store_true", help="OPTIONAL: Turns on the production of a table with pairwise orthology/paralogy relationships between all pairs of genes in the phylogeny (default behaviour is to report pairs of orthologs only).")
 arp.add_argument("-min_transfer_support","--min_transfer_support", required=False, default=None, help="OPTIONAL: Min node support to allow transfer of labels from labelled to non-labelled groups in the same clade. If not set, this step is skipped.", type=float)
 arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, action="store_true", help="OPTIONAL: Will attempt to \"clean\" gene names from the reference table (see -r) used to create cluster names, to avoid very long strings in groups with many paralogs. Currently, it collapses number suffixes in gene names, and converts strings such as Hox2/Hox4 to Hox2-4. More complex substitutions are not supported.")
 arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length in the PDF file, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
@@ -55,6 +56,7 @@ sos    = arl["sos"]
 split_ch = arl["split"].replace("\"","")
 itermidroot = arl["itermidroot"]
 do_print = arl["skipprint"]
+do_allpairs = arl["printallpairs"]
 do_root = arl["skiproot"]
 min_transfer_support = arl["min_transfer_support"]
 clean_gene_names = arl["clean_gene_names"]
@@ -129,7 +131,7 @@ def print_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names
 
 # read in phylogeny and execute event parser to obtain table-like network of 
 # orthologous relationships, using the species overlap algorithm
-def parse_phylo(phy_fn, phy_id, do_root, outgroup=outgroup):
+def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, outgroup=outgroup):
 
 	# load input
 	phy = ete3.PhyloTree("%s" % (phy_fn))
@@ -164,7 +166,7 @@ def parse_phylo(phy_fn, phy_id, do_root, outgroup=outgroup):
 				phy_it.set_outgroup(phy_outgroup_it)
 
 				# parse events and re-do clustering
-				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it, outgroup=outgroup)
+				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it, outgroup=outgroup, do_allpairs=False)
 				clu_it = clusters_mcl(evs=evs_it, node_list=phy_lis_it, verbose=False)
 
 				# store number of orthogroups in this particular iteration
@@ -201,7 +203,7 @@ def parse_phylo(phy_fn, phy_id, do_root, outgroup=outgroup):
 	phy.ladderize()
 
 	# parse events
-	evs, eva, phy, phy_lis = parse_events(phy=phy, outgroup=outgroup)
+	evs, eva, phy, phy_lis = parse_events(phy=phy, outgroup=outgroup, do_allpairs=do_allpairs)
 	clu = clusters_mcl(evs=evs, node_list=phy_lis)
 
 	# output from event parsing
@@ -210,7 +212,7 @@ def parse_phylo(phy_fn, phy_id, do_root, outgroup=outgroup):
 
 # parse phylogenies with ETE to obtain a network-like table defining 
 # orthologous relationships, using the species overlap algorithm
-def parse_events(phy, outgroup):
+def parse_events(phy, outgroup, do_allpairs):
 
 	# list of genes in phylogeny
 	phy_lis = phy.get_leaf_names()
@@ -247,21 +249,24 @@ def parse_events(phy, outgroup):
 		evs = evs.drop(np.where(np.logical_or(in_evs_sps, out_evs_sps))[0])
 		phy_lis =  [ i for i in phy_lis if i.split(split_ch)[0] not in set(outgroup) ]
 
-	# duplications and speciation events
-	eva    = np.empty((len(evev)*len(evev), 5), dtype="object")
-	eva[:] = np.nan
-	n = 0
-	for ev in evev:
-		for ii in ev.in_seqs:
-			for oi in ev.out_seqs:
-				eva[n,0] = ii
-				eva[n,1] = oi
-				eva[n,2] = ev.branch_supports[0]
-				eva[n,3] = ev.etype
-				eva[n,4] = ev.sos
-				n = n + 1
-	eva = pd.DataFrame(eva).dropna()
-	eva.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+	if do_allpairs:
+		# duplications and speciation events
+		eva    = np.empty((len(evev)*len(evev), 5), dtype="object")
+		eva[:] = np.nan
+		n = 0
+		for ev in evev:
+			for ii in ev.in_seqs:
+				for oi in ev.out_seqs:
+					eva[n,0] = ii
+					eva[n,1] = oi
+					eva[n,2] = ev.branch_supports[0]
+					eva[n,3] = ev.etype
+					eva[n,4] = ev.sos
+					n = n + 1
+		eva = pd.DataFrame(eva).dropna()
+		eva.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+	else:
+		eva = []
 
 	return evs, eva, phy, phy_lis
 
@@ -919,7 +924,7 @@ def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 # sos=0
 
 # read phylogeny, find speciation events, create network, do clustering
-evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_root=do_root)
+evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root)
 
 # make human readable cluster names (instead of integers)
 clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
@@ -929,9 +934,10 @@ clu["node_ref"] = ""
 clu["supports"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
 
 # infer gene-to-gene orthology relationship classes (inparalog/outparalog/ortholog)
-eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
-eva = eva[["in_gene","out_gene","ev_type"]]
-eva = pd.DataFrame(eva).dropna()
+if do_allpairs:
+	eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
+	eva = eva[["in_gene","out_gene","ev_type"]]
+	eva = pd.DataFrame(eva).dropna()
 
 # try to annotate reference sequences
 if do_ref:
@@ -974,7 +980,8 @@ clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=
 
 # save gene pair information (orthologs and all genes)
 evs.to_csv("%s/%s.pairs_orthologs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
-eva.to_csv("%s/%s.pairs_all.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
+if do_allpairs:
+	eva.to_csv("%s/%s.pairs_all.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
 
 logging.info("%s Done" % phy_id)
 
