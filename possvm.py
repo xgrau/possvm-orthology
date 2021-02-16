@@ -954,7 +954,7 @@ if do_ref:
 	print_attributes    = ["cluster_name"]
 
 	# find named orthologs anywhere in the phylogeny
-	clu["node_ref"] = ref_known_any(clu=clu, evs=evs, ref=ref, syn_nod=None)
+	clu["node_ref"] = ref_known_any(clu=clu, evs=evs, ref=ref,ref_spi=refsps, syn_nod=None)
 	print_attributes.append("node_ref")
 
 	# extend cluster-wise annotations
