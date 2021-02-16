@@ -996,7 +996,6 @@ if __name__ == '__main__':
 	clu_print = clu[["node","cluster_name","support","node_ref","node_ref_support"]]
 	clu_print.columns = ["gene","orthogroup","orthogroup_support","reference_ortholog","reference_support"]
 	clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
-	clu.to_csv("%s/%s.ortholog_groups_allinfo.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
 
 	# save gene pair information (orthologs and all genes)
 	evs.to_csv("%s/%s.pairs_orthologs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
