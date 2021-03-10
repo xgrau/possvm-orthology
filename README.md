@@ -199,6 +199,17 @@ pandas                    1.1.3            py36he6710b0_0
 python                    3.6.12               hcff3b4d_2  
 ```
 
+Once these dependencies are up and running, you can run *Possvm* like any Python script:
+
+```bash
+python possvm.py -h
+
+# Or maybe add it as an alias?
+echo "alias possvm=\"python $(pwd)/possvm.py\"" >> ~/.bashrc
+source ~/.bashrc
+possvm -h
+```
+
 ### Examples
 
 Some examples
