@@ -161,17 +161,17 @@ optional arguments:
 
 ### Install *Possvm* and its dependencies
 
-***Possvm*** depends on the [*ETE* toolkit](http://etetoolkit.org/) Python library, which currently works best with Python 3.6 and can be installed via *conda*. We thus recommend that you use conda to install *ETE* and all other dependencies.
+***Possvm*** depends on the [*ETE* toolkit](http://etetoolkit.org/) Python library, which currently works best with Python 3.6 or greater and can be installed via *conda*. We thus recommend that you use conda to install *ETE* and all other dependencies.
 
 Once you have a working installation of *conda* (see [here for instructions](http://etetoolkit.org/download/)), you can run the following commands:
 
 ```bash
 # create environment for possvm
-conda create -n possvm python=3.6
+conda create -n possvm
 # install ETE toolkit
 conda install -c etetoolkit ete3
 # install other dependencies
-conda install -c bioconda pandas networkx markov_clustering matplotlib
+conda install -c bioconda pandas networkx markov_clustering matplotlib numpy
 # activate the environment
 conda activate possvm
 ```
