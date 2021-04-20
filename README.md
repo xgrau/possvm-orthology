@@ -174,12 +174,10 @@ Once you have a working installation of *conda* (see [here for instructions](htt
 ```bash
 # create environment for possvm
 conda create -n possvm
-# install ETE toolkit
-conda install -c etetoolkit ete3
-# install other dependencies
-conda install -c bioconda pandas networkx markov_clustering matplotlib numpy
-# activate the environment
 conda activate possvm
+# install dependencies
+conda install -c etetoolkit ete3
+conda install -c bioconda pandas networkx markov_clustering matplotlib numpy
 ```
 
 *Alternatively*, you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
@@ -187,7 +185,6 @@ conda activate possvm
 ```bash
 # create env and install packages
 conda env create -n possvm --file environment.yaml
-# activate the environment
 conda activate possvm
 ```
 
