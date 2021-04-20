@@ -20,20 +20,43 @@ Basic steps:
 2. Obtain orthology clusters from pairwise orthology relationships.
 3. Produce parseable tables with orthogroups. Orthogroups can be 'labelled' using names from reference member genes.
 
-## How to cite
+## Manual
 
-If you use *Possvm*, please cite the following papers:
+All functions are available in the **`possvm.py`** script.
 
-* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](XXXXX)**.
-* *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
-* Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
-* *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
+### Input and output
 
-## Usage
+Input:
 
-**`possvm.py`** is the main script, used to parse phylogenetic trees and obtain sub-groups of genes that constitute ortholog clusters.
+1. Gene trees in **NEWICK format**, which may contain node supports (node supports are only necessary for some extra functionalities).
+2. Optionally, a list of reference genes with names can be supplied (`-r` flag). *Possvm* will use it to label the orthgroups with user-supplied names.
 
-Usage:
+Output:
+
+1. Per-gene orthogroup classification (filename: `ortholog_groups.csv`). A CSV table with all genes and their annotations, in the following format:
+
+```bash
+gene        orthogroup   orthogroup_support   reference_ortholog  reference_support
+spA_gene1   OG0          100.0                spA_gene1           100.0
+spB_gene2   OG0          100.0                spA_gene1           90.0
+spC_gene3   OG0          100.0                spA_gene1           100.0
+spB_gene4   OG1          75.0                           
+spC_gene5   OG1          75.0
+```
+  
+> * `gene` is the gene id
+> * `orthogroup` is the orthogroup id produced by *Possvm*
+> * `orthogroup_support` is the statistical support at the deepest node of each orthogroup (if available, blank otherwise)
+> * `reference_ortholog`: direct orthologs of each gene in the list of reference gene names (blank if no list supplied)
+> * `reference_support`: statistical support at the deepest node separating each gene and their orthologs in the list of reference gene names (blank if no list supplied/no supports available).
+
+2. Annotated phylogeny in Newick and PDF format (filenames: `ortholog_groups.newick` and `ortholog_groups.newick.pdf`; the `-skipprint` flag omits PDF production)
+
+3. Pairs of orthologous genes and statistical support for their relationship, if available (filename: `ortholog_pairs.csv`). It is also possible to report all pairwise relationships between genes (orthologs and paralogs) using the `-printallpairs` flag (filename: `pairs_all.csv`)
+
+### Usage
+
+Available options:
 
 ```man
 usage: possvm.py [-h] -i IN [-o OUT] [-p PHY] [-r REF] [-refsps REFSPS]
@@ -120,17 +143,27 @@ optional arguments:
                         Defaults to "OG".
 ```
 
-Input:
+### Test
 
-* Phylogenies must be in **newick format** and can contain node supports.
+You can test *Possvm* using a small phylogeny of [fatty acid synthases from three insects](https://elifesciences.org/articles/58019) (*Drosophila melanogaster* and two mosquitoes, *Anopheles gambiae* and *Aedes aegypti*), which can be found in the `test/` folder.
 
-* If you are using the **single tree mode**, use `-phy` to point to the gene tree.
+1. Identify ortholog clusters in the gene tree (`OG0` to `OG4`):
 
-* If you are using the **tree collection mode**, use `-phy` to point to the tree folder. Each phylogeny in the tree folder must be named as follows: `orthogroup_name.suffix`. The suffix is indicated with the `-suf` flag.
+```bash
+possvm -i test/fa_synthases.newick -p fa_synthases_unnamed
+# -i path to gene tree
+# -p output filename
+```
 
-Output:
+![unnamed FA syntase tree](./img/fig2.png)
 
-* describe
+2. Same, but annotating the orthogroups with *Drosophila* gene names if possible, and reporting relationships between all gene pairs:
+
+```bash
+possvm -i test/fa_synthases.newick -r test/drosophila_gene_names.csv -p fa_synthases_named -printallpairs
+```
+
+![named FA synthase tree](./img/fig3.png)
 
 ### Installation
 
@@ -177,60 +210,17 @@ Once these dependencies are up and running, you can run *Possvm* like any Python
 ```bash
 python possvm.py -h
 
-# Or maybe add it as an alias?
+# maybe add it as an alias, because you're going to use it everyday?
 echo "alias possvm=\"python $(pwd)/possvm.py\"" >> ~/.bashrc
 source ~/.bashrc
 possvm -h
 ```
 
-### Examples
+## How to cite
 
-Some examples.
+If you use *Possvm*, please cite the following papers:
 
-### Gene ages with `possvm_geneage.py`
-
-**`possvm_geneage.py`**: a simple way to obtain the **ages of genes and clusters of orthologs**. It takes as input the output table from `possvm.py` (or any similarly formatted table) and a species tree, and outputs a new table with the age of each orthogroup and each gene.
-
-All gene ages are relative to a pre-defined species of reference, and are defined as follows:
-
-* relative numeric
-* relative outgroup pairs
-* named ancestors, if available
-
-It can also be used to analyse outputs from Orthofinder/OrthoMCL. 
-
-This script **requires a species tree** in newick format.
-
-Usage:
-
-```bash
-python possvm_nodeage.py -h
-usage: possvm_nodeage.py [-h] -tree TREE -ort ORT -out OUT [-ref REF]
-                         [-dict DICT] [-gcol GCOL] [-ccol CCOL] [-split SPLIT]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -tree TREE, --tree TREE
-                        newick file with species tree
-  -ort ORT, --ort ORT   table of orthologs (long format, with headers; min
-                        info: OG <tab> gene1)
-  -out OUT, --out OUT   output prefix
-  -ref REF, --ref REF   OPTIONAL: reference species (ages are relative to this
-                        species). If "ALLSPS" (default), relative ages to all
-                        sps are calculated (can be slow)
-  -dict DICT, --dict DICT
-                        OPTIONAL: dictionary file with named nodes, one per
-                        line (can be incomplete). Format: spsA,spsB <tab>
-                        nodename. If "NO" (default), do nothing
-  -gcol GCOL, --gcol GCOL
-                        OPTIONAL: name of gene column in --ort/-t table.
-                        Default is "node"
-  -ccol CCOL, --ccol CCOL
-                        OPTIONAL: name of orthogroup column in --ort/-t table.
-                        Default is "og_cluster"
-  -split SPLIT, --split SPLIT
-                        OPTIONAL: character to split species and sequence
-                        names. Default is "_", e.g. Human_genename. WARNING:
-                        use quotation marks, e.g. -split "_" or -split "|"
-
-```
+* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](XXXXX)**.
+* *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
+* Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
+* *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
