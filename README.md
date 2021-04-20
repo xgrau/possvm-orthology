@@ -1,8 +1,8 @@
 # Possvm
 
-<img style="float: right;" src="./img/logo.png">
-
 **Possvm** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies O**v**erlap and **M**CL_) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in the **[*ETE* toolkit](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
+
+![Possvm logo](./img/logo.png)
 
 It **only requires a gene tree in newick format**, where the sequence name contains a prefix that indicates their species of origin, e.g. `human_gene1`. It does **not** require a species tree to infer orthologs.
 
