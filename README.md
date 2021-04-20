@@ -1,25 +1,35 @@
 # Possvm
 
-**Possvm** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies O**v**erlap and **M**CL_) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[*ETE* toolkit](http://etetoolkit.org/)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
+<img style="float: right;" src="./img/logo.png">
 
-Its basic functionality only requires a gene tree in newick format, with sequence name containing a prefix that indicates their species of origin, e.g. `human_gene1`. It does *not* require a species tree to infer orthologs, because it relies on the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in ETE (see [here](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)).
+**Possvm** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies O**v**erlap and **M**CL_) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in the **[*ETE* toolkit](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
+
+It **only requires a gene tree in newick format**, where the sequence name contains a prefix that indicates their species of origin, e.g. `human_gene1`. It does **not** require a species tree to infer orthologs.
 
 ## How it works
 
-Dibuix.
+An overview of *Possvm* functionality can be found here:
+
+> Orthology clustering from gene trees with *Possvm* ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](XXXXX))
+
+![Possvm logo](./img/fig1.png)
+
+Basic steps:
+
+1. Identification of orthology pairs using Species Overlap.
+2. Obtain orthology clusters from pairwise orthology relationships.
+3. Produce parseable tables with orthogroups. Orthogroups can be 'labelled' using names from reference member genes.
 
 ## How to cite
 
 If you use *Possvm*, please cite the following papers:
 
-* *Possvm* paper: **[here]**.
+* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](XXXXX)**.
 * *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
 * *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
 
-## Manual
-
-### Main script: `possvm.py`
+## Usage
 
 **`possvm.py`** is the main script, used to parse phylogenetic trees and obtain sub-groups of genes that constitute ortholog clusters.
 
@@ -29,7 +39,8 @@ Usage:
 usage: possvm.py [-h] -i IN [-o OUT] [-p PHY] [-r REF] [-refsps REFSPS]
                  [-s SOS] [-outgroup OUTGROUP] [-split SPLIT]
                  [-itermidroot ITERMIDROOT] [-skiproot] [-skipprint]
-                 [-min_transfer_support MIN_TRANSFER_SUPPORT]
+                 [-printallpairs] [-min_support_node MIN_SUPPORT_NODE]
+                 [-min_support_transfer MIN_SUPPORT_TRANSFER]
                  [-clean_gene_names] [-cut_gene_names CUT_GENE_NAMES]
                  [-ogprefix OGPREFIX]
 
@@ -40,22 +51,22 @@ optional arguments:
                         species, separated from gene name with a split
                         character. Default split character is "_", see --split
                         for options.
-  -o OUT, --out OUT     OPTIONAL: Path to output folder. Defaults to same
-                        directory as input file.
-  -p PHY, --phy PHY     OPTIONAL: Prefix for output files. Defaults to
+  -o OUT, --out OUT     OPTIONAL: String. Path to output folder. Defaults to
+                        same directory as input file.
+  -p PHY, --phy PHY     OPTIONAL: String. Prefix for output files. Defaults to
                         `basename` of input phylogeny. Default behaviour will
                         never overwrite original files, because it adds
                         suffixes.
-  -r REF, --ref REF     OPTIONAL: Path to a table indicating reference gene
-                        names that can be used for orthogroup labeling.
+  -r REF, --ref REF     OPTIONAL: String. Path to a table indicating reference
+                        gene names that can be used for orthogroup labeling.
                         Format: geneid <tab> name.
   -refsps REFSPS, --refsps REFSPS
-                        OPTIONAL: Comma-separated list of reference species
-                        that will be used for orthogroup labeling. If absent,
-                        all sequences present in the -r table will be
+                        OPTIONAL: String. Comma-separated list of reference
+                        species that will be used for orthogroup labeling. If
+                        absent, gene names present in the -r table will be
                         considered.
-  -s SOS, --sos SOS     OPTIONAL: Species overlap threshold used for orthology
-                        inference in ETE. Default is 0.
+  -s SOS, --sos SOS     OPTIONAL: Float. Species overlap threshold used for
+                        orthology inference in ETE. Default is 0.
   -outgroup OUTGROUP, --outgroup OUTGROUP
                         OPTIONAL: String. Define a set of species that are
                         treated as outgroups in the phylogeny, and excluded
@@ -65,29 +76,40 @@ optional arguments:
                         orthology clustering. Disabled by default.
   -split SPLIT, --split SPLIT
                         OPTIONAL: String to use as species prefix delimiter in
-                        gene ids, e.g. "_" for sequences formatted as
+                        gene ids, e.g. "_" for gene names formatted as
                         speciesA_geneX. Defaults to "_".
   -itermidroot ITERMIDROOT, --itermidroot ITERMIDROOT
-                        OPTIONAL: Turns on iterative midpoint rooting with N
-                        iterations, which is used instead of the default
-                        midpoint rooting.
+                        OPTIONAL: Integer. Turns on iterative midpoint rooting
+                        with INT iterations, which is used instead of the
+                        default midpoint rooting.
   -skiproot, --skiproot
-                        OPTIONAL: Turns off tree rooting using midpoint root,
-                        in case your trees are already rooted.
+                        OPTIONAL: Bool. Turns off tree rooting using midpoint
+                        root, in case your trees are already rooted.
   -skipprint, --skipprint
-                        OPTIONAL: Turns off printing of annotated tree in PDF
-                        (annotated newick is still produced).
-  -min_transfer_support MIN_TRANSFER_SUPPORT, --min_transfer_support MIN_TRANSFER_SUPPORT
-                        OPTIONAL: Min node support to allow transfer of labels
-                        from labelled to non-labelled groups in the same
-                        clade. If not set, this step is skipped.
+                        OPTIONAL: Bool. Turns off printing of annotated
+                        phylogeny in PDF format (annotated newick is still
+                        produced).
+  -printallpairs, --printallpairs
+                        OPTIONAL: Bool. Turns on the production of a table
+                        with pairwise orthology/paralogy relationships between
+                        all pairs of genes in the phylogeny (default behaviour
+                        is to report pairs of orthologs only).
+  -min_support_node MIN_SUPPORT_NODE, --min_support_node MIN_SUPPORT_NODE
+                        OPTIONAL: Float. Min node support to consider
+                        orthology relationships. If not set, all relationships
+                        are considered.
+  -min_support_transfer MIN_SUPPORT_TRANSFER, --min_support_transfer MIN_SUPPORT_TRANSFER
+                        OPTIONAL: Float. Min node support to allow transfer of
+                        labels from labelled to non-labelled groups in the
+                        same clade. If not set, this step is skipped.
   -clean_gene_names, --clean_gene_names
-                        OPTIONAL: Will attempt to "clean" gene names from the
-                        reference table (see -r) used to create cluster names,
-                        to avoid very long strings in groups with many
-                        paralogs. Currently, it collapses number suffixes in
-                        gene names, and converts strings such as Hox2/Hox4 to
-                        Hox2-4. More complex substitutions are not supported.
+                        OPTIONAL: Bool. Will attempt to "clean" gene names
+                        from the reference table (see -r) used to create
+                        cluster names, to avoid very long strings in groups
+                        with many paralogs. Currently, it collapses number
+                        suffixes in gene names, and converts strings such as
+                        Hox2/Hox4 to Hox2-4. More complex substitutions are
+                        not supported.
   -cut_gene_names CUT_GENE_NAMES, --cut_gene_names CUT_GENE_NAMES
                         OPTIONAL: Integer. If set, will shorten cluster name
                         strings to the given length in the PDF file, to avoid
@@ -109,6 +131,61 @@ Input:
 Output:
 
 * describe
+
+### Installation
+
+***Possvm*** depends on the [*ETE* toolkit](http://etetoolkit.org/) Python library, which currently works best with Python 3.6 or greater and can be installed via *conda*. We thus recommend that you use conda to install *ETE* and all other dependencies.
+
+Once you have a working installation of *conda* (see [here for instructions](http://etetoolkit.org/download/)), you can run the following commands:
+
+```bash
+# create environment for possvm
+conda create -n possvm
+# install ETE toolkit
+conda install -c etetoolkit ete3
+# install other dependencies
+conda install -c bioconda pandas networkx markov_clustering matplotlib numpy
+# activate the environment
+conda activate possvm
+```
+
+*Alternatively*, you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
+
+```bash
+# create env and install packages
+conda env create -n possvm --file environment.yaml
+# activate the environment
+conda activate possvm
+```
+
+Both options should download and install all basic dependencies, including the following packages:
+
+```bash
+ete3                      3.1.2              pyh39e3cac_0    etetoolkit
+markov_clustering         0.0.6                      py_0    bioconda
+matplotlib                3.3.2                h06a4308_0  
+matplotlib-base           3.3.2            py36h817c723_0  
+networkx                  2.5                        py_0  
+numpy                     1.19.2           py36h54aff64_0  
+numpy-base                1.19.2           py36hfa32c7d_0  
+pandas                    1.1.3            py36he6710b0_0  
+python                    3.6.12               hcff3b4d_2  
+```
+
+Once these dependencies are up and running, you can run *Possvm* like any Python script:
+
+```bash
+python possvm.py -h
+
+# Or maybe add it as an alias?
+echo "alias possvm=\"python $(pwd)/possvm.py\"" >> ~/.bashrc
+source ~/.bashrc
+possvm -h
+```
+
+### Examples
+
+Some examples.
 
 ### Gene ages with `possvm_geneage.py`
 
@@ -157,60 +234,3 @@ optional arguments:
                         use quotation marks, e.g. -split "_" or -split "|"
 
 ```
-
-
-### Install *Possvm* and its dependencies
-
-***Possvm*** depends on the [*ETE* toolkit](http://etetoolkit.org/) Python library, which currently works best with Python 3.6 or greater and can be installed via *conda*. We thus recommend that you use conda to install *ETE* and all other dependencies.
-
-Once you have a working installation of *conda* (see [here for instructions](http://etetoolkit.org/download/)), you can run the following commands:
-
-```bash
-# create environment for possvm
-conda create -n possvm
-# install ETE toolkit
-conda install -c etetoolkit ete3
-# install other dependencies
-conda install -c bioconda pandas networkx markov_clustering matplotlib numpy
-# activate the environment
-conda activate possvm
-```
-
-Alternatively, you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
-
-```bash
-# create env and install packages
-conda env create -n possvm --file environment.yaml
-# activate the environment
-conda activate possvm
-```
-
-Both options should download and install all basic dependencies, including the following packages:
-
-```bash
-ete3                      3.1.2              pyh39e3cac_0    etetoolkit
-markov_clustering         0.0.6                      py_0    bioconda
-matplotlib                3.3.2                h06a4308_0  
-matplotlib-base           3.3.2            py36h817c723_0  
-networkx                  2.5                        py_0  
-numpy                     1.19.2           py36h54aff64_0  
-numpy-base                1.19.2           py36hfa32c7d_0  
-pandas                    1.1.3            py36he6710b0_0  
-python                    3.6.12               hcff3b4d_2  
-```
-
-Once these dependencies are up and running, you can run *Possvm* like any Python script:
-
-```bash
-python possvm.py -h
-
-# Or maybe add it as an alias?
-echo "alias possvm=\"python $(pwd)/possvm.py\"" >> ~/.bashrc
-source ~/.bashrc
-possvm -h
-```
-
-### Examples
-
-Some examples
-
