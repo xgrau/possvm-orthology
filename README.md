@@ -1,6 +1,6 @@
 # Possvm
 
-**Possvm** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies o**V**erlap and **M**CL_) is a python tool to analyse pre-computed gene trees and identify pairs and clusters of orthologous genes. It takes advantage of the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in the **[*ETE* toolkit](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
+***Possvm*** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies o**V**erlap and **M**CL_) is a python tool to analyse pre-computed gene trees and identify pairs and clusters of orthologous genes. It takes advantage of the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in the **[*ETE* toolkit](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
 
 ![Possvm logo](./img/logo.png)
 
