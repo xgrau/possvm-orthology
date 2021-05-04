@@ -218,6 +218,6 @@ possvm -h
 If you use *Possvm*, please cite the following papers:
 
 * *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1)**.
-* *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
+* *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](https://academic.oup.com/mbe/article/33/6/1635/2579822)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
-* *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
+* *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://pubmed.ncbi.nlm.nih.gov/11917018/)**.
