@@ -10,7 +10,7 @@ It **only requires a gene tree in newick format**, where the sequence name conta
 
 An overview of *Possvm* functionality can be found here:
 
-> Orthology clustering from gene trees with *Possvm* ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](XXXXX))
+> Orthology clustering from gene trees with *Possvm* ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1))
 
 ![Possvm logo](./img/fig1.png)
 
@@ -217,7 +217,7 @@ possvm -h
 
 If you use *Possvm*, please cite the following papers:
 
-* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](XXXXX)** (pending).
+* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1)**.
 * *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
 * *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
