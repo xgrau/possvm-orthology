@@ -1,4 +1,4 @@
-# Possvm
+# *Possvm*
 
 ***Possvm*** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies o**V**erlap and **M**CL_) is a python tool to analyse pre-computed gene trees and identify pairs and clusters of orthologous genes. It takes advantage of the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in the **[*ETE* toolkit](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
 
@@ -40,15 +40,15 @@ gene        orthogroup   orthogroup_support   reference_ortholog  reference_supp
 spA_gene1   OG0          100.0                spA_gene1           100.0
 spB_gene2   OG0          100.0                spA_gene1           90.0
 spC_gene3   OG0          100.0                spA_gene1           100.0
-spB_gene4   OG1          75.0                           
-spC_gene5   OG1          75.0
+spB_gene4   OG1          75.0                 NA                  NA
+spC_gene5   OG1          75.0                 NA                  NA
 ```
   
 > * `gene` is the gene id
 > * `orthogroup` is the orthogroup id produced by *Possvm*
-> * `orthogroup_support` is the statistical support at the deepest node of each orthogroup (if available, blank otherwise)
-> * `reference_ortholog`: direct orthologs of each gene in the list of reference gene names (blank if no list supplied)
-> * `reference_support`: statistical support at the deepest node separating each gene and their orthologs in the list of reference gene names (blank if no list supplied/no supports available).
+> * `orthogroup_support` is the statistical support at the deepest node of each orthogroup (if available, `NA` otherwise)
+> * `reference_ortholog`: direct orthologs of each gene in the list of reference gene names (`NA` if no list supplied)
+> * `reference_support`: statistical support at the deepest node separating each gene and their orthologs in the list of reference gene names (`NA` if no list supplied/no supports available).
 
 2. Annotated phylogeny in Newick and PDF format (filenames: `ortholog_groups.newick` and `ortholog_groups.newick.pdf`; the `-skipprint` flag omits PDF production)
 
@@ -212,6 +212,10 @@ echo "alias possvm=\"python $(pwd)/possvm.py\"" >> ~/.bashrc
 source ~/.bashrc
 possvm -h
 ```
+
+## Benchmarking
+
+As part of our manuscript ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1)), we assessed *Possvm*'s accuracy against curated gene family classifications from the Orthobench and HomeoDB databases. You can find data and code to reproduce these analyses in [our companion repository](https://github.com/xgrau/possvm-orthology-benchmarking).
 
 ## How to cite
 
