@@ -36,7 +36,10 @@ human_gene1   gene_name_A
 human_gene2   gene_name_A
 human_gene3   gene_name_B
 
-# Note that this file can be redundant, i.e. you can use the same name for more than one gene id (useful to reduce paralog/isoform redundancy).
+# Note that this file can be redundant, i.e. you can use 
+# the same name for more than one gene id (useful to reduce 
+# paralog/isoform redundancy). 
+# Example in `test/drosophila_gene_names.csv`
 ```
 
 Output:
