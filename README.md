@@ -29,7 +29,15 @@ All functions are available in the **`possvm.py`** script.
 Input:
 
 1. Gene trees in **NEWICK format**, which may contain node supports (node supports are only necessary for some extra functionalities).
-2. Optionally, a list of reference genes with names can be supplied (`-r` flag). *Possvm* will use it to label the orthgroups with user-supplied names.
+2. Optionally, a list of reference genes with names can be supplied (`-r` flag). *Possvm* will use it to label the orthgroups with user-supplied names. This is a simple tab-separated table where the first column is the gene id (same as used in the gene tree file) and the second column is the gene name:
+
+```bash
+human_gene1   gene_name_A
+human_gene2   gene_name_A
+human_gene3   gene_name_B
+
+# Note that this file can be redundant, i.e. you can use the same name for more than one gene id (useful to reduce paralog/isoform redundancy).
+```
 
 Output:
 
