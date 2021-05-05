@@ -35,20 +35,20 @@ Output:
 
 1. Per-gene orthogroup classification (filename: `ortholog_groups.csv`). A CSV table with all genes and their annotations, in the following format:
 
-```bash
+```R
 gene        orthogroup   orthogroup_support   reference_ortholog  reference_support
 spA_gene1   OG0          100.0                spA_gene1           100.0
 spB_gene2   OG0          100.0                spA_gene1           90.0
 spC_gene3   OG0          100.0                spA_gene1           100.0
-spB_gene4   OG1          75.0                           
-spC_gene5   OG1          75.0
+spB_gene4   OG1          75.0                 NA                  NA
+spC_gene5   OG1          75.0                 NA                  NA
 ```
   
 > * `gene` is the gene id
 > * `orthogroup` is the orthogroup id produced by *Possvm*
-> * `orthogroup_support` is the statistical support at the deepest node of each orthogroup (if available, blank otherwise)
-> * `reference_ortholog`: direct orthologs of each gene in the list of reference gene names (blank if no list supplied)
-> * `reference_support`: statistical support at the deepest node separating each gene and their orthologs in the list of reference gene names (blank if no list supplied/no supports available).
+> * `orthogroup_support` is the statistical support at the deepest node of each orthogroup (`NA` if not supplied)
+> * `reference_ortholog`: direct orthologs of each gene in the list of reference gene names (`NA` if no list supplied)
+> * `reference_support`: statistical support at the deepest node separating each gene and their orthologs in the list of reference gene names (`NA` if no list supplied/no supports available).
 
 2. Annotated phylogeny in Newick and PDF format (filenames: `ortholog_groups.newick` and `ortholog_groups.newick.pdf`; the `-skipprint` flag omits PDF production)
 
@@ -58,7 +58,7 @@ spC_gene5   OG1          75.0
 
 Available options:
 
-```man
+```bash
 usage: possvm.py [-h] -i IN [-o OUT] [-p PHY] [-r REF] [-refsps REFSPS]
                  [-s SOS] [-outgroup OUTGROUP] [-split SPLIT]
                  [-itermidroot ITERMIDROOT] [-skiproot] [-skipprint]
