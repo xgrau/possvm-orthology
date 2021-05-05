@@ -1,6 +1,6 @@
 # Possvm
 
-**Possvm** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies O**v**erlap and **M**CL_) is a python utility that analyses pre-computed gene trees to identify orthologous sequences. It takes advantage of the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in the **[*ETE* toolkit](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
+***Possvm*** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies o**V**erlap and **M**CL_) is a python tool to analyse pre-computed gene trees and identify pairs and clusters of orthologous genes. It takes advantage of the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in the **[*ETE* toolkit](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
 
 ![Possvm logo](./img/logo.png)
 
@@ -10,7 +10,7 @@ It **only requires a gene tree in newick format**, where the sequence name conta
 
 An overview of *Possvm* functionality can be found here:
 
-> Orthology clustering from gene trees with *Possvm* ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](XXXXX))
+> Orthology clustering from gene trees with *Possvm* ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1))
 
 ![Possvm logo](./img/fig1.png)
 
@@ -35,20 +35,20 @@ Output:
 
 1. Per-gene orthogroup classification (filename: `ortholog_groups.csv`). A CSV table with all genes and their annotations, in the following format:
 
-```R
+```bash
 gene        orthogroup   orthogroup_support   reference_ortholog  reference_support
 spA_gene1   OG0          100.0                spA_gene1           100.0
 spB_gene2   OG0          100.0                spA_gene1           90.0
 spC_gene3   OG0          100.0                spA_gene1           100.0
-spB_gene4   OG1          75.0                 NA                  NA
-spC_gene5   OG1          75.0                 NA                  NA
+spB_gene4   OG1          75.0                           
+spC_gene5   OG1          75.0
 ```
   
 > * `gene` is the gene id
 > * `orthogroup` is the orthogroup id produced by *Possvm*
-> * `orthogroup_support` is the statistical support at the deepest node of each orthogroup (`NA` if not supplied)
-> * `reference_ortholog`: direct orthologs of each gene in the list of reference gene names (`NA` if no list supplied)
-> * `reference_support`: statistical support at the deepest node separating each gene and their orthologs in the list of reference gene names (`NA` if no list supplied/no supports available).
+> * `orthogroup_support` is the statistical support at the deepest node of each orthogroup (if available, blank otherwise)
+> * `reference_ortholog`: direct orthologs of each gene in the list of reference gene names (blank if no list supplied)
+> * `reference_support`: statistical support at the deepest node separating each gene and their orthologs in the list of reference gene names (blank if no list supplied/no supports available).
 
 2. Annotated phylogeny in Newick and PDF format (filenames: `ortholog_groups.newick` and `ortholog_groups.newick.pdf`; the `-skipprint` flag omits PDF production)
 
@@ -58,7 +58,7 @@ spC_gene5   OG1          75.0                 NA                  NA
 
 Available options:
 
-```bash
+```man
 usage: possvm.py [-h] -i IN [-o OUT] [-p PHY] [-r REF] [-refsps REFSPS]
                  [-s SOS] [-outgroup OUTGROUP] [-split SPLIT]
                  [-itermidroot ITERMIDROOT] [-skiproot] [-skipprint]
@@ -217,7 +217,7 @@ possvm -h
 
 If you use *Possvm*, please cite the following papers:
 
-* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](XXXXX)**.
-* *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](http://etetoolkit.org/)**.
+* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1)**.
+* *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](https://academic.oup.com/mbe/article/33/6/1635/2579822)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
-* *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://micans.org/mcl/)**.
+* *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://pubmed.ncbi.nlm.nih.gov/11917018/)**.
