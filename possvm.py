@@ -280,7 +280,7 @@ def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
 
 
 # function to cluster a network-like table of orthologs (from ETE) 
-def clusters_lpa(evs, node_list, cluster_label="cluster", label_if_no_annot="NA"):
+def clusters_lpa(evs, node_list, cluster_label="cluster"):
 
 	# clustering: create network
 	logging.info("Create network")
@@ -290,7 +290,7 @@ def clusters_lpa(evs, node_list, cluster_label="cluster", label_if_no_annot="NA"
 	
 	# clustering: asynchronous label propagation
 	logging.info("Find communities LPA")
-	clu_c = community.asyn_lpa_communities(evs_n, seed=11)and min_support_node > min_support_node
+	clu_c = community.asyn_lpa_communities(evs_n, seed=11)
 	clu_c = { frozenset(c) for c in clu_c }
 	logging.info("Find communities LPA num clusters = %i" % len(clu_c))
 	clu_c_clu = [ i for i, cluster in enumerate(clu_c) for node in cluster ]
@@ -306,7 +306,7 @@ def clusters_lpa(evs, node_list, cluster_label="cluster", label_if_no_annot="NA"
 	return clu
 
 # function to cluster a network-like table of orthologs (from ETE) 
-def clusters_louvain(evs, node_list, cluster_label="cluster", label_if_no_annot="NA"):
+def clusters_louvain(evs, node_list, cluster_label="cluster"):
 
 	# clustering: create network
 	logging.info("Create network")
