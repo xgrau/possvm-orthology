@@ -6,12 +6,6 @@ import numpy as np
 import pandas as pd
 import ete3
 import logging
-import networkx as nx
-from networkx.algorithms import community
-import markov_clustering
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
-import string
 
 # argument parser
 arp = argparse.ArgumentParser()
@@ -23,6 +17,7 @@ arp.add_argument("-p", "--phy",  required=False, default=None, help="OPTIONAL: S
 arp.add_argument("-r", "--ref",  required=False, default=None, help="OPTIONAL: String. Path to a table indicating reference gene names that can be used for orthogroup labeling. Format: geneid <tab> name.", type=str)
 arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: String. Comma-separated list of reference species that will be used for orthogroup labeling. If absent, gene names present in the -r table will be considered.", type=str)
 arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Float. Species overlap threshold used for orthology inference in ETE. Default is 0.", type=float)
+arp.add_argument("-method","--method", required=False, default="mcl", help="OPTIONAL: String. Clustering method. Options are `mcl` (MCL, default), `louvain` (Louvain), or `lpa` (label propagation algorithm)", type=str)
 arp.add_argument("-outgroup","--outgroup", required=False, default=None, help="OPTIONAL: String. Define a set of species that are treated as outgroups in the phylogeny, and excluded from orthology clustering. Can be a comma-separated list of species, or a file with one species per line. This option DOES NOT affect tree rooting, just orthology clustering. Disabled by default.", type=str)
 arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONAL: String to use as species prefix delimiter in gene ids, e.g. \"_\" for gene names formatted as speciesA_geneX. Defaults to \"_\".", type=str)
 arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Integer. Turns on iterative midpoint rooting with INT iterations, which is used instead of the default midpoint rooting.", type=int)
@@ -38,14 +33,15 @@ arp.add_argument("-v","--version", action="version", version="%(prog)s 1.0")
 
 arl = vars(arp.parse_args())
 
-# input variables
+# mandatory input variables
 phy_fn = arl["in"]
-out_fn = arl["out"]
 
 # output folder
-if out_fn is None:
+if arl["out"] is None:
 	out_fn = os.path.dirname(phy_fn)
-	
+else:
+	out_fn = arl["out"]
+
 # check if out_fn exists, and create it if it doesn't
 if not os.path.exists(out_fn):
     os.makedirs(out_fn)
@@ -55,7 +51,9 @@ if arl["phy"] is not None:
 else:
 	phy_id = os.path.basename(phy_fn)
 
+# other parameters
 sos    = arl["sos"]
+method = arl["method"]
 split_ch = arl["split"].replace("\"","")
 itermidroot = arl["itermidroot"]
 do_print = arl["skipprint"]
@@ -80,7 +78,7 @@ if  arl["refsps"] is not None:
 else:
 	refsps = arl["refsps"]
 
-
+# use an outgroup?
 if arl["outgroup"] is not None:
 	if os.path.exists(arl["outgroup"]):
 		outgroup = pd.read_csv(arl["outgroup"], names=["species"])["species"].values
@@ -135,7 +133,7 @@ def write_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names
 
 # read in phylogeny and execute event parser to obtain table-like network of 
 # orthologous relationships, using the species overlap algorithm
-def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, outgroup=outgroup):
+def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function, outgroup=outgroup):
 
 	# load input
 	phy = ete3.PhyloTree("%s" % (phy_fn))
@@ -169,7 +167,7 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, outgroup=outgroup):
 
 				# parse events and re-do clustering
 				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it, outgroup=outgroup, do_allpairs=False, min_support_node=min_support_node)
-				clu_it = clusters_mcl(evs=evs_it, node_list=phy_lis_it, verbose=False)
+				clu_it = clusters_function(evs=evs_it, node_list=phy_lis_it, verbose=False)
 
 				# store number of orthogroups in this particular iteration
 				num_evs_per_iter[roi] = len(np.unique(clu_it["cluster"].values))
@@ -212,7 +210,7 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, outgroup=outgroup):
 
 	# parse events
 	evs, eva, phy, phy_lis = parse_events(phy=phy, outgroup=outgroup, do_allpairs=do_allpairs, min_support_node=min_support_node)
-	clu = clusters_mcl(evs=evs, node_list=phy_lis)
+	clu = clusters_function(evs=evs, node_list=phy_lis)
 
 	# output from event parsing
 	return evs, eva, phy, phy_lis, clu
@@ -280,19 +278,25 @@ def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
 
 
 # function to cluster a network-like table of orthologs (from ETE) 
-def clusters_lpa(evs, node_list, cluster_label="cluster"):
+def clusters_lpa(evs, node_list, cluster_label="cluster",verbose=True):
+
+	import networkx as nx
+	from networkx.algorithms import community
 
 	# clustering: create network
-	logging.info("Create network")
+	if verbose:
+		logging.info("Create network")
 	evs_e = evs[["in_gene","out_gene","branch_support"]]
 	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
 	evs_n.add_nodes_from(node_list)
 	
 	# clustering: asynchronous label propagation
-	logging.info("Find communities LPA")
+	if verbose:
+		logging.info("Find communities LPA")
 	clu_c = community.asyn_lpa_communities(evs_n, seed=11)
 	clu_c = { frozenset(c) for c in clu_c }
-	logging.info("Find communities LPA num clusters = %i" % len(clu_c))
+	if verbose:
+		logging.info("Find communities LPA num clusters = %i" % len(clu_c))
 	clu_c_clu = [ i for i, cluster in enumerate(clu_c) for node in cluster ]
 	clu_c_noi = [ node for i, cluster in enumerate(clu_c) for node in cluster ]
 
@@ -301,15 +305,19 @@ def clusters_lpa(evs, node_list, cluster_label="cluster"):
 		"node"    :  clu_c_noi,
 		cluster_label : clu_c_clu,
 	}, columns=["node",cluster_label])
-	logging.info("Find communities LPA | num clustered genes = %i" % len(clu))
+	if verbose:
+		logging.info("Find communities LPA | num clustered genes = %i" % len(clu))
 
 	return clu
 
 # function to cluster a network-like table of orthologs (from ETE) 
-def clusters_louvain(evs, node_list, cluster_label="cluster"):
+def clusters_louvain(evs, node_list, cluster_label="cluster",verbose=True):
+
+	import networkx as nx
 
 	# clustering: create network
-	logging.info("Create network")
+	if verbose:
+		logging.info("Create network")
 	evs_e = evs[["in_gene","out_gene","branch_support"]]
 	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
 	evs_n.add_nodes_from(node_list)
@@ -317,13 +325,15 @@ def clusters_louvain(evs, node_list, cluster_label="cluster"):
 	# clustering: Louvain
 	import community as community_louvain
 
-	logging.info("Find communities Louvain")
+	if verbose:
+		logging.info("Find communities Louvain")
 	clu_x = community_louvain.best_partition(evs_n)
 	clu_c = {}
 	for k, v in clu_x.items():
 		clu_c[v] = clu_c.get(v, [])
 		clu_c[v].append(k)
-	logging.info("Find communities Louvain | num clusters = %i" % len(clu_c))
+	if verbose:
+		logging.info("Find communities Louvain | num clusters = %i" % len(clu_c))
 	clu_c_noi = [ n for i,c in enumerate(clu_c) for n in clu_c[c] ]
 	clu_c_clu = [ c for i,c in enumerate(clu_c) for n in clu_c[c] ]
 
@@ -332,7 +342,8 @@ def clusters_louvain(evs, node_list, cluster_label="cluster"):
 		"node"    :  clu_c_noi,
 		cluster_label : clu_c_clu,
 	}, columns=["node",cluster_label])
-	logging.info("Find communities Louvain | num clustered genes = %i" % len(clu))
+	if verbose:
+		logging.info("Find communities Louvain | num clustered genes = %i" % len(clu))
 
 	return clu
 
@@ -341,6 +352,9 @@ def clusters_louvain(evs, node_list, cluster_label="cluster"):
 # using MCL
 def clusters_mcl(evs, node_list, inf=1.5, verbose=True):
 
+	import markov_clustering
+	import networkx as nx
+	
 	if len(evs) > 0:
 
 		# MCL clustering: create network
@@ -651,27 +665,20 @@ def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 ####### MAIN ########
 #####################
 
-# # for testing:
-# phy_fn = "phy.zf-C2H2.HG73.seqs.iqtree.treefile"
-# phy_id = os.path.basename(phy_fn)
-# out_fn = "."
-# do_root = True
-# do_print = True
-# cut_gene_names = 60
-# clean_gene_names = False
-# min_support_transfer = 50
-# ogprefix = "OG"
-# itermidroot = None
-# ref_fn = "gene_names_human.csv"
-# do_ref = True
-# refsps = "Hsap"
-# split_ch="_"
-# sos=0
-
 if __name__ == '__main__':
+
+	# select clustering method
+	if method == "mcl":
+		clusters_function = clusters_mcl
+	elif method == "louvain":
+		clusters_function = clusters_louvain
+	elif method == "lpa":
+		clusters_function = clusters_lpa
+	else:
+		print("Error, invalid clustering method %s!" % method)
 	
 	# read phylogeny, find speciation events, create network, do clustering
-	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root)
+	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root, clusters_function=clusters_function)
 
 	# make human readable cluster names (instead of integers)
 	clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
@@ -683,7 +690,7 @@ if __name__ == '__main__':
 
 	# infer gene-to-gene orthology relationship classes (inparalog/outparalog/ortholog)
 	if do_allpairs:
-		
+
 		eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
 		eva = eva[["in_gene","out_gene","ev_type"]]
 		eva = pd.DataFrame(eva).dropna()
