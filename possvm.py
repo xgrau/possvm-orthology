@@ -96,7 +96,7 @@ else:
 
 # select clustering method
 if method in ["mcl", "louvain", "lpa"]:
-	clusters_function = "clusters_%s" % method
+	clusters_function_string = "clusters_%s" % method
 else:
 	sys.exit("Error, invalid clustering method %s!" % method)
 
@@ -146,11 +146,13 @@ def write_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names
 
 # read in phylogeny and execute event parser to obtain table-like network of 
 # orthologous relationships, using the species overlap algorithm
-def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function, outgroup=outgroup):
+def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, outgroup=outgroup):
 
 	# load input
 	phy = ete3.PhyloTree("%s" % (phy_fn))
 	logging.info("%s num nodes = %i" % (phy_id,len(phy)))
+	logging.info("%s clustering function is %s" % (phy_id,clusters_function_string))
+	clusters_function = eval(clusters_function_string)
 
 	# assign species names to tree
 	phy.set_species_naming_function(lambda node: node.name.split(split_ch)[0] )
@@ -683,7 +685,7 @@ def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 if __name__ == '__main__':
 
 	# read phylogeny, find speciation events, create network, do clustering
-	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root, clusters_function=eval(clusters_function))
+	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root, clusters_function_string=clusters_function_string)
 
 	# make human readable cluster names (instead of integers)
 	clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
