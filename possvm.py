@@ -721,11 +721,6 @@ if __name__ == '__main__':
 			ixs_to_rename = np.where(clu["extended_clusters"].values != None)[0]
 			clu.loc[ ixs_to_rename, "cluster_name" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":like:" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
 			
-			# extend node-specific labels
-			# clu["extended_direct"], clu["extended_directlabels"] = find_close_monophyletic_clusters(clu=clu, phy=phy, ref_label="node_ref", ref_NA_label="NA", cluster_label="node", min_support_transfer=min_support_transfer, exclude_level="cluster_ref", exclude_label="NA")
-			# ixs_to_rename = np.where(clu["extended_direct"].values != None)[0]
-			# clu.loc[ ixs_to_rename, "node_ref" ] = "islike:" + clu.loc[ ixs_to_rename, "extended_directlabels" ].astype(str)
-
 	else:
 
 		print_attributes = ["cluster_name"]		
