@@ -33,6 +33,11 @@ arp.add_argument("-v","--version", action="version", version="%(prog)s 1.0")
 
 arl = vars(arp.parse_args())
 
+
+#########################
+####### ARGUMENTS #######
+#########################
+
 # mandatory input variables
 phy_fn = arl["in"]
 
