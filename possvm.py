@@ -153,14 +153,12 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, outgroup=outgroup):
 		# shall we do it with iterative midpoint rooting?
 		if itermidroot is not None:
 
-			# niter = max(int(len(phy)/10),10)
-			# niter = int(len(phy)*0.9)
 			niter = itermidroot
 			num_evs_per_iter = np.zeros(niter)
 			out_nod_per_iter = np.empty(niter,	dtype=object)
 
 			# then, iterate to try to find better candidates
-			phy_it = phy
+			phy_it = phy.copy(method="newick")
 			phy_outgroup_it = phy_it.get_midpoint_outgroup()
 			for roi in range(niter):
 
@@ -181,7 +179,13 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, outgroup=outgroup):
 
 			# select outgroup that minimises number of OGs (more agglomerative)
 			phy_outgroup_ix = np.argmin(num_evs_per_iter)
-			phy_outgroup = out_nod_per_iter[phy_outgroup_ix]
+			
+			# outgroup node in iterated tree
+			phy_outgroup_from_it = out_nod_per_iter[phy_outgroup_ix]
+			phy_outgroup_descendants = [ t for t in phy_outgroup_from_it.get_leaf_names() ]
+
+			# outgroup node in original tree
+			phy_outgroup = phy.get_common_ancestor(phy_outgroup_descendants)
 
 			# set outgroup
 			# print(phy_outgroup_ix, phy_outgroup)
