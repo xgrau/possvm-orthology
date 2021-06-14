@@ -1,5 +1,6 @@
 # libraries
 import argparse
+import sys
 import os
 import re
 import numpy as np
@@ -91,6 +92,13 @@ if arl["outgroup"] is not None:
 		outgroup = arl["outgroup"].replace(","," ").split()
 else:
 	outgroup = []
+
+
+# select clustering method
+if method in ["mcl", "louvain", "lpa"]:
+	clusters_function = "clusters_%s" % method
+else:
+	sys.exit("Error, invalid clustering method %s!" % method)
 
 
 #########################
@@ -282,7 +290,7 @@ def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
 	return evs, eva, phy, phy_lis
 
 
-# function to cluster a network-like table of orthologs (from ETE) 
+# function to cluster a network-like table of orthologs (from ETE) using label propagation algorithm
 def clusters_lpa(evs, node_list, cluster_label="cluster",verbose=True):
 
 	import networkx as nx
@@ -315,7 +323,7 @@ def clusters_lpa(evs, node_list, cluster_label="cluster",verbose=True):
 
 	return clu
 
-# function to cluster a network-like table of orthologs (from ETE) 
+# function to cluster a network-like table of orthologs (from ETE) using Louvain
 def clusters_louvain(evs, node_list, cluster_label="cluster",verbose=True):
 
 	import networkx as nx
@@ -353,8 +361,7 @@ def clusters_louvain(evs, node_list, cluster_label="cluster",verbose=True):
 	return clu
 
 
-# function to cluster a network-like table of orthologs (from ETE) 
-# using MCL
+# function to cluster a network-like table of orthologs (from ETE) using MCL
 def clusters_mcl(evs, node_list, inf=1.5, verbose=True):
 
 	import markov_clustering
@@ -497,6 +504,7 @@ def natural_sort(l):
 	return sorted(l, key = alphanum_key)
 
 
+# retrieve statistical supports for each orthology cluster
 def find_support_cluster(clu, phy, cluster_label="cluster"):
 	
 	# input and output lists
@@ -516,6 +524,7 @@ def find_support_cluster(clu, phy, cluster_label="cluster"):
 	return cluster_supports
 
 
+# transfer cluster-level annotation to closely-related monophyletic groups
 def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_support_transfer=0, splitstring="/", exclude_level=None, exclude_label="NA"):
 	
 	logging.info("Add annotations: extend annotations to monophyletic groups")
@@ -604,10 +613,9 @@ def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_l
 	return extended_clusters, extended_annots
 
 
+# attempt to shorten annotations (will collapse similarly named annotations)
 def sanitise_genename_string(string, splitstring="/"):
 
-	import re
-	
 	# gent gene names
 	names = sorted(string.split(splitstring))
 	# find prefixes (non-numeric characters at the beginning of gene name)
@@ -635,6 +643,8 @@ def sanitise_genename_string(string, splitstring="/"):
 
 	return new_names
 
+
+# classify pairwise gene relationships according to paralogy/orthology, same/different species, and same/different cluster
 def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 
 	eva = pd.merge(left=eva, right=clu, left_on="in_gene", right_on="node", how="left")
@@ -672,18 +682,8 @@ def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 
 if __name__ == '__main__':
 
-	# select clustering method
-	if method == "mcl":
-		clusters_function = clusters_mcl
-	elif method == "louvain":
-		clusters_function = clusters_louvain
-	elif method == "lpa":
-		clusters_function = clusters_lpa
-	else:
-		print("Error, invalid clustering method %s!" % method)
-	
 	# read phylogeny, find speciation events, create network, do clustering
-	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root, clusters_function=clusters_function)
+	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root, clusters_function=eval(clusters_function))
 
 	# make human readable cluster names (instead of integers)
 	clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
