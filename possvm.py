@@ -683,6 +683,7 @@ if __name__ == '__main__':
 
 	# infer gene-to-gene orthology relationship classes (inparalog/outparalog/ortholog)
 	if do_allpairs:
+		
 		eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
 		eva = eva[["in_gene","out_gene","ev_type"]]
 		eva = pd.DataFrame(eva).dropna()
