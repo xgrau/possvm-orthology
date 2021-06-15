@@ -18,7 +18,8 @@ arp.add_argument("-p", "--phy",  required=False, default=None, help="OPTIONAL: S
 arp.add_argument("-r", "--ref",  required=False, default=None, help="OPTIONAL: String. Path to a table indicating reference gene names that can be used for orthogroup labeling. Format: geneid <tab> name.", type=str)
 arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: String. Comma-separated list of reference species that will be used for orthogroup labeling. If absent, gene names present in the -r table will be considered.", type=str)
 arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Float. Species overlap threshold used for orthology inference in ETE. Default is 0.", type=float)
-arp.add_argument("-method","--method", required=False, default="mcl", help="OPTIONAL: String. Clustering method. Options are `mcl` (MCL, default), `louvain` (Louvain), or `lpa` (label propagation algorithm)", type=str)
+arp.add_argument("-method","--method", required=False, default="mcl", help="OPTIONAL: String. Clustering method. Options are `mcl` (MCL, default), `mclw` (MCL weighted by node supports), `louvain` (Louvain), or `lpa` (label propagation algorithm)", type=str)
+arp.add_argument("-inflation","--inflation", required=False, default=1.5, help="OPTIONAL: Float. Inflation hyperparameter for MCL clustering. Only applicable if `method` is `mcl` or `mclw`. In practice, the most inflation-responsive method is `mclw`.", type=float)
 arp.add_argument("-outgroup","--outgroup", required=False, default=None, help="OPTIONAL: String. Define a set of species that are treated as outgroups in the phylogeny, and excluded from orthology clustering. Can be a comma-separated list of species, or a file with one species per line. This option DOES NOT affect tree rooting, just orthology clustering. Disabled by default.", type=str)
 arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONAL: String to use as species prefix delimiter in gene ids, e.g. \"_\" for gene names formatted as speciesA_geneX. Defaults to \"_\".", type=str)
 arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Integer. Turns on iterative midpoint rooting with INT iterations, which is used instead of the default midpoint rooting.", type=int)
@@ -58,18 +59,19 @@ else:
 	phy_id = os.path.basename(phy_fn)
 
 # other parameters
-sos    = arl["sos"]
-method = arl["method"]
-split_ch = arl["split"].replace("\"","")
-itermidroot = arl["itermidroot"]
-do_print = arl["skipprint"]
-do_allpairs = arl["printallpairs"]
-do_root = arl["skiproot"]
+sos                  = arl["sos"]
+method               = arl["method"]
+inflation            = arl["inflation"]
+split_ch             = arl["split"].replace("\"","")
+itermidroot          = arl["itermidroot"]
+do_print             = arl["skipprint"]
+do_allpairs          = arl["printallpairs"]
+do_root              = arl["skiproot"]
 min_support_transfer = arl["min_support_transfer"]
-min_support_node = arl["min_support_node"]
-clean_gene_names = arl["clean_gene_names"]
-cut_gene_names = arl["cut_gene_names"]
-ogprefix = arl["ogprefix"].replace("\"","")
+min_support_node     = arl["min_support_node"]
+clean_gene_names     = arl["clean_gene_names"]
+cut_gene_names       = arl["cut_gene_names"]
+ogprefix             = arl["ogprefix"].replace("\"","")
 
 # reference genes?
 if arl["ref"] is not None:
@@ -377,7 +379,7 @@ def clusters_louvain(evs, node_list, verbose=True):
 
 
 # function to cluster a network-like table of orthologs (from ETE) using MCL
-def clusters_mcl(evs, node_list, inf=1.6, verbose=True):
+def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 
 	import markov_clustering
 	import networkx as nx
@@ -426,7 +428,7 @@ def clusters_mcl(evs, node_list, inf=1.6, verbose=True):
 
 
 # function to cluster a network-like table of orthologs (from ETE) using MCL
-def clusters_mclw(evs, node_list, inf=1.6, verbose=True):
+def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 
 	import markov_clustering
 	import networkx as nx
