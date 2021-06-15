@@ -293,70 +293,80 @@ def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
 
 
 # function to cluster a network-like table of orthologs (from ETE) using label propagation algorithm
-def clusters_lpa(evs, node_list, cluster_label="cluster",verbose=True):
+def clusters_lpa(evs, node_list, verbose=True):
 
 	import networkx as nx
 	from networkx.algorithms import community
 
-	# clustering: create network
-	if verbose:
-		logging.info("Create network")
-	evs_e = evs[["in_gene","out_gene","branch_support"]]
-	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
-	evs_n.add_nodes_from(node_list)
-	
-	# clustering: asynchronous label propagation
-	if verbose:
-		logging.info("Find communities LPA")
-	clu_c = community.asyn_lpa_communities(evs_n, seed=11)
-	clu_c = { frozenset(c) for c in clu_c }
-	if verbose:
-		logging.info("Find communities LPA num clusters = %i" % len(clu_c))
-	clu_c_clu = [ i for i, cluster in enumerate(clu_c) for node in cluster ]
-	clu_c_noi = [ node for i, cluster in enumerate(clu_c) for node in cluster ]
+	if len(evs) > 0:
+		# clustering: create network
+		if verbose:
+			logging.info("Create network")
+		evs_e = evs[["in_gene","out_gene","branch_support"]]
+		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
+		evs_n.add_nodes_from(node_list)
+		
+		# clustering: asynchronous label propagation
+		if verbose:
+			logging.info("Find communities LPA")
+		clu_c = community.asyn_lpa_communities(evs_n, seed=11)
+		clu_c = { frozenset(c) for c in clu_c }
+		if verbose:
+			logging.info("Find communities LPA num clusters = %i" % len(clu_c))
+		clu_c_clu = [ i for i, cluster in enumerate(clu_c) for node in cluster ]
+		clu_c_noi = [ node for i, cluster in enumerate(clu_c) for node in cluster ]
 
 	# clustering: save output
 	clu = pd.DataFrame( { 
 		"node"    :  clu_c_noi,
-		cluster_label : clu_c_clu,
-	}, columns=["node",cluster_label])
+		"cluster" : clu_c_clu,
+	}, columns=["node","cluster"])
 	if verbose:
 		logging.info("Find communities LPA | num clustered genes = %i" % len(clu))
 
 	return clu
 
 # function to cluster a network-like table of orthologs (from ETE) using Louvain
-def clusters_louvain(evs, node_list, cluster_label="cluster",verbose=True):
+def clusters_louvain(evs, node_list, verbose=True):
 
 	import networkx as nx
 
-	# clustering: create network
-	if verbose:
-		logging.info("Create network")
-	evs_e = evs[["in_gene","out_gene","branch_support"]]
-	evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
-	evs_n.add_nodes_from(node_list)
+	if len(evs) > 0:
 
-	# clustering: Louvain
-	import community as community_louvain
+		# clustering: create network
+		if verbose:
+			logging.info("Create network")
+		evs_e = evs[["in_gene","out_gene","branch_support"]]
+		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
+		evs_n.add_nodes_from(node_list)
 
-	if verbose:
-		logging.info("Find communities Louvain")
-	clu_x = community_louvain.best_partition(evs_n)
-	clu_c = {}
-	for k, v in clu_x.items():
-		clu_c[v] = clu_c.get(v, [])
-		clu_c[v].append(k)
-	if verbose:
-		logging.info("Find communities Louvain | num clusters = %i" % len(clu_c))
-	clu_c_noi = [ n for i,c in enumerate(clu_c) for n in clu_c[c] ]
-	clu_c_clu = [ c for i,c in enumerate(clu_c) for n in clu_c[c] ]
+		# clustering: Louvain
+		import community as community_louvain
+
+		if verbose:
+			logging.info("Find communities Louvain")
+		clu_x = community_louvain.best_partition(evs_n)
+		clu_c = {}
+		for k, v in clu_x.items():
+			clu_c[v] = clu_c.get(v, [])
+			clu_c[v].append(k)
+		if verbose:
+			logging.info("Find communities Louvain | num clusters = %i" % len(clu_c))
+		clu_c_noi = [ n for i,c in enumerate(clu_c) for n in clu_c[c] ]
+		clu_c_clu = [ c for i,c in enumerate(clu_c) for n in clu_c[c] ]
+
+	else:
+
+		if verbose:
+			logging.info("There are no speciation events in this tree.")
+
+		clu_c_clu = [ i for i in range(len(node_list)) ]
 
 	# clustering: save output
 	clu = pd.DataFrame( { 
 		"node"    :  clu_c_noi,
-		cluster_label : clu_c_clu,
-	}, columns=["node",cluster_label])
+		"cluster" : clu_c_clu,
+	}, columns=["node","cluster"])
 	if verbose:
 		logging.info("Find communities Louvain | num clustered genes = %i" % len(clu))
 
@@ -364,7 +374,7 @@ def clusters_louvain(evs, node_list, cluster_label="cluster",verbose=True):
 
 
 # function to cluster a network-like table of orthologs (from ETE) using MCL
-def clusters_mcl(evs, node_list, inf=1.5, verbose=True):
+def clusters_mcl(evs, node_list, inf=1.6, verbose=True):
 
 	import markov_clustering
 	import networkx as nx
