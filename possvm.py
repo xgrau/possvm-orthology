@@ -95,10 +95,13 @@ else:
 
 
 # select clustering method
-if method in ["mcl", "louvain", "lpa"]:
+valid_methods = ["mcl", "louvain", "lpa", "mclw"]
+if method in valid_methods:
 	clusters_function_string = "clusters_%s" % method
 else:
-	sys.exit("Error, invalid clustering method %s!" % method)
+	print("Error, invalid clustering method \'%s\'!" % method)
+	print("Valid methods are: %s" % valid_methods)
+	sys.exit()
 
 
 #########################
@@ -397,6 +400,55 @@ def clusters_mcl(evs, node_list, inf=1.6, verbose=True):
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
 		if verbose:
 			logging.info("MCL clustering, num clusters = %i" % (len(mcl_c)))
+		# MCL clustering: save output
+		mcl_c_clu = [ i for i, cluster in enumerate(mcl_c) for node in cluster]
+		mcl_c_noi = [ node for i, cluster in enumerate(mcl_c) for node in cluster]
+		mcl_c_nod = [ evs_n_nodelist[i] for i in mcl_c_noi ]
+
+	else:
+
+		# MCL clustering: create network
+		if verbose:
+			logging.info("There are no speciation events in this tree.")
+
+		mcl_c_clu = [ i for i in range(len(node_list)) ]
+
+	# output
+	clu = pd.DataFrame( { 
+		"node"    : mcl_c_nod,
+		"cluster" : mcl_c_clu,
+	}, columns=["node","cluster"])
+	if verbose:
+		logging.info("MCL clustering, num clustered genes = %i" % (len(clu)))
+
+	return clu
+
+
+
+# function to cluster a network-like table of orthologs (from ETE) using MCL
+def clusters_mclw(evs, node_list, inf=1.6, verbose=True):
+
+	import markov_clustering
+	import networkx as nx
+	
+	if len(evs) > 0:
+
+		# MCL clustering: create network
+		if verbose:
+			logging.info("Create network")
+		evs_e = evs[["in_gene","out_gene","branch_support"]]
+		evs_e.columns = ["in_gene","out_gene","weight"]
+		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="weight")
+		evs_n.add_nodes_from(node_list)
+		evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ]
+		evs_m = nx.to_scipy_sparse_matrix(evs_n, nodelist=evs_n_nodelist)
+		# MCL clustering: run clustering
+		if verbose:
+			logging.info("MCL weighted clustering, inflation = %.3f" % (inf))
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold=0) #why pruning threshold HAS to be zero?
+		mcl_c  = markov_clustering.get_clusters(mcl_m)
+		if verbose:
+			logging.info("MCL weighted clustering, num clusters = %i" % (len(mcl_c)))
 		# MCL clustering: save output
 		mcl_c_clu = [ i for i, cluster in enumerate(mcl_c) for node in cluster]
 		mcl_c_noi = [ node for i, cluster in enumerate(mcl_c) for node in cluster]
