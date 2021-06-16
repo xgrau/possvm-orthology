@@ -31,7 +31,8 @@ arp.add_argument("-min_support_transfer","--min_support_transfer", required=Fals
 arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, action="store_true", help="OPTIONAL: Bool. Will attempt to \"clean\" gene names from the reference table (see -r) used to create cluster names, to avoid very long strings in groups with many paralogs. Currently, it collapses number suffixes in gene names, and converts strings such as Hox2/Hox4 to Hox2-4. More complex substitutions are not supported.")
 arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length in the PDF file, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
 arp.add_argument("-ogprefix","--ogprefix", required=False, default="OG", help="OPTIONAL: String. Prefix for ortholog clusters. Defaults to \"OG\".", type=str)
-arp.add_argument("-v","--version", action="version", version="%(prog)s 1.0")
+arp.add_argument("-spstree","--spstree", required=False, default=None, help="OPTIONAL: Path to a species tree. If this is provided, Possvm will use a species tree reconciliation algorithm instead of species overlap.", type=str)
+arp.add_argument("-v","--version", action="version", version="%(prog)s 1.1")
 
 arl = vars(arp.parse_args())
 
@@ -72,6 +73,7 @@ min_support_node     = arl["min_support_node"]
 clean_gene_names     = arl["clean_gene_names"]
 cut_gene_names       = arl["cut_gene_names"]
 ogprefix             = arl["ogprefix"].replace("\"","")
+spstree              = arl["spstree"]
 
 # reference genes?
 if arl["ref"] is not None:
@@ -104,6 +106,15 @@ else:
 	print("Error, invalid clustering method \'%s\'!" % method)
 	print("Valid methods are: %s" % valid_methods)
 	sys.exit()
+
+
+# use species tree reconciliation?
+if spstree is not None:
+	do_sps_reconciliation = True
+	phs = ete3.PhyloTree(spstree)
+else:
+	do_sps_reconciliation = False
+
 
 
 #########################
@@ -151,13 +162,15 @@ def write_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names
 
 # read in phylogeny and execute event parser to obtain table-like network of 
 # orthologous relationships, using the species overlap algorithm
-def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, outgroup=outgroup):
+def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, outgroup=outgroup, do_sps_reconciliation=do_sps_reconciliation):
 
 	# load input
 	phy = ete3.PhyloTree("%s" % (phy_fn))
 	logging.info("%s num nodes = %i" % (phy_id,len(phy)))
 	logging.info("%s clustering function is %s" % (phy_id,clusters_function_string))
 	clusters_function = eval(clusters_function_string)
+	if do_sps_reconciliation:
+		logging.info("%s do species tree reconciliation" % (phy_id))
 
 	# assign species names to tree
 	phy.set_species_naming_function(lambda node: node.name.split(split_ch)[0] )
@@ -229,7 +242,10 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, 
 	phy.ladderize()
 
 	# parse events
-	evs, eva, phy, phy_lis = parse_events(phy=phy, outgroup=outgroup, do_allpairs=do_allpairs, min_support_node=min_support_node)
+	if do_sps_reconciliation:
+		evs, eva, phy, phy_lis = parse_events_sps_reconciliation(phy=phy, phs=phs, outgroup=outgroup, do_allpairs=do_allpairs)
+	else:
+		evs, eva, phy, phy_lis = parse_events(phy=phy, outgroup=outgroup, do_allpairs=do_allpairs, min_support_node=min_support_node)
 	clu = clusters_function(evs=evs, node_list=phy_lis)
 
 	# output from event parsing
@@ -297,6 +313,67 @@ def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
 	return evs, eva, phy, phy_lis
 
 
+# parse phylogenies with ETE to obtain a network-like table defining 
+# orthologous relationships, using the species overlap algorithm
+def parse_events_sps_reconciliation(phy, phs, outgroup, do_allpairs):
+
+	# list of genes in phylogeny
+	phy_lis = phy.get_leaf_names()
+
+	# find evolutionary events (duplications and speciations)
+	recon_tree, evev = phy.reconcile(phs)
+
+	# speciation events
+	evs    = np.empty((len(evev)*len(evev), 5), dtype="object")
+	evs[:] = np.nan
+	n = 0
+	for ev in evev:
+		# retrieve list of sps in ingroup and outgroup:
+		sps_in = np.unique([ i.split(split_ch)[0] for i in ev.in_seqs ])
+		sps_ou = np.unique([ i.split(split_ch)[0] for i in ev.out_seqs ])
+		# check if node is a speciation node, or a duplication node where both descendant branches have exactly one species, and this is the same species
+		if (ev.etype == "S" or (ev.etype == "D" and len(sps_in) == len(sps_ou) == 1 and sps_in == sps_ou)):
+			for ii in ev.in_seqs:
+				for oi in ev.out_seqs:
+					evs[n,0] = ii
+					evs[n,1] = oi
+					evs[n,2] = 0
+					evs[n,3] = ev.etype
+					evs[n,4] = 0
+					n = n + 1
+	evs = pd.DataFrame(evs).dropna()
+	evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+
+	# drop outgroup species, if any
+	if len(outgroup) > 0:
+		in_evs_sps =  [ i.split(split_ch)[0] in set(outgroup) for i in evs["in_gene"]  ]
+		out_evs_sps = [ i.split(split_ch)[0] in set(outgroup) for i in evs["out_gene"] ]
+		evs = evs.drop(np.where(np.logical_or(in_evs_sps, out_evs_sps))[0])
+		phy_lis =  [ i for i in phy_lis if i.split(split_ch)[0] not in set(outgroup) ]
+
+
+	# duplications and speciation events
+	if do_allpairs:
+		eva    = np.empty((len(evev)*len(evev), 5), dtype="object")
+		eva[:] = np.nan
+		n = 0
+		for ev in evev:
+			for ii in ev.in_seqs:
+				for oi in ev.out_seqs:
+					eva[n,0] = ii
+					eva[n,1] = oi
+					eva[n,2] = ev.branch_supports[0]
+					eva[n,3] = ev.etype
+					eva[n,4] = ev.sos
+					n = n + 1
+		eva = pd.DataFrame(eva).dropna()
+		eva.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+	else:
+		eva = []
+
+	return evs, eva, phy, phy_lis
+
+
 # function to cluster a network-like table of orthologs (from ETE) using label propagation algorithm
 def clusters_lpa(evs, node_list, verbose=True):
 
@@ -321,9 +398,17 @@ def clusters_lpa(evs, node_list, verbose=True):
 		clu_c_clu = [ i for i, cluster in enumerate(clu_c) for node in cluster ]
 		clu_c_noi = [ node for i, cluster in enumerate(clu_c) for node in cluster ]
 
+	else:
+
+		if verbose:
+			logging.info("There are no speciation events in this tree.")
+
+		clu_c_noi = node_list
+		clu_c_clu = [ i for i in range(len(node_list)) ]
+
 	# clustering: save output
 	clu = pd.DataFrame( { 
-		"node"    :  clu_c_noi,
+		"node"    : clu_c_noi,
 		"cluster" : clu_c_clu,
 	}, columns=["node","cluster"])
 	if verbose:
@@ -365,11 +450,12 @@ def clusters_louvain(evs, node_list, verbose=True):
 		if verbose:
 			logging.info("There are no speciation events in this tree.")
 
+		clu_c_noi = node_list
 		clu_c_clu = [ i for i in range(len(node_list)) ]
 
 	# clustering: save output
 	clu = pd.DataFrame( { 
-		"node"    :  clu_c_noi,
+		"node"    : clu_c_noi,
 		"cluster" : clu_c_clu,
 	}, columns=["node","cluster"])
 	if verbose:
@@ -413,6 +499,7 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 		if verbose:
 			logging.info("There are no speciation events in this tree.")
 
+		mcl_c_nod = node_list
 		mcl_c_clu = [ i for i in range(len(node_list)) ]
 
 	# output
@@ -462,6 +549,7 @@ def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 		if verbose:
 			logging.info("There are no speciation events in this tree.")
 
+		mcl_c_nod = node_list
 		mcl_c_clu = [ i for i in range(len(node_list)) ]
 
 	# output
@@ -749,7 +837,7 @@ def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 if __name__ == '__main__':
 
 	# read phylogeny, find speciation events, create network, do clustering
-	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root, clusters_function_string=clusters_function_string)
+	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root, clusters_function_string=clusters_function_string, do_sps_reconciliation=do_sps_reconciliation)
 
 	# make human readable cluster names (instead of integers)
 	clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
