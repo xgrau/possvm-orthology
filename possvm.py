@@ -99,7 +99,7 @@ else:
 
 
 # select clustering method
-valid_methods = ["mcl", "louvain", "lpa", "mclw"]
+valid_methods = ["mcl", "louvain", "lpa", "mclw", "kclique"]
 if method in valid_methods:
 	clusters_function_string = "clusters_%s" % method
 else:
@@ -127,9 +127,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)-5.5s]\
 def write_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names=120):
 	
 	logging.info("Print tree")
-
+	
 	phy_alter = phy.copy(method="newick-extended")
-
+	
 	for i in phy_alter.get_leaves():
 		i_name = i.name
 		for attribute in attributes:
@@ -138,7 +138,7 @@ def write_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names
 				c="NA"
 			else:  
 				c=c[0]
-
+			
 			# cut if string is too long
 			if cut_gene_names is not None:
 				cut_gene_names = int(cut_gene_names)
@@ -147,9 +147,9 @@ def write_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names
 					
 			i.name = str(i.name) + sep + str(c)
 		i.name = str(i.name) + sep
-
+	
 	phy_alter.write(outfile=out)
-
+	
 	# print tree in pdf
 	if do_print:
 		ts = ete3.TreeStyle()
@@ -163,7 +163,7 @@ def write_tree(phy, out, evc, attributes, sep="|", do_print=True, cut_gene_names
 # read in phylogeny and execute event parser to obtain table-like network of 
 # orthologous relationships, using the species overlap algorithm
 def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, outgroup=outgroup, do_sps_reconciliation=do_sps_reconciliation):
-
+	
 	# load input
 	phy = ete3.PhyloTree("%s" % (phy_fn))
 	logging.info("%s num nodes = %i" % (phy_id,len(phy)))
@@ -171,83 +171,89 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, 
 	clusters_function = eval(clusters_function_string)
 	if do_sps_reconciliation:
 		logging.info("%s do species tree reconciliation" % (phy_id))
-
+	
 	# assign species names to tree
 	phy.set_species_naming_function(lambda node: node.name.split(split_ch)[0] )
-
+	
 	# resolve polytomies (randomly)
 	phy.resolve_polytomy(recursive=True)
 	
 	# try to find root if unrooted
 	if do_root:
-	
+		
 		# shall we do it with iterative midpoint rooting?
 		if itermidroot is not None:
-
+			
 			niter = itermidroot
 			num_evs_per_iter = np.zeros(niter)
 			out_nod_per_iter = np.empty(niter,	dtype=object)
-
+			
 			# then, iterate to try to find better candidates
 			phy_it = phy.copy(method="newick")
 			phy_outgroup_it = phy_it.get_midpoint_outgroup()
+			phy_it.set_outgroup(phy_outgroup_it)
+			
 			for roi in range(niter):
-
+				
+				# parse events and re-do clustering
+				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it, outgroup=outgroup, do_allpairs=False, min_support_node=min_support_node)
+				clu_it = clusters_function(evs=evs_it, node_list=phy_lis_it, verbose=False)
+				
+				# store number of orthogroups in this particular iteration
+				num_evs_per_iter[roi] = len(np.unique(clu_it["cluster"].values))
+				out_nod_per_iter[roi] = phy_outgroup_it
+				
+				print("%s Iterative midpoint root | %i/%i | n OGs = %i" % (phy_id,roi+1,niter,num_evs_per_iter[roi]))
 				# in subsequent iterations, assign zero distance to the previous outgroup edge, and try to find second-best candidate
 				phy_outgroup_it.dist = 0.0
 				phy_outgroup_it = phy_it.get_midpoint_outgroup()
 				phy_it.set_outgroup(phy_outgroup_it)
-
-				# parse events and re-do clustering
-				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it, outgroup=outgroup, do_allpairs=False, min_support_node=min_support_node)
-				clu_it = clusters_function(evs=evs_it, node_list=phy_lis_it, verbose=False)
-
-				# store number of orthogroups in this particular iteration
-				num_evs_per_iter[roi] = len(np.unique(clu_it["cluster"].values))
-				out_nod_per_iter[roi] = phy_outgroup_it
-
-				logging.info("%s Iterative midpoint root | %i/%i | n OGs = %i" % (phy_id,roi+1,niter,num_evs_per_iter[roi]))
-
+			
 			# select outgroup that minimises number of OGs (more agglomerative)
 			phy_outgroup_ix = np.argmin(num_evs_per_iter)
 			
 			# outgroup node in iterated tree
 			phy_outgroup_from_it = out_nod_per_iter[phy_outgroup_ix]
 			phy_outgroup_descendants = [ t for t in phy_outgroup_from_it.get_leaf_names() ]
-
+			
 			# outgroup node in original tree
 			phy_outgroup = phy.get_common_ancestor(phy_outgroup_descendants)
-
+			
+			if len(phy_outgroup_descendants) != len(phy_outgroup.get_leaf_names()):
+				print("%s Iterative midpoint root found and impossible root, default to midpoint" % (phy_id))
+				phy_outgroup_ix = 0
+				phy_outgroup = phy.get_midpoint_outgroup()
+				
 			# set outgroup
 			# print(phy_outgroup_ix, phy_outgroup)
 			logging.info("%s Best root at iteration  | %i/%i | n OGs = %i" % (phy_id,phy_outgroup_ix+1,niter,num_evs_per_iter[phy_outgroup_ix]))
-
+		
 		# ...or shall we do it with simple midpoint rooting?
 		else:
-
+			
 			# set outgroup using normal midpoint rooting
 			logging.info("%s Midpoint root" % phy_id)
 			phy_outgroup = phy.get_midpoint_outgroup()
-
+			
 		# set root
 		phy.set_outgroup(phy_outgroup)
-
+		
 	# ignore rooting
 	else: 
-
+		
 		pass
 		logging.info("%s Skip rooting (assume tree is already rooted)" % phy_id)
-
+		
 	# ladderise phylogeny
 	phy.ladderize()
-
+	
 	# parse events
 	if do_sps_reconciliation:
 		evs, eva, phy, phy_lis = parse_events_sps_reconciliation(phy=phy, phs=phs, outgroup=outgroup, do_allpairs=do_allpairs)
 	else:
 		evs, eva, phy, phy_lis = parse_events(phy=phy, outgroup=outgroup, do_allpairs=do_allpairs, min_support_node=min_support_node)
 	clu = clusters_function(evs=evs, node_list=phy_lis)
-
+	
 	# output from event parsing
 	return evs, eva, phy, phy_lis, clu
 
@@ -413,6 +419,48 @@ def clusters_lpa(evs, node_list, verbose=True):
 	}, columns=["node","cluster"])
 	if verbose:
 		logging.info("Find communities LPA | num clustered genes = %i" % len(clu))
+
+	return clu
+
+# function to cluster a network-like table of orthologs (from ETE) using label propagation algorithm
+def clusters_kclique(evs, node_list, verbose=True):
+
+	import networkx as nx
+	from networkx.algorithms import community
+
+	if len(evs) > 0:
+		# clustering: create network
+		if verbose:
+			logging.info("Create network")
+		evs_e = evs[["in_gene","out_gene","branch_support"]]
+		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
+		evs_n.add_nodes_from(node_list)
+		
+		# clustering: asynchronous label propagation
+		if verbose:
+			logging.info("Find communities k-clique")
+		clu_c = community.k_clique_communities(evs_n, k=2)
+		clu_c = { frozenset(c) for c in clu_c }
+		if verbose:
+			logging.info("Find communities k-clique num clusters = %i" % len(clu_c))
+		clu_c_clu = [ i for i, cluster in enumerate(clu_c) for node in cluster ]
+		clu_c_noi = [ node for i, cluster in enumerate(clu_c) for node in cluster ]
+
+	else:
+
+		if verbose:
+			logging.info("There are no speciation events in this tree.")
+
+		clu_c_noi = node_list
+		clu_c_clu = [ i for i in range(len(node_list)) ]
+
+	# clustering: save output
+	clu = pd.DataFrame( { 
+		"node"    : clu_c_noi,
+		"cluster" : clu_c_clu,
+	}, columns=["node","cluster"])
+	if verbose:
+		logging.info("Find communities k-clique | num clustered genes = %i" % len(clu))
 
 	return clu
 
