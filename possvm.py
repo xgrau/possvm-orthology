@@ -54,6 +54,7 @@ else:
 if not os.path.exists(out_fn):
     os.makedirs(out_fn)
 
+# prefix for output files
 if arl["phy"] is not None:
 	phy_id = arl["phy"]
 else:
