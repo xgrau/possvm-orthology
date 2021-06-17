@@ -261,13 +261,13 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, 
 # parse phylogenies with ETE to obtain a network-like table defining 
 # orthologous relationships, using the species overlap algorithm
 def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
-
+	
 	# list of genes in phylogeny
 	phy_lis = phy.get_leaf_names()
-
+	
 	# find evolutionary events (duplications and speciations)
 	evev = phy.get_descendant_evol_events(sos_thr=sos)
-
+	
 	# speciation events
 	evs    = np.empty((len(evev)*len(evev), 5), dtype="object")
 	evs[:] = np.nan
@@ -288,15 +288,14 @@ def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
 					n = n + 1
 	evs = pd.DataFrame(evs).dropna()
 	evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
-
+	
 	# drop outgroup species, if any
 	if len(outgroup) > 0:
 		in_evs_sps =  [ i.split(split_ch)[0] in set(outgroup) for i in evs["in_gene"]  ]
 		out_evs_sps = [ i.split(split_ch)[0] in set(outgroup) for i in evs["out_gene"] ]
 		evs = evs.drop(np.where(np.logical_or(in_evs_sps, out_evs_sps))[0])
 		phy_lis =  [ i for i in phy_lis if i.split(split_ch)[0] not in set(outgroup) ]
-
-
+	
 	# duplications and speciation events
 	if do_allpairs:
 		eva    = np.empty((len(evev)*len(evev), 5), dtype="object")
@@ -315,7 +314,7 @@ def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
 		eva.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
 	else:
 		eva = []
-
+	
 	return evs, eva, phy, phy_lis
 
 
@@ -325,10 +324,10 @@ def parse_events_sps_reconciliation(phy, phs, outgroup, do_allpairs):
 
 	# list of genes in phylogeny
 	phy_lis = phy.get_leaf_names()
-
+	
 	# find evolutionary events (duplications and speciations)
 	recon_tree, evev = phy.reconcile(phs)
-
+	
 	# speciation events
 	evs    = np.empty((len(evev)*len(evev), 5), dtype="object")
 	evs[:] = np.nan
@@ -349,15 +348,14 @@ def parse_events_sps_reconciliation(phy, phs, outgroup, do_allpairs):
 					n = n + 1
 	evs = pd.DataFrame(evs).dropna()
 	evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
-
+	
 	# drop outgroup species, if any
 	if len(outgroup) > 0:
 		in_evs_sps =  [ i.split(split_ch)[0] in set(outgroup) for i in evs["in_gene"]  ]
 		out_evs_sps = [ i.split(split_ch)[0] in set(outgroup) for i in evs["out_gene"] ]
 		evs = evs.drop(np.where(np.logical_or(in_evs_sps, out_evs_sps))[0])
 		phy_lis =  [ i for i in phy_lis if i.split(split_ch)[0] not in set(outgroup) ]
-
-
+	
 	# duplications and speciation events
 	if do_allpairs:
 		eva    = np.empty((len(evev)*len(evev), 5), dtype="object")
@@ -376,7 +374,7 @@ def parse_events_sps_reconciliation(phy, phs, outgroup, do_allpairs):
 		eva.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
 	else:
 		eva = []
-
+	
 	return evs, eva, phy, phy_lis
 
 
@@ -385,7 +383,7 @@ def clusters_lpa(evs, node_list, verbose=True):
 
 	import networkx as nx
 	from networkx.algorithms import community
-
+	
 	if len(evs) > 0:
 		# clustering: create network
 		if verbose:
@@ -403,15 +401,14 @@ def clusters_lpa(evs, node_list, verbose=True):
 			logging.info("Find communities LPA num clusters = %i" % len(clu_c))
 		clu_c_clu = [ i for i, cluster in enumerate(clu_c) for node in cluster ]
 		clu_c_noi = [ node for i, cluster in enumerate(clu_c) for node in cluster ]
-
+	
 	else:
-
+		
 		if verbose:
 			logging.info("There are no speciation events in this tree.")
-
 		clu_c_noi = node_list
 		clu_c_clu = [ i for i in range(len(node_list)) ]
-
+	
 	# clustering: save output
 	clu = pd.DataFrame( { 
 		"node"    : clu_c_noi,
@@ -419,15 +416,15 @@ def clusters_lpa(evs, node_list, verbose=True):
 	}, columns=["node","cluster"])
 	if verbose:
 		logging.info("Find communities LPA | num clustered genes = %i" % len(clu))
-
+	
 	return clu
 
 # function to cluster a network-like table of orthologs (from ETE) using label propagation algorithm
 def clusters_kclique(evs, node_list, verbose=True):
-
+	
 	import networkx as nx
 	from networkx.algorithms import community
-
+	
 	if len(evs) > 0:
 		# clustering: create network
 		if verbose:
@@ -445,15 +442,14 @@ def clusters_kclique(evs, node_list, verbose=True):
 			logging.info("Find communities k-clique num clusters = %i" % len(clu_c))
 		clu_c_clu = [ i for i, cluster in enumerate(clu_c) for node in cluster ]
 		clu_c_noi = [ node for i, cluster in enumerate(clu_c) for node in cluster ]
-
+	
 	else:
-
+		
 		if verbose:
 			logging.info("There are no speciation events in this tree.")
-
 		clu_c_noi = node_list
 		clu_c_clu = [ i for i in range(len(node_list)) ]
-
+	
 	# clustering: save output
 	clu = pd.DataFrame( { 
 		"node"    : clu_c_noi,
@@ -461,26 +457,26 @@ def clusters_kclique(evs, node_list, verbose=True):
 	}, columns=["node","cluster"])
 	if verbose:
 		logging.info("Find communities k-clique | num clustered genes = %i" % len(clu))
-
+	
 	return clu
 
 # function to cluster a network-like table of orthologs (from ETE) using Louvain
 def clusters_louvain(evs, node_list, verbose=True):
-
+	
 	import networkx as nx
-
+	
 	if len(evs) > 0:
-
+		
 		# clustering: create network
 		if verbose:
 			logging.info("Create network")
 		evs_e = evs[["in_gene","out_gene","branch_support"]]
 		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
 		evs_n.add_nodes_from(node_list)
-
+		
 		# clustering: Louvain
 		import community as community_louvain
-
+		
 		if verbose:
 			logging.info("Find communities Louvain")
 		clu_x = community_louvain.best_partition(evs_n)
@@ -492,15 +488,14 @@ def clusters_louvain(evs, node_list, verbose=True):
 			logging.info("Find communities Louvain | num clusters = %i" % len(clu_c))
 		clu_c_noi = [ n for i,c in enumerate(clu_c) for n in clu_c[c] ]
 		clu_c_clu = [ c for i,c in enumerate(clu_c) for n in clu_c[c] ]
-
+		
 	else:
-
+		
 		if verbose:
 			logging.info("There are no speciation events in this tree.")
-
 		clu_c_noi = node_list
 		clu_c_clu = [ i for i in range(len(node_list)) ]
-
+	
 	# clustering: save output
 	clu = pd.DataFrame( { 
 		"node"    : clu_c_noi,
@@ -508,25 +503,25 @@ def clusters_louvain(evs, node_list, verbose=True):
 	}, columns=["node","cluster"])
 	if verbose:
 		logging.info("Find communities Louvain | num clustered genes = %i" % len(clu))
-
+	
 	return clu
 
 
 # function to cluster a network-like table of orthologs (from ETE) using MCL
 def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
-
+	
 	import markov_clustering
 	import networkx as nx
 	
 	if len(evs) > 0:
-
+		
 		# MCL clustering: create network
 		if verbose:
 			logging.info("Create network")
 		evs_e = evs[["in_gene","out_gene","branch_support"]]
 		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
 		evs_n.add_nodes_from(node_list)
-
+		
 		evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ]
 		evs_m = nx.to_scipy_sparse_matrix(evs_n, nodelist=evs_n_nodelist)
 		# MCL clustering: run clustering
@@ -542,14 +537,13 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 		mcl_c_nod = [ evs_n_nodelist[i] for i in mcl_c_noi ]
 
 	else:
-
+		
 		# MCL clustering: create network
 		if verbose:
 			logging.info("There are no speciation events in this tree.")
-
 		mcl_c_nod = node_list
 		mcl_c_clu = [ i for i in range(len(node_list)) ]
-
+	
 	# output
 	clu = pd.DataFrame( { 
 		"node"    : mcl_c_nod,
@@ -557,19 +551,19 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 	}, columns=["node","cluster"])
 	if verbose:
 		logging.info("MCL clustering, num clustered genes = %i" % (len(clu)))
-
+	
 	return clu
 
 
 
 # function to cluster a network-like table of orthologs (from ETE) using MCL
 def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
-
+	
 	import markov_clustering
 	import networkx as nx
 	
 	if len(evs) > 0:
-
+		
 		# MCL clustering: create network
 		if verbose:
 			logging.info("Create network")
@@ -590,16 +584,15 @@ def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 		mcl_c_clu = [ i for i, cluster in enumerate(mcl_c) for node in cluster]
 		mcl_c_noi = [ node for i, cluster in enumerate(mcl_c) for node in cluster]
 		mcl_c_nod = [ evs_n_nodelist[i] for i in mcl_c_noi ]
-
+		
 	else:
-
+		
 		# MCL clustering: create network
 		if verbose:
 			logging.info("There are no speciation events in this tree.")
-
 		mcl_c_nod = node_list
 		mcl_c_clu = [ i for i in range(len(node_list)) ]
-
+	
 	# output
 	clu = pd.DataFrame( { 
 		"node"    : mcl_c_nod,
@@ -607,21 +600,21 @@ def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 	}, columns=["node","cluster"])
 	if verbose:
 		logging.info("MCL clustering, num clustered genes = %i" % (len(clu)))
-
+	
 	return clu
 
 
 # add a tag to cluster name (known genes within cluster)
 def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_ref_node="node", label_if_no_annot="", clean_gene_names=False):
-
+	
 	logging.info("Add annotations: reference genes in each cluster")
-
+	
 	if ref_spi is None:
 		ref_s = ref
 	else:
 		ref_sps = ref["gene"].apply(lambda c: c.split(split_ch)[0]).values
 		ref_s = ref[np.isin(ref_sps, ref_spi)]
-
+	
 	cluster_tags = dict()
 	cluster_list = np.unique(clu[cluster_label].values)
 	for c in cluster_list:
@@ -629,56 +622,56 @@ def ref_tagcluster(clu, evs, ref, cluster_label="cluster", ref_spi=None, label_r
 		ref_names = ref_s["name"].values [ ref_is_node ]
 		cluster_tag = "/".join( natural_sort(np.unique([ str(i) for i in ref_names ])) )
 		cluster_tags[c] = cluster_tag
-
+	
 	for c in cluster_list:
 		if cluster_tags[c] == "":
 			cluster_tags[c] = label_if_no_annot
-
+	
 	cluster_ref = [ cluster_tags[c] for c in clu[cluster_label].values ]
 	
 	if clean_gene_names:
 		cluster_ref = [ sanitise_genename_string(r) for r in cluster_ref ]
-
+	
 	return cluster_ref	
 
 # annotate orthology relationships to known genes
 def ref_known_any(clu, evs, ref, syn_nod=None, label_if_no_annot="NA", label_ref_node="node", ref_spi=None):
-
+	
 	logging.info("Add annotations: orthology to known genes")
-
+	
 	if syn_nod is None:
 		syn_nod = []
-
+	
 	if ref_spi is None:
 		ref_s = ref
 	else:
 		ref_sps = ref["gene"].apply(lambda c: c.split(split_ch)[0]).values
 		ref_s = ref[np.isin(ref_sps, ref_spi)]
-
+	
 	# find reference sequences 
 	ref_genes = ref_s["gene"] [ np.isin(ref_s["gene"], clu["node"] ) ].values
 	ref_names = ref_s["name"] [ np.isin(ref_s["gene"], clu["node"] ) ].values
 	ref_nodes = clu["node"] [ np.isin( clu[label_ref_node], ref_genes ) ].values
-
+	
 	ref_dicti = dict()
 	for m,r in enumerate(ref_genes):
 		ref_dicti[r] = ref_names[m]
-
+	
 	node_ref = []
 	node_sup = []
 	for noi in clu["node"]:
-
+		
 		# find if gene is orthologous to any ref sequences
 		r1 = evs[ ( evs["in_gene"] == noi  ) & np.isin( evs["out_gene"], ref_nodes ) ] ["out_gene"].values
 		r2 = evs[ ( evs["out_gene"] == noi ) & np.isin( evs["in_gene"] , ref_nodes ) ] ["in_gene"].values
 		ra = np.unique(np.concatenate((r1,r2)))
 		ra_is_clustered = np.isin(element=ra, test_elements=ref_nodes)
 		ra = ra[ra_is_clustered]
-
+		
 		# if gene is in reference, add it to ra as orthologous to itself
 		if noi in ref_nodes:
 			ra = np.append(ra, noi)
-
+		
 		# get reference name from dict
 		rc,ixu = np.unique([ ref_dicti[r] for r in ra ], return_index=True)
 		rc = '/'.join(rc)
@@ -686,15 +679,15 @@ def ref_known_any(clu, evs, ref, syn_nod=None, label_if_no_annot="NA", label_ref
 		rs = [ str(phy.get_common_ancestor([r, noi]).support) if r != noi else str(100.0) for r in ra ]
 		rs = [ rs[ix] for ix in ixu ]
 		rs = '/'.join(rs)
-
+		
 		# name of cluster
 		node_ref.append(rc)
 		node_sup.append(rs)
-
+	
 	# add NA string to empty fields
 	node_ref = [ label_if_no_annot if c == "" else c for c in node_ref ]
 	node_sup = [ label_if_no_annot if c == "" else c for c in node_sup ]
-
+	
 	return node_ref, node_sup
 
 
@@ -715,14 +708,14 @@ def find_support_cluster(clu, phy, cluster_label="cluster"):
 	
 	# loop for each cluster
 	for c in cluster_list:
-
+		
 		# nodes in cluster
 		nodes_in_cluster = clu[clu[cluster_label] == c]["node"].values
 		# find support in oldest node in cluster
 		cluster_support_dict[c] = phy.get_common_ancestor(nodes_in_cluster.tolist()).support
-
+	
 	cluster_supports = [ cluster_support_dict[c] for c in clu[cluster_label].values ]
-
+	
 	return cluster_supports
 
 
@@ -730,86 +723,84 @@ def find_support_cluster(clu, phy, cluster_label="cluster"):
 def find_close_monophyletic_clusters(clu, phy, ref_label="cluster_ref", ref_NA_label="NA", cluster_label="cluster", min_support_transfer=0, splitstring="/", exclude_level=None, exclude_label="NA"):
 	
 	logging.info("Add annotations: extend annotations to monophyletic groups")
-
+	
 	# input and output lists
 	has_label_ix = np.where(clu[ref_label] != ref_NA_label)[0]
 	has_label = clu["node"] [ has_label_ix ].values
 	has_no_label_ix = np.where(clu[ref_label] == ref_NA_label)[0]
 	clusters_labeled = np.unique(clu[cluster_label][has_label_ix].values)
 	clusters_nonlabeled = np.unique(clu[cluster_label][has_no_label_ix].values)
-
+	
 	# exclude certain groups of sequences?
 	if exclude_level is not None:
 		clusters_nonlabeled = clu[cluster_label][has_no_label_ix].values[ clu[exclude_level][has_no_label_ix].values != exclude_label ]
-
+	
 	# extended annotations: init arrays with previous information
 	extended_annots =   np.empty(shape=clu[ref_label].values.shape[0], dtype=object)
 	extended_clusters = np.empty(shape=clu[ref_label].values.shape[0], dtype=object)
-
+	
 	num_extended = 0
-
+	
 	if len(clusters_labeled) > 0:
-
+		
 		# loop for each non-labeled cluster
 		for ci in clusters_nonlabeled:
-
+			
 			# list of nodes in non-labeled cluster ci
 			nodes_i = clu[clu[cluster_label] == ci]["node"].values.tolist()
-
+			
 			# if there is only one node, root is the same node (otherwise defaults to tree root!)
 			if len(nodes_i) > 1:
 				parent_i = phy.get_common_ancestor(nodes_i).get_ancestors()[0]
 			elif len(nodes_i) == 1:
 				parent_i = phy.get_leaves_by_name(nodes_i[0])[0].get_ancestors()[0]
-
+			
 			# check if descendants from parent group have references
 			while True:
-
+				
 				# find leaves descending from the parent node
 				parent_i_descendants = parent_i.get_leaf_names()
 				parent_i_support = parent_i.support
-
+				
 				# if we have reached the root node, assume max support
 				if parent_i.is_root():
 					parent_i_support = 1e6
-
+				
 				# check if sister has refs
 				has_refs = np.any( np.isin(element=parent_i_descendants, test_elements=has_label) )
 				if has_refs and parent_i_support > min_support_transfer :
-
+					
 					descendants_with_ref_ix = np.where( np.isin(element=clu["node"].values, test_elements=parent_i_descendants) )[0]
 					nodes_in_descendants    = clu["node"] [ np.intersect1d ( descendants_with_ref_ix, has_label_ix ) ].values
 					clusters_in_descendants = clu[cluster_label] [ np.intersect1d ( descendants_with_ref_ix, has_label_ix ) ].values
 					annots_in_descendants   = clu[ref_label] [ np.intersect1d ( descendants_with_ref_ix, has_label_ix ) ].values
 					nodes_in_descendants    = [ node for node in nodes_in_descendants ] # "flatten" list because it's broken for some reason
-
 					clusters_in_descendants_list = np.unique(clusters_in_descendants)
 					annots_in_descendants_list = np.unique(annots_in_descendants)
 					num_extended = num_extended + 1
-
+					
 					break
-
+				
 				# if not, visit upper node, and go back to checking out its descendants
 				else:
-
 					parent_i = parent_i.get_ancestors()[0]
-
+				
 			# where to assign new labels?
 			needs_new_label_ix = np.where( np.isin(element=clu["node"].values, test_elements=nodes_i) )[0]
-
+			
 			# reorder labels (alphabetically)
 			flatten = lambda l: [item for sublist in l for item in sublist]
 			annots_in_descendants_list = [t.split(splitstring) for t in annots_in_descendants_list]
 			annots_in_descendants_list = np.unique(natural_sort(flatten(annots_in_descendants_list)))
-
+			
 			# join into a single string:
 			clusters_in_descendants_string = "/".join( natural_sort([ str(i) for i in clusters_in_descendants_list ]) )
 			annots_in_descendants_string = "/".join( natural_sort(  [ str(i) for i in annots_in_descendants_list   ]) )
-
+			
 			# store
 			extended_clusters [ needs_new_label_ix ] = clusters_in_descendants_string
 			extended_annots [ needs_new_label_ix ]   = annots_in_descendants_string
-
+	
 	logging.info("Add annotations: extend annotations to monophyletic groups | %i labels transferred" % num_extended)
 	
 	return extended_clusters, extended_annots
@@ -848,31 +839,25 @@ def sanitise_genename_string(string, splitstring="/"):
 
 # classify pairwise gene relationships according to paralogy/orthology, same/different species, and same/different cluster
 def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
-
+	
 	eva = pd.merge(left=eva, right=clu, left_on="in_gene", right_on="node", how="left")
 	eva = pd.merge(left=eva, right=clu, left_on="out_gene", right_on="node", how="left")
 	eva["in_sps"] = eva["in_gene"].apply(lambda c: c.split(split_ch)[0]).values
 	eva["out_sps"] = eva["out_gene"].apply(lambda c: c.split(split_ch)[0]).values
-
+	
 	# empty
 	evtype = np.empty(len(eva), dtype=object)
-
 	# orthologs
 	evtype[ ( eva["ev_type"] == "S" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] )& ( eva["in_sps"] != eva["out_sps"] ) ] = "ortholog_int"
 	evtype[ ( eva["ev_type"] == "S" ) & ( eva["cluster_name_x"] != eva["cluster_name_y"] )& ( eva["in_sps"] != eva["out_sps"] ) ] = "ortholog_ext"
-
 	# outparalog_ext (from different species and an external orthology group)
 	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] ) & ( eva["in_sps"] != eva["out_sps"] ) ] = "outparalog_int"
-
 	# outparalog_int (from different species and the same orthology group)
 	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] != eva["cluster_name_y"] ) & ( eva["in_sps"] != eva["out_sps"] ) ] = "outparalog_ext"
-
 	# inparalog_int (from the same species and the same orthology group)
 	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] ) & ( eva["in_sps"] == eva["out_sps"] ) ] = "inparalog_int"
-
 	# inparalog_ext (from the same species and a different orthology group)
 	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] != eva["cluster_name_y"] ) & ( eva["in_sps"] == eva["out_sps"] ) ] = "inparalog_ext"
-
 	eva["ev_type"] = evtype
 
 	return eva
@@ -886,40 +871,40 @@ if __name__ == '__main__':
 
 	# read phylogeny, find speciation events, create network, do clustering
 	evs, eva, phy, phy_lis, clu = parse_phylo(phy_fn=phy_fn, phy_id=phy_id, do_allpairs=do_allpairs, do_root=do_root, clusters_function_string=clusters_function_string, do_sps_reconciliation=do_sps_reconciliation)
-
+	
 	# make human readable cluster names (instead of integers)
 	clu["cluster_name"] = ogprefix + clu["cluster"].astype(str)
 	clu["node_ref"] = ""
 	clu["node_ref_support"] = ""
-
+	
 	# find cluster supports (support in oldest node in cluster)
 	clu["support"] = find_support_cluster(clu=clu, phy=phy, cluster_label="cluster")
-
+	
 	# infer gene-to-gene orthology relationship classes (inparalog/outparalog/ortholog)
 	if do_allpairs:
-
+		
 		eva = annotate_event_type(eva=eva, clu=clu, clutag="cluster_name")
 		eva = eva[["in_gene","out_gene","ev_type"]]
 		eva = pd.DataFrame(eva).dropna()
-
+	
 	# try to annotate reference sequences
 	if do_ref:
-
+		
 		# load ref
 		ref = pd.read_csv(ref_fn, sep="\t", names=["gene","name"])
-
+		
 		# remove ref nodes not in phylogeny
 		ref =  ref[ np.isin(element=ref["gene"].values, test_elements=phy_lis) ]
-
+		
 		# report which reference sequences can be found within cluster
 		clu["cluster_ref"]  = ref_tagcluster(clu=clu, evs=evs, ref=ref, ref_spi=refsps, label_if_no_annot="NA", clean_gene_names=clean_gene_names)
 		clu["cluster_name"] = ogprefix + clu["cluster"].astype(str) + ":" + clu["cluster_ref"].astype(str)
 		print_attributes    = ["cluster_name"]
-
+		
 		# find named orthologs anywhere in the phylogeny
 		clu["node_ref"], clu["node_ref_support"] = ref_known_any(clu=clu, evs=evs, ref=ref, ref_spi=refsps, syn_nod=None)
 		print_attributes.append("node_ref")
-
+		
 		# extend cluster-wise annotations
 		if min_support_transfer is not None:
 			
@@ -929,21 +914,21 @@ if __name__ == '__main__':
 			clu.loc[ ixs_to_rename, "cluster_name" ] = ogprefix + clu.loc[ ixs_to_rename, "cluster" ].astype(str) + ":like:" + clu.loc[ ixs_to_rename, "extended_labels" ].astype(str)
 			
 	else:
-
+		
 		print_attributes = ["cluster_name"]		
-
+	
 	# print phylogeny
 	write_tree(phy=phy, out="%s/%s.ortholog_groups.newick" % (out_fn,phy_id), evc=clu, attributes=print_attributes, sep=" | ", do_print=do_print, cut_gene_names=cut_gene_names)
-
+	
 	# save clusters
 	clu_print = clu[["node","cluster_name","support","node_ref","node_ref_support"]]
 	clu_print.columns = ["gene","orthogroup","orthogroup_support","reference_ortholog","reference_support"]
 	clu_print.to_csv("%s/%s.ortholog_groups.csv" % (out_fn,phy_id), sep="\t", index=None, mode="w")
-
+	
 	# save gene pair information (orthologs and all genes)
 	evs.to_csv("%s/%s.pairs_orthologs.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
 	if do_allpairs:
 		eva.to_csv("%s/%s.pairs_all.csv" %  (out_fn,phy_id), sep="\t", index=None, mode="w")
-
+	
 	logging.info("%s Done" % phy_id)
 
