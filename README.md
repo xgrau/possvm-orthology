@@ -8,17 +8,18 @@ It **only requires a gene tree in newick format**, where the sequence name conta
 
 ## How it works
 
-An overview of *Possvm* functionality can be found here:
+An overview of *Possvm* can be found here:
 
 > Orthology clustering from gene trees with *Possvm* ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1))
 
 ![Possvm logo](./img/fig1.png)
 
-Basic steps:
+*Possvm* works in four basic steps:
 
-1. Identification of orthology pairs using Species Overlap.
-2. Obtain orthology clusters from pairwise orthology relationships.
-3. Produce parseable tables with orthogroups. Orthogroups can be 'labelled' using names from reference member genes.
+1. Identification of orthology pairs using Species Overlap, which are used to build an orthology graph.
+2. Obtain orthology clusters from pairwise orthology relationships, using MCL clustering.
+3. Produce parseable tables with orthogroups and ortholog pairs.
+4. Orthogroups can be annotated using names from reference member genes, in a phylogeny-aware manner.
 
 ## Manual
 
