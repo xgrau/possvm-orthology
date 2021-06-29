@@ -16,16 +16,16 @@ arp.add_argument("-i", "--in", required=True, help="Path to a phylogenetic tree 
 arp.add_argument("-o", "--out", required=False, default=None, help="OPTIONAL: String. Path to output folder. Defaults to same directory as input file.", type=str)
 arp.add_argument("-p", "--phy",  required=False, default=None, help="OPTIONAL: String. Prefix for output files. Defaults to `basename` of input phylogeny. Default behaviour will never overwrite original files, because it adds suffixes.", type=str)
 arp.add_argument("-r", "--ref",  required=False, default=None, help="OPTIONAL: String. Path to a table indicating reference gene names that can be used for orthogroup labeling. Format: geneid <tab> name.", type=str)
-arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: String. Comma-separated list of reference species that will be used for orthogroup labeling. If absent, gene names present in the -r table will be considered.", type=str)
-arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Float. Species overlap threshold used for orthology inference in ETE. Default is 0.", type=float)
-arp.add_argument("-method","--method", required=False, default="mcl", help="OPTIONAL: String. Clustering method. Options are `mcl` (MCL, default), `mclw` (MCL weighted by node supports), `louvain` (Louvain), or `lpa` (label propagation algorithm)", type=str)
+arp.add_argument("-refsps", "--refsps",  required=False, default=None, help="OPTIONAL: String. Comma-separated list of reference species that will be used for orthogroup labeling. If absent, all gene names present in the -r table will be considered.", type=str)
+arp.add_argument("-s", "--sos", required=False, default=0.0, help="OPTIONAL: Float. Species overlap threshold used for orthology inference in ETE. Default is 0. Higher values (up to 1) result in more inclusive groupings.", type=float)
+arp.add_argument("-method","--method", required=False, default="mcl", help="OPTIONAL: String. Clustering method. Options are `mcl` (MCL, default), `mclw` (MCL weighted by node supports), `louvain` (Louvain), or `lpa` (label propagation algorithm).", type=str)
 arp.add_argument("-inflation","--inflation", required=False, default=1.5, help="OPTIONAL: Float. Inflation hyperparameter for MCL clustering. Only applicable if `method` is `mcl` or `mclw`. In practice, the most inflation-responsive method is `mclw`.", type=float)
 arp.add_argument("-outgroup","--outgroup", required=False, default=None, help="OPTIONAL: String. Define a set of species that are treated as outgroups in the phylogeny, and excluded from orthology clustering. Can be a comma-separated list of species, or a file with one species per line. This option DOES NOT affect tree rooting, just orthology clustering. Disabled by default.", type=str)
 arp.add_argument("-split", "--split", required=False, default="_", help="OPTIONAL: String to use as species prefix delimiter in gene ids, e.g. \"_\" for gene names formatted as speciesA_geneX. Defaults to \"_\".", type=str)
-arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Integer. Turns on iterative midpoint rooting with INT iterations, which is used instead of the default midpoint rooting.", type=int)
-arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false", help="OPTIONAL: Bool. Turns off tree rooting using midpoint root, in case your trees are already rooted.")
+arp.add_argument("-itermidroot", "--itermidroot",  required=False, default=None, help="OPTIONAL: Integer. Turns on iterative midpoint rooting with INT iterations, which is used instead of the default midpoint rooting. Low numbers are recommended (e.g. 10 is often more than enough).", type=int)
+arp.add_argument("-skiproot", "--skiproot",  required=False, action="store_false", help="OPTIONAL: Bool. Turns off tree rooting, in case your trees are already rooted.")
 arp.add_argument("-skipprint","--skipprint", required=False, action="store_false", help="OPTIONAL: Bool. Turns off printing of annotated phylogeny in PDF format (annotated newick is still produced).")
-arp.add_argument("-printallpairs","--printallpairs", required=False, action="store_true", help="OPTIONAL: Bool. Turns on the production of a table with pairwise orthology/paralogy relationships between all pairs of genes in the phylogeny (default behaviour is to report pairs of orthologs only).")
+arp.add_argument("-printallpairs","--printallpairs", required=False, action="store_true", help="OPTIONAL: Bool. Turns on the production of a table with pairwise orthology/paralogy relationships between all pairs of genes in the phylogeny (default behaviour is to only report pairs of orthologs).")
 arp.add_argument("-min_support_node","--min_support_node", required=False, default=0, help="OPTIONAL: Float. Min node support to consider orthology relationships. If not set, all relationships are considered.", type=float)
 arp.add_argument("-min_support_transfer","--min_support_transfer", required=False, default=None, help="OPTIONAL: Float. Min node support to allow transfer of labels from labelled to non-labelled groups in the same clade. If not set, this step is skipped.", type=float)
 arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, action="store_true", help="OPTIONAL: Bool. Will attempt to \"clean\" gene names from the reference table (see -r) used to create cluster names, to avoid very long strings in groups with many paralogs. Currently, it collapses number suffixes in gene names, and converts strings such as Hox2/Hox4 to Hox2-4. More complex substitutions are not supported.")
@@ -102,7 +102,7 @@ else:
 
 
 # select clustering method
-valid_methods = ["mcl", "louvain", "lpa", "mclw", "kclique"]
+valid_methods = ["mcl", "louvain", "lpa", "mclw"]
 if method in valid_methods:
 	clusters_function_string = "clusters_%s" % method
 else:

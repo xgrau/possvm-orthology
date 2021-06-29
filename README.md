@@ -71,12 +71,13 @@ Available options:
 
 ```man
 usage: possvm.py [-h] -i IN [-o OUT] [-p PHY] [-r REF] [-refsps REFSPS]
-                 [-s SOS] [-outgroup OUTGROUP] [-split SPLIT]
+                 [-s SOS] [-method METHOD] [-inflation INFLATION]
+                 [-outgroup OUTGROUP] [-split SPLIT]
                  [-itermidroot ITERMIDROOT] [-skiproot] [-skipprint]
                  [-printallpairs] [-min_support_node MIN_SUPPORT_NODE]
                  [-min_support_transfer MIN_SUPPORT_TRANSFER]
                  [-clean_gene_names] [-cut_gene_names CUT_GENE_NAMES]
-                 [-ogprefix OGPREFIX]
+                 [-ogprefix OGPREFIX] [-spstree SPSTREE] [-v]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -97,10 +98,21 @@ optional arguments:
   -refsps REFSPS, --refsps REFSPS
                         OPTIONAL: String. Comma-separated list of reference
                         species that will be used for orthogroup labeling. If
-                        absent, gene names present in the -r table will be
+                        absent, all gene names present in the -r table will be
                         considered.
   -s SOS, --sos SOS     OPTIONAL: Float. Species overlap threshold used for
-                        orthology inference in ETE. Default is 0.
+                        orthology inference in ETE. Default is 0. Higher
+                        values (up to 1) result in more inclusive groupings.
+  -method METHOD, --method METHOD
+                        OPTIONAL: String. Clustering method. Options are `mcl`
+                        (MCL, default), `mclw` (MCL weighted by node
+                        supports), `louvain` (Louvain), or `lpa` (label
+                        propagation algorithm).
+  -inflation INFLATION, --inflation INFLATION
+                        OPTIONAL: Float. Inflation hyperparameter for MCL
+                        clustering. Only applicable if `method` is `mcl` or
+                        `mclw`. In practice, the most inflation-responsive
+                        method is `mclw`.
   -outgroup OUTGROUP, --outgroup OUTGROUP
                         OPTIONAL: String. Define a set of species that are
                         treated as outgroups in the phylogeny, and excluded
@@ -115,10 +127,11 @@ optional arguments:
   -itermidroot ITERMIDROOT, --itermidroot ITERMIDROOT
                         OPTIONAL: Integer. Turns on iterative midpoint rooting
                         with INT iterations, which is used instead of the
-                        default midpoint rooting.
+                        default midpoint rooting. Low numbers are recommended
+                        (e.g. 10 is often more than enough).
   -skiproot, --skiproot
-                        OPTIONAL: Bool. Turns off tree rooting using midpoint
-                        root, in case your trees are already rooted.
+                        OPTIONAL: Bool. Turns off tree rooting, in case your
+                        trees are already rooted.
   -skipprint, --skipprint
                         OPTIONAL: Bool. Turns off printing of annotated
                         phylogeny in PDF format (annotated newick is still
@@ -127,7 +140,7 @@ optional arguments:
                         OPTIONAL: Bool. Turns on the production of a table
                         with pairwise orthology/paralogy relationships between
                         all pairs of genes in the phylogeny (default behaviour
-                        is to report pairs of orthologs only).
+                        is to only report pairs of orthologs).
   -min_support_node MIN_SUPPORT_NODE, --min_support_node MIN_SUPPORT_NODE
                         OPTIONAL: Float. Min node support to consider
                         orthology relationships. If not set, all relationships
@@ -152,6 +165,12 @@ optional arguments:
   -ogprefix OGPREFIX, --ogprefix OGPREFIX
                         OPTIONAL: String. Prefix for ortholog clusters.
                         Defaults to "OG".
+  -spstree SPSTREE, --spstree SPSTREE
+                        OPTIONAL: Path to a species tree. If this is provided,
+                        Possvm will use a species tree reconciliation
+                        algorithm instead of species overlap.
+  -v, --version         show program's version number and exit
+
 ```
 
 ### Test
