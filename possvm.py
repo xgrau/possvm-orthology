@@ -196,6 +196,10 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, 
 			phy_outgroup_it = phy_it.get_midpoint_outgroup()
 			phy_it.set_outgroup(phy_outgroup_it)
 			
+			# select very short length to shorten every rooting candidate branch (based on in-tree branch distribution)
+			dist_lengths = [ node.dist for node in phy.traverse("postorder") if node.dist > 0 ]
+			shrunk_length = np.quantile(dist_lengths, 0.1)
+			
 			for roi in range(niter):
 				
 				# parse events and re-do clustering
@@ -207,8 +211,8 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, 
 				out_nod_per_iter[roi] = phy_outgroup_it
 				
 				print("%s Iterative midpoint root | %i/%i | n OGs = %i" % (phy_id,roi+1,niter,num_evs_per_iter[roi]))
-				# in subsequent iterations, assign zero distance to the previous outgroup edge, and try to find second-best candidate
-				phy_outgroup_it.dist = 0.0
+				# in subsequent iterations, shrink the previous outgroup branch, and try to find second-best candidate
+				phy_outgroup_it.dist = shrunk_length
 				phy_outgroup_it = phy_it.get_midpoint_outgroup()
 				phy_it.set_outgroup(phy_outgroup_it)
 			
