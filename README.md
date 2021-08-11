@@ -10,7 +10,7 @@ It **only requires a gene tree in newick format**, where the sequence name conta
 
 An overview of *Possvm* can be found here:
 
-> Orthology clustering from gene trees with *Possvm* ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1))
+> Orthology clustering from gene trees with *Possvm* ([Grau-Bové and Sebé-Pedrós, MBE 2021](https://academic.oup.com/mbe/advance-article/doi/10.1093/molbev/msab234/6342420))
 
 ![Possvm logo](./img/fig1.png)
 
@@ -246,13 +246,13 @@ possvm -h
 
 ## Benchmarking
 
-As part of our manuscript ([Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1)), we assessed *Possvm*'s accuracy against curated gene family classifications from the Orthobench and HomeoDB databases. You can find data and code to reproduce these analyses in [our companion repository](https://github.com/xgrau/possvm-orthology-benchmarking).
+As part of our manuscript ([Grau-Bové and Sebé-Pedrós, MBE 2021](https://academic.oup.com/mbe/advance-article/doi/10.1093/molbev/msab234/6342420)), we assessed *Possvm*'s accuracy against curated gene family classifications from the Orthobench and HomeoDB databases. You can find data and code to reproduce these analyses in [our companion repository](https://github.com/xgrau/possvm-orthology-benchmarking).
 
 ## How to cite
 
 If you use *Possvm*, please cite the following papers:
 
-* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.05.03.442399v1)**.
+* *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, MBE 2021](https://academic.oup.com/mbe/advance-article/doi/10.1093/molbev/msab234/6342420)**.
 * *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](https://academic.oup.com/mbe/article/33/6/1635/2579822)**.
 * Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
 * *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://pubmed.ncbi.nlm.nih.gov/11917018/)**.
