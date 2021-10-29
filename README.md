@@ -253,6 +253,6 @@ As part of our manuscript ([Grau-Bové and Sebé-Pedrós, MBE 2021](https://acad
 If you use *Possvm*, please cite the following papers:
 
 * *Possvm* paper: **[Grau-Bové and Sebé-Pedrós, MBE 2021](https://academic.oup.com/mbe/advance-article/doi/10.1093/molbev/msab234/6342420)**.
-* *ETE* toolkit: **[Huerta-Cepas *et al.* Molecular Biology and Evolution 2016](https://academic.oup.com/mbe/article/33/6/1635/2579822)**.
-* Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biolgy 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
-* *MCL* clustering: **[Enright *et al.* Nucleic Acids Research 2002](https://pubmed.ncbi.nlm.nih.gov/11917018/)**.
+* *ETE* toolkit: **[Huerta-Cepas *et al.* MBE 2016](https://academic.oup.com/mbe/article/33/6/1635/2579822)**.
+* Species overlap algorithm: **[Huerta-Cepas *et al.* Genome Biology 2007](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)**.
+* *MCL* clustering: **[Enright *et al.* NAR 2002](https://pubmed.ncbi.nlm.nih.gov/11917018/)**.
