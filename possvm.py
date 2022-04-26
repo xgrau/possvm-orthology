@@ -47,7 +47,7 @@ phy_fn = arl["in"]
 # output folder
 if arl["out"] is None:
 	out_fn = os.path.dirname(phy_fn)
-	if out_fn is "" :
+	if out_fn == "" :
 		out_fn = "."
 else:
 	out_fn = arl["out"]
