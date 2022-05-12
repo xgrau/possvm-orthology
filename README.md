@@ -211,7 +211,7 @@ conda install -c etetoolkit ete3
 conda install -c bioconda pandas networkx markov_clustering matplotlib numpy
 ```
 
-*Alternatively*, you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
+Alternatively, you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
 
 ```bash
 # create env and install packages
