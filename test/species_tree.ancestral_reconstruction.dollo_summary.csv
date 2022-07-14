@@ -1,0 +1,6 @@
+orthogroup	presence	gain	loss	n_gains	n_losses	n_presences
+OG0	Aedaeg,Anogam,Dromel	insects		1	0	5
+OG1	Aedaeg,Anogam,Dromel	insects		1	0	5
+OG2	Aedaeg,Anogam,Dromel	insects		1	0	5
+OG3	Aedaeg,Anogam	mosquitoes		1	0	7
+OG4	Dromel	Dromel		1	0	1
