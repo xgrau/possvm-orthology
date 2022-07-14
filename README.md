@@ -174,13 +174,7 @@ optional arguments:
 
 ```
 
-If you happen to have a species tree for your dataset, you can also use the script provided in `scripts/possvm_reconstruction.py` to **reconstruct ancestral gains and losses using Dollo parsimony**. This species tree is not required for `possvm`'s main functionality, it's just a convenience tool. In this case, your species tree should include all species present in your gene trees (it can include species absent in your gene tree too, e.g. where losses occur), and all the ancestral nodes should be labelled, as follows (newick format):
-
-```bash
-(Dromel,(Aedaeg,Anogam)mosquitoes)insects;
-```
-
-Please keep in mind that Dollo parsimony is not always the most appropriate evolutionary model for ancestral reconstruction as it does not account for the possibility of parallel gains, and it tends to inflate the number of presences in the ancestral node.
+If you happen to have a species tree for your dataset, you can also use the script provided in `scripts/possvm_reconstruction.py` to **reconstruct ancestral gains and losses using Dollo parsimony**. This species tree is not required for `possvm`'s main functionality, it's just a convenience tool. See below for examples.
 
 ### Test
 
@@ -202,13 +196,21 @@ possvm -i test/fa_synthases.newick -p fa_synthases_unnamed
 possvm -i test/fa_synthases.newick -r test/drosophila_gene_names.csv -p fa_synthases_named -printallpairs
 ```
 
+![named FA synthase tree](./img/fig3.png)
+
 3. If you have a fully labelled species tree, you can **reconstruct ancestral characters with Dollo parsimony**:
 
 ```bash
 python scripts/possvm_reconstruction.py -ort test/fa_synthases_unnamed.ortholog_groups.csv -tree test/species_tree.newick -out test/species_tree.ancestral_reconstruction
 ```
 
-![named FA synthase tree](./img/fig3.png)
+In this case, your species tree should include all species present in your gene trees (it can include species absent in your gene tree too, e.g. where losses occur), and all the ancestral nodes should be labelled, as follows (newick format):
+
+```bash
+(Dromel,(Aedaeg,Anogam)mosquitoes)insects;
+```
+
+Please keep in mind that Dollo parsimony is not always the most appropriate evolutionary model for ancestral reconstruction as it does not account for the possibility of parallel gains, and it tends to inflate the number of presences in the ancestral node.
 
 ### Installation
 
