@@ -531,7 +531,7 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 		evs_n.add_nodes_from(node_list)
 		
 		evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ]
-		evs_m = nx.to_scipy_sparse_matrix(evs_n, nodelist=evs_n_nodelist)
+		evs_m = nx.to_scipy_sparse_array(evs_n, nodelist=evs_n_nodelist)
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL clustering, inflation = %.3f" % (inf))
