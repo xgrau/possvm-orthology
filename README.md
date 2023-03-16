@@ -260,6 +260,12 @@ source ~/.bashrc
 possvm -h
 ```
 
+If you are having issues with PDF plotting in systems without a GUI, try installing this library with `pip` first:
+
+```bash
+pip3 install PyQt5==5.11.3
+```
+
 ## Benchmarking
 
 As part of our manuscript ([Grau-Bové and Sebé-Pedrós, MBE 2021](https://academic.oup.com/mbe/advance-article/doi/10.1093/molbev/msab234/6342420)), we assessed *Possvm*'s accuracy against curated gene family classifications from the Orthobench and HomeoDB databases. You can find data and code to reproduce these analyses in [our companion repository](https://github.com/xgrau/possvm-orthology-benchmarking).
