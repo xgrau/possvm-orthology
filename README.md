@@ -214,7 +214,7 @@ Please keep in mind that Dollo parsimony is not always the most appropriate evol
 
 ### Installation
 
-***Possvm*** depends on the [*ETE* toolkit](http://etetoolkit.org/) Python library, which currently works best with Python 3.6 or greater and can be installed via *conda*. We thus recommend that you use conda to install *ETE* and all other dependencies.
+***Possvm*** has been tested in **Python 3.9**, and it depends on the [*ETE3* toolkit](http://etetoolkit.org/) library. I recommend that you use *conda* to install *ETE* and all other dependencies (I used version 23.1.0).
 
 Once you have a working installation of *conda* (see [here for instructions](http://etetoolkit.org/download/)), you can run the following commands:
 
