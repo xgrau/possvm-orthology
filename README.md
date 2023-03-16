@@ -223,8 +223,9 @@ Once you have a working installation of *conda* (see [here for instructions](htt
 conda create -n possvm
 conda activate possvm
 # install dependencies
-conda install -c etetoolkit ete3
-conda install -c bioconda pandas networkx markov_clustering matplotlib numpy
+conda install -c etetoolkit ete3==3.1.2
+conda install -c bioconda pandas markov_clustering matplotlib numpy
+conda install -c conda-forge networkx==3.0
 ```
 
 Alternatively, you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
@@ -240,13 +241,12 @@ Both options should download and install all basic dependencies, including the f
 ```bash
 ete3                      3.1.2              pyh39e3cac_0    etetoolkit
 markov_clustering         0.0.6                      py_0    bioconda
-matplotlib                3.3.2                h06a4308_0  
-matplotlib-base           3.3.2            py36h817c723_0  
-networkx                  2.5                        py_0  
-numpy                     1.19.2           py36h54aff64_0  
-numpy-base                1.19.2           py36hfa32c7d_0  
-pandas                    1.1.3            py36he6710b0_0  
-python                    3.6.12               hcff3b4d_2  
+matplotlib                3.5.2            py39h06a4308_0
+matplotlib-base           3.3.2            py36h817c723_0
+networkx                  3.0                pyhd8ed1ab_0    conda-forge
+numpy                     1.21.5           py39h6c91a56_3
+pandas                    1.5.1            py39h417a72b_0
+python                    3.9.12               h12debd9_0
 ```
 
 Once these dependencies are up and running, you can run *Possvm* like any Python script:

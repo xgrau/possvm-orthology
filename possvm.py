@@ -33,7 +33,7 @@ arp.add_argument("-clean_gene_names","--clean_gene_names", required=False, actio
 arp.add_argument("-cut_gene_names","--cut_gene_names", required=False, default=None, help="OPTIONAL: Integer. If set, will shorten cluster name strings to the given length in the PDF file, to avoid long strings in groups with many paralogs. Default is no shortening.", type=int)
 arp.add_argument("-ogprefix","--ogprefix", required=False, default="OG", help="OPTIONAL: String. Prefix for ortholog clusters. Defaults to \"OG\".", type=str)
 arp.add_argument("-spstree","--spstree", required=False, default=None, help="OPTIONAL: Path to a species tree. If this is provided, Possvm will use a species tree reconciliation algorithm instead of species overlap.", type=str)
-arp.add_argument("-v","--version", action="version", version="%(prog)s 1.1")
+arp.add_argument("-v","--version", action="version", version="%(prog)s 1.2")
 
 arl = vars(arp.parse_args())
 
