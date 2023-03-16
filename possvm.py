@@ -2,6 +2,7 @@
 import argparse
 import sys
 import os
+os.environ['QT_QPA_PLATFORM']='offscreen'
 import re
 import numpy as np
 import pandas as pd
