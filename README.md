@@ -264,13 +264,13 @@ Please keep in mind that Dollo parsimony is not always the most appropriate evol
 
 #### PDF printing in GUI-less systems
 
-The PDF printing step in *Possvm* relies on the `ete3` library and is therefore affected by this [known issue](https://github.com/etetoolkit/ete/issues/354). If you are encountering the following error message:
+The PDF printing step in *Possvm* relies on the `ete3` library and is therefore affected by this [known issue](https://github.com/etetoolkit/ete/issues/354) regarding graphic library dependencies. If you are working in a system without a graphical user interface (GUI), you may lack some of these libraries and thus encounter the following error when trying to create the PDF:
 
 ```python
 ImportError: cannot import name 'TreeStyle'
 ```
 
-Try installing this library with `pip`:
+If so, try installing this library with `pip`:
 
 ```bash
 pip3 install PyQt5 # tested with 5.11.3
