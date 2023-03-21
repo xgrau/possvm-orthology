@@ -176,45 +176,9 @@ optional arguments:
 
 If you happen to have a species tree for your dataset, you can also use the script provided in `scripts/possvm_reconstruction.py` to **reconstruct ancestral gains and losses using Dollo parsimony**. This species tree is not required for `possvm`'s main functionality, it's just a convenience tool. See below for examples.
 
-### Test
-
-You can test *Possvm* using a small phylogeny of [fatty acid synthases from three insects](https://elifesciences.org/articles/58019) (*Drosophila melanogaster* and two mosquitoes, *Anopheles gambiae* and *Aedes aegypti*), which can be found in the `test/` folder.
-
-1. Identify ortholog clusters in the gene tree (`OG0` to `OG4`):
-
-```bash
-possvm -i test/fa_synthases.newick -p fa_synthases_unnamed
-# -i path to gene tree
-# -p output filename
-```
-
-![unnamed FA syntase tree](./img/fig2.png)
-
-2. Same, but annotating the orthogroups with *Drosophila* gene names if possible, and reporting relationships between all gene pairs:
-
-```bash
-possvm -i test/fa_synthases.newick -r test/drosophila_gene_names.csv -p fa_synthases_named -printallpairs
-```
-
-![named FA synthase tree](./img/fig3.png)
-
-3. If you have a fully labelled species tree, you can **reconstruct ancestral characters with Dollo parsimony**:
-
-```bash
-python scripts/possvm_reconstruction.py -ort test/fa_synthases_unnamed.ortholog_groups.csv -tree test/species_tree.newick -out test/species_tree.ancestral_reconstruction
-```
-
-In this case, your species tree should include all species present in your gene trees (it can include species absent in your gene tree too, e.g. where losses occur), and all the ancestral nodes should be labelled, as follows (newick format):
-
-```bash
-(Dromel,(Aedaeg,Anogam)mosquitoes)insects;
-```
-
-Please keep in mind that Dollo parsimony is not always the most appropriate evolutionary model for ancestral reconstruction as it does not account for the possibility of parallel gains, and it tends to inflate the number of presences in the ancestral node.
-
 ### Installation
 
-***Possvm*** has been tested in **Python 3.9**, and it depends on the [*ETE3* toolkit](http://etetoolkit.org/) library. I recommend that you use *conda* to install *ETE* and all other dependencies (I used version 23.1.0).
+***Possvm*** has been tested in **Python 3.9**, and it depends on the [*ETE3* toolkit](http://etetoolkit.org/) library. I recommend that you use *conda* to install *ETE* and all other dependencies (I used version 23.1.0 in Ubuntu 22.04).
 
 Once you have a working installation of *conda* (see [here for instructions](http://etetoolkit.org/download/)), you can run the following commands:
 
@@ -260,11 +224,66 @@ source ~/.bashrc
 possvm -h
 ```
 
-If you are having issues with PDF plotting in systems without a GUI, try installing this library with `pip` first:
+### Test
+
+You can test *Possvm* using a small phylogeny of [fatty acid synthases from three insects](https://elifesciences.org/articles/58019) (*Drosophila melanogaster* and two mosquitoes, *Anopheles gambiae* and *Aedes aegypti*), which can be found in the `test/` folder.
+
+1. Identify ortholog clusters in the gene tree (`OG0` to `OG4`):
 
 ```bash
-pip3 install PyQt5==5.11.3
+possvm -i test/fa_synthases.newick -p fa_synthases_unnamed
+# -i path to gene tree
+# -p output filename
 ```
+
+![unnamed FA syntase tree](./img/fig2.png)
+
+2. Same, but annotating the orthogroups with *Drosophila* gene names if possible, and reporting relationships between all gene pairs:
+
+```bash
+possvm -i test/fa_synthases.newick -r test/drosophila_gene_names.csv -p fa_synthases_named -printallpairs
+```
+
+![named FA synthase tree](./img/fig3.png)
+
+3. If you have a fully labelled species tree, you can **reconstruct ancestral characters with Dollo parsimony**:
+
+```bash
+python scripts/possvm_reconstruction.py -ort test/fa_synthases_unnamed.ortholog_groups.csv -tree test/species_tree.newick -out test/species_tree.ancestral_reconstruction
+```
+
+In this case, your species tree should include all species present in your gene trees (it can include species absent in your gene tree too, e.g. where losses occur), and all the ancestral nodes should be labelled, as follows (newick format):
+
+```bash
+(Dromel,(Aedaeg,Anogam)mosquitoes)insects;
+```
+
+Please keep in mind that Dollo parsimony is not always the most appropriate evolutionary model for ancestral reconstruction as it does not account for the possibility of parallel gains, and it tends to inflate the number of presences in the ancestral node.
+
+### Issues
+
+#### PDF printing in GUI-less systems
+
+The PDF printing step in *Possvm* relies on the `ete3` library and is therefore affected by this [known issue](https://github.com/etetoolkit/ete/issues/354). If you are encountering the following error message:
+
+```python
+ImportError: cannot import name 'TreeStyle'
+```
+
+Try installing this library with `pip`:
+
+```bash
+pip3 install PyQt5 # tested with 5.11.3
+```
+
+If this fails:
+
+1. You can always disable PDF printing with the `--skipprint` flag, and the program should finish without problems.
+2. Drop me a line in the [issues section](https://github.com/xgrau/possvm-orthology/issues).
+
+#### Other issues
+
+Please [let me know here](https://github.com/xgrau/possvm-orthology/issues) if you find anything!
 
 ## Benchmarking
 
