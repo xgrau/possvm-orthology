@@ -529,13 +529,12 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 		evs_e = evs[["in_gene","out_gene","branch_support"]]
 		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
 		evs_n.add_nodes_from(node_list)
-		
 		evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ]
 		evs_m = nx.to_scipy_sparse_array(evs_n, nodelist=evs_n_nodelist)
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL clustering, inflation = %.3f" % (inf))
-		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold=0) #why pruning threshold HAS to be zero?
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf)
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
 		if verbose:
 			logging.info("MCL clustering, num clusters = %i" % (len(mcl_c)))
@@ -580,11 +579,11 @@ def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="weight")
 		evs_n.add_nodes_from(node_list)
 		evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ]
-		evs_m = nx.to_scipy_sparse_matrix(evs_n, nodelist=evs_n_nodelist)
+		evs_m = nx.to_scipy_sparse_array(evs_n, nodelist=evs_n_nodelist)
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL weighted clustering, inflation = %.3f" % (inf))
-		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold=0) #why pruning threshold HAS to be zero?
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf) #why pruning threshold HAS to be zero?
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
 		if verbose:
 			logging.info("MCL weighted clustering, num clusters = %i" % (len(mcl_c)))
