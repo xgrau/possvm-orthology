@@ -276,26 +276,47 @@ def parse_events(phy, outgroup, do_allpairs, min_support_node=0):
 	# find evolutionary events (duplications and speciations)
 	evev = phy.get_descendant_evol_events(sos_thr=sos)
 	
+	# # speciation events
+	# evs    = np.empty((len(evev)*len(evev), 5), dtype="object")
+	# evs[:] = np.nan
+	# n = 0
+	# for ev in evev:
+	# 	# retrieve list of sps in ingroup and outgroup:
+	# 	sps_in = np.unique([ i.split(split_ch)[0] for i in ev.in_seqs ])
+	# 	sps_ou = np.unique([ i.split(split_ch)[0] for i in ev.out_seqs ])
+	# 	# check if node is a speciation node, or a duplication node where both descendant branches have exactly one species, and this is the same species
+	# 	if (ev.etype == "S" or (ev.etype == "D" and len(sps_in) == len(sps_ou) == 1 and sps_in == sps_ou)) and ev.branch_supports[0] >= min_support_node:
+	# 		for ii in ev.in_seqs:
+	# 			for oi in ev.out_seqs:
+	# 				evs[n,0] = ii
+	# 				evs[n,1] = oi
+	# 				evs[n,2] = ev.branch_supports[0]
+	# 				evs[n,3] = ev.etype
+	# 				evs[n,4] = ev.sos
+	# 				n = n + 1
+	# evs = pd.DataFrame(evs).dropna()
+	# evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+	
 	# speciation events
-	evs    = np.empty((len(evev)*len(evev), 5), dtype="object")
-	evs[:] = np.nan
-	n = 0
-	for ev in evev:
-		# retrieve list of sps in ingroup and outgroup:
+	# this new version avoids pre-creating a huge empty matrix that used to result in memory problems in large phylogenies
+	def parse_ev(ev):
 		sps_in = np.unique([ i.split(split_ch)[0] for i in ev.in_seqs ])
 		sps_ou = np.unique([ i.split(split_ch)[0] for i in ev.out_seqs ])
-		# check if node is a speciation node, or a duplication node where both descendant branches have exactly one species, and this is the same species
 		if (ev.etype == "S" or (ev.etype == "D" and len(sps_in) == len(sps_ou) == 1 and sps_in == sps_ou)) and ev.branch_supports[0] >= min_support_node:
-			for ii in ev.in_seqs:
-				for oi in ev.out_seqs:
-					evs[n,0] = ii
-					evs[n,1] = oi
-					evs[n,2] = ev.branch_supports[0]
-					evs[n,3] = ev.etype
-					evs[n,4] = ev.sos
-					n = n + 1
-	evs = pd.DataFrame(evs).dropna()
-	evs.columns = ["in_gene","out_gene","branch_support","ev_type","sos"]
+			return(
+				[{
+					'in_gene':ii,
+					'out_gene':oi,
+					'branch_support':ev.branch_supports[0],
+					'ev_type':ev.etype,
+					'sos':ev.sos
+				} for oi in ev.out_seqs for ii in ev.in_seqs]
+			)
+		else:
+			return(None)
+	outputs = [parse_ev(ev) for ev in evev]
+	outputs = [x for x in outputs if x]
+	evs = pd.DataFrame([item for sublist in outputs for item in sublist])
 	
 	# drop outgroup species, if any
 	if len(outgroup) > 0:
