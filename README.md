@@ -1,10 +1,20 @@
-# Orthology inference with *Possvm*
+# Orthology inference with *Possvm* <!-- omit from toc -->
 
 ***Possvm*** (_**P**hylogenetic **O**rtholog **S**orting with **S**pecies o**V**erlap and **M**CL_) is a python tool to analyse pre-computed gene trees and identify pairs and clusters of orthologous genes. It takes advantage of the **[species overlap algorithm](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2007-8-6-r109)** implemented in the **[*ETE* toolkit](http://etetoolkit.org/docs/latest/tutorial/tutorial_phylogeny.html#species-overlap-so-algorithm)** to parse the phylogeny and identify orthologous gene pairs, and **[*MCL* clustering](https://micans.org/mcl/)** for orthogroup identification.
 
 ![Possvm logo](./img/logo.png)
 
 It **only requires a gene tree in newick format**, where the sequence name contains a prefix that indicates their species of origin, e.g. `human_gene1`. It does **not** require a species tree to infer orthologs.
+
+- [How it works](#how-it-works)
+- [Manual](#manual)
+  - [Input and output](#input-and-output)
+  - [Usage](#usage)
+  - [Installation](#installation)
+  - [Test](#test)
+  - [Issues](#issues)
+- [Benchmarking](#benchmarking)
+- [How to cite](#how-to-cite)
 
 ## How it works
 
@@ -262,7 +272,7 @@ Please keep in mind that Dollo parsimony is not always the most appropriate evol
 
 ### Issues
 
-#### PDF printing in GUI-less systems
+#### PDF printing in GUI-less systems <!-- omit from toc -->
 
 The PDF printing step in *Possvm* relies on the `ete3` library and is therefore affected by this [known issue](https://github.com/etetoolkit/ete/issues/354) regarding graphic library dependencies. If you are working in a system without a graphical user interface (GUI), you may lack some of these libraries and thus encounter the following error when trying to create the PDF:
 
@@ -281,7 +291,7 @@ If this fails:
 1. You can always disable PDF printing with the `--skipprint` flag, and the program should finish without problems.
 2. Drop me a line in the [issues section](https://github.com/xgrau/possvm-orthology/issues).
 
-#### Other issues
+#### Other issues <!-- omit from toc -->
 
 Please [let me know here](https://github.com/xgrau/possvm-orthology/issues) if you find anything!
 
