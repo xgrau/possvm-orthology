@@ -178,9 +178,17 @@ If you happen to have a species tree for your dataset, you can also use the scri
 
 ### Installation
 
-***Possvm*** has been tested in **Python 3.9**, and it depends on the [*ETE3* toolkit](http://etetoolkit.org/) library. I recommend that you use *conda* to install *ETE* and all other dependencies (I used version 23.1.0 in Ubuntu 22.04).
+***Possvm*** has been tested in **Python 3.10**, and it depends on the [*ETE3* toolkit](http://etetoolkit.org/) library. I recommend that you use *conda* to install *ETE* and all other dependencies (I used version 23.1.0 in Ubuntu 22.04).
 
-Once you have a working installation of *conda* (see [here for instructions](http://etetoolkit.org/download/)), you can run the following commands:
+Once you have a working installation of *conda* (see [here for instructions](http://etetoolkit.org/download/)), you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
+
+```bash
+# create env and install packages
+conda env create -n possvm --file environment.yaml
+conda activate possvm
+```
+
+Alternatively, you can install them one by one, like this:
 
 ```bash
 # create environment for possvm
@@ -192,25 +200,17 @@ conda install -c bioconda pandas markov_clustering matplotlib numpy
 conda install -c conda-forge networkx==3.0
 ```
 
-Alternatively, you can use the `environment.yaml` file bundled in this repository to reproduce the environment:
+Both options should download and install all basic dependencies, including the following essential packages:
 
 ```bash
-# create env and install packages
-conda env create -n possvm --file environment.yaml
-conda activate possvm
-```
-
-Both options should download and install all basic dependencies, including the following packages:
-
-```bash
-ete3                      3.1.2              pyh39e3cac_0    etetoolkit
-markov_clustering         0.0.6                      py_0    bioconda
-matplotlib                3.5.2            py39h06a4308_0
-matplotlib-base           3.3.2            py36h817c723_0
-networkx                  3.0                pyhd8ed1ab_0    conda-forge
-numpy                     1.21.5           py39h6c91a56_3
-pandas                    1.5.1            py39h417a72b_0
-python                    3.9.12               h12debd9_0
+ete3              3.1.2
+markov_clustering 0.0.6
+matplotlib        3.7.1
+networkx          3.0
+scipy             1.10.0
+numpy             1.23.5
+pandas            1.5.3
+python            3.10.9
 ```
 
 Once these dependencies are up and running, you can run *Possvm* like any Python script:
