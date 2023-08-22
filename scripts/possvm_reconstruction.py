@@ -53,12 +53,12 @@ def do_species_orig_dict(phs):
 				
 				# find its name (or create one from descendant nodes if no name given)
 				if e.name == "" :
-					species_orig_dict[i][j] = e.get_leaf_names()[0] + "," + e.get_leaf_names()[-1]
+					species_orig_dict[i][j] = e.get_leaf_names(topology_only = True)[0] + "," + e.get_leaf_names(topology_only = True)[-1]
 				else:
 					species_orig_dict[i][j] = e.name
 
 				# find its age
-				species_ages_dict[i][j] = e.get_farthest_leaf()[1]
+				species_ages_dict[i][j] = e.get_farthest_leaf(topology_only = True)[1]
 
 			elif n == m:
 				species_orig_dict[i][j] = i
