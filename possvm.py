@@ -204,7 +204,7 @@ def parse_phylo(phy_fn, phy_id, do_root, do_allpairs, clusters_function_string, 
 			for roi in range(niter):
 				
 				# parse events and re-do clustering
-				evs_it, _, _, phy_lis_it = parse_events(phy=phy_it, outgroup=outgroup, do_allpairs=False, min_support_node=min_support_node)
+				evs_it, eva_it, phy_itx, phy_lis_it = parse_events(phy=phy_it, outgroup=outgroup, do_allpairs=False, min_support_node=min_support_node)
 				clu_it = clusters_function(evs=evs_it, node_list=phy_lis_it, verbose=False)
 				
 				# store number of orthogroups in this particular iteration
@@ -548,7 +548,9 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 		if verbose:
 			logging.info("Create network")
 		evs_e = evs[["in_gene","out_gene","branch_support"]]
-		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="branch_support")
+		evs_e.columns = ["in_gene","out_gene","weight"]
+		evs_e.iloc[:]["weight"] = 0 # I've checked and you get the same result if you use 100 or 0 or whatever, the only thing that matters is that's constant
+		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="weight")
 		evs_n.add_nodes_from(node_list)
 		evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ]
 		evs_m = nx.to_scipy_sparse_array(evs_n, nodelist=evs_n_nodelist)
@@ -604,7 +606,7 @@ def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL weighted clustering, inflation = %.3f" % (inf))
-		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf) #why pruning threshold HAS to be zero?
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf)
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
 		if verbose:
 			logging.info("MCL weighted clustering, num clusters = %i" % (len(mcl_c)))
@@ -627,7 +629,7 @@ def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 		"cluster" : mcl_c_clu,
 	}, columns=["node","cluster"])
 	if verbose:
-		logging.info("MCL clustering, num clustered genes = %i" % (len(clu)))
+		logging.info("MCL clustering, num clustered genes = %i" % (clu.shape[1]))
 	
 	return clu
 
