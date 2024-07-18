@@ -879,8 +879,8 @@ def annotate_event_type(eva, clu, clutag="cluster_name", split_ch=split_ch):
 	# empty
 	evtype = np.empty(len(eva), dtype=object)
 	# orthologs
-	evtype[ ( eva["ev_type"] == "S" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] )& ( eva["in_sps"] != eva["out_sps"] ) ] = "ortholog_int"
-	evtype[ ( eva["ev_type"] == "S" ) & ( eva["cluster_name_x"] != eva["cluster_name_y"] )& ( eva["in_sps"] != eva["out_sps"] ) ] = "ortholog_ext"
+	evtype[ ( eva["ev_type"] == "S" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] ) & ( eva["in_sps"] != eva["out_sps"] ) ] = "ortholog_int"
+	evtype[ ( eva["ev_type"] == "S" ) & ( eva["cluster_name_x"] != eva["cluster_name_y"] ) & ( eva["in_sps"] != eva["out_sps"] ) ] = "ortholog_ext"
 	# outparalog_ext (from different species and an external orthology group)
 	evtype[ ( eva["ev_type"] == "D" ) & ( eva["cluster_name_x"] == eva["cluster_name_y"] ) & ( eva["in_sps"] != eva["out_sps"] ) ] = "outparalog_int"
 	# outparalog_int (from different species and the same orthology group)
