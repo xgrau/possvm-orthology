@@ -557,7 +557,7 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL clustering, inflation = %.3f" % (inf))
-		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf)
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold = 1) # if pruning threshold is set to a number smaller than the max network weights, it'll result in genes assigned to more than one cluster
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
 		if verbose:
 			logging.info("MCL clustering, num clusters = %i" % (len(mcl_c)))
@@ -606,8 +606,9 @@ def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL weighted clustering, inflation = %.3f" % (inf))
-		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf)
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold = max(evs_e["weight"].values)) # if pruning threshold is set to a number smaller than the max network weights, it'll result in genes assigned to more than one cluster
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
+		print(mcl_c)
 		if verbose:
 			logging.info("MCL weighted clustering, num clusters = %i" % (len(mcl_c)))
 		# MCL clustering: save output
