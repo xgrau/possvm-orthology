@@ -6,6 +6,7 @@ os.environ['QT_QPA_PLATFORM']='offscreen'
 import re
 import numpy as np
 import pandas as pd
+pd.options.mode.chained_assignment = None  # change from default "warn"
 import ete3
 import logging
 
@@ -549,7 +550,8 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 			logging.info("Create network")
 		evs_e = evs[["in_gene","out_gene","branch_support"]]
 		evs_e.columns = ["in_gene","out_gene","weight"]
-		evs_e.iloc[:]["weight"] = 1 # I've checked and you get the same result if you use 100 or 0 or whatever, the only thing that matters is that's constant
+		evs_e.loc[:,"weight"] = 100.0
+		# print(evs_e["weight"]) # for tests
 		evs_n = nx.convert_matrix.from_pandas_edgelist(evs_e, source="in_gene", target="out_gene", edge_attr="weight")
 		evs_n.add_nodes_from(node_list)
 		evs_n_nodelist = [ node for i, node in enumerate(evs_n.nodes()) ]
@@ -557,8 +559,10 @@ def clusters_mcl(evs, node_list, inf=inflation, verbose=True):
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL clustering, inflation = %.3f" % (inf))
-		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold = 0.01) # if pruning threshold is set to a number smaller than the max network weights, it'll result in genes assigned to more than one cluster
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold = 0.001) # if pruning threshold is set to a number smaller than the max network weights, it'll result in genes assigned to more than one cluster
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
+		# print(mcl_c)  # for tests
+		# print(len(mcl_c)) # for tests
 		if verbose:
 			logging.info("MCL clustering, num clusters = %i" % (len(mcl_c)))
 		# MCL clustering: save output
@@ -606,10 +610,11 @@ def clusters_mclw(evs, node_list, inf=inflation, verbose=True):
 		# MCL clustering: run clustering
 		if verbose:
 			logging.info("MCL weighted clustering, inflation = %.3f" % (inf))
-		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold = 0.01)
-		# mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold = max(evs_e["weight"].values)) # if pruning threshold is set to a number smaller than the max network weights, it'll result in genes assigned to more than one cluster
+		mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold = 0.001)
+		# mcl_m  = markov_clustering.run_mcl(evs_m, inflation=inf, pruning_threshold = max(evs_e["weight"].values) / 1e6) # does it always have to be below the scale of weights?
 		mcl_c  = markov_clustering.get_clusters(mcl_m)
-		print(mcl_c)
+		# print(mcl_c) # for tests
+		# print(len(mcl_c)) # for tests
 		if verbose:
 			logging.info("MCL weighted clustering, num clusters = %i" % (len(mcl_c)))
 		# MCL clustering: save output
